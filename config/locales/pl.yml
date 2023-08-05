@@ -1,0 +1,262 @@
+pl:
+  activerecord:
+    models:
+      occams/cms/site: Witryna
+      occams/cms/layout: Szablon
+      occams/cms/page: Strona
+      occams/cms/snippet: Snippet
+      occams/cms/file: Plik
+      occams/cms/translation: Tłumaczenie
+
+    attributes:
+      occams/cms/site:
+        identifier: Identyfikator
+        label: Tytuł
+        hostname: Nazwa hosta
+        path: Ścieżka
+        locale: Język
+      occams/cms/layout:
+        identifier: Identyfikator
+        label: Szablon
+        app_layout: Szablon aplikacji
+        parent_id: Rodzic
+        content: Zawartość
+        css: Style
+        js: Javascript
+      occams/cms/page:
+        label: Tytuł
+        layout_id: Szablon
+        slug: Przyjazna ścieżka
+        full_path: Pełna ścieżka
+        parent_id: Rodzic
+        target_page_id: Przekieruj do strony
+        content: Zawartość
+        is_published: Opublikowana
+      occams/cms/file:
+        label: Tytuł
+        file: Plik
+        description: Opis
+      occams/cms/snippet:
+        identifier: Identyfikator
+        label: Tytuł
+        content: Zawartość
+      occams/cms/translation:
+        locale: Język
+        label: Nazwa
+        layout_id: Szablon
+        is_published: Opublikowano
+
+  occams:
+    cms:
+      content:
+        site_not_found: Witryna nie została znaleziona
+        layout_not_found: Szablon nie został znaleziony
+        page_not_found: Strona nie została znaleziona
+
+    admin:
+      cms:
+        base:
+          site_not_found: Strona nie została znaleziona
+          seeds_enabled: Fikstury CMS są włączone. Wszystkie zmiany zapisane tutaj nie będą uwzględnione.
+          sites: Witryny
+          layouts: Szablony
+          pages: Strony
+          snippets: Snippety
+          files: Pliki
+
+        sites:
+          created: Witryna została utworzona
+          creation_failure: Błąd przy tworzeniu witryny
+          updated: Witryna została uaktualniona
+          update_failure: Błąd przy uaktualnianiu witryny
+          deleted: Witryna została usunięta
+          not_found: Nie znaleziono witryny
+
+          index:
+            title: Witryny
+            new_link: Utwórz nową witrynę
+            select: Wybierz witrynę
+            edit: Edytuj
+            delete: Usuń
+            are_you_sure: Jesteś pewien, że chce usunąć tą witrynę?
+          new:
+            title: Nowa witryna
+          edit:
+            title: Edytuj witrynę
+          form:
+            create: Utwórz witrynę
+            cancel: Anuluj
+            update: Uaktualnij witrynę
+
+        layouts:
+          created: Szablon został utworzony
+          creation_failure: Błąd przy tworzeniu szablonu
+          updated: Szablon został uaktualniony
+          update_failure: Błąd przy uaktualnianiu szablonu
+          deleted: Szablon został usunięty
+          not_found: Nie znaleziono szablonu
+
+          index:
+            title: Szablony
+            new_link: Utwórz nowy szablon
+          index_branch:
+            add_child_layout: Dodaj podszablon
+            edit: Edytuj
+            delete: Usuń
+            are_you_sure: Jesteś pewien?
+          new:
+            title: Nowy szablon
+          edit:
+            title: Edytuj szablon
+          form:
+            select_parent_layout: Wybierz szablon rodzica
+            select_app_layout: Wybierz szablon aplikacji
+            create: Stwórz szablon
+            cancel: Anuluj
+            update: Uaktualnij szablon
+
+        pages:
+          created: Strona została utworzona
+          creation_failure: Błąd przy tworzeniu strony
+          updated: Strona została uaktualniona
+          update_failure: Błąd przy uaktualnianiu strony
+          deleted: Strona została usunięta
+          not_found: Nie znaleziono strony
+          layout_not_found: Brakuje szablonu. Proszę utworzyć
+
+          index:
+            title: Strony
+            new_link: Utwórz nową stronę
+          index_branch:
+            toggle: Przełącz
+            add_child_page: Dodaj podstronę
+            edit: Edytuj
+            delete: Usuń
+            are_you_sure: Jesteś pewien?
+          new:
+            title: Nowa strona
+          edit:
+            title: Edytuj stronę
+          form:
+            select_target_page: Bez przekierowania
+            preview: Podgląd
+            create: Utwórz stronę
+            cancel: Anuluj
+            update: Uaktualnij stronę
+            choose_link: Wybierz stronę...
+
+        fragments:
+          form_fragments:
+            no_tags: |-
+              Szablon nie ma zdefiniowanych tagów<br/>
+              Dodaj do jego treści tag strony lub pola, np. <code>{{cms:wysiwyg content}}</code>
+
+        translations:
+          created: Tłumaczenie zostało utworzone
+          creation_failure: Błąd przy tworzeniu tlumaczenia
+          updated: Tłumaczenie zostało uaktualnione
+          update_failure: Błąd przy uaktualnianiu tłumaczenia
+          deleted: Tłumaczenie zostało usunięte
+          not_found: Nie znaleziono tłumaczenia
+
+          new:
+            title: Nowe tłumaczenie
+          edit:
+            title: Edytuj tłumaczenie
+          form:
+            preview: Podgląd
+            create: Utwórz tłumaczenie
+            update: Uaktualnij tłumaczenie
+            cancel: Anuluj
+          sidebar:
+            new: Nowe tłumaczenie
+            confirm: Jesteś pewien?
+
+        snippets:
+          created: Snippet został utworzony
+          creation_failure: Błąd przy tworzeniu snippeta
+          updated: Snippet został uaktualniony
+          update_failure: Błąd przy uaktualnianiu snippeta
+          deleted: Snippet został usunięty
+          not_found: Nie znaleziono snippeta
+
+          index:
+            title: Snippety
+            new_link: Utwórz nowy snippet
+            edit: Edytuj
+            delete: Usuń
+            are_you_sure: Jesteś pewien?
+          new:
+            title: Nowy snippet
+          edit:
+            title: Edytuj snippet
+          form:
+            create: Utwórz snippet
+            cancel: Anuluj
+            update: Uaktualnij snippet
+
+        revisions:
+          reverted: Zawartość została przywrócona
+          record_not_found: Wpis nie został znaleziony
+          not_found: Wersja nie została znaleziona
+
+          show:
+            title: Wersje dla
+            revision: Wersja
+            update: Uaktualnij do tej wersji
+            cancel: Anuluj
+            content: Pole
+            changes: Wersje
+            previous: Historyczna
+            current: Aktualna
+          sidebar:
+            revision:
+              zero: '%{count} Wersji'
+              one: '%{count} Wersja'
+              few: '%{count} Wersje'
+              many: '%{count} Wersji'
+              other: '%{count} Wersje'
+
+        files:
+          created: Plik wrzucony na serwer
+          creation_failure: Błąd przy wrzucaniu pliku
+          updated: Plik został uaktualniony
+          update_failure: Błąd przy uaktualnianiu pliku
+          deleted: Plik został usunięty
+          not_found: Plik nie został znaleziony
+
+          index:
+            title: Pliki
+            new_link: Wgraj nowy plik
+            button: Wgraj plik
+          new:
+            title: Nowy plik
+          edit:
+            title: Edytuj plik
+          form:
+            current_file: Aktualny plik
+            create: Wgraj plik
+            cancel: Anuluj
+            update: Uaktualnij plik
+            delete: Usuń
+            are_you_sure: Jesteś pewien?
+          page_form:
+            are_you_sure: Jesteś pewien?
+          file:
+            edit: Edytuj
+            delete: Usuń
+            are_you_sure: Jesteś pewien?
+
+        categories:
+          index:
+            edit: Edytuj
+            done: Zrobione
+            all: Wszystko Kategorie
+            add: Dodaj
+            add_placeholder: Dodaj Kategorię
+          show:
+            are_you_sure: Jesteś pewien?
+          edit:
+            save: Zapisz
+          form:
+            label: Tytuł

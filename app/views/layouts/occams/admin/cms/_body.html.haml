@@ -1,0 +1,14 @@
+%body#occams{class: "c-#{params[:controller].parameterize} a-#{params[:action].parameterize}"}
+
+  .container-fluid
+    .row
+      #cms-left.col-lg-2.bg-dark
+        = render "layouts/occams/admin/cms/left"
+      #cms-main.col-lg-8.m-auto
+        = render "layouts/occams/admin/cms/flash"
+        = yield
+        = render 'occams/admin/cms/files/modal' if @site && !@site.new_record?
+      #cms-right.col-lg-2
+        = render 'layouts/occams/admin/cms/right'
+
+  = render "layouts/occams/admin/cms/footer_js"

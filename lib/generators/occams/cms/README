@@ -1,0 +1,17 @@
+             ____      __  __ _ ____
+  ___   ___ / ___|__ _|  \/  ( ) ___|
+ / _ \ / __| |   / _` | |\/| |/\___ \
+| (_) | (__| |__| (_| | |  | |  ___) |
+ \___/ \___|\____\__,_|_|  |_| |____/
+ 
+Prefer Simplicity. 
+
+You are almost done.  Don't forget to:
+
+  [Optional] - If you want to store files in your CMS with ActiveStorage: `rails active_storage:install`
+  [Mandatory] - Create the tables in your database: `rails db:migrate`
+
+Then you can go to http://your-rails-app/admin to start adding content.
+
+Default username and password are: user/pass
+Change these defaults in config/initializers/occams.rb

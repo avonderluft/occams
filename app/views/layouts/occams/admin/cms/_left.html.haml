@@ -1,0 +1,39 @@
+= occams_admin_partial "occams/admin/cms/partials/navigation_before"
+
+%nav.navbar.navbar-expand-lg
+  %button.navbar-toggler{type: "button", data: {toggle:"collapse", target: "#leftnav"}, aria: {controls: "navbarSupportedContent", expanded: "false", label: "Toggle navigation"}}
+    %i.fas.fa-bars
+
+  #leftnav.navbar-collapse.collapse
+
+    %ul.nav.nav-pills
+      %li.nav-item
+        = active_link_to occams_admin_cms_sites_path, class: "nav-link", active: ['occams/admin/cms/sites'] do
+          = t('occams.admin.cms.base.sites')
+
+      - if @site && !@site.new_record?
+        %li.nav-item
+          = active_link_to occams_admin_cms_site_layouts_path(@site), class: "nav-link" do
+            = t('occams.admin.cms.base.layouts')
+        %li.nav-item
+          = active_link_to occams_admin_cms_site_pages_path(@site), class: "nav-link" do
+            = t('occams.admin.cms.base.pages')
+        %li.nav-item
+          = active_link_to occams_admin_cms_site_snippets_path(@site), class: "nav-link" do
+            = t('occams.admin.cms.base.snippets')
+        %li.nav-item
+          - unless is_active_link?(occams_admin_cms_site_files_path(@site))
+            %a.cms-files-open-modal{href: occams_admin_cms_site_files_path(@site), title: "Open library"}
+              %i.fas.fa-bars
+          = active_link_to occams_admin_cms_site_files_path(@site), class: "nav-link" do
+            = t('occams.admin.cms.base.files')
+
+      = cms_hook :navigation
+
+      = occams_admin_partial "occams/admin/cms/partials/navigation_inner"
+
+= occams_admin_partial "occams/admin/cms/partials/navigation_after"
+
+.left-footer
+  = link_to 'Occams', 'https://github.com/avonderluft/occams', target: '_blank'
+  %span.version= Occams::VERSION

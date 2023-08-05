@@ -1,0 +1,13 @@
+- content_for :right_column do
+  = render "occams/admin/cms/categories/index", type: "Occams::Cms::Page"
+
+.page-header
+  = link_to t('.new_link'), new_occams_admin_cms_site_page_path(@site), class: "btn btn-secondary float-right"
+  %h2= t('.title')
+
+= occams_admin_partial "occams/admin/cms/partials/pages_before"
+
+%ul.list.sortable
+  = render partial: "index_branch", collection: @pages
+
+= occams_admin_partial "occams/admin/cms/partials/pages_after"

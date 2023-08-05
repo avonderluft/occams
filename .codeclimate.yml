@@ -1,0 +1,4 @@
+exclude_paths:
+  - app/assets/javascripts/comfy/vendor/*
+  - app/assets/stylesheets/comfy/vendor/*
+  - db/*

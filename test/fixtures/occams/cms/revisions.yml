@@ -1,0 +1,29 @@
+layout:
+  record: default (Occams::Cms::Layout)
+  data: <%= {
+    'content' => 'revision {{cms:fragment content}}',
+    'css'     => 'revision css',
+    'js'      => 'revision js' }.to_yaml.inspect %>
+
+page:
+  record: default (Occams::Cms::Page)
+  data: <%= {
+    'fragments_attributes' => [
+      { 'identifier'  => 'content',
+        'content'     => 'old content' },
+      { 'identifier'  => 'title',
+        'content'     => 'old title'}
+    ]}.to_yaml.inspect %>
+
+translation:
+  record: default (Occams::Cms::Translation)
+  data: <%= {
+    "fragments_attributes" => [
+      { "identifier" => "content",
+        "content"    => "old content" }
+    ]}.to_yaml.inspect %>
+
+snippet:
+  record: default (Occams::Cms::Snippet)
+  data: <%= {
+    'content' => 'revision content' }.to_yaml.inspect %>

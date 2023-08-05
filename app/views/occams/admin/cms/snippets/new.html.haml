@@ -1,0 +1,5 @@
+.page-header
+  %h2= t(".title")
+
+= occams_form_with model: @snippet, scope: :snippet, url: {action: :create} do |form|
+  = render form

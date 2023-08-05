@@ -1,0 +1,262 @@
+it:
+  activerecord:
+    models:
+      occams/cms/site: Sito
+      occams/cms/layout: Layout
+      occams/cms/page: Pagina
+      occams/cms/snippet: Snippet
+      occams/cms/file: File
+      occams/cms/translation: Translation
+
+    attributes:
+      occams/cms/site:
+        identifier: Identificatore
+        label: Etichetta
+        hostname: Indirizzo Host
+        path: Percorso
+        locale: Lingua
+      occams/cms/layout:
+        identifier: Identificatore
+        label: Nome Layout
+        app_layout: Layout Applicazione
+        parent_id: Layout Padre
+        content: Contenuto
+        css: Foglio di stile
+        js: Javascript
+      occams/cms/page:
+        label: Etichetta
+        layout_id: Layout
+        slug: Slug
+        full_path: Full path
+        parent_id: Padre
+        target_page_id: Reindirizza a Pagina
+        content: Contenuto
+        is_published: Pubblicato
+      occams/cms/file:
+        label: Etichetta
+        file: File
+        description: Descrizione
+      occams/cms/snippet:
+        label: Etichetta
+        identifier: Identificatore
+        content: Contenuto
+      occams/cms/translation:
+        locale: Language
+        label: Label
+        layout_id: Layout
+        is_published: Published
+
+  occams:
+    cms:
+      content:
+        site_not_found: Sito non trovato
+        layout_not_found: Layout non trovato
+        page_not_found: Pagina non trovata
+
+    admin:
+      cms:
+        base:
+          site_not_found: Sito non trovato
+          seeds_enabled: Le Fixtures CMS sono abilitate. Tutti i cambiamenti fatti qui saranno scartati.
+          sites: Siti
+          layouts: Layout
+          pages: Pagine
+          snippets: Snippet
+          files: Files
+
+        sites:
+          created: Sito creato
+          creation_failure: Impossibile creare il sito
+          updated: Sito aggiornato
+          update_failure: Impossibile modificare il sito
+          deleted: Sito eliminato
+          not_found: Sito non trovato
+
+          index:
+            title: Siti
+            new_link: Crea nuovo sito
+            select: Seleziona sito
+            edit: Modifica
+            delete: Elimina
+            are_you_sure: Sei sicuro di voler eliminare questo sito?
+          new:
+            title: Nuovo sito
+          edit:
+            title: Modifica sito
+          form:
+            create: Crea sito
+            cancel: Cancellare
+            update: Modifica sito
+
+        layouts:
+          created: Layout creato
+          creation_failure: Impossibile creare il layout
+          updated: Layout modificato
+          update_failure: Impossibile modificare il layout
+          deleted: Layout eliminato
+          not_found: Layout non trovato
+
+          index:
+            title: Layout
+            new_link: Crea nuovo layout
+          index_branch:
+            add_child_layout: Aggiungi Layout figlio
+            edit: Modifica
+            delete: Elimina
+            are_you_sure: Sei sicuro di voler eliminare questo Layout?
+          new:
+            title: Nuovo Layout
+          edit:
+            title: Modifica Layout
+          form:
+            select_parent_layout: Seleziona Layout padre
+            select_app_layout: Seleziona Layout applicazione
+            create: Crea Layout
+            cancel: Cancellare
+            update: Modifica Layout
+
+        pages:
+          created: Pagina creata
+          creation_failure: Impossibile creare la pagina
+          updated: Pagina modificata
+          update_failure: Impossibile modificare la pagina
+          deleted: Pagina eliminata
+          not_found: Pagina non trovata
+          layout_not_found: Nessun layout trovato. Creane uno per favore.
+
+          index:
+            title: Pagine
+            new_link: Crea nuova pagina
+          index_branch:
+            toggle: Alterna
+            add_child_page: Aggiungi Pagina figlio
+            edit: Modifica
+            delete: Elimina
+            are_you_sure: Sei sicuro di voler eliminare questa pagina?
+          new:
+            title: Nuova Pagina
+          edit:
+            title: Modifica Pagina
+          form:
+            select_target_page: Nessun reindirizzamento
+            preview: Anteprima
+            create: Crea Pagina
+            cancel: Cancellare
+            update: Modifica Pagina
+            choose_link: Select page...
+
+        fragments:
+          form_fragments:
+            no_tags: |-
+              Il Layout non ha tag di contenuto definiti.<br/>
+              Modifica il contenuto per includere una pagina o un campo. Per esempio: <code>{{cms:wysiwyg content}}</code>
+
+        translations:
+          created: Translation created
+          creation_failure: Failed to create translation
+          updated: Translation updated
+          update_failure: Failed to update translation
+          deleted: Translation deleted
+          not_found: Translation not found
+
+          new:
+            title: New Translation
+          edit:
+            title: Editing Translation
+          form:
+            preview: Preview
+            create: Create
+            update: Update
+            cancel: Return to Page
+          sidebar:
+            new: New Translation
+            confirm: Are you sure?
+
+        snippets:
+          created: Snippet creato
+          creation_failure: Impossibile creare lo snippet
+          updated: Snippet modificato
+          update_failure: Impossibile modificare lo snippet
+          deleted: Snippet eliminato
+          not_found: Snippet non trovato
+
+          index:
+            title: Snippet
+            new_link: Crea nuovo Snippet
+            edit: Modifica
+            delete: Elimina
+            are_you_sure: Sei sicuro di voler eliminare questo snippet?
+          new:
+            title: Nuovo Snippet
+          edit:
+            title: Modifica Snippet
+          form:
+            create: Crea Snippet
+            cancel: Cancellare
+            update: Modifica Snippet
+
+        revisions:
+          reverted: Contenuto ripristinato con successo
+          record_not_found: Record non trovato
+          not_found: Revisione non trovata
+
+          show:
+            title: Revisioni per
+            revision: Revisione
+            update: Aggiorna a questa revisione
+            cancel: Cancellare
+            content: Contenuto
+            changes: Cambiamenti
+            previous: Precedente
+            current: Attuale
+          sidebar:
+            revision:
+              zero: '%{count} Revisioni'
+              one: '%{count} Revisione'
+              few: '%{count} Revisioni'
+              many: '%{count} Revisioni'
+              other: '%{count} Revisioni'
+
+        files:
+          created: File caricati
+          creation_failure: Impossibile caricare i file
+          updated: File aggiornato
+          update_failure: Impossibile aggiornare il file
+          deleted: File eliminato
+          not_found: File non trovato
+
+          index:
+            title: Files
+            new_link: Carica nuovo file
+            button: Carica File
+          new:
+            title: Nuovo File
+          edit:
+            title: Modifica File
+          form:
+            current_file: File attuale
+            create: Carica File
+            cancel: Cancellare
+            update: Modifica File
+            delete: Elimina
+            are_you_sure: Sei sicuro?
+          page_form:
+            are_you_sure: Sei sicuro?
+          file:
+            edit: Modifica
+            delete: Elimina
+            are_you_sure: Sei sicuro?
+
+        categories:
+          index:
+            edit: Modifica
+            done: Fatto
+            all: Tutte Categorie
+            add: Aggiungi
+            add_placeholder: Aggiungi categoria
+          show:
+            are_you_sure: Sei sicuro?
+          edit:
+            save: Salva
+          form:
+            label: Categorie

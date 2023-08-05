@@ -1,0 +1,20 @@
+= occams_admin_partial "occams/admin/cms/partials/translation_form_before", form: form
+
+= form.select :locale, translation_select_options
+
+= form.text_field :label
+
+- if (options = ::Occams::Cms::Layout.options_for_select(@site)).present?
+  = form.select :layout_id, options, {}, {data: {url: form_fragments_occams_admin_cms_site_page_translation_path(@site, @page, @translation.id.to_i)}, id: "fragments-toggle"}
+
+#form-fragments-container
+  = render "occams/admin/cms/fragments/form_fragments", record: @translation, scope: :translation
+
+= form.check_box :is_published
+
+= occams_admin_partial "occams/admin/cms/partials/translation_form_after", form: form
+
+= form.form_actions do
+  = submit_tag t(".preview"), name: "preview", formtarget: "occams-cms-preview", id: nil, class: "btn btn-secondary", data: {disable_with: false}
+  = submit_tag t(@translation.new_record? ? ".create" : ".update"), class: "btn btn-primary", data: {disable_with: false}
+  = link_to t(".cancel"), edit_occams_admin_cms_site_page_path(@site, @page), class: "btn btn-link"

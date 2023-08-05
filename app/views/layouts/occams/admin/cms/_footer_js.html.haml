@@ -1,0 +1,6 @@
+= occams_admin_partial "occams/admin/cms/partials/html_footer"
+
+= javascript_include_tag "occams/admin/cms/application", "data-turbolinks-track": "reload"
+
+- if content_for(:javascript)
+  = yield :javascript

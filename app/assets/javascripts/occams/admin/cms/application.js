@@ -1,0 +1,39 @@
+//= require rails-ujs
+//= require jquery3
+
+//= require occams/vendor/codemirror
+//= require occams/vendor/codemirror/mode/css/css
+//= require occams/vendor/codemirror/mode/htmlmixed/htmlmixed
+//= require occams/vendor/codemirror/mode/javascript/javascript
+//= require occams/vendor/codemirror/mode/markdown/markdown
+//= require occams/vendor/codemirror/mode/xml/xml
+//= require occams/vendor/codemirror/addon/edit/closetag
+//= require occams/vendor/sortable.min
+//= require occams/vendor/bootstrap.bundle.min
+//= require occams/vendor/diff/diff_match_patch.min
+//= require occams/vendor/diff/pretty_text_diff
+//= require occams/vendor/fontawesome
+//= require occams/vendor/redactor
+//= require occams/vendor/redactor/filemanager
+//= require occams/vendor/redactor/imagemanager
+//= require occams/vendor/redactor/definedlinks
+//= require occams/vendor/redactor/table
+//= require occams/vendor/redactor/video
+//= require_directory ../../vendor/redactor/i18n/
+//= require occams/vendor/flatpickr.min
+//= require_directory ../../vendor/flatpickr/i18n/
+
+//= require occams/admin/cms/base
+//= require occams/admin/cms/categories
+//= require occams/admin/cms/codemirror
+//= require occams/admin/cms/diff
+//= require occams/admin/cms/file_link
+//= require occams/admin/cms/file_upload
+//= require occams/admin/cms/files_modal
+//= require occams/admin/cms/page_fragments
+//= require occams/admin/cms/sortable_list
+//= require occams/admin/cms/slugify
+//= require occams/admin/cms/timepicker
+//= require occams/admin/cms/wysiwyg
+
+//= require occams/admin/cms/custom

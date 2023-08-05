@@ -1,0 +1,26 @@
+= occams_admin_partial "occams/admin/cms/partials/file_form_before", form: form
+
+= form.text_field :label
+= form.file_field :file
+
+- unless @file.new_record?
+
+  = form.form_group bootstrap: {label: {text: t('.current_file')}}do
+    - if @file.attachment.image?
+      .file-image
+        = image_tag @file.attachment
+    = link_to @file.attachment.filename, @file.attachment, target: '_blank'
+
+= form.text_area :description
+
+= render 'occams/admin/cms/categories/form', form: form
+
+= occams_admin_partial 'occams/admin/cms/partials/file_form_after', form: form
+
+= form.form_actions do
+  = submit_tag t(@file.new_record? ? ".create" : ".update"), class: "btn btn-primary"
+
+  - unless @file.new_record?
+    = link_to t(".delete"), occams_admin_cms_site_file_path(@site, @file), method: :delete, data: {confirm: t(".are_you_sure")}, class: "btn btn-danger"
+
+  = link_to t(".cancel"), occams_admin_cms_site_files_path, class: "btn btn-link"

@@ -1,0 +1,5 @@
+.page-header
+  %h2 New <%= class_name.titleize %>
+
+= occams_form_with model: @<%= file_name %>, url: [:admin, @<%= file_name %>] do |form|
+  = render form

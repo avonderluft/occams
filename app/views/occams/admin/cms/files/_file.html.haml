@@ -1,0 +1,31 @@
+%li{data: {id: file.id}}
+  :ruby
+    file_tag  = cms_file_link_tag(file)
+    thumb_url = url_for(file.attachment.variant(Occams::Cms::File::VARIANT_SIZE[:thumb])) if file.attachment.variable?
+  .row
+    .col-md-5.item
+      .item-controls.d-none.d-lg-block
+        - if !params[:categories].present? && @site.files.count > 1
+          .dragger
+            %i.fas.fa-bars
+      .item-content
+        .item-title
+          = link_to file.label, file.attachment, target: "_blank",
+                    data: {cms_file_thumb_url: thumb_url, cms_file_link_tag: file_tag}
+        .item-meta
+          .content-type
+            = truncate(file.attachment.content_type)
+          .file-size
+            = number_to_human_size(file.attachment.byte_size)
+
+    .col-md-2.item-categories.d-flex.align-items-center
+      = render partial: "occams/admin/cms/categories/categories", object: file
+
+    .col-md-2.d-flex.align-items-center
+      %span.file-path
+        = file_tag
+
+    .col-md-3.d-flex.align-items-center.justify-content-md-end
+      .btn-group.btn-group-sm
+        = link_to t(".edit"), edit_occams_admin_cms_site_file_path(@site, file), class: "btn btn-outline-secondary"
+        = link_to t(".delete"), occams_admin_cms_site_file_path(@site, file), method: :delete, remote: true, data: {confirm: t(".are_you_sure")}, class: "btn btn-danger"

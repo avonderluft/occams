@@ -1,0 +1,7 @@
+$('.categories-widget .editable .categories').append(
+  '<%= escape_javascript(render "show", category: @category) %>'
+);
+$('.categories-widget .read .categories').append(
+  '<%= escape_javascript(render "show", category: @category, read: true) %>'
+);
+$('.categories-widget .editable form#new-category input[name="category[label]"]').val('');

@@ -1,0 +1,262 @@
+ru:
+  activerecord:
+    models:
+      occams/cms/site: Сайт
+      occams/cms/layout: Шаблон
+      occams/cms/page: Страница
+      occams/cms/snippet: Сниппет
+      occams/cms/file: Файл
+      occams/cms/translation: Translation
+
+    attributes:
+      occams/cms/site:
+        identifier: Идентификатор
+        label: Название
+        hostname: Имя хоста
+        path: Путь
+        locale: Язык
+      occams/cms/layout:
+        identifier: Идентификатор
+        label: Название шаблона
+        app_layout: Шаблон приложения
+        parent_id: Родительский шаблон
+        content: Контент
+        css: CSS
+        js: Javascript
+      occams/cms/page:
+        label: Название
+        layout_id: Шаблон
+        parent_id: Родительская страница
+        full_path: Полный путь
+        slug: Ссылка
+        target_page_id: Редирект на страницу
+        content: Контент
+        is_published: Опубликована
+      occams/cms/file:
+        label: Название
+        file: Файл
+        description: Описание
+      occams/cms/snippet:
+        identifier: Идентификатор
+        label: Название
+        content: Контент
+      occams/cms/translation:
+        locale: Language
+        label: Label
+        layout_id: Layout
+        is_published: Published
+
+  occams:
+    cms:
+      content:
+        site_not_found: Сайт не найден
+        layout_not_found: Шаблон не найден
+        page_not_found: Страница не найдена
+
+    admin:
+      cms:
+        base:
+          site_not_found: Сайт не найден
+          seeds_enabled: CMS Fixtures включены. Все изменения, сделанные здесь, будут отменены.
+          sites: Сайты
+          layouts: Шаблоны
+          pages: Страницы
+          snippets: Сниппеты
+          files: Файлы
+
+        sites:
+          created: Сайт создан
+          creation_failure: Не удалось создать сайт
+          updated: Сайт обновлен
+          update_failure: Не удалось обновить сайт
+          deleted: Сайт удален
+          not_found: Сайт не найден
+
+          index:
+            title: Сайты
+            new_link: Создать новый сайт
+            select: Выбрать сайт
+            edit: Редактировать
+            delete: Удалить
+            are_you_sure: Вы уверены, что хотите удалить этот сайт?
+          new:
+            title: Новый сайт
+          edit:
+            title: Редактирование сайта
+          form:
+            create: Создать сайт
+            cancel: Oтменить
+            update: Обновить сайт
+
+        layouts:
+          created: Шаблон создан
+          creation_failure: Не удалось создать шаблон
+          updated: Шаблон обновлен
+          update_failure: Не удалось обновить шаблон
+          deleted: Шаблон удален
+          not_found: Шаблон не найден
+
+          index:
+            title: Шаблоны
+            new_link: Создать новый шаблон
+          index_branch:
+            add_child_layout: Добавить дочерний шаблон
+            edit: Редактировать
+            delete: Удалить
+            are_you_sure: Вы уверены?
+          new:
+            title: Новый шаблон
+          edit:
+            title: Редактирование шаблона
+          form:
+            select_parent_layout: Выбрать родительский шаблон
+            select_app_layout: Выбрать шаблон приложения
+            create: Создать шаблон
+            cancel: Oтменить
+            update: Обновить шаблон
+
+        pages:
+          created: Страница создана
+          creation_failure: Не удалось создать страницу
+          updated: Страница обновлена
+          update_failure: Не удалось обновить страницу
+          deleted: Страница удалена
+          not_found: Страница не найдена
+          layout_not_found: Шаблоны не найдены. Пожалуйста, создайте хотя бы один шаблон.
+
+          index:
+            title: Страницы
+            new_link: Создать новую страницу
+          index_branch:
+            toggle: Toggle
+            add_child_page: Добавить дочернюю страницу
+            edit: Редактировать
+            delete: Удалить
+            are_you_sure: Вы уверены?
+          new:
+            title: Новая страница
+          edit:
+            title: Редактирование страницы
+          form:
+            select_target_page: Без редиректа
+            preview: Предпросмотр
+            create: Создать страницу
+            cancel: Oтменить
+            update: Обновить страницу
+            choose_link: Select page...
+
+        fragments:
+          form_fragments:
+            no_tags: |-
+              Шаблон не содержит ни одного контент-тега.<br/>
+              Отредактируйте контент, вставив тег страницы или поля. Например: <code>{{cms:wysiwyg content}}</code>
+
+        translations:
+          created: Translation created
+          creation_failure: Failed to create translation
+          updated: Translation updated
+          update_failure: Failed to update translation
+          deleted: Translation deleted
+          not_found: Translation not found
+
+          new:
+            title: New Translation
+          edit:
+            title: Editing Translation
+          form:
+            preview: Preview
+            create: Create
+            update: Update
+            cancel: Return to Page
+          sidebar:
+            new: New Translation
+            confirm: Are you sure?
+
+        snippets:
+          created: Сниппет создан
+          creation_failure: Не удалось создать сниппет
+          updated: Сниппет обновлен
+          update_failure: Не удалось обновить сниппет
+          deleted: Сниппет удален
+          not_found: Сниппет не найден
+
+          index:
+            title: Сниппеты
+            new_link: Создать новый сниппет
+            edit: Редактировать
+            delete: Удалить
+            are_you_sure: Вы уверены?
+          new:
+            title: Новый сниппет
+          edit:
+            title: Редактирование сниппета
+          form:
+            create: Создать сниппет
+            cancel: Oтменить
+            update: Обновить сниппет
+
+        revisions:
+          reverted: Контент возвращен в прежнее состояние
+          record_not_found: Запись не найдена
+          not_found: Ревизия не найдена
+
+          show:
+            title: Ревизии для
+            revision: Ревизия
+            update: Обновить до этой ревизии
+            cancel: Oтменить
+            content: Content
+            changes: Changes
+            previous: Previous
+            current: Текущая
+          sidebar:
+            revision:
+              zero: 'Нет Ревизий'
+              one: '%{count} Ревизия'
+              few: '%{count} Ревизии'
+              many: '%{count} Ревизий'
+              other: '%{count} Ревизии'
+
+        files:
+          created: Файлы загружены
+          creation_failure: Не удалось загрузить файлы
+          updated: Файл обновлен
+          update_failure: Не удалось обновить файл
+          deleted: Файл удален
+          not_found: Файл не найден
+
+          index:
+            title: Файлы
+            new_link: Загрузить новый файл
+            button: Загрузить файлы
+          new:
+            title: Новый файл
+          edit:
+            title: Редактирование файла
+          form:
+            current_file: Текущий файл
+            create: Загрузить файл
+            cancel: Oтменить
+            update: Обновить файл
+            delete: Удалить
+            are_you_sure: Вы уверены?
+          page_form:
+            are_you_sure: Вы уверены?
+          file:
+            edit: Редактировать
+            delete: Удалить
+            are_you_sure: Вы уверены?
+
+        categories:
+          index:
+            edit: Редактировать
+            done: Применить
+            all: Все Категории
+            add: Добавить
+            add_placeholder: добавить категорию
+          show:
+            are_you_sure: Вы уверены?
+          edit:
+            save: Сохранить
+          form:
+            label: Категории

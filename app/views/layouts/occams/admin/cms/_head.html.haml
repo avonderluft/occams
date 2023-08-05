@@ -1,0 +1,19 @@
+%head
+  %title= Occams.config.cms_title
+
+  %meta{"http-equiv" => "Content-type", content: "text/html; charset=utf-8"}
+  %meta{charset: "utf-8"}
+  %meta{name: "viewport", content: "width=device-width, initial-scale=1, shrink-to-fit=no"}
+
+  = csrf_meta_tag
+
+  - if @site && @site.persisted?
+    %meta{name: "cms-file-upload-path", content: occams_admin_cms_site_files_path(@site)}
+    %meta{name: "cms-pages-path",       content: occams_admin_cms_site_pages_path(@site)}
+    %meta{name: "cms-locale",           content: I18n.locale}
+
+  = stylesheet_link_tag "occams/admin/cms/application", media: "all", "data-turbolinks-track": "reload"
+
+  = yield :head
+
+  = occams_admin_partial "occams/admin/cms/partials/html_head"

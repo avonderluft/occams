@@ -1,0 +1,36 @@
+- content_for :right_column do
+  .box.revisions
+    - @record.revisions.order(created_at: :desc).each do |revision|
+      = active_link_to l(revision.created_at, format: :short), { id: revision.id }, class: "btn btn-sm btn-light d-block text-primary mb-1"
+
+.page-header
+  %h2
+    = t('.title')
+    = @record.class.to_s.demodulize
+
+.row.d-none.d-lg-flex
+  .col-lg-10.ml-auto
+    .row
+      .col-lg-6
+        .label= t('.previous')
+      .col-lg-6
+        .label= t('.current')
+
+- @current_content.each do |label, content|
+  .row.revision
+    .col-lg-2.text-lg-right.bg-light
+      .label= label
+    .col-lg-10
+      .row
+        .col-lg-6
+          .content
+            = safe_join @versioned_content[label].to_s.split("\n"), raw("<br/>")
+        .col-lg-6.diff
+          .original.d-none= @versioned_content[label]
+          .current.d-none= content
+          .content
+
+= occams_form_with model: @revision, url: { action: :revert } do |form|
+  = form.form_actions do
+    = submit_tag t(".update"), class: "btn btn-primary"
+    = link_to t(".cancel"), record_path, class: "btn btn-link"

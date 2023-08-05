@@ -1,0 +1,10 @@
+.page-header
+  = link_to t('.new_link'), new_occams_admin_cms_site_layout_path(@site), class: "btn btn-secondary float-right"
+  %h2= t('.title')
+
+= occams_admin_partial "occams/admin/cms/partials/layouts_before"
+
+%ul.list.sortable
+  = render partial: "index_branch", collection: @layouts
+
+= occams_admin_partial "occams/admin/cms/partials/layouts_after"

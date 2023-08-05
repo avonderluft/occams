@@ -1,0 +1,31 @@
+- content_for :right_column do
+  = render "occams/admin/cms/categories/index", type: "Occams::Cms::File"
+
+:ruby
+  session_id = request.session_options[:id]
+  session_id_value = session_id.respond_to?(:public_id) ? session_id.public_id : session_id.to_s
+  cms_uploader_data = {
+    cms_uploader: {
+      url: occams_admin_cms_site_files_path(@site, source: :plupload, categories: params[:categories]),
+      token: { name: request_forgery_protection_token, value: form_authenticity_token },
+      session: { name: Rails.application.config.session_options[:key], value: session_id_value }
+    }
+  }
+
+#cms-uploader{data: cms_uploader_data}
+  #cms-uploader-drag-drop-target
+
+  .page-header
+    = link_to t('.new_link'), new_occams_admin_cms_site_file_path(@site), class: "btn btn-secondary float-right", id: "cms-uploader-browse"
+    %h2= t('.title')
+
+  = occams_admin_partial "occams/admin/cms/partials/files_before"
+
+  = occams_paginate @files
+
+  %ul.list.sortable.cms-uploader-filelist
+    = render partial: "file", collection: @files
+
+  = occams_admin_partial "occams/admin/cms/partials/files_after"
+
+  = occams_paginate @files

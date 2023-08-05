@@ -1,0 +1,10 @@
+- content_for :right_column do
+  - link = occams_admin_cms_site_page_translation_revisions_path(@site, @page, @translation)
+  = render "occams/admin/cms/revisions/sidebar", record: @translation, link: link
+  = render "occams/admin/cms/translations/sidebar"
+
+.page-header
+  %h2= t('.title')
+
+= occams_form_with model: @translation, scope: :translation, url: {action: :update}, html: {multipart: true} do |form|
+  = render form

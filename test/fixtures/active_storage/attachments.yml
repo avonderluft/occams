@@ -1,0 +1,9 @@
+default:
+  record: default (Occams::Cms::File)
+  name: attachment
+  blob: default
+
+file:
+  record: file (Occams::Cms::Fragment)
+  name: attachments
+  blob: fragment

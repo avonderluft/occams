@@ -1,0 +1,38 @@
+- begin
+  - nodes = record.fragment_nodes
+  - namespace = nodes.group_by(&:namespace)
+
+  #form-fragments
+    - if nodes.empty?
+      .alert.alert-warning
+        - if record.layout
+          = link_to record.layout.label, edit_occams_admin_cms_site_layout_path(@site, record.layout)
+        = t(".no_tags").html_safe
+
+    - else
+      .tabbable
+        - if namespace.size > 1
+          .row
+            .col-sm-2
+            .col-sm-10
+              %ul.nav.nav-tabs
+                - namespace.each_with_index do |(name, tags), index|
+                  %li.nav-item
+                    - active = index == 0 ? "active" : nil
+                    - label = t("occams.cms.content.namespace.#{name}", default: name.humanize)
+                    = link_to label, "#ns-#{name}", class: "nav-link #{active}", data: {toggle: "tab"}
+
+        .tab-content
+          - frag_index = 0
+
+          - builder_opts = { builder: Occams::FormBuilder, bootstrap: { layout: :horizontal }}
+          = fields scope, model: record, **builder_opts do |form|
+            - namespace.each_with_index do |(name, tags), index|
+              .tab-pane{id: "ns-#{name}", class: index == 0 ? "active" : nil}
+                - tags.each do |tag|
+                  = form.fragment_field(tag, frag_index)
+                  - frag_index += 1
+
+- rescue Occams::Content::Renderer::SyntaxError, Occams::Content::Tag::Error => e
+  .alert.alert-danger
+    = e

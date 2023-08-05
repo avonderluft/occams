@@ -1,0 +1,5 @@
+.page-header
+  %h2 Edit Foo
+
+= occams_form_with model: @foo, url: [:admin, @foo] do |form|
+  = render form

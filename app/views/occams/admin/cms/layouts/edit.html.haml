@@ -1,0 +1,9 @@
+- content_for :right_column do
+  - link = occams_admin_cms_site_layout_revisions_path(@site, @layout)
+  = render "occams/admin/cms/revisions/sidebar", record: @layout, link: link
+
+.page-header
+  %h2= t('.title')
+
+= occams_form_with model: @layout, scope: :layout, url: {action: :update} do |form|
+  = render form

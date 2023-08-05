@@ -1,0 +1,262 @@
+de:
+  activerecord:
+    models:
+      occams/cms/site: Site
+      occams/cms/layout: Vorlage
+      occams/cms/page: Seite
+      occams/cms/snippet: Schnipsel
+      occams/cms/file: Datei
+      occams/cms/translation: Übersetzung
+
+    attributes:
+      occams/cms/site:
+        identifier: Name
+        label: Bezeichnung
+        hostname: Hostname
+        path: Pfad
+        locale: Sprache
+      occams/cms/layout:
+        identifier: Eindeutiger Name
+        label: Name
+        app_layout: Grundlegendes Layout
+        parent_id: Übergeordnete Vorlage
+        content: Inhalt
+        css: CSS-Stilvorlage
+        js: JavaScript
+      occams/cms/page:
+        label: Titel
+        layout_id: Vorlage
+        slug: URL-Teil
+        full_path: Vollständiger Pfad
+        parent_id: Vorfahre
+        target_page_id: Weiterleitung zu Seite
+        content: Inhalt
+        is_published: Veröffentlicht
+      occams/cms/file:
+        label: Bezeichnung
+        file: Datei
+        description: Beschreibung
+      occams/cms/snippet:
+        identifier: Eindeutiger Name
+        label: Bezeichnung
+        content: Inhalt
+      occams/cms/translation:
+        locale: Sprache
+        label: Label
+        layout_id: Vorlage
+        is_published: Veröffentlicht
+
+  occams:
+    cms:
+      content:
+        site_not_found: Site nicht gefunden
+        layout_not_found: Vorlage nicht gefunden
+        page_not_found: Seite nicht gefunden
+
+    admin:
+      cms:
+        base:
+          site_not_found: Fehler
+          seeds_enabled: Fixtures sind aktiviert - alle Änderungen werden verworfen!
+          sites: Sites
+          layouts: Vorlagen
+          pages: Seiten
+          snippets: Schnipsel
+          files: Dateien
+
+        sites:
+          created: Site erstellt
+          creation_failure: Fehler beim Erstellen der Site!
+          updated: Site aktualisiert
+          update_failure: Fehler beim Aktualisieren der Site!
+          deleted: Site gelöscht
+          not_found: Site existiert nicht
+
+          index:
+            title: Sites
+            new_link: Neue Site erstellen
+            select: Auswählen
+            edit: Bearbeiten
+            delete: Löschen
+            are_you_sure: Sicher, dass Sie diese Site löschen möchten?
+          new:
+            title: Site erstellen
+          edit:
+            title: Site bearbeiten
+          form:
+            create: Site erstellen
+            cancel: Abbrechen
+            update: Site speichern
+
+        layouts:
+          created: Vorlage erstellt
+          creation_failure: Fehler beim Erstellen der Vorlage!
+          updated: Vorlage aktualisiert
+          update_failure: Fehler beim Aktualisieren der Vorlage!
+          deleted: Vorlage gelöscht
+          not_found: Vorlage nicht gefunden
+
+          index:
+            title: Vorlagen
+            new_link: Neue Vorlage erstellen
+          index_branch:
+            add_child_layout: Neue, untergeordnete Vorlage erstellen
+            edit: Vorlage bearbeiten
+            delete: Vorlage löschen
+            are_you_sure: Sind Sie sicher, dass Sie diese Vorlage löschen möchten?
+          new:
+            title: Neue Vorlage
+          edit:
+            title: Vorlage bearbeiten
+          form:
+            select_parent_layout: Übergeordnete Vorlage auswählen
+            select_app_layout: Grundlegendes Layout auswählen
+            create: Vorlage erstellen
+            cancel: Abbrechen
+            update: Vorlage speichern
+
+        pages:
+          created: Seite erstellt
+          creation_failure: Fehler beim Erstellen der Seite!
+          updated: Seite aktualisiert
+          update_failure: Fehler beim Aktualisieren der Seite!
+          deleted: Seite gelöscht
+          not_found: Seite nicht gefunden
+          layout_not_found: Bisher wurde keine Vorlage angelegt!
+
+          index:
+            title: Seiten
+            new_link: Neue Seite erstellen
+          index_branch:
+            toggle: Schalter
+            add_child_page: Neue, untergeordnete Seite erstellen
+            edit: Bearbeiten
+            delete: Löschen
+            are_you_sure: Sind Sie sicher, dass Sie diese Seite löschen möchten?
+          new:
+            title: Seite erstellen
+          edit:
+            title: Seite bearbeiten
+          form:
+            select_target_page: Keine Weiterleitung
+            preview: Vorschau
+            create: Seite erstellen
+            cancel: Abbrechen
+            update: Seite speichern
+            choose_link: Seite auswählen...
+
+        fragments:
+          form_fragments:
+            no_tags: |-
+              Das gewählte Layout hat kein Occams-Tags deklariert, daher kann diese Seite nicht bearbeitet werden.<br/>
+              Beispiel: <code>{{ cms:wysiwyg content }}</code>
+
+        translations:
+          created: Übersetzung angelegt
+          creation_failure: Fehler beim Anlegen der Übersetzung!
+          updated: Übersetzung aktualisiert
+          update_failure: Fehler beim Aktualisieren der Übersetzung!
+          deleted: Übersetzung gelöscht
+          not_found: Übersetzung nicht gefunden
+
+          new:
+            title: Übersetzung erstellen
+          edit:
+            title: Übersetzung bearbeiten
+          form:
+            preview: Vorschau
+            create: Neue Übersetzung
+            update: Überstzung speichern
+            cancel: Zurück zur Seite
+          sidebar:
+            new: Neue Übersetzung
+            confirm: Sind Sie sicher?
+
+        snippets:
+          created: Schnipsel erstellt
+          creation_failure: Fehler beim Erstellen des Schnipsels!
+          updated: Schnipsel aktualisiert
+          update_failure: Fehler beim Aktualisieren des Schnipsels!
+          deleted: Schnipsel gelöscht
+          not_found: Schnipsel nicht angelegt
+
+          index:
+            title: Schnipsel
+            new_link: Neuen Schnipsel erstellen
+            edit: Schnipsel bearbeiten
+            delete: Schnipsel löschen
+            are_you_sure: Sind Sie sicher, dass Sie diesen Schnipsel löschen möchten?
+          new:
+            title: Schnipsel erstellen
+          edit:
+            title: Schnipsel bearbeiten
+          form:
+            create: Schnipsel erstellen
+            cancel: Abbrechen
+            update: Schnipsel speichern
+
+        revisions:
+          reverted: Inhalt wurde aus gewählter Version wiederhergestellt
+          record_not_found: Eintrag in gewählter Version nicht gefunden
+          not_found: Version nicht gefunden
+
+          show:
+            title: Versionen von
+            revision: Version
+            update: Zurücksetzen auf gewählte Version
+            cancel: Abbrechen
+            content: Inhalt
+            changes: Änderungen
+            previous: Vorherige Version
+            current: Aktuell
+          sidebar:
+            revision:
+              zero: Keine Versionen
+              one: '%{count} Version'
+              few: '%{count} Versionen'
+              many: '%{count} Versionen'
+              other: '%{count} Versionen'
+
+        files:
+          created: Datei hochgeladen
+          creation_failure: Fehler beim Hochladen der Datei!
+          updated: Datei hochgeladen
+          update_failure: Fehler beim Aktualisieren der Datei!
+          deleted: Datei gelöscht
+          not_found: Datei nicht gefunden
+
+          index:
+            title: Dateien
+            new_link: Neue Datei hochladen
+            button: Datei hochladen
+          new:
+            title: Datei erstellen
+          edit:
+            title: Datei bearbeiten
+          form:
+            current_file: Aktuelle Datei
+            create: Datei hochladen
+            cancel: Abbrechen
+            update: Datei speichern
+            delete: Datei löschen
+            are_you_sure: Sind Sie sicher, dass Sie diese Datei löschen möchten?
+          page_form:
+            are_you_sure: Sind Sie sicher?
+          file:
+            edit: Datei bearbeiten
+            delete: Datei löschen
+            are_you_sure: Sind Sie sicher?
+
+        categories:
+          index:
+            edit: Bearbeiten
+            done: Erledigt
+            all: Alle Kategorien
+            add: Hinzufügen
+            add_placeholder: Kategorie hinzuzufügen
+          show:
+            are_you_sure: Sind Sie sicher, dass Sie diese Kategorie löschen möchten?
+          edit:
+            save: Kategorie speichern
+          form:
+            label: Kategorien

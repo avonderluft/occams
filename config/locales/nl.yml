@@ -1,0 +1,262 @@
+nl:
+  activerecord:
+    models:
+      occams/cms/site: Site
+      occams/cms/layout: Lay-out
+      occams/cms/page: Pagina
+      occams/cms/snippet: Snippet
+      occams/cms/file: Bestand
+      occams/cms/translation: Translation
+
+    attributes:
+      occams/cms/site:
+        identifier: Identifier
+        label: Label
+        hostname: Hostname
+        path: Pad
+        locale: Taal
+      occams/cms/layout:
+        identifier: Identifier
+        label: Lay-out Naam
+        app_layout: App Lay-out
+        parent_id: Ouder Lay-out
+        content: Inhoud
+        css: Stylesheet
+        js: Javascript
+      occams/cms/page:
+        label: Label
+        layout_id: Lay-out
+        slug: Slug
+        full_path: Full path
+        parent_id: Ouder
+        target_page_id: Omleiding naar Pagina
+        content: Inhoud
+        is_published: Gepubliceerd
+      occams/cms/file:
+        label: Label
+        file: Bestand
+        description: Omschrijving
+      occams/cms/snippet:
+        identifier: Identifier
+        label: Label
+        content: Inhoud
+      occams/cms/translation:
+        locale: Language
+        label: Label
+        layout_id: Layout
+        is_published: Published
+
+  occams:
+    cms:
+      content:
+        site_not_found: Site niet gevonden
+        layout_not_found: Lay-out niet gevonden
+        page_not_found: Pagina niet gevonden
+
+    admin:
+      cms:
+        base:
+          site_not_found: Site niet gevonden
+          seeds_enabled: CMS Fixtures zijn ingeschakeld. Alle veranderingen die hier gedaan zijn worden weggegooid.
+          sites: Sites
+          layouts: Lay-outs
+          pages: Pagina's
+          snippets: Snippets
+          files: Bestanden
+
+        sites:
+          created: Site aangemaakt
+          creation_failure: Site aanmaken mislukt
+          updated: Site bijgewerkt
+          update_failure: Site bijwerken mislukt
+          deleted: Site verwijderd
+          not_found: Site niet gevonden
+
+          index:
+            title: Sites
+            new_link: Maak Nieuwe Site Aan
+            select: Selecteer Site
+            edit: Bewerk
+            delete: Verwijder
+            are_you_sure: Weet u zeker dat u deze site wilt verwijderen?
+          new:
+            title: Nieuwe Site
+          edit:
+            title: Site Bewerken
+          form:
+            create: Site Aanmaken
+            cancel: Annuleren
+            update: Site Bijwerken
+
+        layouts:
+          created: Lay-out aangemaakt
+          creation_failure: Lay-out aanmaken mislukt
+          updated: Lay-out bijgewerkt
+          update_failure: Lay-out bijwerken mislukt
+          deleted: Lay-out verwijderd
+          not_found: Lay-out niet gevonden
+
+          index:
+            title: Lay-outs
+            new_link: Maak Nieuwe Lay-out Aan
+          index_branch:
+            add_child_layout: Voeg Kind Lay-out Toe
+            edit: Bewerk
+            delete: Verwijder
+            are_you_sure: Weet u het zeker?
+          new:
+            title: Nieuwe Lay-out
+          edit:
+            title: Lay-out Bewerken
+          form:
+            select_parent_layout: Selecteer Ouder Lay-out
+            select_app_layout: Selecteer Applicatie Lay-out
+            create: Lay-out Aanmaken
+            cancel: Annuleren
+            update: Lay-out Bijwerken
+
+        pages:
+          created: Pagina aangemaakt
+          creation_failure: Pagina aanmaken mislukt
+          updated: Pagina bijgewerkt
+          update_failure: Pagina bijwerken mislukt
+          deleted: Pagina verwijderd
+          not_found: Pagina niet gevonden
+          layout_not_found: Geen Lay-outs gevonden. Maak er a.u.b. een aan.
+
+          index:
+            title: Pagina's
+            new_link: Maak Nieuwe Pagina Aan
+          index_branch:
+            toggle: Toggle
+            add_child_page: Voeg Kind Pagina Toe
+            edit: Bewerk
+            delete: Verwijder
+            are_you_sure: Weet u het zeker?
+          new:
+            title: Nieuwe Pagina
+          edit:
+            title: Pagina Bewerken
+          form:
+            select_target_page: Geen Omleiding
+            preview: Preview
+            create: Pagina Aanmaken
+            cancel: Annuleren
+            update: Pagina Bijwerken
+            choose_link: Select page...
+
+        fragments:
+          form_fragments:
+            no_tags: |-
+              Lay-out heeft geen inhoud-tags gedefinieerd.<br/>
+              Bewerk de inhoud van de lay-out om een inhoud-tag toe te voegen. Bijvoorbeeld: <code>{{cms:wysiwyg content}}</code>
+
+        translations:
+          created: Translation created
+          creation_failure: Failed to create translation
+          updated: Translation updated
+          update_failure: Failed to update translation
+          deleted: Translation deleted
+          not_found: Translation not found
+
+          new:
+            title: New Translation
+          edit:
+            title: Editing Translation
+          form:
+            preview: Preview
+            create: Create
+            update: Update
+            cancel: Return to Page
+          sidebar:
+            new: New Translation
+            confirm: Are you sure?
+
+        snippets:
+          created: Snippet aangemaakt
+          creation_failure: Snippet aangemaakt mislukt
+          updated: Snippet bijgewerkt
+          update_failure: Snippet bijwerken mislukt
+          deleted: Snippet verwijderd
+          not_found: Snippet niet gevonden
+
+          index:
+            title: Snippets
+            new_link: Maak Nieuw Snippet Aan
+            edit: Bewerk
+            delete: Verwijder
+            are_you_sure: Weet u het zeker?
+          new:
+            title: Nieuw Snippet
+          edit:
+            title: Snippet Bewerken
+          form:
+            create: Snippet Aanmaken
+            cancel: Annuleren
+            update: Snippet Bijwerken
+
+        revisions:
+          reverted: Content teruggezet
+          record_not_found: Record niet gevonden
+          not_found: Revisie niet gevonden
+
+          show:
+            title: Revisies van
+            revision: Revisie
+            update: Zet terug naar deze Revisie
+            cancel: Annuleren
+            content: Content
+            changes: Changes
+            previous: Previous
+            current: Huidig
+          sidebar:
+            revision:
+              zero: '%{count} Revisies'
+              one: '%{count} Revisie'
+              few: '%{count} Revisies'
+              many: '%{count} Revisies'
+              other: '%{count} Revisies'
+
+        files:
+          created: Bestanden geüpload
+          creation_failure: Bestanden uploaden mislukt
+          updated: Bestand bijgewerkt
+          update_failure: Bestand bijwerken mislukt
+          deleted: Bestand verwijderd
+          not_found: Bestand niet gevonden
+
+          index:
+            title: Bestanden
+            new_link: Upload Nieuw Bestand
+            button: Upload Bestanden
+          new:
+            title: Nieuw Bestand
+          edit:
+            title: Bestand Bewerken
+          form:
+            current_file: Huidig Bestand
+            create: Upload Bestand
+            cancel: Annuleren
+            update: Update Bestand
+            delete: Verwijder
+            are_you_sure: Weet u het zeker?
+          page_form:
+            are_you_sure: Weet u het zeker?
+          file:
+            edit: Bewerk
+            delete: Verwijder
+            are_you_sure: Weet u het zeker?
+
+        categories:
+          index:
+            edit: Bewerk
+            done: Klaar
+            all: Alle Categorieën
+            add: Toevoegen
+            add_placeholder: Categorie Toevoegen
+          show:
+            are_you_sure: Weet u het zeker?
+          edit:
+            save: Opslaan
+          form:
+            label: Categorieën

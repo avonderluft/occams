@@ -1,0 +1,4 @@
+default:
+  site: default
+  label: Default
+  categorized_type: Occams::Cms::File

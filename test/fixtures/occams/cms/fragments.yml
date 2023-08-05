@@ -1,0 +1,31 @@
+default:
+  record: default (Occams::Cms::Page)
+  identifier: content
+  tag: text
+  content: content
+
+file:
+  record: default (Occams::Cms::Page)
+  identifier: file
+  tag: file
+  content:
+
+datetime:
+  record: default (Occams::Cms::Page)
+  identifier: datetime
+  tag: datetime
+  content:
+  datetime: <%= DateTime.parse("1981-10-04 12:34:56") %>
+
+boolean:
+  record: default (Occams::Cms::Page)
+  identifier: boolean
+  tag: checkbox
+  content:
+  boolean: true
+
+translation:
+  record: default (Occams::Cms::Translation)
+  identifier: content
+  tag: text
+  content: translated content

@@ -1,0 +1,5 @@
+.page-header
+  %h2= t(".title")
+
+= occams_form_with model: @file, scope: :file, url: {action: :update} do |form|
+  = render form

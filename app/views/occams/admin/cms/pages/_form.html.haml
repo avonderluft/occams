@@ -1,0 +1,31 @@
+= occams_admin_partial "occams/admin/cms/partials/page_form_before", form: form
+
+= form.text_field :label, data: { slugify: @page.new_record? }
+
+- if @page.parent.present?
+  = form.text_field :slug, data: { slug: true }, prepend: @page.parent.full_path
+
+- if (options = ::Occams::Cms::Page.options_for_select(site: @site, current_page: @page, exclude_self: true)).present?
+  = form.select :parent_id, options, bootstrap: {custom_control: true}
+
+- if (options = ::Occams::Cms::Layout.options_for_select(@site)).present?
+  = form.select :layout_id, options, {bootstrap: {custom_control: true}}, {data: {url: form_fragments_occams_admin_cms_site_page_path(@site, @page.id.to_i)}, id: "fragments-toggle"}
+
+= occams_admin_partial "occams/admin/cms/partials/page_form_inner", form: form
+
+#form-fragments-container
+  = render "occams/admin/cms/fragments/form_fragments", record: @page, scope: :page
+
+= render "occams/admin/cms/categories/form", form: form
+
+- if (options = ::Occams::Cms::Page.options_for_select(site: @site, current_page: @page)).present?
+  = form.select :target_page_id, [["---- #{t('.select_target_page')} ----", nil]] + options, bootstrap: {custom_control: true}
+
+= form.check_box :is_published
+
+= occams_admin_partial "occams/admin/cms/partials/page_form_after", form: form
+
+= form.form_actions do
+  = submit_tag t(".preview"), name: "preview", formtarget: "occams-cms-preview", id: nil, class: "btn btn-secondary"
+  = submit_tag t(@page.new_record?? ".create" : ".update"), class: "btn btn-primary ml-sm-1"
+  = link_to t(".cancel"), occams_admin_cms_site_pages_path, class: "btn btn-link"

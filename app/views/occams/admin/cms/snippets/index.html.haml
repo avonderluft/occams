@@ -1,0 +1,33 @@
+- content_for :right_column do
+  = render "occams/admin/cms/categories/index", type: "Occams::Cms::Snippet"
+
+.page-header
+  = link_to t('.new_link'), new_occams_admin_cms_site_snippet_path(@site), class: "btn btn-secondary float-right"
+  %h2= t('.title')
+
+= occams_admin_partial "occams/admin/cms/partials/snippets_before"
+
+%ul.list.sortable
+  - @snippets.each do |snippet|
+    %li{data: {id: snippet.id}}
+      .row
+        .col-md-6.item
+          .item-controls.d-none.d-lg-block
+            - if !params[:categories].present? && @site.snippets.count > 1
+              .dragger
+                %i.fas.fa-bars
+          .item-content
+            .item-title
+              = link_to snippet.label, edit_occams_admin_cms_site_snippet_path(@site, snippet)
+            .item-meta
+              = snippet.identifier
+
+        .col-md-2.item-categories.d-flex.align-items-center
+          = render "occams/admin/cms/categories/categories", object: snippet
+
+        .col-md-4.d-flex.align-items-center.justify-content-md-end
+          .btn-group.btn-group-sm
+            = link_to t('.edit'), edit_occams_admin_cms_site_snippet_path(@site, snippet), class: 'btn btn-outline-secondary'
+            = link_to t('.delete'), occams_admin_cms_site_snippet_path(@site, snippet), method: :delete, data: {confirm: t('.are_you_sure')}, class: 'btn btn-danger'
+
+= occams_admin_partial "occams/admin/cms/partials/snippets_after"

@@ -1,0 +1,21 @@
+.page-header
+  = link_to 'New Foo', new_admin_foo_path, class: 'btn btn-secondary float-right'
+  %h2= 'Foos'
+
+= paginate @foos, theme: 'occams'
+
+%ul.list
+  - @foos.each do |foo|
+    %li
+      .row
+        .col-md-8.item
+          .item-content
+            .item-title
+              = foo.bar
+
+        .col-md-4.d-flex.align-items-center.justify-content-md-end
+          .btn-group.btn-group-sm
+            = link_to 'Edit', edit_admin_foo_path(foo), class: 'btn btn-outline-secondary'
+            = link_to 'Delete', admin_foo_path(foo), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger'
+
+= paginate @foos, theme: 'occams'
