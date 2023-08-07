@@ -92,7 +92,6 @@ Once you have a layout, you may start creating pages and populating content. It'
 ## ToDos
 
 - Linting via current version of rubocop
-- Image file thumbnail hover not working on Rails 7
 - get the original [ComfortableMexicanSofa](https://github.com/comfy/comfortable-mexican-sofa) tests working
 - add documentation to Occams to replace ComfortableMexicanSofa 
 
