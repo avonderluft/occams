@@ -3,7 +3,6 @@
 require_relative "../test_helper"
 
 class CmsCategoryTest < ActiveSupport::TestCase
-
   def test_fixtures_validity
     Occams::Cms::Category.all.each do |category|
       assert category.valid?, category.errors.full_messages.to_s
@@ -19,7 +18,7 @@ class CmsCategoryTest < ActiveSupport::TestCase
   def test_creation
     assert_difference "Occams::Cms::Category.count" do
       occams_cms_sites(:default).categories.create(
-        label:            "Test Category",
+        label: "Test Category",
         categorized_type: "Occams::Cms::Snippet"
       )
     end
@@ -40,5 +39,4 @@ class CmsCategoryTest < ActiveSupport::TestCase
     assert_equal 1, Occams::Cms::Category.of_type("Occams::Cms::File").count
     assert_equal 0, Occams::Cms::Category.of_type("Invalid").count
   end
-
 end

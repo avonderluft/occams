@@ -3,7 +3,6 @@
 require_relative "../test_helper"
 
 class FilesFrontendTest < ApplicationSystemTestCase
-
   setup do
     @site     = occams_cms_sites(:default)
     @layout   = occams_cms_layouts(:default)
@@ -28,8 +27,8 @@ class FilesFrontendTest < ApplicationSystemTestCase
     @page.update!(
       fragments_attributes: [{
         identifier: "attachments",
-        tag:        "files",
-        files:      fixture_file_upload("files/image.jpg", "image/jpg")
+        tag: "files",
+        files: fixture_file_upload("files/image.jpg", "image/jpg")
       }]
     )
 
@@ -42,5 +41,4 @@ class FilesFrontendTest < ApplicationSystemTestCase
     # Figure out why dragging doesn't really happen.
     assert_equal '{{ cms:page_file_link attachments, filename: "image.jpg", as: image }}', text_field.value
   end
-
 end

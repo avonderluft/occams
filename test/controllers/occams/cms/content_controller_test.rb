@@ -3,7 +3,6 @@
 require_relative "../../../test_helper"
 
 class Occams::Cms::ContentControllerTest < ActionDispatch::IntegrationTest
-
   setup do
     @site         = occams_cms_sites(:default)
     @layout       = occams_cms_layouts(:default)
@@ -52,8 +51,8 @@ class Occams::Cms::ContentControllerTest < ActionDispatch::IntegrationTest
 
   def test_show_as_json_with_options
     Occams.config.page_to_json_options = {
-      include:  { fragments: { only: :identifier } },
-      except:   [:position]
+      include: { fragments: { only: :identifier } },
+      except: [:position]
     }
 
     get occams_cms_render_page_path(cms_path: ""), as: :json
@@ -100,21 +99,21 @@ class Occams::Cms::ContentControllerTest < ActionDispatch::IntegrationTest
 
   def test_show_with_custom_mimetype
     layout = @site.layouts.create!(
-      label:      "RSS Layout",
+      label: "RSS Layout",
       identifier: "rss-layout",
-      content:    "{{cms:text mime_type, render: false}}{{cms:textarea content}}"
+      content: "{{cms:text mime_type, render: false}}{{cms:textarea content}}"
     )
     @site.pages.create!(
-      label:          "rss",
-      slug:           "rss",
-      parent_id:      occams_cms_pages(:default).id,
-      layout_id:      layout.id,
-      is_published:   true,
+      label: "rss",
+      slug: "rss",
+      parent_id: occams_cms_pages(:default).id,
+      layout_id: layout.id,
+      is_published: true,
       fragments_attributes: [
         { identifier: "content",
-          content:    "content" },
+          content: "content" },
         { identifier: "mime_type",
-          content:    "application/rss+xml" }
+          content: "application/rss+xml" }
       ]
     )
     get occams_cms_render_page_path(cms_path: "rss")
@@ -144,16 +143,16 @@ class Occams::Cms::ContentControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  def test_show_not_found_with_custom_404
+  def test_show_not_found_with_custom404
     page = @site.pages.create!(
-      label:          "404",
-      slug:           "404",
-      parent_id:      @page.id,
-      layout_id:      @layout.id,
-      is_published:   "1",
+      label: "404",
+      slug: "404",
+      parent_id: @page.id,
+      layout_id: @layout.id,
+      is_published: "1",
       fragments_attributes: [
         { identifier: "content",
-          content:    "custom 404 page content" }
+          content: "custom 404 page content" }
       ]
     )
     assert_equal "/404", page.full_path
@@ -209,14 +208,14 @@ class Occams::Cms::ContentControllerTest < ActionDispatch::IntegrationTest
     assert_equal false, Occams.config.allow_erb
 
     @site.pages.create!(
-      label:          "erb",
-      slug:           "erb",
-      parent_id:      @page.id,
-      layout_id:      @layout.id,
-      is_published:   "1",
+      label: "erb",
+      slug: "erb",
+      parent_id: @page.id,
+      layout_id: @layout.id,
+      is_published: "1",
       fragments_attributes: [
         { identifier: "content",
-          content:    "text <%= 2 + 2 %> text" }
+          content: "text <%= 2 + 2 %> text" }
       ]
     )
     get occams_cms_render_page_path(cms_path: "erb")
@@ -228,14 +227,14 @@ class Occams::Cms::ContentControllerTest < ActionDispatch::IntegrationTest
     Occams.config.allow_erb = true
 
     @site.pages.create!(
-      label:          "erb",
-      slug:           "erb",
-      parent_id:      @page.id,
-      layout_id:      @layout.id,
-      is_published:   "1",
+      label: "erb",
+      slug: "erb",
+      parent_id: @page.id,
+      layout_id: @layout.id,
+      is_published: "1",
       fragments_attributes: [
         { identifier: "content",
-          content:    "text <%= 2 + 2 %> text" }
+          content: "text <%= 2 + 2 %> text" }
       ]
     )
     get occams_cms_render_page_path(cms_path: "erb")
@@ -272,11 +271,11 @@ class Occams::Cms::ContentControllerTest < ActionDispatch::IntegrationTest
   def test_with_translation_with_snippet
     translation = @page.translations.create!(
       locale: "ja",
-      label:  "Test Translation",
+      label: "Test Translation",
       fragments_attributes: [
         { identifier: "content",
-          tag:        "text",
-          content:    "test {{cms:snippet default}} test" }
+          tag: "text",
+          content: "test {{cms:snippet default}} test" }
       ]
     )
     I18n.locale = translation.locale
@@ -284,5 +283,4 @@ class Occams::Cms::ContentControllerTest < ActionDispatch::IntegrationTest
     get occams_cms_render_page_path(cms_path: "")
     assert_equal "test snippet content test", response.body
   end
-
 end

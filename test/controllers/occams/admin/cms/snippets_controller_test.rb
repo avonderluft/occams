@@ -3,7 +3,6 @@
 require_relative "../../../../test_helper"
 
 class Occams::Admin::Cms::SnippetsControllerTest < ActionDispatch::IntegrationTest
-
   setup do
     @site     = occams_cms_sites(:default)
     @snippet  = occams_cms_snippets(:default)
@@ -27,7 +26,7 @@ class Occams::Admin::Cms::SnippetsControllerTest < ActionDispatch::IntegrationTe
 
   def test_get_index_with_category
     category = @site.categories.create!(
-      label:            "Test Category",
+      label: "Test Category",
       categorized_type: "Occams::Cms::Snippet"
     )
     category.categorizations.create!(categorized: @snippet)
@@ -81,9 +80,9 @@ class Occams::Admin::Cms::SnippetsControllerTest < ActionDispatch::IntegrationTe
   def test_create
     assert_difference "Occams::Cms::Snippet.count" do
       r :post, occams_admin_cms_site_snippets_path(site_id: @site), params: { snippet: {
-        label:      "Test Snippet",
+        label: "Test Snippet",
         identifier: "test-snippet",
-        content:    "Test Content"
+        content: "Test Content"
       } }
       assert_response :redirect
       snippet = Occams::Cms::Snippet.last
@@ -104,7 +103,7 @@ class Occams::Admin::Cms::SnippetsControllerTest < ActionDispatch::IntegrationTe
 
   def test_update
     r :put, occams_admin_cms_site_snippet_path(site_id: @site, id: @snippet), params: { snippet: {
-      label:   "New-Snippet",
+      label: "New-Snippet",
       content: "New Content"
     } }
     assert_response :redirect
@@ -138,7 +137,7 @@ class Occams::Admin::Cms::SnippetsControllerTest < ActionDispatch::IntegrationTe
   def test_reorder
     snippet_one = @snippet
     snippet_two = @site.snippets.create!(
-      label:      "test",
+      label: "test",
       identifier: "test"
     )
     assert_equal 0, snippet_one.position
@@ -154,5 +153,4 @@ class Occams::Admin::Cms::SnippetsControllerTest < ActionDispatch::IntegrationTe
     assert_equal 1, snippet_one.position
     assert_equal 0, snippet_two.position
   end
-
 end

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Occams::Content::Tag
-
   class Error < StandardError; end
 
   # @type [Occams::Cms::WithFragments]
@@ -46,5 +45,4 @@ class Occams::Content::Tag
   def render
     content
   end
-
 end

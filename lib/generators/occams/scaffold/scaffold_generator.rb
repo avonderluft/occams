@@ -6,7 +6,6 @@ require "rails/generators/active_record"
 module Occams
   module Generators
     class ScaffoldGenerator < Rails::Generators::NamedBase
-
       include Rails::Generators::Migration
 
       no_tasks do
@@ -22,6 +21,7 @@ module Occams
         @model_attrs = []
         model_args.each do |arg|
           next unless arg.include?(":")
+
           @model_attrs << Rails::Generators::GeneratedAttribute.new(*arg.split(":"))
         end
       end
@@ -74,7 +74,6 @@ module Occams
           HAML
         end
       end
-
     end
   end
 end

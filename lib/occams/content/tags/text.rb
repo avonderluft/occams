@@ -4,7 +4,6 @@
 #   {{ cms:text identifier }}
 #
 class Occams::Content::Tag::Text < Occams::Content::Tag::Fragment
-
   def form_field(object_name, view, index)
     name    = "#{object_name}[fragments_attributes][#{index}][content]"
     options = { id: form_field_id, class: "form-control" }
@@ -12,7 +11,6 @@ class Occams::Content::Tag::Text < Occams::Content::Tag::Fragment
 
     yield input
   end
-
 end
 
 Occams::Content::Renderer.register_tag(

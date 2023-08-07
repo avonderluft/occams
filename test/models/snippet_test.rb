@@ -3,7 +3,6 @@
 require_relative "../test_helper"
 
 class CmsSnippetTest < ActiveSupport::TestCase
-
   setup do
     @site = occams_cms_sites(:default)
   end
@@ -32,9 +31,9 @@ class CmsSnippetTest < ActiveSupport::TestCase
   def test_create
     assert_difference "Occams::Cms::Snippet.count" do
       snippet = @site.snippets.create(
-        label:      "Test Snippet",
+        label: "Test Snippet",
         identifier: "test",
-        content:    "Test Content"
+        content: "Test Content"
       )
       assert_equal "Test Snippet", snippet.label
       assert_equal "test", snippet.identifier
@@ -54,5 +53,4 @@ class CmsSnippetTest < ActiveSupport::TestCase
     page.reload
     assert_equal "new snippet content", page.content_cache
   end
-
 end

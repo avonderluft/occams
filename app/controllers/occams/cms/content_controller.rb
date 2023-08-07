@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Occams::Cms::ContentController < Occams::Cms::BaseController
-
   # Authentication module must have `authenticate` method
   include Occams.config.public_auth.to_s.constantize
 
@@ -35,9 +34,9 @@ class Occams::Cms::ContentController < Occams::Cms::BaseController
 protected
 
   def render_page(status = :ok)
-    render  inline:       @cms_page.content_cache,
-            layout:       app_layout,
-            status:       status,
+    render  inline: @cms_page.content_cache,
+            layout: app_layout,
+            status: status,
             content_type: mime_type
   end
 
@@ -49,11 +48,13 @@ protected
 
   def app_layout
     return false if request.xhr? || !@cms_layout
+
     @cms_layout.app_layout.present? ? @cms_layout.app_layout : false
   end
 
   def load_seeds
     return unless Occams.config.enable_seeds
+
     Occams::Seeds::Importer.new(@cms_site.identifier).import!
   end
 
@@ -79,9 +80,7 @@ protected
     @cms_layout = @cms_page.layout
 
     @cms_page
-
   rescue ActiveRecord::RecordNotFound
     nil
   end
-
 end

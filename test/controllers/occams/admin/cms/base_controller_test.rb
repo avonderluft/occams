@@ -3,7 +3,6 @@
 require_relative "../../../../test_helper"
 
 class Occams::Admin::Cms::BaseControllerTest < ActionDispatch::IntegrationTest
-
   def test_get_jump
     r :get, occams_admin_cms_path
     assert_response :redirect
@@ -16,5 +15,4 @@ class Occams::Admin::Cms::BaseControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     assert_redirected_to "/cms-admin/sites"
   end
-
 end

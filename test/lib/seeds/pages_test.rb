@@ -3,7 +3,6 @@
 require_relative "../../test_helper"
 
 class SeedsPagesTest < ActiveSupport::TestCase
-
   setup do
     @site   = occams_cms_sites(:default)
     @layout = occams_cms_layouts(:default)
@@ -31,30 +30,30 @@ class SeedsPagesTest < ActiveSupport::TestCase
     assert_equal 5, page.fragments.count
     assert_equal [
       { identifier: "header",
-        tag:        "file",
-        content:    nil,
-        datetime:   nil,
-        boolean:    false },
+        tag: "file",
+        content: nil,
+        datetime: nil,
+        boolean: false },
       { identifier: "published_on",
-        tag:        "date",
-        content:    nil,
-        datetime:   Date.parse("2015-10-31"),
-        boolean:    false },
+        tag: "date",
+        content: nil,
+        datetime: Date.parse("2015-10-31"),
+        boolean: false },
       { identifier: "content",
-        tag:        "wysiwyg",
-        content:    "Home Page Seed Contént\n{{ cms:snippet default }}\n\n",
-        datetime:   nil,
-        boolean:    false },
+        tag: "wysiwyg",
+        content: "Home Page Seed Contént\n{{ cms:snippet default }}\n\n",
+        datetime: nil,
+        boolean: false },
       { identifier: "published",
-        tag:        "checkbox",
-        content:    nil,
-        datetime:   nil,
-        boolean:    true },
+        tag: "checkbox",
+        content: nil,
+        datetime: nil,
+        boolean: true },
       { identifier: "attachments",
-        tag:        "files",
-        content:    nil,
-        datetime:   nil,
-        boolean:    false }
+        tag: "files",
+        content: nil,
+        datetime: nil,
+        boolean: false }
     ], page.fragments_attributes
 
     frag = page.fragments.find_by(identifier: "header")
@@ -80,10 +79,10 @@ class SeedsPagesTest < ActiveSupport::TestCase
     assert_equal "Bienvenue", translation.label
     assert_equal [
       { identifier: "content",
-        tag:        "wysiwyg",
-        content:    "French Home Page Seed Content\n",
-        datetime:   nil,
-        boolean:    false }
+        tag: "wysiwyg",
+        content: "French Home Page Seed Content\n",
+        datetime: nil,
+        boolean: false }
     ], translation.fragments_attributes
   end
 
@@ -133,7 +132,7 @@ class SeedsPagesTest < ActiveSupport::TestCase
     Occams::Cms::Page.destroy_all
 
     page = @site.pages.create!(
-      label:  "Test",
+      label: "Test",
       layout: occams_cms_layouts(:default),
       fragments_attributes: [
         { identifier: "to_delete", content: "test content" }
@@ -163,8 +162,8 @@ class SeedsPagesTest < ActiveSupport::TestCase
     occams_cms_translations(:default).update!(fragments_attributes: [
       {
         identifier: "content",
-        content:    "translation content",
-        tag:        "markdown"
+        content: "translation content",
+        tag: "markdown"
       }
     ])
 
@@ -222,9 +221,7 @@ class SeedsPagesTest < ActiveSupport::TestCase
       translation content
     TEXT
     assert_equal out, IO.read(translation_path)
-
   ensure
     FileUtils.rm_rf(host_path)
   end
-
 end

@@ -3,7 +3,6 @@
 require_relative "../../test_helper"
 
 class SeedsSnippetsTest < ActiveSupport::TestCase
-
   setup do
     @site     = occams_cms_sites(:default)
     @snippet  = occams_cms_snippets(:default)
@@ -92,9 +91,7 @@ class SeedsSnippetsTest < ActiveSupport::TestCase
       snippet content
     TEXT
     assert_equal out, IO.read(content_path)
-
   ensure
     FileUtils.rm_rf(host_path)
   end
-
 end

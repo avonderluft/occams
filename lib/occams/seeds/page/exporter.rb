@@ -2,7 +2,6 @@
 
 module Occams::Seeds::Page
   class Exporter < Occams::Seeds::Exporter
-
     def initialize(from, to = from)
       super
       self.path = ::File.join(Occams.config.seeds_path, to, "pages/")
@@ -20,12 +19,12 @@ module Occams::Seeds::Page
         data = []
 
         attrs = {
-          "label"        => page.label,
-          "layout"       => page.layout.try(:identifier),
-          "target_page"  => page.target_page.try(:full_path),
-          "categories"   => page.categories.map(&:label),
+          "label" => page.label,
+          "layout" => page.layout.try(:identifier),
+          "target_page" => page.target_page.try(:full_path),
+          "categories" => page.categories.map(&:label),
           "is_published" => page.is_published,
-          "position"     => page.position
+          "position" => page.position
         }.to_yaml
 
         data << { header: "attributes", content: attrs }
@@ -48,8 +47,8 @@ module Occams::Seeds::Page
         data = []
 
         attrs = {
-          "label"        => translation.label,
-          "layout"       => translation.layout.try(:identifier),
+          "label" => translation.label,
+          "layout" => translation.layout.try(:identifier),
           "is_published" => page.is_published
         }.to_yaml
 
@@ -87,6 +86,5 @@ module Occams::Seeds::Page
         { header: header, content: content }
       end
     end
-
   end
 end

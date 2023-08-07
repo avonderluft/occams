@@ -3,7 +3,6 @@
 require_relative "../../../../test_helper"
 
 class Occams::Admin::Cms::LayoutsControllerTest < ActionDispatch::IntegrationTest
-
   setup do
     @site = occams_cms_sites(:default)
   end
@@ -60,9 +59,9 @@ class Occams::Admin::Cms::LayoutsControllerTest < ActionDispatch::IntegrationTes
   def test_creation
     assert_difference "Occams::Cms::Layout.count" do
       r :post, occams_admin_cms_site_layouts_path(site_id: @site), params: { layout: {
-        label:      "Test Layout",
+        label: "Test Layout",
         identifier: "test",
-        content:    "Test {{cms:page:content}}"
+        content: "Test {{cms:page:content}}"
       } }
       assert_response :redirect
       layout = Occams::Cms::Layout.last
@@ -84,8 +83,8 @@ class Occams::Admin::Cms::LayoutsControllerTest < ActionDispatch::IntegrationTes
   def test_update
     layout = occams_cms_layouts(:default)
     r :put, occams_admin_cms_site_layout_path(site_id: @site, id: layout), params: { layout: {
-      label:    "New Label",
-      content:  "New {{cms:page:content}}"
+      label: "New Label",
+      content: "New {{cms:page:content}}"
     } }
     assert_response :redirect
     assert_redirected_to action: :edit, site_id: layout.site, id: layout
@@ -119,7 +118,7 @@ class Occams::Admin::Cms::LayoutsControllerTest < ActionDispatch::IntegrationTes
   def test_reorder
     layout_one = occams_cms_layouts(:default)
     layout_two = @site.layouts.create!(
-      label:      "test",
+      label: "test",
       identifier: "test"
     )
     assert_equal 0, layout_one.position
@@ -135,5 +134,4 @@ class Occams::Admin::Cms::LayoutsControllerTest < ActionDispatch::IntegrationTes
     assert_equal 1, layout_one.position
     assert_equal 0, layout_two.position
   end
-
 end

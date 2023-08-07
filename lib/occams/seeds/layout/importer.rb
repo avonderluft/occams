@@ -2,7 +2,6 @@
 
 module Occams::Seeds::Layout
   class Importer < Occams::Seeds::Importer
-
     def initialize(from, to = from)
       super
       self.path = ::File.join(Occams.config.seeds_path, from, "layouts/")
@@ -36,9 +35,9 @@ module Occams::Seeds::Layout
       if fresh_seed?(layout, content_path)
         layout.attributes = attrs.merge(
           app_layout: attrs["app_layout"] || parent.try(:app_layout),
-          content:    content_hash["content"],
-          js:         content_hash["js"],
-          css:        content_hash["css"]
+          content: content_hash["content"],
+          js: content_hash["js"],
+          css: content_hash["css"]
         )
 
         if layout.save
@@ -57,6 +56,5 @@ module Occams::Seeds::Layout
         import_layout(layout_path, layout)
       end
     end
-
   end
 end

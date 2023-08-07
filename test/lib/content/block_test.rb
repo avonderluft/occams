@@ -3,7 +3,6 @@
 require_relative "../../test_helper"
 
 class ContentBlockTest < ActiveSupport::TestCase
-
   class TestBlockTag < Occams::Content::Block
     # ...
   end
@@ -24,5 +23,4 @@ class ContentBlockTest < ActiveSupport::TestCase
     block.nodes << "text"
     assert_equal ["text"], block.nodes
   end
-
 end

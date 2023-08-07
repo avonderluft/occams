@@ -3,7 +3,6 @@
 require_relative "../../../test_helper"
 
 class Occams::Cms::AssetsControllerTest < ActionDispatch::IntegrationTest
-
   def setup
     @site   = occams_cms_sites(:default)
     @layout = occams_cms_layouts(:default)
@@ -59,5 +58,4 @@ class Occams::Cms::AssetsControllerTest < ActionDispatch::IntegrationTest
     get occams_cms_render_js_path(site_id: @site, identifier: "bogus")
     assert_response 404
   end
-
 end

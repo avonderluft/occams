@@ -15,17 +15,15 @@ require "strscan"
 #                   Resulting list is flattened and joined into a final rendered string.
 #
 class Occams::Content::Renderer
-
   class SyntaxError < StandardError; end
   class Error < StandardError; end
 
   MAX_DEPTH = 100
 
   # tags are in this format: {{ cms:tag_class params }}
-  TAG_REGEX = %r{\{\{\s*?cms:(?<class>\w+)(?<params>.*?)\}\}}
+  TAG_REGEX = %r{\{\{\s*?cms:(?<class>\w+)(?<params>.*?)\}\}}.freeze
 
   class << self
-
     # @return [Hash<String, Class<Occams::Content::Tag>>]
     def tags
       @tags ||= {}
@@ -36,7 +34,6 @@ class Occams::Content::Renderer
     def register_tag(name, klass)
       tags[name.to_s] = klass
     end
-
   end
 
   # @param [Occams::Cms::WithFragments, nil] context
@@ -83,9 +80,9 @@ class Occams::Content::Renderer
       text = string.sub(ss[0], "")
       tokens << text unless text.empty?
       tokens << {
-        tag_class:  ss[:class],
+        tag_class: ss[:class],
         tag_params: ss[:params].strip,
-        source:     ss[0]
+        source: ss[0]
       }
     end
     text = ss.rest
@@ -112,6 +109,7 @@ class Occams::Content::Renderer
           if nodes.count == 1
             raise SyntaxError, "closing unopened block"
           end
+
           nodes.pop
 
         else
@@ -121,9 +119,9 @@ class Occams::Content::Renderer
 
           # @type [Occams::Content::Tag]
           tag = klass.new(
-            context:  @context,
-            params:   Occams::Content::ParamsParser.new(token[:tag_params]).params,
-            source:   token[:source]
+            context: @context,
+            params: Occams::Content::ParamsParser.new(token[:tag_params]).params,
+            source: token[:source]
           )
           nodes.last << tag
 
@@ -145,5 +143,4 @@ class Occams::Content::Renderer
 
     nodes.flatten
   end
-
 end

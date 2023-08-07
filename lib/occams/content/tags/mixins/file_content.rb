@@ -3,7 +3,6 @@
 # A mixin for tags that returns the file as their content.
 module Occams::Content::Tag::Mixins
   module FileContent
-
     # @param [ActiveStorage::Blob] file
     # @param ["link", "image", "url"] as
     # @param [{String => String}] variant_attrs ImageMagick variant attributes
@@ -36,8 +35,8 @@ module Occams::Content::Tag::Mixins
 
     def html_class_attribute
       return if @class.blank?
+
       " class='#{@class}'"
     end
-
   end
 end

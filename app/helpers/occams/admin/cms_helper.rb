@@ -3,7 +3,6 @@
 module Occams
   module Admin
     module CmsHelper
-
       # Wrapper around Occams::FormBuilder
       def occams_form_with(**options, &block)
         form_options = options.merge(builder: Occams::FormBuilder)
@@ -43,7 +42,6 @@ module Occams
         as = ", as: image" if file.attachment.image?
         "{{ cms:file_link #{file.id}#{as} }}"
       end
-
     end
   end
 end

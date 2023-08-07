@@ -3,7 +3,6 @@
 require_relative "../test_helper"
 
 class CmsLayoutTest < ActiveSupport::TestCase
-
   setup do
     @site   = occams_cms_sites(:default)
     @layout = occams_cms_layouts(:default)
@@ -87,7 +86,7 @@ class CmsLayoutTest < ActiveSupport::TestCase
   def test_label_assignment
     layout = @site.layouts.new(
       identifier: "test",
-      content:    "content"
+      content: "content"
     )
     assert layout.valid?
     assert_equal "Test", layout.label
@@ -96,11 +95,11 @@ class CmsLayoutTest < ActiveSupport::TestCase
   def test_creation
     assert_difference "Occams::Cms::Layout.count" do
       layout = @site.layouts.create(
-        label:      "New Layout",
+        label: "New Layout",
         identifier: "new-layout",
-        content:    "{{cms:text default}}",
-        css:        "css",
-        js:         "js"
+        content: "{{cms:text default}}",
+        css: "css",
+        js: "js"
       )
       assert_equal "New Layout",            layout.label
       assert_equal "new-layout",            layout.identifier
@@ -113,11 +112,11 @@ class CmsLayoutTest < ActiveSupport::TestCase
 
   def test_options_for_select
     assert_equal ["Default Layout", "Nested Layout", ". . Child Layout"],
-      Occams::Cms::Layout.options_for_select(@site).collect(&:first)
+                 Occams::Cms::Layout.options_for_select(@site).collect(&:first)
     assert_equal ["Default Layout", "Nested Layout"],
-      Occams::Cms::Layout.options_for_select(@site, occams_cms_layouts(:child)).collect(&:first)
+                 Occams::Cms::Layout.options_for_select(@site, occams_cms_layouts(:child)).collect(&:first)
     assert_equal ["Default Layout"],
-      Occams::Cms::Layout.options_for_select(@site, occams_cms_layouts(:nested)).collect(&:first)
+                 Occams::Cms::Layout.options_for_select(@site, occams_cms_layouts(:nested)).collect(&:first)
   end
 
   def test_app_layouts_for_select
@@ -127,8 +126,7 @@ class CmsLayoutTest < ActiveSupport::TestCase
 
     view_paths = [File.expand_path("app/views/", Rails.root)]
     assert_equal ["occams/admin/cms", "occams/admin/cms/nested"],
-      Occams::Cms::Layout.app_layouts_for_select(view_paths)
-
+                 Occams::Cms::Layout.app_layouts_for_select(view_paths)
   ensure
     FileUtils.rm(File.expand_path("app/views/layouts/occams/admin/cms/nested.html.erb", Rails.root))
     FileUtils.rm(File.expand_path("app/views/layouts/occams/_partial.html.erb", Rails.root))
@@ -149,31 +147,31 @@ class CmsLayoutTest < ActiveSupport::TestCase
     layout_a = occams_cms_layouts(:nested)
     layout_b = occams_cms_layouts(:child)
     page_a = @site.pages.create!(
-      label:        "page_1",
-      slug:         "page-1",
-      parent_id:    @page.id,
-      layout_id:    layout_a.id,
+      label: "page_1",
+      slug: "page-1",
+      parent_id: @page.id,
+      layout_id: layout_a.id,
       is_published: "1",
       fragments_attributes: [
         { identifier: "header",
-          content:    "header_content" },
+          content: "header_content" },
         { identifier: "content",
-          content:    "content_content" }
+          content: "content_content" }
       ]
     )
     page_b = @site.pages.create!(
-      label:          "page_2",
-      slug:           "page-2",
-      parent_id:      @page.id,
-      layout_id:      layout_b.id,
-      is_published:   "1",
+      label: "page_2",
+      slug: "page-2",
+      parent_id: @page.id,
+      layout_id: layout_b.id,
+      is_published: "1",
       fragments_attributes: [
         { identifier: "header",
-          content:    "header_content" },
+          content: "header_content" },
         { identifier: "left_column",
-          content:    "left_column_content" },
+          content: "left_column_content" },
         { identifier: "right_column",
-          content:    "left_column_content" }
+          content: "left_column_content" }
       ]
     )
     assert_equal "header_content\ncontent_content", page_a.content_cache
@@ -192,5 +190,4 @@ class CmsLayoutTest < ActiveSupport::TestCase
     layout = @site.layouts.create(updated_at: timestamp)
     assert_equal timestamp.to_i, layout.cache_buster
   end
-
 end

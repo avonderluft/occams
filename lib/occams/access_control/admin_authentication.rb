@@ -2,7 +2,6 @@
 
 module Occams::AccessControl
   module AdminAuthentication
-
     # Set username and password in config/initializers/occams.rb
     # Like this:
     #   Occams::AccessControl::AdminAuthentication.username = 'myname'
@@ -19,6 +18,5 @@ module Occams::AccessControl
         self.username == username && self.password == password
       end
     end
-
   end
 end

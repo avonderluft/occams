@@ -3,7 +3,6 @@
 require_relative "../test_helper"
 
 class AdminCmsHelpersTest < ActionView::TestCase
-
   include Occams::Admin::CmsHelper
   include OccamsBootstrapForm::ViewHelper
 
@@ -42,8 +41,8 @@ class AdminCmsHelpersTest < ActionView::TestCase
   def test_cms_page_file_link_tag
     actual = cms_page_file_link_tag(
       fragment_id: "test",
-      attachment:   @file.attachment,
-      multiple:     false
+      attachment: @file.attachment,
+      multiple: false
     )
     assert_equal "{{ cms:page_file_link test, as: image }}", actual
   end
@@ -52,17 +51,17 @@ class AdminCmsHelpersTest < ActionView::TestCase
     @file.attachment.blob.update_column(:content_type, "application/pdf")
     actual = cms_page_file_link_tag(
       fragment_id: "test",
-      attachment:   @file.attachment,
-      multiple:     false
+      attachment: @file.attachment,
+      multiple: false
     )
     assert_equal "{{ cms:page_file_link test }}", actual
   end
 
   def test_cms_page_file_link_multiple
     actual = cms_page_file_link_tag(
-      fragment_id:  "test",
-      attachment:   @file.attachment,
-      multiple:     true
+      fragment_id: "test",
+      attachment: @file.attachment,
+      multiple: true
     )
     assert_equal '{{ cms:page_file_link test, filename: "default.jpg", as: image }}', actual
   end
@@ -77,5 +76,4 @@ class AdminCmsHelpersTest < ActionView::TestCase
     actual = cms_file_link_tag(@file)
     assert_equal "{{ cms:file_link 593363170 }}", actual
   end
-
 end

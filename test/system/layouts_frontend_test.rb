@@ -3,7 +3,6 @@
 require_relative "../test_helper"
 
 class LayoutsFrontendTest < ApplicationSystemTestCase
-
   setup do
     @site = occams_cms_sites(:default)
   end
@@ -13,5 +12,4 @@ class LayoutsFrontendTest < ApplicationSystemTestCase
     fill_in "Layout Name", with: "Test Layout"
     assert_equal "test-layout", find_field("Identifier").value
   end
-
 end

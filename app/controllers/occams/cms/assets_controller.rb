@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Occams::Cms::AssetsController < Occams::Cms::BaseController
-
   skip_before_action :verify_authenticity_token, raise: false
 
   before_action :load_cms_layout,
@@ -36,5 +35,4 @@ protected
       response.headers["Cache-Control"] = "public, max-age=#{1.year.to_i}"
     end
   end
-
 end

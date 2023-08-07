@@ -2,7 +2,6 @@
 
 module Occams::Seeds::File
   class Importer < Occams::Seeds::Importer
-
     def initialize(from, to = from)
       super
       self.path = ::File.join(Occams.config.seeds_path, from, "files/")
@@ -19,16 +18,14 @@ module Occams::Seeds::File
         # We need to track actual file and its attributes
         fresh_file = false
 
-        if File.exist?(attrs_path = File.join(path, "_#{filename}.yml"))
-          if fresh_seed?(file, attrs_path)
-            fresh_file = true
+        if File.exist?(attrs_path = File.join(path, "_#{filename}.yml")) && fresh_seed?(file, attrs_path)
+          fresh_file = true
 
-            attrs = YAML.safe_load(File.read(attrs_path))
-            category_ids = category_names_to_ids(file, attrs.delete("categories"))
-            file.attributes = attrs.merge(
-              category_ids: category_ids
-            )
-          end
+          attrs = YAML.safe_load(File.read(attrs_path))
+          category_ids = category_names_to_ids(file, attrs.delete("categories"))
+          file.attributes = attrs.merge(
+            category_ids: category_ids
+          )
         end
 
         if fresh_seed?(file, file_path)
@@ -36,8 +33,8 @@ module Occams::Seeds::File
 
           file_handler = File.open(file_path)
           file.file = {
-            io:           file_handler,
-            filename:     filename,
+            io: file_handler,
+            filename: filename,
             content_type: MimeMagic.by_magic(file_handler)
           }
         end
@@ -58,6 +55,5 @@ module Occams::Seeds::File
       # cleaning up
       site.files.where("id NOT IN (?)", seed_ids).destroy_all
     end
-
   end
 end

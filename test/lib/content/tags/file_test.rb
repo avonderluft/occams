@@ -3,7 +3,6 @@
 require_relative "../../../test_helper"
 
 class ContentTagsFileTest < ActiveSupport::TestCase
-
   delegate  :rails_blob_path,
             :rails_representation_path,
             to: "Rails.application.routes.url_helpers"
@@ -24,18 +23,18 @@ class ContentTagsFileTest < ActiveSupport::TestCase
     tag = Occams::Content::Tag::File.new(
       context: @page,
       params: ["test", {
-        "as"      => "image",
-        "resize"  => "100x100",
+        "as" => "image",
+        "resize" => "100x100",
         "gravity" => "center",
-        "crop"    => "100x100+0+0"
+        "crop" => "100x100+0+0"
       }]
     )
     assert_equal "test",  tag.identifier
     assert_equal "image", tag.as
     assert_equal ({
-      "resize"  => "100x100",
+      "resize" => "100x100",
       "gravity" => "center",
-      "crop"    => "100x100+0+0"
+      "crop" => "100x100+0+0"
     }), tag.variant_attrs
   end
 
@@ -84,5 +83,4 @@ class ContentTagsFileTest < ActiveSupport::TestCase
     tag = Occams::Content::Tag::File.new(context: @page, params: ["test"])
     assert_equal "", tag.content
   end
-
 end

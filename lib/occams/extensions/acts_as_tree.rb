@@ -1,35 +1,33 @@
 # frozen_string_literal: true
 
 module Occams::ActsAsTree
-
   def self.included(base)
     base.extend(ClassMethods)
   end
 
   module ClassMethods
-
     def cms_acts_as_tree(options = {})
       configuration = {
-        foreign_key:    "parent_id",
-        order:          nil,
-        counter_cache:  nil,
-        dependent:      :destroy,
-        touch:          false
+        foreign_key: "parent_id",
+        order: nil,
+        counter_cache: nil,
+        dependent: :destroy,
+        touch: false
       }
       configuration.update(options) if options.is_a?(Hash)
 
       belongs_to :parent,
-        optional:       true,
-        class_name:     name,
-        foreign_key:    configuration[:foreign_key],
-        counter_cache:  configuration[:counter_cache],
-        touch:          configuration[:touch]
+                 optional: true,
+                 class_name: name,
+                 foreign_key: configuration[:foreign_key],
+                 counter_cache: configuration[:counter_cache],
+                 touch: configuration[:touch]
 
       has_many :children,
-        -> { order(configuration[:order]) },
-        class_name:   name,
-        foreign_key:  configuration[:foreign_key],
-        dependent:    configuration[:dependent]
+               -> { order(configuration[:order]) },
+               class_name: name,
+               foreign_key: configuration[:foreign_key],
+               dependent: configuration[:dependent]
 
       class_eval <<-RUBY, __FILE__, __LINE__ + 1
         include Occams::ActsAsTree::InstanceMethods
@@ -54,11 +52,9 @@ module Occams::ActsAsTree
         end
       RUBY
     end
-
   end
 
   module InstanceMethods
-
     # Returns list of ancestors, starting from parent until root.
     #
     #   subchild1.ancestors # => [child1, root]
@@ -110,9 +106,7 @@ module Occams::ActsAsTree
     def parent_id=(id)
       self.parent = self.class.find_by(id: id)
     end
-
   end
-
 end
 
 ActiveSupport.on_load :active_record do

@@ -3,7 +3,6 @@
 require_relative "../test_helper"
 
 class FormBuilderTest < ActionView::TestCase
-
   setup do
     @page = occams_cms_pages(:default)
     @builder = Occams::FormBuilder.new(:page, @page, self, bootstrap: { layout: "horizontal" })
@@ -301,5 +300,4 @@ class FormBuilderTest < ActionView::TestCase
     HTML
     assert_xml_equal expected, actual
   end
-
 end

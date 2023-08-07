@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Occams::Cms::Site < ActiveRecord::Base
-
   self.table_name = "occams_cms_sites"
 
   # -- Relationships -----------------------------------------------------------
@@ -21,20 +20,21 @@ class Occams::Cms::Site < ActiveRecord::Base
 
   # -- Validations -------------------------------------------------------------
   validates :identifier,
-    presence:   true,
-    uniqueness: true,
-    format:     { with: %r{\A\w[a-z0-9_-]*\z}i }
+            presence: true,
+            uniqueness: true,
+            format: { with: %r{\A\w[a-z0-9_-]*\z}i }
   validates :label,
-    presence:   true
+            presence: true
   validates :hostname,
-    presence:   true,
-    uniqueness: { scope: :path },
-    format:     { with: %r{\A[\w.-]+(?:\:\d+)?\z} }
+            presence: true,
+            uniqueness: { scope: :path },
+            format: { with: %r{\A[\w.-]+(?::\d+)?\z} }
 
   # -- Class Methods -----------------------------------------------------------
   # returning the Occams::Cms::Site instance based on host and path
   def self.find_site(host, path = nil)
     return Occams::Cms::Site.first if Occams::Cms::Site.count == 1
+
     cms_site = nil
 
     public_cms_path = Occams.configuration.public_cms_path
@@ -90,5 +90,4 @@ protected
     self.path.gsub!(%r{/$}, "")
     self.path = nil if self.path.blank?
   end
-
 end

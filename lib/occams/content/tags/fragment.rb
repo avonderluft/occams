@@ -9,7 +9,6 @@
 #     Just a string that allows grouping of form elements in the admin area
 #
 class Occams::Content::Tag::Fragment < Occams::Content::Tag
-
   attr_accessor :renderable
   attr_reader :identifier, :namespace
 
@@ -62,5 +61,4 @@ class Occams::Content::Tag::Fragment < Occams::Content::Tag
   def form_field_id
     "fragment-#{@identifier}"
   end
-
 end

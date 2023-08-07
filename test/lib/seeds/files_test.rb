@@ -3,7 +3,6 @@
 require_relative "../../test_helper"
 
 class SeedsFilesTest < ActiveSupport::TestCase
-
   setup do
     @site = occams_cms_sites(:default)
   end
@@ -87,13 +86,11 @@ class SeedsFilesTest < ActiveSupport::TestCase
     assert File.exist?(attr_path)
     assert File.exist?(file_path)
     assert_equal ({
-      "label"         => "default file",
-      "description"   => "default description",
-      "categories"    => ["Default"]
+      "label" => "default file",
+      "description" => "default description",
+      "categories" => ["Default"]
     }), YAML.load_file(attr_path)
-
   ensure
     FileUtils.rm_rf(host_path)
   end
-
 end

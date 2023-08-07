@@ -3,7 +3,6 @@
 require_relative "../test_helper"
 
 class CmsFileTest < ActiveSupport::TestCase
-
   def test_fixtures_validity
     Occams::Cms::File.all.each do |file|
       assert file.valid?, file.errors.full_messages.to_s
@@ -21,9 +20,9 @@ class CmsFileTest < ActiveSupport::TestCase
   def test_creation
     assert_difference ["Occams::Cms::File.count", "ActiveStorage::Attachment.count"] do
       file = occams_cms_sites(:default).files.create(
-        label:        "test",
-        description:  "test file",
-        file:         fixture_file_upload("files/image.jpg", "image/jpeg")
+        label: "test",
+        description: "test file",
+        file: fixture_file_upload("files/image.jpg", "image/jpeg")
       )
       assert_equal 1, file.position
     end
@@ -32,8 +31,8 @@ class CmsFileTest < ActiveSupport::TestCase
   def test_creation_without_label
     assert_difference ["Occams::Cms::File.count", "ActiveStorage::Attachment.count"] do
       file = occams_cms_sites(:default).files.create(
-        description:  "test file",
-        file:         fixture_file_upload("files/image.jpg", "image/jpeg")
+        description: "test file",
+        file: fixture_file_upload("files/image.jpg", "image/jpeg")
       )
       assert_equal 1, file.position
       assert_equal "image.jpg", file.label
@@ -45,5 +44,4 @@ class CmsFileTest < ActiveSupport::TestCase
     active_storage_blobs(:default).update_column(:content_type, "application/pdf")
     assert_equal 0, Occams::Cms::File.with_attached_attachment.with_images.count
   end
-
 end

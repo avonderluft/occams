@@ -3,7 +3,6 @@
 require_relative "../../../../test_helper"
 
 class Occams::Admin::Cms::PagesControllerTest < ActionDispatch::IntegrationTest
-
   def setup
     @site   = occams_cms_sites(:default)
     @layout = occams_cms_layouts(:default)
@@ -26,7 +25,7 @@ class Occams::Admin::Cms::PagesControllerTest < ActionDispatch::IntegrationTest
 
   def test_get_index_with_category
     category = @site.categories.create!(
-      label:            "Test Category",
+      label: "Test Category",
       categorized_type: "Occams::Cms::Page"
     )
     category.categorizations.create!(categorized: occams_cms_pages(:child))
@@ -47,8 +46,8 @@ class Occams::Admin::Cms::PagesControllerTest < ActionDispatch::IntegrationTest
 
   def test_get_index_with_toggle
     @site.pages.create!(
-      label:  "test",
-      slug:   "test",
+      label: "test",
+      slug: "test",
       parent: occams_cms_pages(:child),
       layout: occams_cms_layouts(:default)
     )
@@ -139,8 +138,8 @@ class Occams::Admin::Cms::PagesControllerTest < ActionDispatch::IntegrationTest
 
   def test_get_new_with_localized_names
     I18n.backend.store_translations(:en, occams: { cms: { content:
-      { tag:        { localized_a: "Localized Fragment" },
-        namespace:  { localized_a: "Localized Namespace" } }
+      { tag: { localized_a: "Localized Fragment" },
+        namespace: { localized_a: "Localized Namespace" } }
     } })
     @layout.update_column(
       :content,
@@ -205,15 +204,15 @@ class Occams::Admin::Cms::PagesControllerTest < ActionDispatch::IntegrationTest
       assert_difference "Occams::Cms::Fragment.count", 2 do
         r :post, occams_admin_cms_site_pages_path(site_id: @site), params: {
           page: {
-            label:              "Test Page",
-            slug:               "test-page",
-            parent_id:          @page.id,
-            layout_id:          @layout.id,
+            label: "Test Page",
+            slug: "test-page",
+            parent_id: @page.id,
+            layout_id: @layout.id,
             fragments_attributes: [
               { identifier: "default_page_text",
-                content:    "content content" },
+                content: "content content" },
               { identifier: "default_field_text",
-                content:    "title content" }
+                content: "title content" }
             ]
           },
           commit: "Create Page"
@@ -233,25 +232,25 @@ class Occams::Admin::Cms::PagesControllerTest < ActionDispatch::IntegrationTest
         assert_difference "ActiveStorage::Attachment.count", 3 do
           r :post, occams_admin_cms_site_pages_path(site_id: @site), params: {
             page: {
-              label:     "Test Page",
-              slug:      "test-page",
+              label: "Test Page",
+              slug: "test-page",
               parent_id: @page.id,
               layout_id: @layout.id,
               fragments_attributes: [
                 { identifier: "image",
-                  tag:        "file",
-                  files:      fixture_file_upload("files/image.jpg", "image/jpeg")
+                  tag: "file",
+                  files: fixture_file_upload("files/image.jpg", "image/jpeg")
                 },
                 { identifier: "files_multiple",
-                  tag:        "files",
+                  tag: "files",
                   files: [
                     fixture_file_upload("files/image.jpg", "image/jpeg"),
                     fixture_file_upload("files/document.pdf", "application/pdf")
                   ]
                 },
                 { identifier: "unpopulated",
-                  tag:        "file",
-                  content:    nil
+                  tag: "file",
+                  content: nil
                 }
               ]
             },
@@ -273,9 +272,9 @@ class Occams::Admin::Cms::PagesControllerTest < ActionDispatch::IntegrationTest
         layout_id: @layout.id,
         fragments_attributes: [
           { identifier: "content",
-            content:    "content content" },
+            content: "content content" },
           { identifier: "title",
-            content:    "title content" }
+            content: "title content" }
         ]
       } }
       assert_response :success
@@ -304,13 +303,13 @@ class Occams::Admin::Cms::PagesControllerTest < ActionDispatch::IntegrationTest
   def test_update_with_layout_change
     assert_difference "Occams::Cms::Fragment.count" do
       r :put, occams_admin_cms_site_page_path(site_id: @site, id: @page), params: { page: {
-        label:      "Updated Label",
-        layout_id:  occams_cms_layouts(:nested).id,
+        label: "Updated Label",
+        layout_id: occams_cms_layouts(:nested).id,
         fragments_attributes: [
           { identifier: "content",
-            content:    "new_page_text_content" },
+            content: "new_page_text_content" },
           { identifier: "header",
-            content:    "new_page_string_content" }
+            content: "new_page_string_content" }
         ]
       } }
       @page.reload
@@ -377,13 +376,13 @@ class Occams::Admin::Cms::PagesControllerTest < ActionDispatch::IntegrationTest
       r :post, occams_admin_cms_site_pages_path(site_id: @site), params: {
         preview: "Preview",
         page: {
-          label:     "Test Page",
-          slug:      "test-page",
+          label: "Test Page",
+          slug: "test-page",
           parent_id: @page.id,
           layout_id: @layout.id,
           fragments_attributes: [
             { identifier: "content",
-              content:    "preview content" }
+              content: "preview content" }
           ]
         }
       }
@@ -406,7 +405,7 @@ class Occams::Admin::Cms::PagesControllerTest < ActionDispatch::IntegrationTest
           label: "Updated Label",
           fragments_attributes: [
             { identifier: "content",
-              content:    "preview content" }
+              content: "preview content" }
           ]
         }
       }
@@ -429,13 +428,13 @@ class Occams::Admin::Cms::PagesControllerTest < ActionDispatch::IntegrationTest
     r :post, occams_admin_cms_site_pages_path(site_id: @site), params: {
       preview: "Preview",
       page: {
-        label:     "Test Page",
-        slug:      "test-page",
+        label: "Test Page",
+        slug: "test-page",
         parent_id: @page.id,
         layout_id: @layout.id,
         fragments_attributes: [
           { identifier: "content",
-            content:    "preview content" }
+            content: "preview content" }
         ]
       }
     }
@@ -475,8 +474,8 @@ class Occams::Admin::Cms::PagesControllerTest < ActionDispatch::IntegrationTest
     page_two = @site.pages.create!(
       parent: @page,
       layout: @layout,
-      label:  "test",
-      slug:   "test"
+      label: "test",
+      slug: "test"
     )
     assert_equal 0, page_one.position
     assert_equal 1, page_two.position
@@ -491,5 +490,4 @@ class Occams::Admin::Cms::PagesControllerTest < ActionDispatch::IntegrationTest
     assert_equal 1, page_one.position
     assert_equal 0, page_two.position
   end
-
 end

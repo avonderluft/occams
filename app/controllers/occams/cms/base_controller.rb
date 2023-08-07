@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Occams::Cms::BaseController < Occams.config.public_base_controller.to_s.constantize
-
   before_action :load_cms_site
 
   helper Occams::CmsHelper
@@ -29,5 +28,4 @@ protected
       raise ActionController::RoutingError, "Site Not Found"
     end
   end
-
 end

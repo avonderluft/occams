@@ -3,7 +3,6 @@
 # This mechanism is used by 3rd party plugins.
 # Normally you'd use partials from your own app
 module Occams::ViewHooks
-
   # Array of declared hooks
   def self.hooks
     @hooks ||= {}
@@ -31,5 +30,4 @@ module Occams::ViewHooks
   def self.remove(name)
     hooks.delete(name)
   end
-
 end

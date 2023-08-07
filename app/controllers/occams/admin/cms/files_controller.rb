@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Occams::Admin::Cms::FilesController < Occams::Admin::Cms::BaseController
-
   include ::Occams::ReorderAction
   self.reorder_action_resource = ::Occams::Cms::File
 
@@ -29,10 +28,10 @@ class Occams::Admin::Cms::FilesController < Occams::Admin::Cms::BaseController
           end
         else
           file_scope.collect do |file|
-            { title:  file.label,
-              name:   file.attachment.filename,
-              link:   url_for(file.attachment),
-              size:   number_to_human_size(file.attachment.byte_size) }
+            { title: file.label,
+              name: file.attachment.filename,
+              link: url_for(file.attachment),
+              size: number_to_human_size(file.attachment.byte_size) }
           end
         end
 
@@ -79,7 +78,6 @@ class Occams::Admin::Cms::FilesController < Occams::Admin::Cms::BaseController
       flash[:success] = I18n.t("occams.admin.cms.files.created")
       redirect_to action: :edit, id: @file
     end
-
   rescue ActiveRecord::RecordInvalid
     case params[:source]
     when "plupload"
@@ -138,5 +136,4 @@ protected
     end
     params.fetch(:file, {}).permit!
   end
-
 end

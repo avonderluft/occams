@@ -3,7 +3,6 @@
 require_relative "../test_helper"
 
 class SeedsIntergrationTest < ActionDispatch::IntegrationTest
-
   setup do
     @site = occams_cms_sites(:default)
     @site.update_columns(identifier: "sample-site")
@@ -73,5 +72,4 @@ class SeedsIntergrationTest < ActionDispatch::IntegrationTest
       end
     end
   end
-
 end

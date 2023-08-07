@@ -3,7 +3,6 @@
 require_relative "../../../../../test_helper"
 
 class Occams::Admin::Cms::Revisions::SnippetControllerTest < ActionDispatch::IntegrationTest
-
   setup do
     @site     = occams_cms_sites(:default)
     @snippet  = occams_cms_snippets(:default)
@@ -58,5 +57,4 @@ class Occams::Admin::Cms::Revisions::SnippetControllerTest < ActionDispatch::Int
       assert_equal "revision content", @snippet.content
     end
   end
-
 end

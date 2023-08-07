@@ -4,7 +4,6 @@
 #   {{ cms:checkbox identifier }}
 #
 class Occams::Content::Tag::Checkbox < Occams::Content::Tag::Fragment
-
   def content
     fragment.boolean
   end
@@ -21,7 +20,6 @@ class Occams::Content::Tag::Checkbox < Occams::Content::Tag::Fragment
 
     yield input
   end
-
 end
 
 Occams::Content::Renderer.register_tag(

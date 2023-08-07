@@ -3,7 +3,6 @@
 require_relative "../../../../test_helper"
 
 class Occams::Admin::Cms::SitesControllerTest < ActionDispatch::IntegrationTest
-
   def test_get_index
     Occams::Cms::Site.create!(hostname: "other.test")
 
@@ -48,9 +47,9 @@ class Occams::Admin::Cms::SitesControllerTest < ActionDispatch::IntegrationTest
   def test_create
     assert_difference "Occams::Cms::Site.count" do
       r :post, occams_admin_cms_sites_path, params: { site: {
-        label:      "Test Site",
+        label: "Test Site",
         identifier: "test-site",
-        hostname:   "test.site.local"
+        hostname: "test.site.local"
       } }
       assert_response :redirect
       site = Occams::Cms::Site.last
@@ -71,9 +70,9 @@ class Occams::Admin::Cms::SitesControllerTest < ActionDispatch::IntegrationTest
   def test_update
     site = occams_cms_sites(:default)
     r :put, occams_admin_cms_site_path(id: site), params: { site: {
-      label:    "New Site",
+      label: "New Site",
       hostname: "new.site.local",
-      locale:   "es"
+      locale: "es"
     } }
     assert_response :redirect
     assert_redirected_to action: :edit, id: site
@@ -104,5 +103,4 @@ class Occams::Admin::Cms::SitesControllerTest < ActionDispatch::IntegrationTest
       assert_equal "Site deleted", flash[:success]
     end
   end
-
 end

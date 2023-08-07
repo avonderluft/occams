@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Occams::Configuration
-
   # Don't like Occams? Set it to whatever you like. :(
   attr_accessor :cms_title
 
@@ -101,28 +100,28 @@ class Occams::Configuration
     @seeds_path             = File.expand_path("db/cms_seeds", Rails.root)
     @revisions_limit        = 25
     @locales                = {
-      "ar"    => "عربي",
-      "ca"    => "Català",
-      "cs"    => "Česky",
-      "da"    => "Dansk",
-      "de"    => "Deutsch",
-      "en"    => "English",
-      "es"    => "Español",
-      "fi"    => "Suomi",
-      "fr"    => "Français",
-      "gr"    => "Ελληνικά",
-      "hr"    => "Hrvatski",
-      "it"    => "Italiano",
-      "ja"    => "日本語",
-      "nb"    => "Norsk",
-      "nl"    => "Nederlands",
-      "pl"    => "Polski",
+      "ar" => "عربي",
+      "ca" => "Català",
+      "cs" => "Česky",
+      "da" => "Dansk",
+      "de" => "Deutsch",
+      "en" => "English",
+      "es" => "Español",
+      "fi" => "Suomi",
+      "fr" => "Français",
+      "gr" => "Ελληνικά",
+      "hr" => "Hrvatski",
+      "it" => "Italiano",
+      "ja" => "日本語",
+      "nb" => "Norsk",
+      "nl" => "Nederlands",
+      "pl" => "Polski",
       "pt-BR" => "Português Brasileiro",
-      "ru"    => "Русский",
-      "sk"    => "Slovensky",
-      "sv"    => "Svenska",
-      "tr"    => "Türkçe",
-      "uk"    => "Українська",
+      "ru" => "Русский",
+      "sk" => "Slovensky",
+      "sv" => "Svenska",
+      "tr" => "Türkçe",
+      "uk" => "Українська",
       "zh-CN" => "简体中文",
       "zh-TW" => "正體中文"
     }
@@ -136,5 +135,4 @@ class Occams::Configuration
     @public_cms_path      = nil
     @page_to_json_options = { methods: [:content], except: [:content_cache] }
   end
-
 end

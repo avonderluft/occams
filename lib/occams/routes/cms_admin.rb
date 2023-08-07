@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class ActionDispatch::Routing::Mapper
-
   def occams_route_cms_admin(path: "admin")
     scope module: :occams, as: :occams do
       scope module: :admin do
@@ -28,7 +27,7 @@ class ActionDispatch::Routing::Mapper
               concerns :with_form_fragments
               concerns :with_revisions, controller: "revisions/page"
 
-              get :toggle_branch,  on: :member
+              get :toggle_branch, on: :member
 
               resources :translations, except: [:index] do
                 concerns :with_form_fragments
@@ -54,5 +53,4 @@ class ActionDispatch::Routing::Mapper
       end
     end
   end
-
 end

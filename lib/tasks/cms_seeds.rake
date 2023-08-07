@@ -13,7 +13,7 @@ namespace :occams do
 
       # changing so that logger is going straight to screen
       logger = Occams.logger
-      Occams.logger = Logger.new(STDOUT)
+      Occams.logger = Logger.new($stdout)
 
       Occams::Seeds::Importer.new(from, to).import!(classes)
 
@@ -30,7 +30,7 @@ namespace :occams do
 
       # changing so that logger is going straight to screen
       logger = Occams.logger
-      Occams.logger = Logger.new(STDOUT)
+      Occams.logger = Logger.new($stdout)
 
       Occams::Seeds::Exporter.new(from, to).export!(classes)
 

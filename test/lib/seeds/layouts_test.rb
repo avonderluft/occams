@@ -3,7 +3,6 @@
 require_relative "../../test_helper"
 
 class SeedsLayoutsTest < ActiveSupport::TestCase
-
   DEFAULT_HTML = <<~HTML
     <html>
       <body>
@@ -149,9 +148,7 @@ class SeedsLayoutsTest < ActiveSupport::TestCase
       child_css
     TEXT
     assert_equal out, IO.read(layout_3_content_path)
-
   ensure
     FileUtils.rm_rf(host_path)
   end
-
 end

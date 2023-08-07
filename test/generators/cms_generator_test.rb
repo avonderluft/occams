@@ -4,7 +4,6 @@ require_relative "../test_helper"
 require_relative "../../lib/generators/occams/cms/cms_generator"
 
 class CmsGeneratorTest < Rails::Generators::TestCase
-
   tests Occams::Generators::CmsGenerator
 
   def test_generator
@@ -24,5 +23,4 @@ class CmsGeneratorTest < Rails::Generators::TestCase
 
     assert_file "app/assets/stylesheets/occams/admin/cms/custom.sass"
   end
-
 end

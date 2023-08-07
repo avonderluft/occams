@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Occams::Admin::Cms::SnippetsController < Occams::Admin::Cms::BaseController
-
   include ::Occams::ReorderAction
   self.reorder_action_resource = ::Occams::Cms::Snippet
 
@@ -11,6 +10,7 @@ class Occams::Admin::Cms::SnippetsController < Occams::Admin::Cms::BaseControlle
 
   def index
     return redirect_to action: :new if @site.snippets.count.zero?
+
     @snippets = @site.snippets.includes(:categories).for_category(params[:categories]).order(:position)
   end
 
@@ -62,5 +62,4 @@ protected
   def snippet_params
     params.fetch(:snippet, {}).permit!
   end
-
 end

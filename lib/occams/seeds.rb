@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module Occams::Seeds
-
   SEED_CLASSES = %w[Layout Page Snippet File].freeze
 
   class Error < StandardError; end
@@ -9,7 +8,6 @@ module Occams::Seeds
   require "mimemagic"
 
   class Importer
-
     attr_accessor :site,
                   :path,
                   :from,
@@ -60,17 +58,15 @@ module Occams::Seeds
     def category_names_to_ids(record, names)
       [names].flatten.map do |name|
         category = site.categories.find_or_create_by(
-          label:            name,
+          label: name,
           categorized_type: record.class.to_s
         )
         category.id
       end
     end
-
   end
 
   class Exporter
-
     attr_accessor :site,
                   :path,
                   :from,
@@ -112,7 +108,5 @@ module Occams::Seeds
       FileUtils.rm_rf(path)
       FileUtils.mkdir_p(path)
     end
-
   end
-
 end

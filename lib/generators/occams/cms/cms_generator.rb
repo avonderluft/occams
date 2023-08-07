@@ -5,7 +5,6 @@ require "rails/generators/active_record"
 module Occams
   module Generators
     class CmsGenerator < Rails::Generators::Base
-
       include Rails::Generators::Migration
       include Thor::Actions
 
@@ -25,7 +24,7 @@ module Occams
 
       def generate_initializer
         copy_file "config/initializers/occams.rb",
-          "config/initializers/occams.rb"
+                  "config/initializers/occams.rb"
       end
 
       def generate_railties_order
@@ -51,9 +50,9 @@ module Occams
 
       def generate_assets
         copy_file "app/assets/javascripts/occams/admin/cms/custom.js",
-          "app/assets/javascripts/occams/admin/cms/custom.js"
+                  "app/assets/javascripts/occams/admin/cms/custom.js"
         copy_file "app/assets/stylesheets/occams/admin/cms/custom.sass",
-          "app/assets/stylesheets/occams/admin/cms/custom.sass"
+                  "app/assets/stylesheets/occams/admin/cms/custom.sass"
       end
 
       def show_readme
@@ -63,7 +62,6 @@ module Occams
       def self.next_migration_number(dirname)
         ActiveRecord::Generators::Base.next_migration_number(dirname)
       end
-
     end
   end
 end

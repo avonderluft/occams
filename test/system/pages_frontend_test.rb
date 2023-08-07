@@ -3,7 +3,6 @@
 require_relative "../test_helper"
 
 class PagesFrontendTest < ApplicationSystemTestCase
-
   setup do
     @site = occams_cms_sites(:default)
   end
@@ -31,5 +30,4 @@ class PagesFrontendTest < ApplicationSystemTestCase
     select valid_layout.label, from: "Layout"
     assert_field "page[fragments_attributes][0][content]", type: "text"
   end
-
 end

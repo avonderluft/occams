@@ -3,7 +3,6 @@
 require_relative "../../../test_helper"
 
 class ContentTagsPageFileLinkTest < ActiveSupport::TestCase
-
   delegate :rails_blob_path, to: "Rails.application.routes.url_helpers"
 
   setup do
@@ -25,9 +24,9 @@ class ContentTagsPageFileLinkTest < ActiveSupport::TestCase
       params: [
         "123", {
           "as" => "image",
-          "resize"  => "100x100",
+          "resize" => "100x100",
           "gravity" => "center",
-          "crop"    => "100x100+0+0"
+          "crop" => "100x100+0+0"
         }
       ]
     )
@@ -36,7 +35,7 @@ class ContentTagsPageFileLinkTest < ActiveSupport::TestCase
     assert_equal ({
       "resize" => "100x100",
       "gravity" => "center",
-      "crop"    => "100x100+0+0"
+      "crop" => "100x100+0+0"
     }), tag.variant_attrs
   end
 
@@ -60,5 +59,4 @@ class ContentTagsPageFileLinkTest < ActiveSupport::TestCase
     assert_equal "", tag.content
     assert_equal "", tag.render
   end
-
 end

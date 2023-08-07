@@ -3,7 +3,6 @@
 require_relative "../../../test_helper"
 
 class ContentTagsTemplateTest < ActiveSupport::TestCase
-
   def test_init
     tag = Occams::Content::Tag::Template.new(
       context: @page,
@@ -22,15 +21,15 @@ class ContentTagsTemplateTest < ActiveSupport::TestCase
   def test_content
     tag = Occams::Content::Tag::Template.new(
       context: @page,
-      params:  ["path/to/template"]
+      params: ["path/to/template"]
     )
     assert_equal "<%= render template: \"path/to/template\" %>", tag.content
   end
 
   def test_render
     tag = Occams::Content::Tag::Template.new(
-      context:  @page,
-      params:   ["path/to/template"]
+      context: @page,
+      params: ["path/to/template"]
     )
     assert_equal "<%= render template: \"path/to/template\" %>", tag.render
   end
@@ -45,7 +44,7 @@ class ContentTagsTemplateTest < ActiveSupport::TestCase
 
     tag = Occams::Content::Tag::Template.new(
       context: @page,
-      params:  ["not_allowed/path"]
+      params: ["not_allowed/path"]
     )
     assert_equal "", tag.render
   end
@@ -57,5 +56,4 @@ class ContentTagsTemplateTest < ActiveSupport::TestCase
     )
     assert_equal "<%= render template: \"va\\\#{:l}ue\" %>", tag.render
   end
-
 end

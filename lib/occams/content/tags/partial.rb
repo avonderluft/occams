@@ -7,7 +7,6 @@
 # Whitelist is can be used to control what partials are renderable.
 #
 class Occams::Content::Tag::Partial < Occams::Content::Tag
-
   attr_reader :path, :locals
 
   def initialize(context:, params: [], source: nil)
@@ -41,7 +40,6 @@ class Occams::Content::Tag::Partial < Occams::Content::Tag
       content
     end
   end
-
 end
 
 Occams::Content::Renderer.register_tag(

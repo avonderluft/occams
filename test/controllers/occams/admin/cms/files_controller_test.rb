@@ -3,7 +3,6 @@
 require_relative "../../../../test_helper"
 
 class Occams::Admin::Cms::FilesControllerTest < ActionDispatch::IntegrationTest
-
   def setup
     @site = occams_cms_sites(:default)
     @file = occams_cms_files(:default)
@@ -62,9 +61,9 @@ class Occams::Admin::Cms::FilesControllerTest < ActionDispatch::IntegrationTest
 
     assert_equal [{
       "title" => @file.label,
-      "name"  => @file.attachment.filename.to_s,
-      "link"  => url_for(@file.attachment),
-      "size"  => "12.1 KB"
+      "name" => @file.attachment.filename.to_s,
+      "link" => url_for(@file.attachment),
+      "size" => "12.1 KB"
     }], JSON.parse(response.body)
   end
 
@@ -107,9 +106,9 @@ class Occams::Admin::Cms::FilesControllerTest < ActionDispatch::IntegrationTest
 
     assert_difference [file_count, categorization_count, attachment_count] do
       r :post, occams_admin_cms_site_files_path(site_id: @site), params: { file: {
-        label:        "Test File",
-        description:  "Test Description",
-        file:         fixture_file_upload("files/image.jpg", "image/jpeg"),
+        label: "Test File",
+        description: "Test Description",
+        file: fixture_file_upload("files/image.jpg", "image/jpeg"),
         category_ids: [occams_cms_categories(:default).id]
       } }
       assert_response :redirect
@@ -152,7 +151,7 @@ class Occams::Admin::Cms::FilesControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference -> { Occams::Cms::File.count } do
       r :post, occams_admin_cms_site_files_path(site_id: @site), params: {
         source: "plupload",
-        file:   {}
+        file: {}
       }
       assert_response :unprocessable_entity
     end
@@ -166,7 +165,7 @@ class Occams::Admin::Cms::FilesControllerTest < ActionDispatch::IntegrationTest
     assert_difference [file_count, categorization_count, attachment_count] do
       r :post, occams_admin_cms_site_files_path(site_id: @site), params: {
         source: "redactor",
-        file:   fixture_file_upload("files/image.jpg", "image/jpeg")
+        file: fixture_file_upload("files/image.jpg", "image/jpeg")
       }
       assert_response :success
 
@@ -186,7 +185,7 @@ class Occams::Admin::Cms::FilesControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference -> { Occams::Cms::File.count } do
       r :post, occams_admin_cms_site_files_path(site_id: @site), params: {
         source: "redactor",
-        file:   {}
+        file: {}
       }
       assert_response :unprocessable_entity
     end
@@ -201,7 +200,7 @@ class Occams::Admin::Cms::FilesControllerTest < ActionDispatch::IntegrationTest
     assert_difference [file_count, attachment_count] do
       r :post, occams_admin_cms_site_files_path(site_id: @site), params: {
         categories: [category.label],
-        source:     "plupload",
+        source: "plupload",
         file: {
           file: fixture_file_upload("files/image.jpg", "image/jpeg")
         }
@@ -215,9 +214,9 @@ class Occams::Admin::Cms::FilesControllerTest < ActionDispatch::IntegrationTest
 
   def test_update
     r :put, occams_admin_cms_site_file_path(site_id: @site, id: @file), params: { file: {
-      label:       "Updated File",
+      label: "Updated File",
       description: "Updated Description",
-      file:        fixture_file_upload("files/image.jpg", "image/jpeg")
+      file: fixture_file_upload("files/image.jpg", "image/jpeg")
     } }
     assert_response :redirect
     assert_redirected_to action: :edit, site_id: @site, id: @file
@@ -265,5 +264,4 @@ class Occams::Admin::Cms::FilesControllerTest < ActionDispatch::IntegrationTest
     assert_equal 1, file_one.position
     assert_equal 0, file_two.position
   end
-
 end

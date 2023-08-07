@@ -2,7 +2,6 @@
 
 module Occams::Seeds::Snippet
   class Importer < Occams::Seeds::Importer
-
     def initialize(from, to = from)
       super
       self.path = ::File.join(Occams.config.seeds_path, from, "snippets/")
@@ -26,7 +25,7 @@ module Occams::Seeds::Snippet
 
           snippet.attributes = attrs.merge(
             category_ids: category_ids,
-            content:      content_hash["content"]
+            content: content_hash["content"]
           )
 
           if snippet.save
@@ -46,6 +45,5 @@ module Occams::Seeds::Snippet
       # cleaning up
       site.snippets.where("id NOT IN (?)", seed_ids).destroy_all
     end
-
   end
 end

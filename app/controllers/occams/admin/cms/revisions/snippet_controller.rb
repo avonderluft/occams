@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Occams::Admin::Cms::Revisions::SnippetController < Occams::Admin::Cms::Revisions::BaseController
-
 private
 
   def load_record
@@ -14,5 +13,4 @@ private
   def record_path
     edit_occams_admin_cms_site_snippet_path(@site, @record)
   end
-
 end

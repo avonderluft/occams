@@ -3,7 +3,6 @@
 require_relative "../test_helper"
 
 class CmsSiteTest < ActiveSupport::TestCase
-
   setup do
     @site = occams_cms_sites(:default)
   end
@@ -38,16 +37,16 @@ class CmsSiteTest < ActiveSupport::TestCase
     s1 = @site
     s2 = Occams::Cms::Site.new(
       identifier: "test",
-      hostname:   s1.hostname,
-      path:       s1.path
+      hostname: s1.hostname,
+      path: s1.path
     )
     assert s2.invalid?
     assert_has_errors_on s2, :hostname
 
     s2 = Occams::Cms::Site.new(
       identifier: "test",
-      hostname:   s1.hostname,
-      path:       "/en"
+      hostname: s1.hostname,
+      path: "/en"
     )
     assert s2.valid?
   end
@@ -73,15 +72,15 @@ class CmsSiteTest < ActiveSupport::TestCase
   def test_clean_path
     site = Occams::Cms::Site.create!(
       identifier: "test_a",
-      hostname:   "test.host",
-      path:       "/en///test//"
+      hostname: "test.host",
+      path: "/en///test//"
     )
     assert_equal "/en/test", site.path
 
     site = Occams::Cms::Site.create!(
       identifier: "test_b",
-      hostname:   "my-site.host",
-      path:       "/"
+      hostname: "my-site.host",
+      path: "/"
     )
     assert_nil site.path
   end
@@ -90,8 +89,8 @@ class CmsSiteTest < ActiveSupport::TestCase
     assert_difference "Occams::Cms::Site.count" do
       Occams::Cms::Site.create!(
         identifier: "test",
-        label:      "Test Site",
-        hostname:   "test.test"
+        label: "Test Site",
+        hostname: "test.test"
       )
     end
   end
@@ -168,7 +167,7 @@ class CmsSiteTest < ActiveSupport::TestCase
 
     Occams.config.hostname_aliases = {
       "www.example.com" => "alias_a.host",
-      "test2.host"      => %w[alias_b.host alias_c.host]
+      "test2.host" => %w[alias_b.host alias_c.host]
     }
 
     assert_equal site_a, Occams::Cms::Site.find_site("alias_a.host")
@@ -188,5 +187,4 @@ class CmsSiteTest < ActiveSupport::TestCase
 
     assert_equal "/cms/site-path", @site.url(relative: true)
   end
-
 end

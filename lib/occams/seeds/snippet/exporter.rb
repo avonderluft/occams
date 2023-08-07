@@ -2,7 +2,6 @@
 
 module Occams::Seeds::Snippet
   class Exporter < Occams::Seeds::Exporter
-
     def initialize(from, to = from)
       super
       self.path = ::File.join(Occams.config.seeds_path, to, "snippets/")
@@ -13,9 +12,9 @@ module Occams::Seeds::Snippet
 
       site.snippets.each do |snippet|
         attrs = {
-          "label"       => snippet.label,
-          "categories"  => snippet.categories.map(&:label),
-          "position"    => snippet.position
+          "label" => snippet.label,
+          "categories" => snippet.categories.map(&:label),
+          "position" => snippet.position
         }.to_yaml
 
         data = []
@@ -29,6 +28,5 @@ module Occams::Seeds::Snippet
         Occams.logger.info(message)
       end
     end
-
   end
 end

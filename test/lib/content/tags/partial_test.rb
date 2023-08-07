@@ -3,7 +3,6 @@
 require_relative "../../../test_helper"
 
 class ContentTagsPartialTest < ActiveSupport::TestCase
-
   def test_init
     tag = Occams::Content::Tag::Partial.new(
       context: @page,
@@ -71,5 +70,4 @@ class ContentTagsPartialTest < ActiveSupport::TestCase
     )
     assert_equal "<%= render partial: \"foo\\\#{:bar}\", locals: {\"key\"=>\"va\\\#{:l}ue\"} %>", tag.render
   end
-
 end

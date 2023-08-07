@@ -3,7 +3,6 @@
 require_relative "../test_helper"
 
 class I18nIntegrationTest < ActionDispatch::IntegrationTest
-
   def collect_combined_keys(hash, ns = nil)
     hash.collect do |k, v|
       keys = []
@@ -36,5 +35,4 @@ class I18nIntegrationTest < ActionDispatch::IntegrationTest
       assert extra.blank?, "#{locale} locale has extra: #{extra.join(', ')}"
     end
   end
-
 end

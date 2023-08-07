@@ -3,7 +3,6 @@
 require_relative "../test_helper"
 
 class RenderCmsIntergrationTest < ActionDispatch::IntegrationTest
-
   def setup
     super
     Rails.application.routes.draw do
@@ -25,21 +24,20 @@ class RenderCmsIntergrationTest < ActionDispatch::IntegrationTest
   def create_site_b
     site = Occams::Cms::Site.create!(
       identifier: "site-b",
-      hostname:   "site-b.test"
+      hostname: "site-b.test"
     )
     layout = site.layouts.create!(
       identifier: "default",
-      content:    "site-b {{cms:text content}}"
+      content: "site-b {{cms:text content}}"
     )
     site.pages.create!(
-      label:  "default",
+      label: "default",
       layout: layout,
       fragments_attributes: [{ identifier: "content", content: "SiteBContent" }]
     )
   end
 
   class ::RenderTestController < ApplicationController
-
     append_view_path(File.expand_path("../fixtures/views", File.dirname(__FILE__)))
 
     def render_basic
@@ -81,9 +79,9 @@ class RenderCmsIntergrationTest < ActionDispatch::IntegrationTest
         render cms_layout: "default"
       when "layout"
         render cms_layout: "default", cms_fragments: {
-          content:    "TestText",
-          content_b:  { partial: "render_test/test" },
-          content_c:  { template: "render_test/render_layout" }
+          content: "TestText",
+          content_b: { partial: "render_test/test" },
+          content_c: { template: "render_test/render_layout" }
         }
       when "layout_with_status"
         render cms_layout: "default", status: 404
@@ -99,7 +97,6 @@ class RenderCmsIntergrationTest < ActionDispatch::IntegrationTest
     end
 
     def new; end
-
   end
 
   # -- Basic Render Tests ------------------------------------------------------
@@ -267,5 +264,4 @@ class RenderCmsIntergrationTest < ActionDispatch::IntegrationTest
       get "/render-layout?type=layout_defaults_with_site"
     end
   end
-
 end

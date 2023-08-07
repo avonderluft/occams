@@ -3,7 +3,6 @@
 require_relative "../../../test_helper"
 
 class ContentTagsAssetTest < ActiveSupport::TestCase
-
   setup do
     @page = occams_cms_pages(:default)
   end
@@ -102,5 +101,4 @@ class ContentTagsAssetTest < ActiveSupport::TestCase
     out = "/custom/cms-js/#{@page.site_id}/#{@page.layout.identifier}/#{@page.layout.cache_buster}.js"
     assert_equal out, tag.content
   end
-
 end

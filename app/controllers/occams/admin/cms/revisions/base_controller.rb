@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Occams::Admin::Cms::Revisions::BaseController < Occams::Admin::Cms::BaseController
-
   helper_method :record_path
 
   before_action :load_record
@@ -46,5 +45,4 @@ protected
   def record_path
     raise "no implemented"
   end
-
 end
