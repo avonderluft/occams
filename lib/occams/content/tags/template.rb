@@ -7,7 +7,6 @@
 # Whitelist is can be used to control what templates are available.
 #
 class Occams::Content::Tag::Template < Occams::Content::Tag
-
   attr_reader :path
 
   def initialize(context:, params: [], source: nil)
@@ -36,7 +35,6 @@ class Occams::Content::Tag::Template < Occams::Content::Tag
       content
     end
   end
-
 end
 
 Occams::Content::Renderer.register_tag(

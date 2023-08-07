@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Occams::Cms::Fragment < ActiveRecord::Base
-
   self.table_name = "occams_cms_fragments"
 
   has_many_attached :attachments
@@ -23,8 +22,8 @@ class Occams::Cms::Fragment < ActiveRecord::Base
 
   # -- Validations -------------------------------------------------------------
   validates :identifier,
-    presence:   true,
-    uniqueness: { scope: :record }
+            presence: true,
+            uniqueness: { scope: :record }
 
   # -- Instance Methods --------------------------------------------------------
 
@@ -45,6 +44,7 @@ protected
 
   def remove_attachments
     return unless @file_ids_destroy.present?
+
     attachments.where(id: @file_ids_destroy).destroy_all
   end
 
@@ -59,5 +59,4 @@ protected
 
     attachments.attach(@files)
   end
-
 end

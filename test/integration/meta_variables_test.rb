@@ -3,7 +3,6 @@
 require_relative "../test_helper"
 
 class MetaVariablesIntegrationTest < ActionDispatch::IntegrationTest
-
   def test_redactor_js_variables
     site = occams_cms_sites(:default)
     r :get, occams_admin_cms_site_pages_path(site)
@@ -25,5 +24,4 @@ class MetaVariablesIntegrationTest < ActionDispatch::IntegrationTest
     assert_select "[data-cms-uploader-session-name]"
     assert_select "[data-cms-uploader-session-value]"
   end
-
 end

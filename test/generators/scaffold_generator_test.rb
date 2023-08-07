@@ -4,7 +4,6 @@ require_relative "../test_helper"
 require_relative "../../lib/generators/occams/scaffold/scaffold_generator"
 
 class ScaffoldGeneratorTest < Rails::Generators::TestCase
-
   tests Occams::Generators::ScaffoldGenerator
 
   def test_generator
@@ -30,5 +29,4 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
       assert_match "%li.nav-item\n  = active_link_to 'Foos', admin_foos_path, class: 'nav-link'", file
     end
   end
-
 end

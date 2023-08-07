@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module Occams::Paginate
-
   # Wrapper to deal with WillPaginate vs Kaminari nonsense
   def occams_paginate(scope, per_page: 50)
     if defined?(WillPaginate)
@@ -12,5 +11,4 @@ module Occams::Paginate
       scope
     end
   end
-
 end

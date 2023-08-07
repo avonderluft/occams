@@ -14,7 +14,6 @@ require_relative "./mixins/file_content"
 # `class`   - any html classes that you want on the result link or image tag. For example "class1 class2"
 #
 class Occams::Content::Tag::File < Occams::Content::Tag::Fragment
-
   include Occams::Content::Tag::Mixins::FileContent
 
   # @type ["url", "link", "image"]
@@ -41,11 +40,11 @@ class Occams::Content::Tag::File < Occams::Content::Tag::Fragment
         view.render(
           partial: "occams/admin/cms/fragments/form_fragment_attachments",
           locals: {
-            object_name:  object_name,
-            index:        index,
-            attachments:  fragment.attachments,
-            fragment_id:  identifier,
-            multiple:     false
+            object_name: object_name,
+            index: index,
+            attachments: fragment.attachments,
+            fragment_id: identifier,
+            multiple: false
           }
         )
       end
@@ -64,7 +63,6 @@ protected
   def label
     @label || file&.filename
   end
-
 end
 
 Occams::Content::Renderer.register_tag(

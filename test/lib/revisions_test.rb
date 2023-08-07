@@ -3,7 +3,6 @@
 require_relative "../test_helper"
 
 class RevisionsTest < ActiveSupport::TestCase
-
   setup do
     @site     = occams_cms_sites(:default)
     @layout   = occams_cms_layouts(:default)
@@ -14,8 +13,8 @@ class RevisionsTest < ActiveSupport::TestCase
   def test_fixtures_validity
     assert_equal ({
       "content" => "revision {{cms:fragment content}}",
-      "css"     => "revision css",
-      "js"      => "revision js" }), occams_cms_revisions(:layout).data
+      "css" => "revision css",
+      "js" => "revision js" }), occams_cms_revisions(:layout).data
 
     assert_equal ({ "fragments_attributes" => [
       { "identifier" => "content", "content" => "old content" },
@@ -44,8 +43,8 @@ class RevisionsTest < ActiveSupport::TestCase
 
     assert_difference -> { @layout.revisions.count } do
       @layout.update!(
-        content:  "new {{cms:fragment content}}",
-        js:       "new js"
+        content: "new {{cms:fragment content}}",
+        js: "new js"
       )
       @layout.reload
       assert_equal 2, @layout.revisions.count
@@ -63,9 +62,9 @@ class RevisionsTest < ActiveSupport::TestCase
   def test_creation_for_page
     assert_difference -> { @page.revisions.count } do
       @page.update!(
-        fragments_attributes:  [
+        fragments_attributes: [
           { identifier: "content",
-            content:    "new content" }
+            content: "new content" }
         ]
       )
       @page.reload
@@ -75,25 +74,25 @@ class RevisionsTest < ActiveSupport::TestCase
       assert_equal ({
         "fragments_attributes" => [
           { identifier: "boolean",
-            tag:        "checkbox",
-            content:    nil,
-            datetime:   nil,
-            boolean:    true },
+            tag: "checkbox",
+            content: nil,
+            datetime: nil,
+            boolean: true },
           { identifier: "file",
-            tag:        "file",
-            content:    nil,
-            datetime:   nil,
-            boolean:    false },
+            tag: "file",
+            content: nil,
+            datetime: nil,
+            boolean: false },
           { identifier: "datetime",
-            tag:        "datetime",
-            content:    nil,
-            datetime:   occams_cms_fragments(:datetime).datetime,
-            boolean:    false },
+            tag: "datetime",
+            content: nil,
+            datetime: occams_cms_fragments(:datetime).datetime,
+            boolean: false },
           { identifier: "content",
-            tag:        "text",
-            content:    "content",
-            datetime:   nil,
-            boolean:    false }
+            tag: "text",
+            content: "content",
+            datetime: nil,
+            boolean: false }
         ]
       }), revision.data
     end
@@ -127,9 +126,9 @@ class RevisionsTest < ActiveSupport::TestCase
     assert_difference "Occams::Cms::Snippet.count" do
       assert_no_difference "Occams::Cms::Revision.count" do
         snippet = @site.snippets.create!(
-          label:      "test snippet",
+          label: "test snippet",
           identifier: "test_snippet",
-          content:    "test content"
+          content: "test content"
         )
         assert_equal 0, snippet.revisions.count
       end
@@ -157,30 +156,30 @@ class RevisionsTest < ActiveSupport::TestCase
 
       assert_equal [
         { identifier: "boolean",
-          tag:        "checkbox",
-          content:    nil,
-          datetime:   nil,
+          tag: "checkbox",
+          content: nil,
+          datetime: nil,
           boolean: true },
         { identifier: "file",
-          tag:        "file",
-          content:    nil,
-          datetime:   nil,
-          boolean:    false },
+          tag: "file",
+          content: nil,
+          datetime: nil,
+          boolean: false },
         { identifier: "datetime",
-          tag:        "datetime",
-          content:    nil,
-          datetime:   occams_cms_fragments(:datetime).datetime,
-          boolean:    false },
+          tag: "datetime",
+          content: nil,
+          datetime: occams_cms_fragments(:datetime).datetime,
+          boolean: false },
         { identifier: "content",
-          tag:        "text",
-          content:    "old content",
-          datetime:   nil,
-          boolean:    false },
+          tag: "text",
+          content: "old content",
+          datetime: nil,
+          boolean: false },
         { identifier: "title",
-          tag:        "text",
-          content:    "old title",
-          datetime:   nil,
-          boolean:    false }
+          tag: "text",
+          content: "old title",
+          datetime: nil,
+          boolean: false }
       ], @page.fragments_attributes
     end
   end
@@ -220,5 +219,4 @@ class RevisionsTest < ActiveSupport::TestCase
       assert_equal ({ "content" => "snippet content" }), revision.data
     end
   end
-
 end

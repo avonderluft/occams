@@ -3,7 +3,6 @@
 require_relative "../../../test_helper"
 
 class ContentTagsMarkdownTest < ActiveSupport::TestCase
-
   setup do
     @page = occams_cms_pages(:default)
   end
@@ -35,5 +34,4 @@ class ContentTagsMarkdownTest < ActiveSupport::TestCase
     )
     assert_equal "", tag.render
   end
-
 end

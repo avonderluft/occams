@@ -3,7 +3,6 @@
 require_relative "../../../../../test_helper"
 
 class Occams::Admin::Cms::Revisions::PageControllerTest < ActionDispatch::IntegrationTest
-
   setup do
     @site     = occams_cms_sites(:default)
     @page     = occams_cms_pages(:default)
@@ -58,32 +57,31 @@ class Occams::Admin::Cms::Revisions::PageControllerTest < ActionDispatch::Integr
 
       assert_equal [
         { identifier: "boolean",
-          tag:        "checkbox",
-          content:    nil,
-          datetime:   nil,
-          boolean:    true },
+          tag: "checkbox",
+          content: nil,
+          datetime: nil,
+          boolean: true },
         { identifier: "file",
-          tag:        "file",
-          content:    nil,
-          datetime:   nil,
-          boolean:    false },
+          tag: "file",
+          content: nil,
+          datetime: nil,
+          boolean: false },
         { identifier: "datetime",
-          tag:        "datetime",
-          content:    nil,
-          datetime:   occams_cms_fragments(:datetime).datetime,
-          boolean:    false },
+          tag: "datetime",
+          content: nil,
+          datetime: occams_cms_fragments(:datetime).datetime,
+          boolean: false },
         { identifier: "content",
-          tag:        "text",
-          content:    "old content",
-          datetime:   nil,
-          boolean:    false },
+          tag: "text",
+          content: "old content",
+          datetime: nil,
+          boolean: false },
         { identifier: "title",
-          tag:        "text",
-          content:    "old title",
-          datetime:   nil,
-          boolean:    false }
+          tag: "text",
+          content: "old title",
+          datetime: nil,
+          boolean: false }
       ], @page.fragments_attributes
     end
   end
-
 end

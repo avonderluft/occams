@@ -3,7 +3,6 @@
 require_relative "../../../test_helper"
 
 class ContentTagsHelperTest < ActiveSupport::TestCase
-
   def test_init
     tag = Occams::Content::Tag::Helper.new(context: @page, params: ["helper_method"])
     assert_equal "helper_method", tag.method_name
@@ -68,5 +67,4 @@ class ContentTagsHelperTest < ActiveSupport::TestCase
     )
     assert_equal "<%= foo\#{:bar}(\"foo\\\#{Kernel.exec('poweroff')\") %>", tag.render
   end
-
 end

@@ -3,7 +3,6 @@
 require_relative "../../../test_helper"
 
 class ContentTagsDatetimeTest < ActiveSupport::TestCase
-
   setup do
     @page = occams_cms_pages(:default)
     @frag = occams_cms_fragments(:datetime)
@@ -34,9 +33,8 @@ class ContentTagsDatetimeTest < ActiveSupport::TestCase
   def test_render_not_renderable
     tag = Occams::Content::Tag::Datetime.new(
       context: @page,
-      params: [@frag.identifier, "render" => "false"]
+      params: [@frag.identifier, { "render" => "false" }]
     )
     assert_equal "", tag.render
   end
-
 end

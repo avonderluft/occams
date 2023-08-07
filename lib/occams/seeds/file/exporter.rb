@@ -2,7 +2,6 @@
 
 module Occams::Seeds::File
   class Exporter < Occams::Seeds::Exporter
-
     def initialize(from, to = from)
       super
       self.path = ::File.join(Occams.config.seeds_path, to, "files/")
@@ -17,9 +16,9 @@ module Occams::Seeds::File
         # writing attributes
         ::File.open(::File.join(path, "_#{file.attachment.filename}.yml"), "w") do |f|
           f.write({
-            "label"       => file.label,
+            "label" => file.label,
             "description" => file.description,
-            "categories"  => file.categories.map(&:label)
+            "categories" => file.categories.map(&:label)
           }.to_yaml)
         end
 
@@ -38,6 +37,5 @@ module Occams::Seeds::File
         Occams.logger.info(message)
       end
     end
-
   end
 end

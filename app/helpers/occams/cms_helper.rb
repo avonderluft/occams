@@ -2,7 +2,6 @@
 
 module Occams
   module CmsHelper
-
     # Raw content of a page fragment. This is how you get content from unrenderable
     # tags like {{cms:fragment meta, render: false}}
     # Example:
@@ -11,6 +10,7 @@ module Occams
     def cms_fragment_content(identifier, page = @cms_page)
       frag = page&.fragments&.detect { |f| f.identifier == identifier.to_s }
       return "" unless frag
+
       case frag.tag
       when "date", "datetime"
         frag.datetime
@@ -29,6 +29,7 @@ module Occams
     def cms_fragment_render(identifier, page = @cms_page)
       node = page.fragment_nodes.detect { |n| n.identifier == identifier.to_s }
       return "" unless node
+
       node.renderable = true
       render inline: page.render([node])
     end
@@ -40,6 +41,7 @@ module Occams
       cms_site ||= cms_site_detect
       snippet = cms_site&.snippets&.find_by_identifier(identifier)
       return "" unless snippet
+
       snippet.content
     end
 
@@ -49,6 +51,7 @@ module Occams
       cms_site ||= cms_site_detect
       snippet = cms_site&.snippets&.find_by_identifier(identifier)
       return "" unless snippet
+
       r = Occams::Content::Renderer.new(snippet)
       render inline: r.render(r.nodes(r.tokenize(snippet.content)))
     end
@@ -62,12 +65,12 @@ module Occams
     # Wrapper to deal with Kaminari vs WillPaginate
     def occams_paginate(collection)
       return unless collection
+
       if defined?(WillPaginate)
         will_paginate collection
       elsif defined?(Kaminari)
         paginate collection, theme: "occams"
       end
     end
-
   end
 end

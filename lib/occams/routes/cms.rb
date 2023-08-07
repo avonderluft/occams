@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class ActionDispatch::Routing::Mapper
-
   def occams_route_cms(options = {})
     Occams.configuration.public_cms_path = options[:path]
 
@@ -14,5 +13,4 @@ class ActionDispatch::Routing::Mapper
       end
     end
   end
-
 end

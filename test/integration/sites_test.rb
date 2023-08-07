@@ -3,7 +3,6 @@
 require_relative "../test_helper"
 
 class SitesIntegrationTest < ActionDispatch::IntegrationTest
-
   def test_get_admin_with_single_site
     r :get, occams_admin_cms_path
     assert assigns(:site)
@@ -105,5 +104,4 @@ class SitesIntegrationTest < ActionDispatch::IntegrationTest
 
     I18n.default_locale = :en
   end
-
 end

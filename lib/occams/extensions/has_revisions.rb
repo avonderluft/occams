@@ -1,22 +1,20 @@
 # frozen_string_literal: true
 
 module Occams::HasRevisions
-
   def self.included(base)
     base.send :extend, ClassMethods
   end
 
   module ClassMethods
-
     def cms_has_revisions_for(*fields)
       include Occams::HasRevisions::InstanceMethods
 
       attr_accessor :revision_data
 
       has_many :revisions,
-        as:         :record,
-        dependent:  :destroy,
-        class_name: "Occams::Cms::Revision"
+               as: :record,
+               dependent: :destroy,
+               class_name: "Occams::Cms::Revision"
 
       before_save :prepare_revision
       after_save  :create_revision
@@ -25,14 +23,13 @@ module Occams::HasRevisions
         fields.collect(&:to_s)
       end
     end
-
   end
 
   module InstanceMethods
-
     # Preparing revision data. A bit of a special thing to grab page blocks
     def prepare_revision
       return if new_record?
+
       if (respond_to?(:fragments_attributes_changed) && fragments_attributes_changed) ||
         !(changed & revision_fields).empty?
         self.revision_data = revision_fields.each_with_object({}) do |field, c|
@@ -60,11 +57,10 @@ module Occams::HasRevisions
     # Assigning whatever is found in revision data and attempting to save the object
     def restore_from_revision(revision)
       return unless revision.record == self
+
       update!(revision.data)
     end
-
   end
-
 end
 
 ActiveSupport.on_load :active_record do

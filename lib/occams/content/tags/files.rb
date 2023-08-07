@@ -6,7 +6,6 @@
 #   {{ cms:files identifier }}
 #
 class Occams::Content::Tag::Files < Occams::Content::Tag::File
-
   def content
     return "" if fragment.attachments.blank?
 
@@ -24,18 +23,17 @@ class Occams::Content::Tag::Files < Occams::Content::Tag::File
         view.render(
           partial: "occams/admin/cms/fragments/form_fragment_attachments",
           locals: {
-            object_name:  object_name,
-            index:        index,
-            attachments:  fragment.attachments,
-            fragment_id:  identifier,
-            multiple:     true
+            object_name: object_name,
+            index: index,
+            attachments: fragment.attachments,
+            fragment_id: identifier,
+            multiple: true
           }
         )
       end
 
     yield view.safe_join([input, attachments_partial], "")
   end
-
 end
 
 Occams::Content::Renderer.register_tag(

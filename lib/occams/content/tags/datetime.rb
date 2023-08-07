@@ -6,7 +6,6 @@
 # `strftime` - Format datetime string during rendering
 #
 class Occams::Content::Tag::Datetime < Occams::Content::Tag::Fragment
-
   attr_reader :strftime
 
   def initialize(context:, params: [], source: nil)
@@ -36,7 +35,6 @@ class Occams::Content::Tag::Datetime < Occams::Content::Tag::Fragment
 
     yield input
   end
-
 end
 
 Occams::Content::Renderer.register_tag(

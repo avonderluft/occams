@@ -24,7 +24,6 @@ require "mocha/setup"
 Rails.backtrace_cleaner.remove_silencers!
 
 class ActiveSupport::TestCase
-
   include ActionDispatch::TestProcess
 
   fixtures :all
@@ -84,8 +83,8 @@ class ActiveSupport::TestCase
   def assert_exception_raised(exception_class = nil, error_message = nil)
     exception_raised = nil
     yield
-  rescue StandardError => exception_raised
-    exception_raised
+  rescue StandardError => e
+    e
   ensure
     if exception_raised
       if exception_class
@@ -103,7 +102,7 @@ class ActiveSupport::TestCase
     assert_select(selector, text: value, count: 0)
   end
 
-  # Capturing STDOUT into a string
+  # Capturing $stdout into a string
   def with_captured_stout
     old = $stdout
     $stdout = StringIO.new
@@ -112,11 +111,9 @@ class ActiveSupport::TestCase
   ensure
     $stdout = old
   end
-
 end
 
 class ActionDispatch::IntegrationTest
-
   # Attaching http_auth stuff with request. Example use:
   #   r :get, '/cms-admin/pages'
   def r(method, path, options = {})
@@ -134,22 +131,18 @@ class ActionDispatch::IntegrationTest
   ensure
     Occams::Application.routes_reloader.reload!
   end
-
 end
 
 class ActionView::TestCase
-
   # When testing view helpers we don't actually have access to request. So
   # here's a fake one.
   class FakeRequest
-
     attr_accessor :host_with_port, :fullpath
 
     def initialize
       @host_with_port = "www.example.com"
       @fullpath       = "/"
     end
-
   end
 
   setup do
@@ -179,6 +172,7 @@ private
 
   def sort_attributes(doc)
     return if doc.blank?
+
     doc.dup.traverse do |node|
       if node.is_a?(Nokogiri::XML::Element)
         attributes = node.attribute_nodes.sort_by(&:name)
@@ -190,11 +184,9 @@ private
       node
     end
   end
-
 end
 
 class Rails::Generators::TestCase
-
   setup :prepare_destination,
         :prepare_files
 
@@ -230,12 +222,10 @@ class Rails::Generators::TestCase
       )
     )
   end
-
 end
 
 # In order to run system tests ensure that chrome-driver is installed.
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
-
   Capybara.enable_aria_label = true
 
   driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
@@ -254,5 +244,4 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     assert_empty page.driver.browser.manage.logs.get(:browser)
       .select { |e| e.level == "SEVERE" && e.message.present? }.map(&:message).to_a
   end
-
 end

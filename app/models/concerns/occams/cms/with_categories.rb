@@ -1,17 +1,16 @@
 # frozen_string_literal: true
 
 module Occams::Cms::WithCategories
-
   extend ActiveSupport::Concern
 
   included do
     has_many :categorizations,
-      as:         :categorized,
-      class_name: "Occams::Cms::Categorization",
-      dependent:  :destroy
+             as: :categorized,
+             class_name: "Occams::Cms::Categorization",
+             dependent: :destroy
     has_many :categories,
-      through:    :categorizations,
-      class_name: "Occams::Cms::Category"
+             through: :categorizations,
+             class_name: "Occams::Cms::Category"
 
     attr_writer :category_ids
 
@@ -49,5 +48,4 @@ module Occams::Cms::WithCategories
     ids_to_remove = existing_ids - ids_to_add
     categorizations.where(category_id: ids_to_remove).destroy_all
   end
-
 end

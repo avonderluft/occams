@@ -3,7 +3,6 @@
 require_relative "../test_helper"
 
 class CmsFragmentTest < ActiveSupport::TestCase
-
   setup do
     @site   = occams_cms_sites(:default)
     @layout = occams_cms_layouts(:default)
@@ -15,10 +14,10 @@ class CmsFragmentTest < ActiveSupport::TestCase
 
   def page_params(frag_params = [])
     {
-      layout:               @layout,
-      label:                "test page",
-      slug:                 "test_page",
-      parent_id:            @page.id,
+      layout: @layout,
+      label: "test page",
+      slug: "test_page",
+      parent_id: @page.id,
       fragments_attributes: frag_params
     }
   end
@@ -59,7 +58,7 @@ class CmsFragmentTest < ActiveSupport::TestCase
     assert_difference "Occams::Cms::Fragment.count" do
       @page.fragments.create!(
         identifier: "test",
-        content:    "test content"
+        content: "test content"
       )
     end
   end
@@ -69,8 +68,8 @@ class CmsFragmentTest < ActiveSupport::TestCase
       assert_difference(-> { ActiveStorage::Attachment.count }, 2) do
         frag = @page.fragments.create!(
           identifier: "test",
-          tag:        "files",
-          files:      [@upload_doc, @upload_img]
+          tag: "files",
+          files: [@upload_doc, @upload_img]
         )
         assert_equal 2, frag.attachments.count
       end
@@ -84,8 +83,8 @@ class CmsFragmentTest < ActiveSupport::TestCase
     assert_difference [fragment_count, attachment_count] do
       frag = @page.fragments.create!(
         identifier: "test",
-        tag:        "file",
-        files:      [@upload_doc, @upload_img]
+        tag: "file",
+        files: [@upload_doc, @upload_img]
       )
       assert_equal 1, frag.attachments.count
     end
@@ -97,8 +96,8 @@ class CmsFragmentTest < ActiveSupport::TestCase
     assert_equal "fragment.jpg", frag.attachments.first.filename.to_s
     assert_difference -> { frag.attachments.count } do
       frag.update(
-        tag:    "files",
-        files:  [@upload_doc]
+        tag: "files",
+        files: [@upload_doc]
       )
     end
   end
@@ -109,8 +108,8 @@ class CmsFragmentTest < ActiveSupport::TestCase
     assert_equal "fragment.jpg", frag.attachments.first.filename.to_s
     assert_no_difference -> { frag.attachments.count } do
       frag.update(
-        tag:    "file",
-        files:  [@upload_doc]
+        tag: "file",
+        files: [@upload_doc]
       )
     end
     frag.reload
@@ -133,5 +132,4 @@ class CmsFragmentTest < ActiveSupport::TestCase
     @page.reload
     refute_equal timestamp, @page.updated_at
   end
-
 end

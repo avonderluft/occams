@@ -4,7 +4,6 @@
 #   {{ cms:markdown identifier }}
 #
 class Occams::Content::Tag::Markdown < Occams::Content::Tag::Fragment
-
   def render
     renderable ? Kramdown::Document.new(content.to_s).to_html : ""
   end
@@ -16,7 +15,6 @@ class Occams::Content::Tag::Markdown < Occams::Content::Tag::Fragment
 
     yield input
   end
-
 end
 
 Occams::Content::Renderer.register_tag(

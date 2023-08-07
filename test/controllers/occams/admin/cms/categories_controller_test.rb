@@ -3,7 +3,6 @@
 require_relative "../../../../test_helper"
 
 class Occams::Admin::Cms::CategoriesControllerTest < ActionDispatch::IntegrationTest
-
   def setup
     @site = occams_cms_sites(:default)
   end
@@ -24,7 +23,7 @@ class Occams::Admin::Cms::CategoriesControllerTest < ActionDispatch::Integration
   def test_creation
     assert_difference "Occams::Cms::Category.count" do
       r :post, occams_admin_cms_site_categories_path(site_id: @site), xhr: true, params: { category: {
-        label:            "Test Label",
+        label: "Test Label",
         categorized_type: "Occams::Cms::Snippet"
       } }
       assert_response :success
@@ -72,5 +71,4 @@ class Occams::Admin::Cms::CategoriesControllerTest < ActionDispatch::Integration
       assert_template :destroy
     end
   end
-
 end

@@ -3,7 +3,6 @@
 require_relative "../test_helper"
 
 class CmsPageTest < ActiveSupport::TestCase
-
   setup do
     @site   = occams_cms_sites(:default)
     @layout = occams_cms_layouts(:default)
@@ -11,8 +10,8 @@ class CmsPageTest < ActiveSupport::TestCase
   end
 
   def new_params(options = {})
-    { label:  "Test Page",
-      slug:   "test-page",
+    { label: "Test Page",
+      slug: "test-page",
       layout: @layout
     }.merge(options)
   end
@@ -83,7 +82,7 @@ class CmsPageTest < ActiveSupport::TestCase
 
   def test_label_assignment
     page = @site.pages.new(
-      slug:   "test",
+      slug: "test",
       parent: @page,
       layout: @layout
     )
@@ -101,8 +100,8 @@ class CmsPageTest < ActiveSupport::TestCase
           parent: @page,
           fragments_attributes: [
             { identifier: "content",
-              tag:        "text",
-              content:    "test" }
+              tag: "text",
+              content: "test" }
           ]
         )
       )
@@ -122,8 +121,8 @@ class CmsPageTest < ActiveSupport::TestCase
           parent: @page,
           fragments_attributes: [{
             identifier: "test",
-            tag:        "file",
-            files:      [fixture_file_upload("files/image.jpg", "image/jpeg")]
+            tag: "file",
+            files: [fixture_file_upload("files/image.jpg", "image/jpeg")]
           }]
         )
       )
@@ -144,8 +143,8 @@ class CmsPageTest < ActiveSupport::TestCase
             parent: @page,
             fragments_attributes: [{
               identifier: "test",
-              tag:        "files",
-              files:      [
+              tag: "files",
+              files: [
                 fixture_file_upload("files/image.jpg", "image/jpeg"),
                 fixture_file_upload("files/document.pdf", "application/pdf")
               ]
@@ -171,8 +170,8 @@ class CmsPageTest < ActiveSupport::TestCase
           parent: @page,
           fragments_attributes: [{
             identifier: "test",
-            tag:        "date_time",
-            datetime:   string
+            tag: "date_time",
+            datetime: string
           }]
         )
       )
@@ -191,8 +190,8 @@ class CmsPageTest < ActiveSupport::TestCase
           parent: @page,
           fragments_attributes: [{
             identifier: "test",
-            tag:        "checkbox",
-            boolean:    "1"
+            tag: "checkbox",
+            boolean: "1"
           }]
         )
       )
@@ -210,7 +209,7 @@ class CmsPageTest < ActiveSupport::TestCase
     assert_no_difference [page_count, fragment_count] do
       @page.update!(fragments_attributes: [
         { identifier: frag.identifier,
-          content:    "updated content" }
+          content: "updated content" }
       ])
     end
     frag.reload
@@ -222,8 +221,8 @@ class CmsPageTest < ActiveSupport::TestCase
       @page.update!(
         fragments_attributes: [{
           identifier: "file",
-          tag:        "file",
-          files:      fixture_file_upload("files/document.pdf", "application/pdf")
+          tag: "file",
+          files: fixture_file_upload("files/document.pdf", "application/pdf")
         }]
       )
       assert_equal "document.pdf", occams_cms_fragments(:file).attachments.first.filename.to_s
@@ -235,7 +234,7 @@ class CmsPageTest < ActiveSupport::TestCase
     assert_difference(-> { ActiveStorage::Attachment.count }, -1) do
       @page.update!(
         fragments_attributes: [{
-          identifier:       "file",
+          identifier: "file",
           file_ids_destroy: [id]
         }]
       )
@@ -253,7 +252,7 @@ class CmsPageTest < ActiveSupport::TestCase
     assert_no_difference [page_count, fragment_count] do
       @page.update!(fragments_attributes: [
         { identifier: frag.identifier,
-          datetime:   string }
+          datetime: string }
       ])
     end
     frag.reload
@@ -270,7 +269,7 @@ class CmsPageTest < ActiveSupport::TestCase
     assert_no_difference [page_count, fragment_count] do
       @page.update!(fragments_attributes: [
         { identifier: frag.identifier,
-          boolean:    "0" }
+          boolean: "0" }
       ])
     end
     frag.reload
@@ -281,8 +280,8 @@ class CmsPageTest < ActiveSupport::TestCase
     page_a = @page
     page_b = occams_cms_pages(:child)
     page_c = @site.pages.create!(
-      label:  "Test Page",
-      slug:   "test-page",
+      label: "Test Page",
+      slug: "test-page",
       layout: @layout,
       parent: page_a
     )
@@ -388,7 +387,7 @@ class CmsPageTest < ActiveSupport::TestCase
 
     expected = ["Default Page"]
     actual = Occams::Cms::Page.options_for_select(
-      site:         @site,
+      site: @site,
       current_page: occams_cms_pages(:child),
       exclude_self: true
     ).map(&:first)
@@ -403,54 +402,54 @@ class CmsPageTest < ActiveSupport::TestCase
 
     @page.fragments_attributes = [
       { identifier: "content",
-        content:    "updated content"
+        content: "updated content"
       }
     ]
 
     assert_equal [
       { identifier: "boolean",
-        tag:        "checkbox",
-        content:    nil,
-        datetime:   nil,
-        boolean:    true },
+        tag: "checkbox",
+        content: nil,
+        datetime: nil,
+        boolean: true },
       { identifier: "file",
-        tag:        "file",
-        content:    nil,
-        datetime:   nil,
-        boolean:    false },
+        tag: "file",
+        content: nil,
+        datetime: nil,
+        boolean: false },
       { identifier: "datetime",
-        tag:        "datetime",
-        content:    nil,
-        datetime:   occams_cms_fragments(:datetime).datetime,
-        boolean:    false },
+        tag: "datetime",
+        content: nil,
+        datetime: occams_cms_fragments(:datetime).datetime,
+        boolean: false },
       { identifier: "content",
-        tag:        "text",
-        content:    "updated content",
-        datetime:   nil,
-        boolean:    false }
+        tag: "text",
+        content: "updated content",
+        datetime: nil,
+        boolean: false }
     ], @page.fragments_attributes
 
     assert_equal [
       { identifier: "boolean",
-        tag:        "checkbox",
-        content:    nil,
-        datetime:   nil,
-        boolean:    true },
+        tag: "checkbox",
+        content: nil,
+        datetime: nil,
+        boolean: true },
       { identifier: "file",
-        tag:        "file",
-        content:    nil,
-        datetime:   nil,
-        boolean:    false },
+        tag: "file",
+        content: nil,
+        datetime: nil,
+        boolean: false },
       { identifier: "datetime",
-        tag:        "datetime",
-        content:    nil,
-        datetime:   occams_cms_fragments(:datetime).datetime,
-        boolean:    false },
+        tag: "datetime",
+        content: nil,
+        datetime: occams_cms_fragments(:datetime).datetime,
+        boolean: false },
       { identifier: "content",
-        tag:        "text",
-        content:    "content",
-        datetime:   nil,
-        boolean:    false }
+        tag: "text",
+        content: "content",
+        datetime: nil,
+        boolean: false }
     ], @page.fragments_attributes_was
   end
 
@@ -630,5 +629,4 @@ class CmsPageTest < ActiveSupport::TestCase
       @page.translate!
     end
   end
-
 end

@@ -3,21 +3,16 @@
 require_relative "../../test_helper"
 
 class ContentRendererTest < ActiveSupport::TestCase
-
   class TestTag < Occams::Content::Tag
-
     def content
       "test tag content"
     end
-
   end
 
   class TestNestedTag < Occams::Content::Tag
-
     def content
       "test {{cms:test}} content"
     end
-
   end
 
   class TestBlockTag < Occams::Content::Block
@@ -25,23 +20,23 @@ class ContentRendererTest < ActiveSupport::TestCase
   end
 
   DEFAULT_REGISTERED_TAGS = {
-    "wysiwyg"        => Occams::Content::Tag::Wysiwyg,
-    "text"           => Occams::Content::Tag::Text,
-    "textarea"       => Occams::Content::Tag::TextArea,
-    "markdown"       => Occams::Content::Tag::Markdown,
-    "datetime"       => Occams::Content::Tag::Datetime,
-    "date"           => Occams::Content::Tag::Date,
-    "number"         => Occams::Content::Tag::Number,
-    "checkbox"       => Occams::Content::Tag::Checkbox,
-    "file"           => Occams::Content::Tag::File,
-    "files"          => Occams::Content::Tag::Files,
-    "snippet"        => Occams::Content::Tag::Snippet,
-    "asset"          => Occams::Content::Tag::Asset,
-    "file_link"      => Occams::Content::Tag::FileLink,
+    "wysiwyg" => Occams::Content::Tag::Wysiwyg,
+    "text" => Occams::Content::Tag::Text,
+    "textarea" => Occams::Content::Tag::TextArea,
+    "markdown" => Occams::Content::Tag::Markdown,
+    "datetime" => Occams::Content::Tag::Datetime,
+    "date" => Occams::Content::Tag::Date,
+    "number" => Occams::Content::Tag::Number,
+    "checkbox" => Occams::Content::Tag::Checkbox,
+    "file" => Occams::Content::Tag::File,
+    "files" => Occams::Content::Tag::Files,
+    "snippet" => Occams::Content::Tag::Snippet,
+    "asset" => Occams::Content::Tag::Asset,
+    "file_link" => Occams::Content::Tag::FileLink,
     "page_file_link" => Occams::Content::Tag::PageFileLink,
-    "helper"         => Occams::Content::Tag::Helper,
-    "partial"        => Occams::Content::Tag::Partial,
-    "template"       => Occams::Content::Tag::Template
+    "helper" => Occams::Content::Tag::Helper,
+    "partial" => Occams::Content::Tag::Partial,
+    "template" => Occams::Content::Tag::Template
   }.freeze
 
   setup do
@@ -70,19 +65,19 @@ class ContentRendererTest < ActiveSupport::TestCase
 
   def test_tags
     assert_equal DEFAULT_REGISTERED_TAGS.merge(
-      "test"        => ContentRendererTest::TestTag,
+      "test" => ContentRendererTest::TestTag,
       "test_nested" => ContentRendererTest::TestNestedTag,
-      "test_block"  => ContentRendererTest::TestBlockTag
+      "test_block" => ContentRendererTest::TestBlockTag
     ), Occams::Content::Renderer.tags
   end
 
   def test_register_tags
     Occams::Content::Renderer.register_tag(:other, TestTag)
     assert_equal DEFAULT_REGISTERED_TAGS.merge(
-      "test"        => ContentRendererTest::TestTag,
+      "test" => ContentRendererTest::TestTag,
       "test_nested" => ContentRendererTest::TestNestedTag,
-      "test_block"  => ContentRendererTest::TestBlockTag,
-      "other"       => ContentRendererTest::TestTag
+      "test_block" => ContentRendererTest::TestBlockTag,
+      "other" => ContentRendererTest::TestTag
     ), Occams::Content::Renderer.tags
   ensure
     Occams::Content::Renderer.tags.delete("other")
@@ -94,7 +89,7 @@ class ContentRendererTest < ActiveSupport::TestCase
 
   def test_tokenize_with_tag
     assert_equal ["test ", { tag_class: "tag", tag_params: "", source: "{{cms:tag}}" }, " text"],
-      @template.tokenize("test {{cms:tag}} text")
+                 @template.tokenize("test {{cms:tag}} text")
   end
 
   def test_tokenize_with_tag_and_params
@@ -108,7 +103,7 @@ class ContentRendererTest < ActiveSupport::TestCase
 
   def test_tokenize_with_invalid_tag
     assert_equal ["test {{abc:tag}} text"],
-      @template.tokenize("test {{abc:tag}} text")
+                 @template.tokenize("test {{abc:tag}} text")
   end
 
   def test_tokenize_with_newlines
@@ -275,5 +270,4 @@ class ContentRendererTest < ActiveSupport::TestCase
       render_string("{{cms:snippet default}}")
     end
   end
-
 end

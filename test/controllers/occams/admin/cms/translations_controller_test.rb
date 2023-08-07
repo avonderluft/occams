@@ -3,7 +3,6 @@
 require_relative "../../../../test_helper"
 
 class Occams::Admin::Cms::TranslationsControllerTest < ActionDispatch::IntegrationTest
-
   setup do
     @site         = occams_cms_sites(:default)
     @layout       = occams_cms_layouts(:default)
@@ -48,7 +47,7 @@ class Occams::Admin::Cms::TranslationsControllerTest < ActionDispatch::Integrati
       path = occams_admin_cms_site_page_translations_path(@site, @page)
       r :post, path, params: { translation: {
         locale: "es",
-        label:  "Test Translation"
+        label: "Test Translation"
       } }
       assert_response :redirect
       translation = Occams::Cms::Translation.last
@@ -136,12 +135,12 @@ class Occams::Admin::Cms::TranslationsControllerTest < ActionDispatch::Integrati
       r :post, occams_admin_cms_site_page_translations_path(@site, @page), params: {
         preview: "Preview",
         translation: {
-          label:      "Test Page",
-          layout_id:  @layout.id,
-          locale:     "fr",
+          label: "Test Page",
+          layout_id: @layout.id,
+          locale: "fr",
           fragments_attributes: [
             { identifier: "content",
-              content:    "preview content" }
+              content: "preview content" }
           ]
         }
       }
@@ -166,7 +165,7 @@ class Occams::Admin::Cms::TranslationsControllerTest < ActionDispatch::Integrati
           label: "Updated Label",
           fragments_attributes: [
             { identifier: "content",
-              content:    "preview content" }
+              content: "preview content" }
           ]
         }
       }
@@ -180,5 +179,4 @@ class Occams::Admin::Cms::TranslationsControllerTest < ActionDispatch::Integrati
       assert_equal @page,         assigns(:cms_page)
     end
   end
-
 end

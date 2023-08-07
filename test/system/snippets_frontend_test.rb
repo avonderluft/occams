@@ -3,7 +3,6 @@
 require_relative "../test_helper"
 
 class SnippetsFrontendTest < ApplicationSystemTestCase
-
   setup do
     @site = occams_cms_sites(:default)
   end
@@ -13,5 +12,4 @@ class SnippetsFrontendTest < ApplicationSystemTestCase
     fill_in "Label", with: "Test Snippet"
     assert_equal "test-snippet", find_field("Identifier").value
   end
-
 end

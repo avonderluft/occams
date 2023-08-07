@@ -3,7 +3,6 @@
 require_relative "../test_helper"
 
 class RoutingIntergrationTest < ActionDispatch::IntegrationTest
-
   def teardown
     Rails.application.reload_routes!
   end
@@ -17,5 +16,4 @@ class RoutingIntergrationTest < ActionDispatch::IntegrationTest
 
     assert_equal "/custom", Occams.config.public_cms_path
   end
-
 end

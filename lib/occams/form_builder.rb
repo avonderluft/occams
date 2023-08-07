@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Occams::FormBuilder < ComfyBootstrapForm::FormBuilder
-
   # Renders form input for a fragment
   #
   # @param [Occams::Cms::Page] record
@@ -32,16 +31,13 @@ class Occams::FormBuilder < ComfyBootstrapForm::FormBuilder
   #   = form.form_actions do
   #     = form.submit
   #
-  def form_actions
+  def form_actions(&block)
     content_tag(:div, class: "form-actions row bg-light") do
       content_tag(:div, class: "col-lg-8 offset-lg-2") do
         content_tag(:div, class: "form-group row mb-0") do
-          content_tag(:div, class: "col-sm-10 offset-sm-2") do
-            yield
-          end
+          content_tag(:div, class: "col-sm-10 offset-sm-2", &block)
         end
       end
     end
   end
-
 end

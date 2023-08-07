@@ -8,7 +8,6 @@
 # By default there's a blacklist of methods that should not be called.
 #
 class Occams::Content::Tag::Helper < Occams::Content::Tag
-
   BLACKLIST = %w[eval class_eval instance_eval render].freeze
 
   attr_reader :method_name
@@ -47,7 +46,6 @@ class Occams::Content::Tag::Helper < Occams::Content::Tag
       content unless BLACKLIST.member?(method_name)
     end
   end
-
 end
 
 Occams::Content::Renderer.register_tag(

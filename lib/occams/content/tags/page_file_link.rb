@@ -23,7 +23,6 @@ require_relative "./mixins/file_content"
 # `class`   - any html classes that you want on the result link or image tag. For example "class1 class2"
 #
 class Occams::Content::Tag::PageFileLink < Occams::Content::Tag
-
   include Occams::Content::Tag::Mixins::FileContent
 
   # @return [String] A `cms:file(s)` identifier.
@@ -74,9 +73,9 @@ class Occams::Content::Tag::PageFileLink < Occams::Content::Tag
   # @return [String]
   def label
     return if file.nil?
+
     file.filename.to_s
   end
-
 end
 
 Occams::Content::Renderer.register_tag(

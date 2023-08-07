@@ -12,7 +12,6 @@ require "sassc-rails"
 
 module Occams
   class Engine < ::Rails::Engine
-
     initializer "occams.setup_assets" do
       ::Occams::Engine.config.assets.precompile += %w[
         occams/admin/cms/application.js
@@ -22,10 +21,9 @@ module Occams
     end
 
     config.to_prepare do
-      Dir.glob(Rails.root + "app/decorators/occams/*_decorator*.rb").each do |c|
+      Dir.glob("#{Rails.root}app/decorators/occams/*_decorator*.rb").each do |c|
         require_dependency(c)
       end
     end
-
   end
 end

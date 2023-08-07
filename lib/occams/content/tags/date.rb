@@ -4,7 +4,6 @@
 #   {{ cms:date identifier }}
 #
 class Occams::Content::Tag::Date < Occams::Content::Tag::Datetime
-
   def form_field(object_name, view, index)
     name    = "#{object_name}[fragments_attributes][#{index}][datetime]"
     options = { id: form_field_id, class: "form-control", data: { "cms-date" => true } }
@@ -13,7 +12,6 @@ class Occams::Content::Tag::Date < Occams::Content::Tag::Datetime
 
     yield input
   end
-
 end
 
 Occams::Content::Renderer.register_tag(

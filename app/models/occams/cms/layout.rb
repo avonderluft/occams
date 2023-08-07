@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Occams::Cms::Layout < ActiveRecord::Base
-
   self.table_name = "occams_cms_layouts"
 
   cms_acts_as_tree
@@ -19,13 +18,13 @@ class Occams::Cms::Layout < ActiveRecord::Base
 
   # -- Validations -------------------------------------------------------------
   validates :site_id,
-    presence:   true
+            presence:   true
   validates :label,
-    presence:   true
+            presence:   true
   validates :identifier,
-    presence:   true,
-    uniqueness: { scope: :site_id },
-    format:     { with: %r{\A\w[a-z0-9_-]*\z}i }
+            presence: true,
+            uniqueness: { scope: :site_id },
+            format: { with: %r{\A\w[a-z0-9_-]*\z}i }
 
   # -- Class Methods -----------------------------------------------------------
   # Tree-like structure for layouts
@@ -106,8 +105,8 @@ protected
 
   def assign_position
     return if position.to_i.positive?
+
     max = site.layouts.where(parent_id: parent_id).maximum(:position)
     self.position = max ? max + 1 : 0
   end
-
 end

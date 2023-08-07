@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Occams::Admin::Cms::TranslationsController < Occams::Admin::Cms::BaseController
-
   helper_method :translation_select_options
 
   before_action :load_page
@@ -47,9 +46,9 @@ class Occams::Admin::Cms::TranslationsController < Occams::Admin::Cms::BaseContr
     @translation.layout = @site.layouts.find_by(id: params[:layout_id])
 
     render(
-      partial:  "occams/admin/cms/fragments/form_fragments",
-      locals:   { record: @translation, scope: :translation },
-      layout:   false
+      partial: "occams/admin/cms/fragments/form_fragments",
+      locals: { record: @translation, scope: :translation },
+      layout: false
     )
   end
 
@@ -103,5 +102,4 @@ private
       render inline: @translation.render, layout: layout, content_type: "text/html"
     end
   end
-
 end

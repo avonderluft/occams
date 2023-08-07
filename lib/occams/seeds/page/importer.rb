@@ -2,7 +2,6 @@
 
 module Occams::Seeds::Page
   class Importer < Occams::Seeds::Importer
-
     # tracking target page linking. Since we might be linking to something that
     # doesn't exist yet, we'll defer linking to the end of import
     attr_accessor :target_pages
@@ -157,7 +156,7 @@ module Occams::Seeds::Page
         tag, identifier = frag_header.split
         frag_hash = {
           identifier: identifier,
-          tag:        tag
+          tag: tag
         }
 
         # tracking fragments that need removing later
@@ -190,8 +189,8 @@ module Occams::Seeds::Page
       files = frag_content.split("\n").collect do |filename|
         file_handler = File.open(File.join(path, filename))
         {
-          io:           file_handler,
-          filename:     filename,
+          io: file_handler,
+          filename: filename,
           content_type: MimeMagic.by_magic(file_handler)
         }
       end
@@ -214,6 +213,5 @@ module Occams::Seeds::Page
         end
       end
     end
-
   end
 end

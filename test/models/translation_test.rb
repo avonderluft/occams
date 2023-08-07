@@ -3,7 +3,6 @@
 require_relative "../test_helper"
 
 class CmsPageTest < ActiveSupport::TestCase
-
   setup do
     @site         = occams_cms_sites(:default)
     @page         = occams_cms_pages(:default)
@@ -48,11 +47,11 @@ class CmsPageTest < ActiveSupport::TestCase
     assert_difference [translation_count, fragment_count] do
       translation = @page.translations.create(
         locale: "test",
-        label:  "Test Translation",
+        label: "Test Translation",
         fragments_attributes: [
           { identifier: "content",
-            tag:        "text",
-            content:    "test" }
+            tag: "text",
+            content: "test" }
         ]
       )
       assert_equal @page.layout, translation.layout
@@ -68,5 +67,4 @@ class CmsPageTest < ActiveSupport::TestCase
   def test_site_delegation
     assert_equal @site, @translation.site
   end
-
 end

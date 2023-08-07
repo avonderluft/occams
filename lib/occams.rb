@@ -31,9 +31,7 @@ require_relative "occams/extensions/has_revisions"
 require_relative "occams/content"
 
 module Occams
-
   class << self
-
     attr_writer :logger
 
     # Modify CMS configuration
@@ -54,7 +52,5 @@ module Occams
     def logger
       @logger ||= Rails.logger
     end
-
   end
-
 end

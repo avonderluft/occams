@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Occams::Admin::Cms::PagesController < Occams::Admin::Cms::BaseController
-
   include ::Occams::ReorderAction
   self.reorder_action_resource = ::Occams::Cms::Page
 
@@ -65,9 +64,9 @@ class Occams::Admin::Cms::PagesController < Occams::Admin::Cms::BaseController
     @page.layout = @site.layouts.find_by(id: params[:layout_id])
 
     render(
-      partial:  "occams/admin/cms/fragments/form_fragments",
-      locals:   { record: @page, scope: :page },
-      layout:   false
+      partial: "occams/admin/cms/fragments/form_fragments",
+      locals: { record: @page, scope: :page },
+      layout: false
     )
   end
 
@@ -86,6 +85,7 @@ protected
   def index_for_redactor
     tree_walker = ->(page, list, offset) do
       return unless page.present?
+
       label = "#{'. . ' * offset}#{page.label}"
       list << { name: label, url: page.url(relative: true) }
       page.children.each do |child_page|
@@ -152,5 +152,4 @@ protected
   def page_params
     params.fetch(:page, {}).permit!
   end
-
 end

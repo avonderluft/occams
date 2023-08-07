@@ -1,17 +1,14 @@
 # frozen_string_literal: true
 
 module Occams::RenderMethods
-
   def self.included(base)
     # If application controller doesn't have template associated with it
     # CMS will attempt to find one. This is so you don't have to explicitly
     # call render cms_page: '/something'
     base.rescue_from "ActionView::MissingTemplate" do |e|
-      begin
-        render cms_page: request.path
-      rescue Occams::MissingPage, Occams::MissingSite
-        raise e
-      end
+      render cms_page: request.path
+    rescue Occams::MissingPage, Occams::MissingSite
+      raise e
     end
   end
 
@@ -39,16 +36,14 @@ module Occams::RenderMethods
   def render(options = {}, locals = {}, &block)
     return super unless options.is_a?(Hash)
 
-    if (site_identifier = options.delete(:cms_site))
-      unless (@cms_site = Occams::Cms::Site.find_by_identifier(site_identifier))
-        raise Occams::MissingSite, site_identifier
-      end
+    if (site_identifier = options.delete(:cms_site)) && !(@cms_site = Occams::Cms::Site.find_by_identifier(site_identifier))
+      raise Occams::MissingSite, site_identifier
     end
 
-    if (page_path = options.delete(:cms_page)) || (layout_identifier = options.delete(:cms_layout))
-      unless @cms_site ||= Occams::Cms::Site.find_site(request.host_with_port.downcase, request.fullpath)
-        raise Occams::MissingSite, "#{request.host.downcase}/#{request.fullpath}"
-      end
+    if ((page_path = options.delete(:cms_page)) || (layout_identifier = options.delete(:cms_layout))) && !@cms_site ||= Occams::Cms::Site.find_site(
+      request.host_with_port.downcase, request.fullpath
+    )
+      raise Occams::MissingSite, "#{request.host.downcase}/#{request.fullpath}"
     end
 
     if page_path
@@ -104,7 +99,6 @@ module Occams::RenderMethods
 
     render(options, locals, &block)
   end
-
 end
 
 ActiveSupport.on_load :action_controller_base do

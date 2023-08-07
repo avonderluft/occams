@@ -2,7 +2,6 @@
 
 module Occams::Seeds::Layout
   class Exporter < Occams::Seeds::Exporter
-
     def initialize(from, to = from)
       super
       self.path = ::File.join(Occams.config.seeds_path, to, "layouts/")
@@ -19,9 +18,9 @@ module Occams::Seeds::Layout
         data = []
 
         attrs = {
-          "label"      => layout.label,
+          "label" => layout.label,
           "app_layout" => layout.app_layout,
-          "position"   => layout.position
+          "position" => layout.position
         }.to_yaml
 
         data << { header: "attributes",  content: attrs }
@@ -35,6 +34,5 @@ module Occams::Seeds::Layout
         Occams.logger.info(message)
       end
     end
-
   end
 end

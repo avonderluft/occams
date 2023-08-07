@@ -3,17 +3,14 @@
 require_relative "../test_helper"
 
 class CmsHelperTest < ActionView::TestCase
-
   include Occams::CmsHelper
 
   module TestViewHelpers
-
     def hello
       "hello"
     end
-
   end
-  ActionView::Base.send :include, TestViewHelpers
+  ActionView::Base.include TestViewHelpers
 
   setup do
     # we're simulating instance variables that are present on the view/controller
@@ -122,10 +119,10 @@ class CmsHelperTest < ActionView::TestCase
     assert_equal site, cms_site_detect
 
     site_b = Occams::Cms::Site.create!(
-      label:      "with path",
+      label: "with path",
       identifier: "with-path",
-      hostname:   site.hostname,
-      path:       "fr"
+      hostname: site.hostname,
+      path: "fr"
     )
     request.fullpath = "/fr"
     assert_equal site_b, cms_site_detect
@@ -135,5 +132,4 @@ class CmsHelperTest < ActionView::TestCase
     request.fullpath        = "/en"
     assert_equal site_b, cms_site_detect
   end
-
 end

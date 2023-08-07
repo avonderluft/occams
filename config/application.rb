@@ -10,7 +10,6 @@ Bundler.require(*Rails.groups)
 
 module Occams
   class Application < Rails::Application
-
     require_relative "../lib/occams"
 
     config.load_defaults 5.2
@@ -34,6 +33,5 @@ module Occams
     config.paths["config/routes.rb"] << "config/cms_routes.rb"
 
     config.i18n.enforce_available_locales = true
-
   end
 end

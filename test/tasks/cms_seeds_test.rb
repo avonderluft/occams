@@ -4,7 +4,6 @@ require_relative "../test_helper"
 require "rake"
 
 class CmsSeedsTaskTest < ActiveSupport::TestCase
-
   setup do
     @rake = Rake::Application.new
     Rake.application = @rake
@@ -52,5 +51,4 @@ class CmsSeedsTaskTest < ActiveSupport::TestCase
       @rake["occams:cms_seeds:export"].invoke("from_site", "to_folder", "Page")
     end
   end
-
 end

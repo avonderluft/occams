@@ -3,7 +3,6 @@
 require_relative "../test_helper"
 
 class SeedsTest < ActiveSupport::TestCase
-
   def test_import_all
     Occams::Cms::Page.destroy_all
     Occams::Cms::Layout.destroy_all
@@ -94,5 +93,4 @@ class SeedsTest < ActiveSupport::TestCase
   ensure
     FileUtils.rm_rf(host_path)
   end
-
 end

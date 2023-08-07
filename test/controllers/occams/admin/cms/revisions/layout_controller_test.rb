@@ -3,7 +3,6 @@
 require_relative "../../../../../test_helper"
 
 class Occams::Admin::Cms::Revisions::LayoutControllerTest < ActionDispatch::IntegrationTest
-
   setup do
     @site     = occams_cms_sites(:default)
     @layout   = occams_cms_layouts(:default)
@@ -60,5 +59,4 @@ class Occams::Admin::Cms::Revisions::LayoutControllerTest < ActionDispatch::Inte
       assert_equal "revision js", @layout.js
     end
   end
-
 end

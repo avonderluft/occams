@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module Occams::ReorderAction
-
   extend ActiveSupport::Concern
 
   included do
@@ -15,5 +14,4 @@ module Occams::ReorderAction
     end
     head :ok
   end
-
 end

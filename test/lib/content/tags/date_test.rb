@@ -3,7 +3,6 @@
 require_relative "../../../test_helper"
 
 class ContentTagsDateTest < ActiveSupport::TestCase
-
   setup do
     @page = occams_cms_pages(:default)
   end
@@ -19,5 +18,4 @@ class ContentTagsDateTest < ActiveSupport::TestCase
     assert_equal frag,          tag.fragment
     assert_equal frag.datetime, tag.content
   end
-
 end

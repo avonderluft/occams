@@ -3,7 +3,6 @@
 require_relative "../../../test_helper"
 
 class ContentTagsNumberTest < ActiveSupport::TestCase
-
   setup do
     @page = occams_cms_pages(:default)
   end
@@ -12,5 +11,4 @@ class ContentTagsNumberTest < ActiveSupport::TestCase
     tag = Occams::Content::Tag::Number.new(context: @page, params: ["test"])
     assert_equal "test", tag.identifier
   end
-
 end

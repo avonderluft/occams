@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Occams::Admin::Cms::BaseController < Occams::Admin::BaseController
-
   before_action :load_admin_site,
                 :set_locale,
                 :load_seeds,
@@ -16,6 +15,7 @@ class Occams::Admin::Cms::BaseController < Occams::Admin::BaseController
   def jump
     path = Occams.config.admin_route_redirect
     return redirect_to(path) unless path.blank?
+
     load_admin_site
     redirect_to occams_admin_cms_site_pages_path(@site) if @site
   end
@@ -29,12 +29,12 @@ protected
     else
       I18n.locale = Occams.config.admin_locale || I18n.default_locale
       flash[:danger] = I18n.t("occams.admin.cms.base.site_not_found")
-      return redirect_to(new_occams_admin_cms_site_path)
+      redirect_to(new_occams_admin_cms_site_path)
     end
   end
 
   def set_locale
-    I18n.locale = Occams.config.admin_locale || (@site&.locale)
+    I18n.locale = Occams.config.admin_locale || @site&.locale
     true
   end
 
@@ -51,5 +51,4 @@ protected
   def infer_layout
     false if params[:layout] == "false"
   end
-
 end

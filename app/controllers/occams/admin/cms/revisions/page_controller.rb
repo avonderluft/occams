@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Occams::Admin::Cms::Revisions::PageController < Occams::Admin::Cms::Revisions::BaseController
-
   def show
     @current_content = @record.fragments.each_with_object({}) do |b, c|
       c[b.identifier] = b.content
@@ -26,5 +25,4 @@ private
   def record_path
     edit_occams_admin_cms_site_page_path(@site, @record)
   end
-
 end

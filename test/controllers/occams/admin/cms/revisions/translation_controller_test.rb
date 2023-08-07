@@ -3,7 +3,6 @@
 require_relative "../../../../../test_helper"
 
 class Occams::Admin::Cms::Revisions::TranslationControllerTest < ActionDispatch::IntegrationTest
-
   setup do
     @site         = occams_cms_sites(:default)
     @page         = occams_cms_pages(:default)
@@ -59,12 +58,11 @@ class Occams::Admin::Cms::Revisions::TranslationControllerTest < ActionDispatch:
 
       assert_equal [{
         identifier: "content",
-        tag:        "text",
-        content:    "old content",
-        datetime:   nil,
-        boolean:    false
+        tag: "text",
+        content: "old content",
+        datetime: nil,
+        boolean: false
       }], @translation.fragments_attributes
     end
   end
-
 end

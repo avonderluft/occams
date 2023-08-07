@@ -3,7 +3,6 @@
 require_relative "../test_helper"
 
 class CmsCategorizationTest < ActiveSupport::TestCase
-
   setup do
     @category = occams_cms_categories(:default)
   end
@@ -72,13 +71,13 @@ class CmsCategorizationTest < ActiveSupport::TestCase
     assert_equal 1, Occams::Cms::File.for_category(nil).count
 
     new_category = occams_cms_sites(:default).categories.create!(
-      label:            "Test Category",
+      label: "Test Category",
       categorized_type: "Occams::Cms::File"
     )
     new_category.categorizations.create!(categorized: occams_cms_pages(:default))
     assert_equal 1, Occams::Cms::File.for_category(category.label, new_category.label).to_a.size
     assert_equal 1,
-      Occams::Cms::File.for_category(category.label, new_category.label).distinct.count("occams_cms_files.id")
+                 Occams::Cms::File.for_category(category.label,
+                                                new_category.label).distinct.count("occams_cms_files.id")
   end
-
 end

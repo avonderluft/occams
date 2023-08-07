@@ -3,7 +3,6 @@
 require_relative "../../test_helper"
 
 class ContentParamsParserTest < ActiveSupport::TestCase
-
   PARSER = Occams::Content::ParamsParser
 
   def test_tokenizer
@@ -189,5 +188,4 @@ class ContentParamsParserTest < ActiveSupport::TestCase
     string = %q("a#{:a}", key: "va#{:l}ue") # rubocop:disable Lint/InterpolationCheck
     assert_equal ["a\#{:a}", { "key" => "va\#{:l}ue" }], PARSER.new(string).params
   end
-
 end

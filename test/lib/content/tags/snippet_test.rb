@@ -3,7 +3,6 @@
 require_relative "../../../test_helper"
 
 class ContentTagsSnippetTest < ActiveSupport::TestCase
-
   setup do
     @page = occams_cms_pages(:default)
   end
@@ -35,5 +34,4 @@ class ContentTagsSnippetTest < ActiveSupport::TestCase
     tag = Occams::Content::Tag::Snippet.new(context: @page, params: ["new"])
     assert_nil tag.content
   end
-
 end

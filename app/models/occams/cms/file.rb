@@ -1,15 +1,14 @@
 # frozen_string_literal: true
 
 class Occams::Cms::File < ActiveRecord::Base
-
   self.table_name = "occams_cms_files"
 
   include Occams::Cms::WithCategories
 
   VARIANT_SIZE = {
-    redactor: { resize: "100x75^",   gravity: "center", crop: "100x75+0+0" },
-    thumb:    { resize: "200x150^",  gravity: "center", crop: "200x150+0+0" },
-    icon:     { resize: "28x28^",    gravity: "center", crop: "28x28+0+0" }
+    redactor: { resize: "100x75^", gravity: "center", crop: "100x75+0+0" },
+    thumb: { resize: "200x150^", gravity: "center", crop: "200x150+0+0" },
+    icon: { resize: "28x28^", gravity: "center", crop: "28x28+0+0" }
   }.freeze
 
   # temporary place to store attachment
@@ -30,7 +29,7 @@ class Occams::Cms::File < ActiveRecord::Base
     after_save :process_attachment
   end
 
-  after_save    :clear_page_content_cache
+  after_save :clear_page_content_cache
 
   # -- Validations -------------------------------------------------------------
   validates :label, presence: true
@@ -45,9 +44,9 @@ class Occams::Cms::File < ActiveRecord::Base
 
 private
 
-def clear_page_content_cache
-  Occams::Cms::Page.where(id: site.pages.pluck(:id)).update_all(content_cache: nil)
-end
+  def clear_page_content_cache
+    Occams::Cms::Page.where(id: site.pages.pluck(:id)).update_all(content_cache: nil)
+  end
 
 protected
 
@@ -59,12 +58,13 @@ protected
   # TODO: Change db schema not to set blank string
   def assign_label
     return if label.present?
+
     self.label = file&.original_filename
   end
 
   def process_attachment
     return if @file.blank?
+
     self.attachment = @file
   end
-
 end

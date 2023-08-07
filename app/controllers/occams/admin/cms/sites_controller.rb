@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Occams::Admin::Cms::SitesController < Occams::Admin::Cms::BaseController
-
   skip_before_action  :load_admin_site,
                       :load_seeds
 
@@ -11,6 +10,7 @@ class Occams::Admin::Cms::SitesController < Occams::Admin::Cms::BaseController
 
   def index
     return redirect_to action: :new if ::Occams::Cms::Site.count.zero?
+
     @site   = ::Occams::Cms::Site.find_by_id(session[:site_id])
     @sites  = ::Occams::Cms::Site.all
   end
@@ -65,5 +65,4 @@ protected
   def site_params
     params.fetch(:site, {}).permit!
   end
-
 end

@@ -3,7 +3,6 @@
 require_relative "../../../test_helper"
 
 class ContentTagsFragmentTest < ActiveSupport::TestCase
-
   setup do
     @page = occams_cms_pages(:default)
   end
@@ -66,5 +65,4 @@ class ContentTagsFragmentTest < ActiveSupport::TestCase
     )
     assert_equal "", tag.render
   end
-
 end

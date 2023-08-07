@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Occams::Admin::Cms::LayoutsController < Occams::Admin::Cms::BaseController
-
   include ::Occams::ReorderAction
   self.reorder_action_resource = ::Occams::Cms::Layout
 
@@ -11,6 +10,7 @@ class Occams::Admin::Cms::LayoutsController < Occams::Admin::Cms::BaseController
 
   def index
     return redirect_to action: :new if @site.layouts.count.zero?
+
     @layouts = @site.layouts.roots.order(:position)
   end
 
@@ -65,5 +65,4 @@ protected
   def layout_params
     params.fetch(:layout, {}).permit!
   end
-
 end

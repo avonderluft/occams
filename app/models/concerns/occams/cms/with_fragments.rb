@@ -1,25 +1,24 @@
 # frozen_string_literal: true
 
 module Occams::Cms::WithFragments
-
   extend ActiveSupport::Concern
 
   included do
     attr_accessor :fragments_attributes_changed
 
     belongs_to :layout,
-      class_name: "Occams::Cms::Layout"
+               class_name: "Occams::Cms::Layout"
 
     has_many :fragments,
-      class_name: "Occams::Cms::Fragment",
-      as:         :record,
-      autosave:   true,
-      dependent:  :destroy
+             class_name: "Occams::Cms::Fragment",
+             as: :record,
+             autosave: true,
+             dependent: :destroy
 
     before_save :clear_content_cache
 
     validates :layout,
-      presence: true
+              presence: true
   end
 
   # Array of fragment hashes in the following format:
@@ -54,7 +53,7 @@ module Occams::Cms::WithFragments
   end
 
   # Snapshop of page fragments data used primarily for saving revisions
-  def fragments_attributes(was = false)
+  def fragments_attributes(was: false)
     fragments.collect do |frag|
       attrs = {}
       %i[identifier tag content datetime boolean].each do |column|
@@ -121,5 +120,4 @@ protected
     tokens = layout.content_tokens
     renderer.nodes(tokens)
   end
-
 end

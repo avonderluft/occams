@@ -3,33 +3,25 @@
 require_relative "../test_helper"
 
 class AccessControlTest < ActionDispatch::IntegrationTest
-
   module TestAuthentication
-
     module Authenticate
-
       def authenticate
         render plain: "Test Login Denied", status: :unauthorized
       end
-
     end
 
     # faking Occams.config.admin_auth = 'AccessControlTest::TestAuthentication'
     # faking Occams.config.public_auth = 'AccessControlTest::TestAuthentication'
     class SitesController   < Occams::Admin::Cms::SitesController; include Authenticate; end
     class ContentController < Occams::Cms::ContentController;      include Authenticate; end
-
   end
 
   module TestAuthorization
-
     module Authorize
-
       def authorize
         @authorization_vars = instance_variables
         render plain: "Test Access Denied", status: :forbidden
       end
-
     end
 
     # faking Occams.config.admin_authorization = 'AccessControlTest::TestAuthorization'
@@ -43,13 +35,12 @@ class AccessControlTest < ActionDispatch::IntegrationTest
     class RevisionsController     < Occams::Admin::Cms::Revisions::LayoutController; include Authorize; end
     class TranslationsController  < Occams::Admin::Cms::TranslationsController;      include Authorize; end
     class ContentController       < Occams::Cms::ContentController;                  include Authorize; end
-
   end
 
   # -- Tests -------------------------------------------------------------------
   def test_admin_authentication_default
     assert_equal "Occams::AccessControl::AdminAuthentication",
-      Occams.config.admin_auth
+                 Occams.config.admin_auth
 
     get occams_admin_cms_sites_path
     assert_response :unauthorized
@@ -72,9 +63,9 @@ class AccessControlTest < ActionDispatch::IntegrationTest
 
   def test_admin_authorization_default
     assert_equal "Occams::AccessControl::AdminAuthorization",
-      Occams.config.admin_authorization
+                 Occams.config.admin_authorization
 
-    Occams::Admin::Cms::BaseController.send(:include, Occams::AccessControl::AdminAuthorization)
+    Occams::Admin::Cms::BaseController.include Occams::AccessControl::AdminAuthorization
     r :get, "/admin/sites/#{occams_cms_sites(:default).to_param}/edit"
     assert_response :success, response.body
   end
@@ -140,7 +131,7 @@ class AccessControlTest < ActionDispatch::IntegrationTest
 
   def test_public_authentication_default
     assert_equal "Occams::AccessControl::PublicAuthentication",
-      Occams.config.public_auth
+                 Occams.config.public_auth
 
     get "/"
     assert_response :success, response.body
@@ -148,7 +139,7 @@ class AccessControlTest < ActionDispatch::IntegrationTest
 
   def test_public_authorization_default
     assert_equal "Occams::AccessControl::PublicAuthorization",
-      Occams.config.public_authorization
+                 Occams.config.public_authorization
 
     get "/"
     assert_response :success, response.body
@@ -177,5 +168,4 @@ class AccessControlTest < ActionDispatch::IntegrationTest
       assert_equal "Test Access Denied", response.body
     end
   end
-
 end

@@ -3,7 +3,6 @@
 require_relative "../test_helper"
 
 class CategoriesFrontendTest < ApplicationSystemTestCase
-
   setup do
     @site = occams_cms_sites(:default)
   end
@@ -35,5 +34,4 @@ class CategoriesFrontendTest < ApplicationSystemTestCase
 
     refute_selector("a.btn", text: "Updated Category")
   end
-
 end

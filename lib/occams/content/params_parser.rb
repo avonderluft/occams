@@ -3,18 +3,17 @@
 require "strscan"
 
 class Occams::Content::ParamsParser
-
   class Error < StandardError; end
 
-  STRING_LITERAL  = %r{'[^']*'|"[^"]*"}
-  IDENTIFIER      = %r{[a-z0-9][\w\-/.]*}i
-  HASH_KEY        = %r{#{IDENTIFIER}:}
-  COMMA           = %r{,}
-  HASH_OPEN       = %r{\{}
-  HASH_CLOSE      = %r{\}}
-  ARRAY_OPEN      = %r{\[}
-  ARRAY_CLOSE     = %r{\]}
-  INTEGER         = %r{\b[0-9]+\b}i
+  STRING_LITERAL  = %r{'[^']*'|"[^"]*"}.freeze
+  IDENTIFIER      = %r{[a-z0-9][\w\-/.]*}i.freeze
+  HASH_KEY        = %r{#{IDENTIFIER}:}.freeze
+  COMMA           = %r{,}.freeze
+  HASH_OPEN       = %r{\{}.freeze
+  HASH_CLOSE      = %r{\}}.freeze
+  ARRAY_OPEN      = %r{\[}.freeze
+  ARRAY_CLOSE     = %r{\]}.freeze
+  INTEGER         = %r{\b[0-9]+\b}i.freeze
 
   # @param <String> string
   def initialize(string = "")
@@ -147,5 +146,4 @@ private
 
     tokens
   end
-
 end
