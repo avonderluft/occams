@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.2 - 
+
+- Fixed image rendering which rubocop broke
+
 ## v1.0.1 - 8/7/2023
 
 - Fixed image thumbnail hover for Rails 7

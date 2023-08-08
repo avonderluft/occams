@@ -89,12 +89,6 @@ After creating a Site, you need to make a Layout. Layout is the template of your
 
 Once you have a layout, you may start creating pages and populating content. It's that easy.
 
-## ToDos
-
-- Linting via current version of rubocop
-- get the original [ComfortableMexicanSofa](https://github.com/comfy/comfortable-mexican-sofa) tests working
-- add documentation to Occams to replace ComfortableMexicanSofa 
-
 ## Documentation
 
 Refer to the [ComfortableMexicanSofa](https://github.com/comfy/comfortable-mexican-sofa) documentation, substituting 'Occams' for 'Comfy' where appropriate.
