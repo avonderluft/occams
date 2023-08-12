@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "strscan"
+require 'strscan'
 
 # Processing content follows these stages:
 #
@@ -48,7 +48,7 @@ class Occams::Content::Renderer
   # @param [Boolean] allow_erb
   def render(nodes, allow_erb = Occams.config.allow_erb)
     if (@depth += 1) > MAX_DEPTH
-      raise Error, "Deep tag nesting or recursive nesting detected"
+      raise Error, 'Deep tag nesting or recursive nesting detected'
     end
 
     nodes.map do |node|
@@ -67,7 +67,7 @@ class Occams::Content::Renderer
     if allow_erb
       string.to_s
     else
-      string.to_s.gsub("<%", "&lt;%").gsub("%>", "%&gt;")
+      string.to_s.gsub('<%', '&lt;%').gsub('%>', '%&gt;')
     end
   end
 
@@ -77,7 +77,7 @@ class Occams::Content::Renderer
     tokens = []
     ss = StringScanner.new(string.to_s)
     while (string = ss.scan_until(TAG_REGEX))
-      text = string.sub(ss[0], "")
+      text = string.sub(ss[0], '')
       tokens << text unless text.empty?
       tokens << {
         tag_class: ss[:class],
@@ -105,9 +105,9 @@ class Occams::Content::Renderer
         case tag_class = token[:tag_class]
 
         # This handles {{cms:end}} tag. Stopping collecting block nodes.
-        when "end"
+        when 'end'
           if nodes.count == 1
-            raise SyntaxError, "closing unopened block"
+            raise SyntaxError, 'closing unopened block'
           end
 
           nodes.pop
@@ -115,7 +115,7 @@ class Occams::Content::Renderer
         else
           # @type [Class<Occams::Content::Tag>]
           klass = self.class.tags[tag_class] ||
-            raise(SyntaxError, "Unrecognized tag: #{token[:source]}")
+                  raise(SyntaxError, "Unrecognized tag: #{token[:source]}")
 
           # @type [Occams::Content::Tag]
           tag = klass.new(
@@ -138,7 +138,7 @@ class Occams::Content::Renderer
     end
 
     if nodes.count > 1
-      raise SyntaxError, "unclosed block detected"
+      raise SyntaxError, 'unclosed block detected'
     end
 
     nodes.flatten

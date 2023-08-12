@@ -15,7 +15,7 @@ class Occams::Admin::Cms::PagesController < Occams::Admin::Cms::BaseController
   def index
     return redirect_to action: :new if site_has_no_pages?
 
-    return index_for_redactor if params[:source] == "redactor"
+    return index_for_redactor if params[:source] == 'redactor'
 
     @pages_by_parent = pages_grouped_by_parent
 
@@ -37,25 +37,25 @@ class Occams::Admin::Cms::PagesController < Occams::Admin::Cms::BaseController
 
   def create
     @page.save!
-    flash[:success] = I18n.t("occams.admin.cms.pages.created")
+    flash[:success] = I18n.t('occams.admin.cms.pages.created')
     redirect_to action: :edit, id: @page
   rescue ActiveRecord::RecordInvalid
-    flash.now[:danger] = I18n.t("occams.admin.cms.pages.creation_failure")
+    flash.now[:danger] = I18n.t('occams.admin.cms.pages.creation_failure')
     render action: :new
   end
 
   def update
     @page.save!
-    flash[:success] = I18n.t("occams.admin.cms.pages.updated")
+    flash[:success] = I18n.t('occams.admin.cms.pages.updated')
     redirect_to action: :edit, id: @page
   rescue ActiveRecord::RecordInvalid
-    flash.now[:danger] = I18n.t("occams.admin.cms.pages.update_failure")
+    flash.now[:danger] = I18n.t('occams.admin.cms.pages.update_failure')
     render action: :edit
   end
 
   def destroy
     @page.destroy
-    flash[:success] = I18n.t("occams.admin.cms.pages.deleted")
+    flash[:success] = I18n.t('occams.admin.cms.pages.deleted')
     redirect_to action: :index
   end
 
@@ -64,7 +64,7 @@ class Occams::Admin::Cms::PagesController < Occams::Admin::Cms::BaseController
     @page.layout = @site.layouts.find_by(id: params[:layout_id])
 
     render(
-      partial: "occams/admin/cms/fragments/form_fragments",
+      partial: 'occams/admin/cms/fragments/form_fragments',
       locals: { record: @page, scope: :page },
       layout: false
     )
@@ -95,7 +95,7 @@ protected
     end
 
     page_select_options = [{
-      name: I18n.t("occams.admin.cms.pages.form.choose_link"),
+      name: I18n.t('occams.admin.cms.pages.form.choose_link'),
       url: false
     }] + tree_walker.call(@site.pages.root, [], 0)
 
@@ -111,10 +111,10 @@ protected
   end
 
   def check_for_layouts
-    if @site.layouts.count.zero?
-      flash[:danger] = I18n.t("occams.admin.cms.pages.layout_not_found")
-      redirect_to new_occams_admin_cms_site_layout_path(@site)
-    end
+    return unless @site.layouts.count.zero?
+
+    flash[:danger] = I18n.t('occams.admin.cms.pages.layout_not_found')
+    redirect_to new_occams_admin_cms_site_layout_path(@site)
   end
 
   def build_page
@@ -127,26 +127,26 @@ protected
     @page = @site.pages.find(params[:id])
     @page.attributes = page_params
   rescue ActiveRecord::RecordNotFound
-    flash[:danger] = I18n.t("occams.admin.cms.pages.not_found")
+    flash[:danger] = I18n.t('occams.admin.cms.pages.not_found')
     redirect_to action: :index
   end
 
   def preview_page
-    if params[:preview]
-      layout = @page.layout.app_layout.blank? ? false : @page.layout.app_layout
-      @cms_site   = @page.site
-      @cms_layout = @page.layout
-      @cms_page   = @page
+    return unless params[:preview]
 
-      # Make sure to use the site locale to render the preview becaue it might
-      # be different from the admin locale.
-      I18n.locale = @cms_site.locale
+    layout = @page.layout.app_layout.blank? ? false : @page.layout.app_layout
+    @cms_site   = @page.site
+    @cms_layout = @page.layout
+    @cms_page   = @page
 
-      # Chrome chokes on content with iframes. Issue #434
-      response.headers["X-XSS-Protection"] = "0"
+    # Make sure to use the site locale to render the preview becaue it might
+    # be different from the admin locale.
+    I18n.locale = @cms_site.locale
 
-      render inline: @page.render, layout: layout, content_type: "text/html"
-    end
+    # Chrome chokes on content with iframes. Issue #434
+    response.headers['X-XSS-Protection'] = '0'
+
+    render inline: @page.render, layout: layout, content_type: 'text/html'
   end
 
   def page_params

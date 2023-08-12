@@ -2,7 +2,7 @@
 
 namespace :occams do
   namespace :cms_seeds do
-    desc "Import CMS Seed data into database (from: folder name, to: site identifier, classes: class name[s])"
+    desc 'Import CMS Seed data into database (from: folder name, to: site identifier, classes: class name[s])'
 
     task :import, %i[from to classes] => [:environment] do |_t, args|
       from  = args[:from]
@@ -20,7 +20,7 @@ namespace :occams do
       Occams.logger = logger
     end
 
-    desc "Export database data into CMS Seed files (from: site identifier, to: folder name, classes: class name[s])"
+    desc 'Export database data into CMS Seed files (from: site identifier, to: folder name, classes: class name[s])'
     task :export, %i[from to classes] => [:environment] do |_t, args|
       from  = args[:from]
       to    = args[:to] || from

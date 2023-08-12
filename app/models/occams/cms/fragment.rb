@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Occams::Cms::Fragment < ActiveRecord::Base
-  self.table_name = "occams_cms_fragments"
+  self.table_name = 'occams_cms_fragments'
 
   has_many_attached :attachments
 
@@ -52,7 +52,7 @@ protected
     return if @files.blank?
 
     # If we're dealing with a single file
-    if tag == "file"
+    if tag == 'file'
       @files = [@files.first]
       attachments&.purge_later
     end

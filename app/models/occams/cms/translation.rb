@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Occams::Cms::Translation < ActiveRecord::Base
-  self.table_name = "occams_cms_translations"
+  self.table_name = 'occams_cms_translations'
 
   include Occams::Cms::WithFragments
 

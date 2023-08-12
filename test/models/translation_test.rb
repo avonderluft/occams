@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../test_helper"
+require_relative '../test_helper'
 
 class CmsPageTest < ActiveSupport::TestCase
   setup do
@@ -24,7 +24,7 @@ class CmsPageTest < ActiveSupport::TestCase
 
   def test_validation_on_locale_uniqueness
     translation = @page.translations.new(
-      label: "Test",
+      label: 'Test',
       locale: @translation.locale
     )
     assert translation.invalid?
@@ -33,7 +33,7 @@ class CmsPageTest < ActiveSupport::TestCase
 
   def test_validation_on_locale_uniqueness_against_site
     translation = @page.translations.new(
-      label: "Test",
+      label: 'Test',
       locale: @site.locale
     )
     assert translation.invalid?
@@ -46,12 +46,12 @@ class CmsPageTest < ActiveSupport::TestCase
 
     assert_difference [translation_count, fragment_count] do
       translation = @page.translations.create(
-        locale: "test",
-        label: "Test Translation",
+        locale: 'test',
+        label: 'Test Translation',
         fragments_attributes: [
-          { identifier: "content",
-            tag: "text",
-            content: "test" }
+          { identifier: 'content',
+            tag: 'text',
+            content: 'test' }
         ]
       )
       assert_equal @page.layout, translation.layout

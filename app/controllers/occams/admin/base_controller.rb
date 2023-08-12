@@ -16,5 +16,5 @@ class Occams::Admin::BaseController < Occams.config.admin_base_controller.to_s.c
 
   before_action :authenticate
 
-  layout "occams/admin/cms"
+  layout 'occams/admin/cms'
 end

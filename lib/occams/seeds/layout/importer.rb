@@ -4,7 +4,7 @@ module Occams::Seeds::Layout
   class Importer < Occams::Seeds::Importer
     def initialize(from, to = from)
       super
-      self.path = ::File.join(Occams.config.seeds_path, from, "layouts/")
+      self.path = ::File.join(Occams.config.seeds_path, from, 'layouts/')
     end
 
     def import!(path = self.path, parent = nil)
@@ -13,20 +13,20 @@ module Occams::Seeds::Layout
       end
 
       # cleaning up
-      site.layouts.where("id NOT IN (?)", seed_ids).destroy_all
+      site.layouts.where('id NOT IN (?)', seed_ids).destroy_all
     end
 
   private
 
     def import_layout(path, parent)
-      identifier = path.split("/").last
+      identifier = path.split('/').last
 
       # reading file content in, resulting in a hash
-      content_path = File.join(path, "content.html")
+      content_path = File.join(path, 'content.html')
       content_hash = parse_file_content(content_path)
 
       # parsing attributes section
-      attributes_yaml = content_hash.delete("attributes")
+      attributes_yaml = content_hash.delete('attributes')
       attrs           = YAML.safe_load(attributes_yaml)
 
       layout = site.layouts.where(identifier: identifier).first_or_initialize
@@ -34,10 +34,10 @@ module Occams::Seeds::Layout
 
       if fresh_seed?(layout, content_path)
         layout.attributes = attrs.merge(
-          app_layout: attrs["app_layout"] || parent.try(:app_layout),
-          content: content_hash["content"],
-          js: content_hash["js"],
-          css: content_hash["css"]
+          app_layout: attrs['app_layout'] || parent.try(:app_layout),
+          content: content_hash['content'],
+          js: content_hash['js'],
+          css: content_hash['css']
         )
 
         if layout.save

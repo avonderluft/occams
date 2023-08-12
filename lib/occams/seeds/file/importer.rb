@@ -4,7 +4,7 @@ module Occams::Seeds::File
   class Importer < Occams::Seeds::Importer
     def initialize(from, to = from)
       super
-      self.path = ::File.join(Occams.config.seeds_path, from, "files/")
+      self.path = ::File.join(Occams.config.seeds_path, from, 'files/')
     end
 
     def import!
@@ -12,8 +12,8 @@ module Occams::Seeds::File
         filename = ::File.basename(file_path)
 
         file = site.files.with_attached_attachment
-          .where("active_storage_blobs.filename" => filename).references(:blob).first ||
-          site.files.new
+          .where('active_storage_blobs.filename' => filename).references(:blob).first ||
+               site.files.new
 
         # We need to track actual file and its attributes
         fresh_file = false
@@ -22,7 +22,7 @@ module Occams::Seeds::File
           fresh_file = true
 
           attrs = YAML.safe_load(File.read(attrs_path))
-          category_ids = category_names_to_ids(file, attrs.delete("categories"))
+          category_ids = category_names_to_ids(file, attrs.delete('categories'))
           file.attributes = attrs.merge(
             category_ids: category_ids
           )
@@ -53,7 +53,7 @@ module Occams::Seeds::File
       end
 
       # cleaning up
-      site.files.where("id NOT IN (?)", seed_ids).destroy_all
+      site.files.where('id NOT IN (?)', seed_ids).destroy_all
     end
   end
 end

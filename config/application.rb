@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative "boot"
+require_relative 'boot'
 
-require "rails/all"
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -10,7 +10,7 @@ Bundler.require(*Rails.groups)
 
 module Occams
   class Application < Rails::Application
-    require_relative "../lib/occams"
+    require_relative '../lib/occams'
 
     config.load_defaults 5.2
 
@@ -30,7 +30,7 @@ module Occams
     config.railties_order = [ActiveStorage::Engine, :main_app, :all]
 
     # Making sure we don't load our dev routes as part of the engine
-    config.paths["config/routes.rb"] << "config/cms_routes.rb"
+    config.paths['config/routes.rb'] << 'config/cms_routes.rb'
 
     config.i18n.enforce_available_locales = true
   end

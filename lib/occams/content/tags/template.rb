@@ -13,9 +13,9 @@ class Occams::Content::Tag::Template < Occams::Content::Tag
     super
     @path = params[0]
 
-    unless @path.present?
-      raise Error, "Missing template path for template tag"
-    end
+    return if @path.present?
+
+    raise Error, 'Missing template path for template tag'
   end
 
   # we output erb into rest of the content
@@ -24,13 +24,13 @@ class Occams::Content::Tag::Template < Occams::Content::Tag
   end
 
   def content
-    format("<%%= render template: %<path>p %%>", path: path)
+    format('<%%= render template: %<path>p %%>', path: path)
   end
 
   def render
     whitelist = Occams.config.allowed_templates
     if whitelist.is_a?(Array)
-      whitelist.member?(@path) ? content : ""
+      whitelist.member?(@path) ? content : ''
     else
       content
     end

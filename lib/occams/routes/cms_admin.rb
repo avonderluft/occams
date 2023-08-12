@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class ActionDispatch::Routing::Mapper
-  def occams_route_cms_admin(path: "admin")
+  def occams_route_cms_admin(path: 'admin')
     scope module: :occams, as: :occams do
       scope module: :admin do
         namespace :cms, as: :admin_cms, path: path, except: :show do
-          get "/", to: "base#jump"
+          get '/', to: 'base#jump'
 
           concern :with_revisions do |options|
             resources :revisions, options.merge(only: %i[index show]) do
@@ -25,13 +25,13 @@ class ActionDispatch::Routing::Mapper
             resources :pages do
               concerns :with_reorder
               concerns :with_form_fragments
-              concerns :with_revisions, controller: "revisions/page"
+              concerns :with_revisions, controller: 'revisions/page'
 
               get :toggle_branch, on: :member
 
               resources :translations, except: [:index] do
                 concerns :with_form_fragments
-                concerns :with_revisions, controller: "revisions/translation"
+                concerns :with_revisions, controller: 'revisions/translation'
               end
             end
 
@@ -39,12 +39,12 @@ class ActionDispatch::Routing::Mapper
 
             resources :layouts do
               concerns :with_reorder
-              concerns :with_revisions, controller: "revisions/layout"
+              concerns :with_revisions, controller: 'revisions/layout'
             end
 
             resources :snippets do
               concerns :with_reorder
-              concerns :with_revisions, controller: "revisions/snippet"
+              concerns :with_revisions, controller: 'revisions/snippet'
             end
 
             resources :categories

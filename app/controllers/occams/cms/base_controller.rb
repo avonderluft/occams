@@ -15,17 +15,12 @@ protected
         ::Occams::Cms::Site.find_site(request.host_with_port.downcase, request.fullpath)
       end
 
-    if @cms_site
-      if @cms_site.path.present? && !params[:site_id]
-        if params[:cms_path]&.match(%r{\A#{@cms_site.path}})
-          params[:cms_path].gsub!(%r{\A#{@cms_site.path}}, "")
-          params[:cms_path]&.gsub!(%r{\A/}, "")
-        else
-          raise ActionController::RoutingError, "Site Not Found"
-        end
-      end
-    else
-      raise ActionController::RoutingError, "Site Not Found"
-    end
+    raise ActionController::RoutingError, 'Site Not Found' unless @cms_site
+
+    return unless @cms_site.path.present? && !params[:site_id]
+    raise ActionController::RoutingError, 'Site Not Found' unless params[:cms_path]&.match(%r{\A#{@cms_site.path}})
+
+    params[:cms_path].gsub!(%r{\A#{@cms_site.path}}, '')
+    params[:cms_path]&.gsub!(%r{\A/}, '')
   end
 end

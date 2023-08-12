@@ -4,7 +4,7 @@ module Occams::Seeds::Layout
   class Exporter < Occams::Seeds::Exporter
     def initialize(from, to = from)
       super
-      self.path = ::File.join(Occams.config.seeds_path, to, "layouts/")
+      self.path = ::File.join(Occams.config.seeds_path, to, 'layouts/')
     end
 
     def export!
@@ -14,19 +14,19 @@ module Occams::Seeds::Layout
         layout_path = File.join(path, layout.ancestors.reverse.collect(&:identifier), layout.identifier)
         FileUtils.mkdir_p(layout_path)
 
-        path = ::File.join(layout_path, "content.html")
+        path = ::File.join(layout_path, 'content.html')
         data = []
 
         attrs = {
-          "label" => layout.label,
-          "app_layout" => layout.app_layout,
-          "position" => layout.position
+          'label' => layout.label,
+          'app_layout' => layout.app_layout,
+          'position' => layout.position
         }.to_yaml
 
-        data << { header: "attributes",  content: attrs }
-        data << { header: "content",     content: layout.content }
-        data << { header: "js",          content: layout.js }
-        data << { header: "css",         content: layout.css }
+        data << { header: 'attributes',  content: attrs }
+        data << { header: 'content',     content: layout.content }
+        data << { header: 'js',          content: layout.js }
+        data << { header: 'css',         content: layout.css }
 
         write_file_content(path, data)
 

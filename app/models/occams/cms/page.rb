@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Occams::Cms::Page < ActiveRecord::Base
-  self.table_name = "occams_cms_pages"
+  self.table_name = 'occams_cms_pages'
 
   include Occams::Cms::WithFragments
   include Occams::Cms::WithCategories
@@ -14,7 +14,7 @@ class Occams::Cms::Page < ActiveRecord::Base
   # -- Relationships -----------------------------------------------------------
   belongs_to :site
   belongs_to :target_page,
-             class_name: "Occams::Cms::Page",
+             class_name: 'Occams::Cms::Page',
              optional: true
 
   has_many :translations,
@@ -74,7 +74,7 @@ class Occams::Cms::Page < ActiveRecord::Base
 
   # Somewhat unique method of identifying a page that is not a full_path
   def identifier
-    parent_id.blank? ? "index" : full_path[1..].parameterize
+    parent_id.blank? ? 'index' : full_path[1..].parameterize
   end
 
   # Full url for a page
@@ -119,9 +119,9 @@ protected
   def assign_full_path
     self.full_path =
       if self.parent
-        [CGI.escape(self.parent.full_path).gsub("%2F", "/"), slug].join("/").squeeze("/")
+        [CGI.escape(self.parent.full_path).gsub('%2F', '/'), slug].join('/').squeeze('/')
       else
-        "/"
+        '/'
       end
   end
 
@@ -139,7 +139,7 @@ protected
     p = self
     while p.target_page
       if (p = p.target_page) == self
-        return errors.add(:target_page_id, "Invalid Redirect")
+        return errors.add(:target_page_id, 'Invalid Redirect')
       end
     end
   end

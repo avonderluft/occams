@@ -28,7 +28,7 @@ protected
       session[:site_id] = @site.id
     else
       I18n.locale = Occams.config.admin_locale || I18n.default_locale
-      flash[:danger] = I18n.t("occams.admin.cms.base.site_not_found")
+      flash[:danger] = I18n.t('occams.admin.cms.base.site_not_found')
       redirect_to(new_occams_admin_cms_site_path)
     end
   end
@@ -41,14 +41,14 @@ protected
   def load_seeds
     return unless Occams.config.enable_seeds
 
-    controllers = %w[layouts pages snippets files].collect { |c| "occams/admin/cms/" + c }
-    if controllers.member?(params[:controller]) && params[:action] == "index"
-      Occams::Seeds::Importer.new(@site.identifier).import!
-      flash.now[:warning] = I18n.t("occams.admin.cms.base.seeds_enabled")
-    end
+    controllers = %w[layouts pages snippets files].collect { |c| "occams/admin/cms/#{c}" }
+    return unless controllers.member?(params[:controller]) && params[:action] == 'index'
+
+    Occams::Seeds::Importer.new(@site.identifier).import!
+    flash.now[:warning] = I18n.t('occams.admin.cms.base.seeds_enabled')
   end
 
   def infer_layout
-    false if params[:layout] == "false"
+    false if params[:layout] == 'false'
   end
 end

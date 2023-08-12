@@ -20,29 +20,29 @@ class Occams::Admin::Cms::Revisions::BaseController < Occams::Admin::Cms::BaseCo
     @current_content    = @record.revision_fields.each_with_object({}) { |f, c| c[f] = @record.send(f) }
     @versioned_content  = @record.revision_fields.each_with_object({}) { |f, c| c[f] = @revision.data[f] }
 
-    render "occams/admin/cms/revisions/show"
+    render 'occams/admin/cms/revisions/show'
   end
 
   def revert
     @record.restore_from_revision(@revision)
-    flash[:success] = I18n.t("occams.admin.cms.revisions.reverted")
+    flash[:success] = I18n.t('occams.admin.cms.revisions.reverted')
     redirect_to record_path
   end
 
 protected
 
   def load_record
-    raise "not implemented"
+    raise 'not implemented'
   end
 
   def load_revision
     @revision = @record.revisions.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    flash[:danger] = I18n.t("occams.admin.cms.revisions.not_found")
+    flash[:danger] = I18n.t('occams.admin.cms.revisions.not_found')
     redirect_to record_path
   end
 
   def record_path
-    raise "no implemented"
+    raise 'no implemented'
   end
 end

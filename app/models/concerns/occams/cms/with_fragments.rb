@@ -7,10 +7,10 @@ module Occams::Cms::WithFragments
     attr_accessor :fragments_attributes_changed
 
     belongs_to :layout,
-               class_name: "Occams::Cms::Layout"
+               class_name: 'Occams::Cms::Layout'
 
     has_many :fragments,
-             class_name: "Occams::Cms::Fragment",
+             class_name: 'Occams::Cms::Fragment',
              as: :record,
              autosave: true,
              dependent: :destroy

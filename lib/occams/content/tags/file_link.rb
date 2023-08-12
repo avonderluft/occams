@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "./mixins/file_content"
+require_relative 'mixins/file_content'
 
 # This is how you link previously uploaded file to anywhere. Good example may be
 # a header image you want to use on the layout level.
@@ -30,13 +30,13 @@ class Occams::Content::Tag::FileLink < Occams::Content::Tag
 
     options = params.extract_options!
     @identifier     = params[0]
-    @as             = options["as"] || "url"
-    @class          = options["class"]
-    @variant_attrs  = options.slice("resize", "gravity", "crop")
+    @as             = options['as'] || 'url'
+    @class          = options['class']
+    @variant_attrs  = options.slice('resize', 'gravity', 'crop')
 
-    unless @identifier.present?
-      raise Error, "Missing identifier for file link tag"
-    end
+    return if @identifier.present?
+
+    raise Error, 'Missing identifier for file link tag'
   end
 
   # @return [Occams::Cms::File]
@@ -51,7 +51,7 @@ class Occams::Content::Tag::FileLink < Occams::Content::Tag
 
   # @return [String]
   def label
-    return "" if file_record.nil?
+    return '' if file_record.nil?
 
     file_record.label.presence || file.filename.to_s
   end

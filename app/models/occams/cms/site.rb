@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Occams::Cms::Site < ActiveRecord::Base
-  self.table_name = "occams_cms_sites"
+  self.table_name = 'occams_cms_sites'
 
   # -- Relationships -----------------------------------------------------------
   with_options dependent: :destroy do |site|
@@ -38,8 +38,8 @@ class Occams::Cms::Site < ActiveRecord::Base
     cms_site = nil
 
     public_cms_path = Occams.configuration.public_cms_path
-    if path && public_cms_path != "/"
-      path = path.sub(%r{\A#{public_cms_path}}, "")
+    if path && public_cms_path != '/'
+      path = path.sub(%r{\A#{public_cms_path}}, '')
     end
 
     Occams::Cms::Site.where(hostname: real_host_from_aliases(host)).each do |site|
@@ -64,9 +64,9 @@ class Occams::Cms::Site < ActiveRecord::Base
 
   # -- Instance Methods --------------------------------------------------------
   def url(relative: false)
-    public_cms_path = Occams.config.public_cms_path || "/"
+    public_cms_path = Occams.config.public_cms_path || '/'
     host = "//#{hostname}"
-    path = ["/", public_cms_path, self.path].compact.join("/").squeeze("/").chomp("/")
+    path = ['/', public_cms_path, self.path].compact.join('/').squeeze('/').chomp('/')
     relative ? path.presence : [host, path].join
   end
 
@@ -85,9 +85,9 @@ protected
   end
 
   def clean_path
-    self.path ||= ""
-    self.path.squeeze!("/")
-    self.path.gsub!(%r{/$}, "")
+    self.path ||= ''
+    self.path.squeeze!('/')
+    self.path.gsub!(%r{/$}, '')
     self.path = nil if self.path.blank?
   end
 end

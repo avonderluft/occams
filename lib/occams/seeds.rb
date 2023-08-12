@@ -5,7 +5,7 @@ module Occams::Seeds
 
   class Error < StandardError; end
 
-  require "mimemagic"
+  require 'mimemagic'
 
   class Importer
     attr_accessor :site,
@@ -21,9 +21,9 @@ module Occams::Seeds
       self.site         = Occams::Cms::Site.where(identifier: to).first!
       self.seed_ids     = []
 
-      unless ::File.exist?(path = ::File.join(Occams.config.seeds_path, from))
-        raise Error, "Folder for import: '#{path}' is not found"
-      end
+      return if ::File.exist?(path = ::File.join(Occams.config.seeds_path, from))
+
+      raise Error, "Folder for import: '#{path}' is not found"
     end
 
     # if passed nil will use default seed classes
@@ -92,7 +92,7 @@ module Occams::Seeds
     # Writing to the seed file. Takes in file handler and array of hashes with
     # `header` and `content` keys
     def write_file_content(path, data)
-      ::File.open(::File.join(path), "wb") do |f|
+      ::File.open(::File.join(path), 'wb') do |f|
         data.each do |item|
           f.write("[#{item[:header]}]\n#{item[:content]}")
           # adds a newline between items if not already there

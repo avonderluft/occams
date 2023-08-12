@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require_relative "../test_helper"
+require_relative '../test_helper'
 
 class FormBuilderTest < ActionView::TestCase
   setup do
     @page = occams_cms_pages(:default)
-    @builder = Occams::FormBuilder.new(:page, @page, self, bootstrap: { layout: "horizontal" })
+    @builder = Occams::FormBuilder.new(:page, @page, self, bootstrap: { layout: 'horizontal' })
   end
 
   def test_fragment_field_for_text
-    tag = Occams::Content::Tag::Text.new(context: @page, params: ["test"])
+    tag = Occams::Content::Tag::Text.new(context: @page, params: ['test'])
     actual = @builder.fragment_field(tag, 123)
     expected = <<~HTML
       <div class="form-group row">
@@ -25,7 +25,7 @@ class FormBuilderTest < ActionView::TestCase
   end
 
   def test_fragment_field_for_text_non_renderable
-    tag = Occams::Content::Tag::Text.new(context: @page, params: ["test", { "render" => "false" }])
+    tag = Occams::Content::Tag::Text.new(context: @page, params: ['test', { 'render' => 'false' }])
     actual = @builder.fragment_field(tag, 123)
     expected = <<~HTML
       <div class="form-group row">
@@ -41,7 +41,7 @@ class FormBuilderTest < ActionView::TestCase
   end
 
   def test_fragment_field_for_text_with_content
-    tag = Occams::Content::Tag::Text.new(context: @page, params: ["content"])
+    tag = Occams::Content::Tag::Text.new(context: @page, params: ['content'])
     actual = @builder.fragment_field(tag, 123)
     expected = <<~HTML
       <div class="form-group row">
@@ -57,7 +57,7 @@ class FormBuilderTest < ActionView::TestCase
   end
 
   def test_fragment_field_for_checkbox
-    tag = Occams::Content::Tag::Checkbox.new(context: @page, params: ["test"])
+    tag = Occams::Content::Tag::Checkbox.new(context: @page, params: ['test'])
     actual = @builder.fragment_field(tag, 123)
     expected = <<~HTML
       <div class="form-group row">
@@ -76,7 +76,7 @@ class FormBuilderTest < ActionView::TestCase
   end
 
   def test_fragment_field_for_checkbox_with_value
-    tag = Occams::Content::Tag::Checkbox.new(context: @page, params: ["boolean"])
+    tag = Occams::Content::Tag::Checkbox.new(context: @page, params: ['boolean'])
     actual = @builder.fragment_field(tag, 123)
     expected = <<~HTML
       <div class="form-group row">
@@ -95,7 +95,7 @@ class FormBuilderTest < ActionView::TestCase
   end
 
   def test_fragment_field_for_date
-    tag = Occams::Content::Tag::Date.new(context: @page, params: ["test"])
+    tag = Occams::Content::Tag::Date.new(context: @page, params: ['test'])
     actual = @builder.fragment_field(tag, 123)
     expected = <<~HTML
       <div class="form-group row">
@@ -111,7 +111,7 @@ class FormBuilderTest < ActionView::TestCase
   end
 
   def test_fragment_field_for_datetime
-    tag = Occams::Content::Tag::Datetime.new(context: @page, params: ["test"])
+    tag = Occams::Content::Tag::Datetime.new(context: @page, params: ['test'])
     actual = @builder.fragment_field(tag, 123)
     expected = <<~HTML
       <div class="form-group row">
@@ -127,7 +127,7 @@ class FormBuilderTest < ActionView::TestCase
   end
 
   def test_fragment_field_for_file
-    tag = Occams::Content::Tag::File.new(context: @page, params: ["test"])
+    tag = Occams::Content::Tag::File.new(context: @page, params: ['test'])
     actual = @builder.fragment_field(tag, 123)
     expected = <<~HTML
       <div class="form-group row">
@@ -144,7 +144,7 @@ class FormBuilderTest < ActionView::TestCase
   end
 
   def test_fragment_field_for_file_with_content
-    tag = Occams::Content::Tag::File.new(context: @page, params: ["file"])
+    tag = Occams::Content::Tag::File.new(context: @page, params: ['file'])
     actual = @builder.fragment_field(tag, 123)
 
     attachment = active_storage_attachments(:file)
@@ -174,7 +174,7 @@ class FormBuilderTest < ActionView::TestCase
   end
 
   def test_fragment_field_for_files
-    tag = Occams::Content::Tag::Files.new(context: @page, params: ["test"])
+    tag = Occams::Content::Tag::Files.new(context: @page, params: ['test'])
     actual = @builder.fragment_field(tag, 123)
     expected = <<~HTML
       <div class="form-group row">
@@ -191,7 +191,7 @@ class FormBuilderTest < ActionView::TestCase
   end
 
   def test_fragment_field_for_files_with_content
-    tag = Occams::Content::Tag::Files.new(context: @page, params: ["file"])
+    tag = Occams::Content::Tag::Files.new(context: @page, params: ['file'])
     actual = @builder.fragment_field(tag, 123)
 
     attachment = active_storage_attachments(:file)
@@ -221,7 +221,7 @@ class FormBuilderTest < ActionView::TestCase
   end
 
   def test_fragment_field_for_markdown
-    tag = Occams::Content::Tag::Markdown.new(context: @page, params: ["test"])
+    tag = Occams::Content::Tag::Markdown.new(context: @page, params: ['test'])
     actual = @builder.fragment_field(tag, 123)
     expected = <<~HTML
       <div class="form-group row">
@@ -237,7 +237,7 @@ class FormBuilderTest < ActionView::TestCase
   end
 
   def test_fragment_field_for_number
-    tag = Occams::Content::Tag::Number.new(context: @page, params: ["test"])
+    tag = Occams::Content::Tag::Number.new(context: @page, params: ['test'])
     actual = @builder.fragment_field(tag, 123)
     expected = <<~HTML
       <div class="form-group row">
@@ -253,7 +253,7 @@ class FormBuilderTest < ActionView::TestCase
   end
 
   def test_fragment_field_for_textarea
-    tag = Occams::Content::Tag::File.new(context: @page, params: ["test"])
+    tag = Occams::Content::Tag::File.new(context: @page, params: ['test'])
     actual = @builder.fragment_field(tag, 123)
     expected = <<~HTML
       <div class="form-group row">
@@ -270,7 +270,7 @@ class FormBuilderTest < ActionView::TestCase
   end
 
   def test_fragment_field_for_wysiwyg
-    tag = Occams::Content::Tag::Wysiwyg.new(context: @page, params: ["test"])
+    tag = Occams::Content::Tag::Wysiwyg.new(context: @page, params: ['test'])
     actual = @builder.fragment_field(tag, 123)
     expected = <<~HTML
       <div class="form-group row">
@@ -287,7 +287,7 @@ class FormBuilderTest < ActionView::TestCase
 
   def test_form_actions
     actual = @builder.form_actions do
-      "test"
+      'test'
     end
     expected = <<~HTML
       <div class="form-actions row bg-light">

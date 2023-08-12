@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require_relative "../../../test_helper"
+require_relative '../../../test_helper'
 
 class ContentTagsFileTest < ActiveSupport::TestCase
   delegate  :rails_blob_path,
             :rails_representation_path,
-            to: "Rails.application.routes.url_helpers"
+            to: 'Rails.application.routes.url_helpers'
 
   setup do
     @page = occams_cms_pages(:default)
@@ -14,27 +14,27 @@ class ContentTagsFileTest < ActiveSupport::TestCase
   # -- Tests -------------------------------------------------------------------
 
   def test_init
-    tag = Occams::Content::Tag::File.new(context: @page, params: ["test"])
-    assert_equal "test",  tag.identifier
-    assert_equal "url",   tag.as
+    tag = Occams::Content::Tag::File.new(context: @page, params: ['test'])
+    assert_equal 'test',  tag.identifier
+    assert_equal 'url',   tag.as
   end
 
   def test_init_with_params
     tag = Occams::Content::Tag::File.new(
       context: @page,
-      params: ["test", {
-        "as" => "image",
-        "resize" => "100x100",
-        "gravity" => "center",
-        "crop" => "100x100+0+0"
+      params: ['test', {
+        'as' => 'image',
+        'resize' => '100x100',
+        'gravity' => 'center',
+        'crop' => '100x100+0+0'
       }]
     )
-    assert_equal "test",  tag.identifier
-    assert_equal "image", tag.as
+    assert_equal 'test',  tag.identifier
+    assert_equal 'image', tag.as
     assert_equal ({
-      "resize" => "100x100",
-      "gravity" => "center",
-      "crop" => "100x100+0+0"
+      'resize' => '100x100',
+      'gravity' => 'center',
+      'crop' => '100x100+0+0'
     }), tag.variant_attrs
   end
 
@@ -48,7 +48,7 @@ class ContentTagsFileTest < ActiveSupport::TestCase
     frag = occams_cms_fragments(:file)
     tag = Occams::Content::Tag::File.new(
       context: @page,
-      params: [frag.identifier, { "as" => "link", "class" => "html-class" }]
+      params: [frag.identifier, { 'as' => 'link', 'class' => 'html-class' }]
     )
 
     path  = rails_blob_path(frag.attachments.first, only_path: true)
@@ -60,7 +60,7 @@ class ContentTagsFileTest < ActiveSupport::TestCase
     frag = occams_cms_fragments(:file)
     tag = Occams::Content::Tag::File.new(
       context: @page,
-      params: [frag.identifier, { "as" => "image", "class" => "html-class" }]
+      params: [frag.identifier, { 'as' => 'image', 'class' => 'html-class' }]
     )
     path  = rails_blob_path(frag.attachments.first, only_path: true)
     out   = "<img src='#{path}' class='html-class' alt='fragment.jpg'/>"
@@ -71,16 +71,16 @@ class ContentTagsFileTest < ActiveSupport::TestCase
     frag = occams_cms_fragments(:file)
     tag = Occams::Content::Tag::File.new(
       context: @page,
-      params: [frag.identifier, { "as" => "image", "resize" => "50x50" }]
+      params: [frag.identifier, { 'as' => 'image', 'resize' => '50x50' }]
     )
-    variant = frag.attachments.first.variant(combine_options: { "resize" => "50x50" })
+    variant = frag.attachments.first.variant(combine_options: { 'resize' => '50x50' })
     path    = rails_representation_path(variant, only_path: true)
     out     = "<img src='#{path}' alt='fragment.jpg'/>"
     assert_equal out, tag.content
   end
 
   def test_content_with_no_attachment
-    tag = Occams::Content::Tag::File.new(context: @page, params: ["test"])
-    assert_equal "", tag.content
+    tag = Occams::Content::Tag::File.new(context: @page, params: ['test'])
+    assert_equal '', tag.content
   end
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "strscan"
+require 'strscan'
 
 class Occams::Content::ParamsParser
   class Error < StandardError; end
@@ -16,7 +16,7 @@ class Occams::Content::ParamsParser
   INTEGER         = %r{\b[0-9]+\b}i.freeze
 
   # @param <String> string
-  def initialize(string = "")
+  def initialize(string = '')
     @string = string
   end
 
@@ -120,7 +120,7 @@ private
   # @param [String] args_string
   # @return [Array<String>] tokens
   def tokenize(args_string)
-    args_string = args_string.tr("“”‘’", %q(""''))
+    args_string = args_string.tr('“”‘’', %q(""''))
     ss = StringScanner.new(args_string)
     tokens = []
     loop do

@@ -16,11 +16,11 @@ class Occams::Admin::Cms::FilesController < Occams::Admin::Cms::BaseController
     case params[:source]
 
     # Integration with Redactor 1.0 Wysiwyg
-    when "redactor"
+    when 'redactor'
       file_scope  = files_scope.limit(100).order(:position)
       file_hashes =
         case params[:type]
-        when "image"
+        when 'image'
           file_scope.with_images.collect do |file|
             { thumb: url_for(file.attachment.variant(combine_options: Occams::Cms::File::VARIANT_SIZE[:redactor])),
               image: url_for(file.attachment),
@@ -41,7 +41,7 @@ class Occams::Admin::Cms::FilesController < Occams::Admin::Cms::BaseController
       files_scope = files_scope
         .includes(:categories)
         .for_category(params[:categories])
-        .order("occams_cms_files.position")
+        .order('occams_cms_files.position')
       @files = occams_paginate(files_scope, per_page: 50)
     end
   end
@@ -51,7 +51,7 @@ class Occams::Admin::Cms::FilesController < Occams::Admin::Cms::BaseController
   end
 
   def create
-    categories_scope = @site.categories.of_type("Occams::Cms::File")
+    categories_scope = @site.categories.of_type('Occams::Cms::File')
 
     if params[:categories]
       ids = categories_scope.where(label: params[:categories]).pluck(:id)
@@ -59,33 +59,33 @@ class Occams::Admin::Cms::FilesController < Occams::Admin::Cms::BaseController
     end
 
     # Automatically tagging upload if it's done through redactor
-    if params[:source] == "redactor"
-      category = categories_scope.find_or_create_by(label: "wysiwyg")
+    if params[:source] == 'redactor'
+      category = categories_scope.find_or_create_by(label: 'wysiwyg')
       @file.category_ids = [category.id]
     end
 
     @file.save!
 
     case params[:source]
-    when "plupload"
-      render partial: "file", object: @file
-    when "redactor"
+    when 'plupload'
+      render partial: 'file', object: @file
+    when 'redactor'
       render json: {
         filelink: url_for(@file.attachment),
         filename: @file.attachment.filename
       }
     else
-      flash[:success] = I18n.t("occams.admin.cms.files.created")
+      flash[:success] = I18n.t('occams.admin.cms.files.created')
       redirect_to action: :edit, id: @file
     end
   rescue ActiveRecord::RecordInvalid
     case params[:source]
-    when "plupload"
+    when 'plupload'
       render body: @file.errors.full_messages.to_sentence, status: :unprocessable_entity
-    when "redactor"
+    when 'redactor'
       render body: nil, status: :unprocessable_entity
     else
-      flash.now[:danger] = I18n.t("occams.admin.cms.files.creation_failure")
+      flash.now[:danger] = I18n.t('occams.admin.cms.files.creation_failure')
       render action: :new
     end
   end
@@ -96,10 +96,10 @@ class Occams::Admin::Cms::FilesController < Occams::Admin::Cms::BaseController
 
   def update
     if @file.update(file_params)
-      flash[:success] = I18n.t("occams.admin.cms.files.updated")
+      flash[:success] = I18n.t('occams.admin.cms.files.updated')
       redirect_to action: :edit, id: @file
     else
-      flash.now[:danger] = I18n.t("occams.admin.cms.files.update_failure")
+      flash.now[:danger] = I18n.t('occams.admin.cms.files.update_failure')
       render action: :edit
     end
   end
@@ -109,7 +109,7 @@ class Occams::Admin::Cms::FilesController < Occams::Admin::Cms::BaseController
     respond_to do |format|
       format.js
       format.html do
-        flash[:success] = I18n.t("occams.admin.cms.files.deleted")
+        flash[:success] = I18n.t('occams.admin.cms.files.deleted')
         redirect_to action: :index
       end
     end
@@ -124,7 +124,7 @@ protected
   def load_file
     @file = @site.files.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    flash[:danger] = I18n.t("occams.admin.cms.files.not_found")
+    flash[:danger] = I18n.t('occams.admin.cms.files.not_found')
     redirect_to action: :index
   end
 

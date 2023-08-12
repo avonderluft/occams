@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Occams::Cms::Categorization < ActiveRecord::Base
-  self.table_name = "occams_cms_categorizations"
+  self.table_name = 'occams_cms_categorizations'
 
   # -- Relationships -----------------------------------------------------------
   belongs_to :category

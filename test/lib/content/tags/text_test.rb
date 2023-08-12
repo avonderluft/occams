@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../../../test_helper"
+require_relative '../../../test_helper'
 
 class ContentTagsTextTest < ActiveSupport::TestCase
   setup do
@@ -8,7 +8,7 @@ class ContentTagsTextTest < ActiveSupport::TestCase
   end
 
   def test_init
-    tag = Occams::Content::Tag::Text.new(context: @page, params: ["test"])
-    assert_equal "test", tag.identifier
+    tag = Occams::Content::Tag::Text.new(context: @page, params: ['test'])
+    assert_equal 'test', tag.identifier
   end
 end

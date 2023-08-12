@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../../test_helper"
+require_relative '../../test_helper'
 
 class SeedsLayoutsTest < ActiveSupport::TestCase
   DEFAULT_HTML = <<~HTML
@@ -23,19 +23,19 @@ class SeedsLayoutsTest < ActiveSupport::TestCase
   def test_creation
     Occams::Cms::Layout.delete_all
 
-    assert_difference "Occams::Cms::Layout.count", 2 do
-      Occams::Seeds::Layout::Importer.new("sample-site", "default-site").import!
+    assert_difference 'Occams::Cms::Layout.count', 2 do
+      Occams::Seeds::Layout::Importer.new('sample-site', 'default-site').import!
     end
 
-    assert layout = Occams::Cms::Layout.where(identifier: "default").first
-    assert_equal "Default Seed Layout", layout.label
+    assert layout = Occams::Cms::Layout.where(identifier: 'default').first
+    assert_equal 'Default Seed Layout', layout.label
     assert_equal DEFAULT_HTML,          layout.content
     assert_equal "body{color: red}\n",  layout.css
     assert_equal "// default js\n\n",   layout.js
 
-    assert nested_layout = Occams::Cms::Layout.where(identifier: "nested").first
+    assert nested_layout = Occams::Cms::Layout.where(identifier: 'nested').first
     assert_equal layout, nested_layout.parent
-    assert_equal "Nested Seed Layout",  nested_layout.label
+    assert_equal 'Nested Seed Layout',  nested_layout.label
     assert_equal NESTED_HTML,           nested_layout.content
     assert_equal "div{float:left}\n",   nested_layout.css
     assert_equal "// nested js\n\n",    nested_layout.js
@@ -51,10 +51,10 @@ class SeedsLayoutsTest < ActiveSupport::TestCase
     child_layout.update_column(:updated_at, 10.years.ago)
 
     assert_difference(-> { Occams::Cms::Layout.count }, -1) do
-      Occams::Seeds::Layout::Importer.new("sample-site", "default-site").import!
+      Occams::Seeds::Layout::Importer.new('sample-site', 'default-site').import!
 
       layout.reload
-      assert_equal "Default Seed Layout", layout.label
+      assert_equal 'Default Seed Layout', layout.label
       assert_equal DEFAULT_HTML,          layout.content
       assert_equal "body{color: red}\n",  layout.css
       assert_equal "// default js\n\n",   layout.js
@@ -62,40 +62,40 @@ class SeedsLayoutsTest < ActiveSupport::TestCase
 
       nested_layout.reload
       assert_equal layout,                nested_layout.parent
-      assert_equal "Nested Seed Layout",  nested_layout.label
+      assert_equal 'Nested Seed Layout',  nested_layout.label
       assert_equal NESTED_HTML,           nested_layout.content
       assert_equal "div{float:left}\n",   nested_layout.css
       assert_equal "// nested js\n\n",    nested_layout.js
       assert_equal 42,                    nested_layout.position
 
-      assert_nil Occams::Cms::Layout.where(identifier: "child").first
+      assert_nil Occams::Cms::Layout.where(identifier: 'child').first
     end
   end
 
   def test_update_ignore
     layout = occams_cms_layouts(:default)
-    layout_path       = File.join(Occams.config.seeds_path, "sample-site", "layouts", "default")
-    content_file_path = File.join(layout_path, "content.html")
+    layout_path       = File.join(Occams.config.seeds_path, 'sample-site', 'layouts', 'default')
+    content_file_path = File.join(layout_path, 'content.html')
 
     assert layout.updated_at >= File.mtime(content_file_path)
 
-    Occams::Seeds::Layout::Importer.new("sample-site", "default-site").import!
+    Occams::Seeds::Layout::Importer.new('sample-site', 'default-site').import!
     layout.reload
-    assert_equal "default",                   layout.identifier
-    assert_equal "Default Layout",            layout.label
-    assert_equal "{{cms:textarea content}}",  layout.content
-    assert_equal "default_css",               layout.css
-    assert_equal "default_js",                layout.js
+    assert_equal 'default',                   layout.identifier
+    assert_equal 'Default Layout',            layout.label
+    assert_equal '{{cms:textarea content}}',  layout.content
+    assert_equal 'default_css',               layout.css
+    assert_equal 'default_js',                layout.js
   end
 
   def test_export
-    host_path = File.join(Occams.config.seeds_path, "test-site")
+    host_path = File.join(Occams.config.seeds_path, 'test-site')
 
-    layout_1_content_path = File.join(host_path, "layouts/default/content.html")
-    layout_2_content_path = File.join(host_path, "layouts/nested/content.html")
-    layout_3_content_path = File.join(host_path, "layouts/nested/child/content.html")
+    layout_1_content_path = File.join(host_path, 'layouts/default/content.html')
+    layout_2_content_path = File.join(host_path, 'layouts/nested/content.html')
+    layout_3_content_path = File.join(host_path, 'layouts/nested/child/content.html')
 
-    Occams::Seeds::Layout::Exporter.new("default-site", "test-site").export!
+    Occams::Seeds::Layout::Exporter.new('default-site', 'test-site').export!
 
     assert File.exist?(layout_1_content_path)
     assert File.exist?(layout_2_content_path)
@@ -115,7 +115,7 @@ class SeedsLayoutsTest < ActiveSupport::TestCase
       default_css
     TEXT
 
-    assert_equal out, IO.read(layout_1_content_path)
+    assert_equal out, File.read(layout_1_content_path)
 
     out = <<~TEXT.chomp
       [attributes]
@@ -131,7 +131,7 @@ class SeedsLayoutsTest < ActiveSupport::TestCase
       [css]
       nested_css
     TEXT
-    assert_equal out, IO.read(layout_2_content_path)
+    assert_equal out, File.read(layout_2_content_path)
 
     out = <<~TEXT.chomp
       [attributes]
@@ -147,7 +147,7 @@ class SeedsLayoutsTest < ActiveSupport::TestCase
       [css]
       child_css
     TEXT
-    assert_equal out, IO.read(layout_3_content_path)
+    assert_equal out, File.read(layout_3_content_path)
   ensure
     FileUtils.rm_rf(host_path)
   end

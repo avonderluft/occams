@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../test_helper"
+require_relative '../test_helper'
 
 class FilesFrontendTest < ApplicationSystemTestCase
   setup do
@@ -22,20 +22,20 @@ class FilesFrontendTest < ApplicationSystemTestCase
       {{ cms:text content }}
     TEXT
 
-    occams_cms_fragments(:default).update_column(:content, "")
+    occams_cms_fragments(:default).update_column(:content, '')
 
     @page.update!(
       fragments_attributes: [{
-        identifier: "attachments",
-        tag: "files",
-        files: fixture_file_upload("files/image.jpg", "image/jpg")
+        identifier: 'attachments',
+        tag: 'files',
+        files: fixture_file_upload('files/image.jpg', 'image/jpg')
       }]
     )
 
     visit_p edit_occams_admin_cms_site_page_path(@site, @page)
 
-    text_field = find_field(name: "page[fragments_attributes][1][content]")
-    find_link("image.jpg").drag_to(text_field)
+    text_field = find_field(name: 'page[fragments_attributes][1][content]')
+    find_link('image.jpg').drag_to(text_field)
 
     skip
     # Figure out why dragging doesn't really happen.

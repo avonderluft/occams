@@ -8,7 +8,7 @@ module Occams::ActsAsTree
   module ClassMethods
     def cms_acts_as_tree(options = {})
       configuration = {
-        foreign_key: "parent_id",
+        foreign_key: 'parent_id',
         order: nil,
         counter_cache: nil,
         dependent: :destroy,

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../test_helper"
+require_relative '../test_helper'
 
 class CmsCategorizationTest < ActiveSupport::TestCase
   setup do
@@ -20,7 +20,7 @@ class CmsCategorizationTest < ActiveSupport::TestCase
   end
 
   def test_creation
-    assert_difference "Occams::Cms::Categorization.count" do
+    assert_difference 'Occams::Cms::Categorization.count' do
       @category.categorizations.create!(
         categorized: occams_cms_pages(:default)
       )
@@ -48,7 +48,7 @@ class CmsCategorizationTest < ActiveSupport::TestCase
 
   def test_categorized_syncing
     # or we're not going to be able to link
-    @category.update_column(:categorized_type, "Occams::Cms::Page")
+    @category.update_column(:categorized_type, 'Occams::Cms::Page')
 
     page = occams_cms_pages(:default)
     assert_equal 0, page.categories.count
@@ -66,18 +66,18 @@ class CmsCategorizationTest < ActiveSupport::TestCase
   def test_scope_for_category
     category = @category
     assert_equal 1, Occams::Cms::File.for_category(category.label).count
-    assert_equal 0, Occams::Cms::File.for_category("invalid").count
-    assert_equal 1, Occams::Cms::File.for_category(category.label, "invalid").count
+    assert_equal 0, Occams::Cms::File.for_category('invalid').count
+    assert_equal 1, Occams::Cms::File.for_category(category.label, 'invalid').count
     assert_equal 1, Occams::Cms::File.for_category(nil).count
 
     new_category = occams_cms_sites(:default).categories.create!(
-      label: "Test Category",
-      categorized_type: "Occams::Cms::File"
+      label: 'Test Category',
+      categorized_type: 'Occams::Cms::File'
     )
     new_category.categorizations.create!(categorized: occams_cms_pages(:default))
     assert_equal 1, Occams::Cms::File.for_category(category.label, new_category.label).to_a.size
     assert_equal 1,
                  Occams::Cms::File.for_category(category.label,
-                                                new_category.label).distinct.count("occams_cms_files.id")
+                                                new_category.label).distinct.count('occams_cms_files.id')
   end
 end

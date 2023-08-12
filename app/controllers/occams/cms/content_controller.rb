@@ -42,8 +42,8 @@ protected
 
   # it's possible to control mimetype of a page by creating a `mime_type` field
   def mime_type
-    mime_block = @cms_page.fragments.detect { |f| f.identifier == "mime_type" }
-    mime_block&.content&.strip || "text/html"
+    mime_block = @cms_page.fragments.detect { |f| f.identifier == 'mime_type' }
+    mime_block&.content&.strip || 'text/html'
   end
 
   def app_layout
@@ -61,13 +61,13 @@ protected
   # Attempting to populate @cms_page and @cms_layout instance variables so they
   # can be used in view helpers/partials
   def load_cms_page
-    unless find_cms_page_by_full_path("/#{params[:cms_path]}")
-      if find_cms_page_by_full_path("/404")
-        render_page(:not_found)
-      else
-        message = "Page Not Found at: \"#{params[:cms_path]}\""
-        raise ActionController::RoutingError, message
-      end
+    return if find_cms_page_by_full_path("/#{params[:cms_path]}")
+
+    if find_cms_page_by_full_path('/404')
+      render_page(:not_found)
+    else
+      message = "Page Not Found at: \"#{params[:cms_path]}\""
+      raise ActionController::RoutingError, message
     end
   end
 

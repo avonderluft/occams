@@ -25,8 +25,8 @@ class Occams::Content::Tag::Fragment < Occams::Content::Tag
       raise Error, "Missing identifier for fragment tag: #{source}"
     end
 
-    @namespace  = @options["namespace"] || "default"
-    @renderable = @options["render"].to_s.downcase != "false"
+    @namespace  = @options['namespace'] || 'default'
+    @renderable = @options['render'].to_s.downcase != 'false'
   end
 
   # Grabs existing fragment record or spins up a new instance if there's none
@@ -43,7 +43,7 @@ class Occams::Content::Tag::Fragment < Occams::Content::Tag
   # If `render: false` was passed in we won't render anything. Assuming that
   # that fragment content will be rendered manually
   def render
-    renderable ? content : ""
+    renderable ? content : ''
   end
 
   # Tag renders its own form inputs via `form_field(template, index)`
@@ -55,7 +55,7 @@ class Occams::Content::Tag::Fragment < Occams::Content::Tag
   #     end
   #   end
   def form_field
-    raise "Form field rendering not implemented for this Tag"
+    raise 'Form field rendering not implemented for this Tag'
   end
 
   def form_field_id

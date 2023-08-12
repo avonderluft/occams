@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../test_helper"
+require_relative '../test_helper'
 
 class CmsCategoryTest < ActiveSupport::TestCase
   def test_fixtures_validity
@@ -16,10 +16,10 @@ class CmsCategoryTest < ActiveSupport::TestCase
   end
 
   def test_creation
-    assert_difference "Occams::Cms::Category.count" do
+    assert_difference 'Occams::Cms::Category.count' do
       occams_cms_sites(:default).categories.create(
-        label: "Test Category",
-        categorized_type: "Occams::Cms::Snippet"
+        label: 'Test Category',
+        categorized_type: 'Occams::Cms::Snippet'
       )
     end
   end
@@ -36,7 +36,7 @@ class CmsCategoryTest < ActiveSupport::TestCase
   end
 
   def test_scope_of_type
-    assert_equal 1, Occams::Cms::Category.of_type("Occams::Cms::File").count
-    assert_equal 0, Occams::Cms::Category.of_type("Invalid").count
+    assert_equal 1, Occams::Cms::Category.of_type('Occams::Cms::File').count
+    assert_equal 0, Occams::Cms::Category.of_type('Invalid').count
   end
 end

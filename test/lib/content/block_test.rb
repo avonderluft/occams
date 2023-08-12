@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../../test_helper"
+require_relative '../../test_helper'
 
 class ContentBlockTest < ActiveSupport::TestCase
   class TestBlockTag < Occams::Content::Block
@@ -12,7 +12,7 @@ class ContentBlockTest < ActiveSupport::TestCase
   end
 
   teardown do
-    Occams::Content::Renderer.tags.delete("test_block")
+    Occams::Content::Renderer.tags.delete('test_block')
   end
 
   # -- Tests -------------------------------------------------------------------
@@ -20,7 +20,7 @@ class ContentBlockTest < ActiveSupport::TestCase
   def test_block_tag_nodes
     block = TestBlockTag.new(context: nil)
     assert_equal [], block.nodes
-    block.nodes << "text"
-    assert_equal ["text"], block.nodes
+    block.nodes << 'text'
+    assert_equal ['text'], block.nodes
   end
 end

@@ -10,7 +10,7 @@ module Occams::ViewHooks
 
   # Renders hook content
   def self.render(name, template, options = {})
-    out = ""
+    out = ''
     (hooks[name.to_sym] || []).each do |path|
       out += template.render({ partial: path.first }.merge(options))
     end

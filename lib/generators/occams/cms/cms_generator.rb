@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rails/generators/active_record"
+require 'rails/generators/active_record'
 
 module Occams
   module Generators
@@ -8,23 +8,23 @@ module Occams
       include Rails::Generators::Migration
       include Thor::Actions
 
-      source_root File.expand_path("../../../..", __dir__)
+      source_root File.expand_path('../../../..', __dir__)
 
       def generate_migration
-        destination   = File.expand_path("db/migrate/01_create_cms.rb", destination_root)
+        destination   = File.expand_path('db/migrate/01_create_cms.rb', destination_root)
         migration_dir = File.dirname(destination)
-        destination   = self.class.migration_exists?(migration_dir, "create_cms")
+        destination   = self.class.migration_exists?(migration_dir, 'create_cms')
 
         if destination
           puts "\e[0m\e[31mFound existing cms_create.rb migration. Remove it if you want to regenerate.\e[0m"
         else
-          migration_template "db/migrate/01_create_cms.rb", "db/migrate/create_cms.rb"
+          migration_template 'db/migrate/01_create_cms.rb', 'db/migrate/create_cms.rb'
         end
       end
 
       def generate_initializer
-        copy_file "config/initializers/occams.rb",
-                  "config/initializers/occams.rb"
+        copy_file 'config/initializers/occams.rb',
+                  'config/initializers/occams.rb'
       end
 
       def generate_railties_order
@@ -45,18 +45,18 @@ module Occams
       end
 
       def generate_cms_seeds
-        directory "db/cms_seeds", "db/cms_seeds"
+        directory 'db/cms_seeds', 'db/cms_seeds'
       end
 
       def generate_assets
-        copy_file "app/assets/javascripts/occams/admin/cms/custom.js",
-                  "app/assets/javascripts/occams/admin/cms/custom.js"
-        copy_file "app/assets/stylesheets/occams/admin/cms/custom.sass",
-                  "app/assets/stylesheets/occams/admin/cms/custom.sass"
+        copy_file 'app/assets/javascripts/occams/admin/cms/custom.js',
+                  'app/assets/javascripts/occams/admin/cms/custom.js'
+        copy_file 'app/assets/stylesheets/occams/admin/cms/custom.sass',
+                  'app/assets/stylesheets/occams/admin/cms/custom.sass'
       end
 
       def show_readme
-        readme "lib/generators/occams/cms/README"
+        readme 'lib/generators/occams/cms/README'
       end
 
       def self.next_migration_number(dirname)

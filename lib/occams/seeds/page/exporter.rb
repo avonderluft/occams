@@ -4,30 +4,30 @@ module Occams::Seeds::Page
   class Exporter < Occams::Seeds::Exporter
     def initialize(from, to = from)
       super
-      self.path = ::File.join(Occams.config.seeds_path, to, "pages/")
+      self.path = ::File.join(Occams.config.seeds_path, to, 'pages/')
     end
 
     def export!
       prepare_folder!(path)
 
       site.pages.each do |page|
-        page.slug = "index" if page.slug.blank?
-        page_path = File.join(path, page.ancestors.reverse.map { |p| p.slug.blank? ? "index" : p.slug }, page.slug)
+        page.slug = 'index' if page.slug.blank?
+        page_path = File.join(path, page.ancestors.reverse.map { |p| p.slug.blank? ? 'index' : p.slug }, page.slug)
         FileUtils.mkdir_p(page_path)
 
-        path = ::File.join(page_path, "content.html")
+        path = ::File.join(page_path, 'content.html')
         data = []
 
         attrs = {
-          "label" => page.label,
-          "layout" => page.layout.try(:identifier),
-          "target_page" => page.target_page.try(:full_path),
-          "categories" => page.categories.map(&:label),
-          "is_published" => page.is_published,
-          "position" => page.position
+          'label' => page.label,
+          'layout' => page.layout.try(:identifier),
+          'target_page' => page.target_page.try(:full_path),
+          'categories' => page.categories.map(&:label),
+          'is_published' => page.is_published,
+          'position' => page.position
         }.to_yaml
 
-        data << { header: "attributes", content: attrs }
+        data << { header: 'attributes', content: attrs }
         data += fragments_data(page, page_path)
 
         write_file_content(path, data)
@@ -47,12 +47,12 @@ module Occams::Seeds::Page
         data = []
 
         attrs = {
-          "label" => translation.label,
-          "layout" => translation.layout.try(:identifier),
-          "is_published" => page.is_published
+          'label' => translation.label,
+          'layout' => translation.layout.try(:identifier),
+          'is_published' => page.is_published
         }.to_yaml
 
-        data << { header: "attributes", content: attrs }
+        data << { header: 'attributes', content: attrs }
         data += fragments_data(translation, page_path)
 
         write_file_content(path, data)
@@ -68,15 +68,13 @@ module Occams::Seeds::Page
         header = "#{frag.tag} #{frag.identifier}"
         content =
           case frag.tag
-          when "datetime", "date"
+          when 'datetime', 'date'
             frag.datetime
-          when "checkbox"
+          when 'checkbox'
             frag.boolean
-          when "file", "files"
+          when 'file', 'files'
             frag.attachments.map do |attachment|
-              ::File.open(::File.join(page_path, attachment.filename.to_s), "wb") do |f|
-                f.write(attachment.download)
-              end
+              ::File.binwrite(::File.join(page_path, attachment.filename.to_s), attachment.download)
               attachment.filename
             end.join("\n")
           else

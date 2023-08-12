@@ -38,7 +38,7 @@ class Occams::Content::Tag
 
   # @return [String]
   def content
-    raise Error, "This is a base class. It holds no content"
+    raise Error, 'This is a base class. It holds no content'
   end
 
   # @return [String]
