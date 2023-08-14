@@ -15,7 +15,7 @@ module Occams
         render path, params
       rescue ActionView::MissingTemplate
         if Occams.config.reveal_cms_partials
-          content_tag(:div, class: "occams-admin-partial") do
+          content_tag(:div, class: 'occams-admin-partial') do
             path
           end
         end
@@ -32,14 +32,14 @@ module Occams
       # @return [String] {{ cms:page_file_link #{fragment_id}, ... }}
       def cms_page_file_link_tag(fragment_id:, attachment:, multiple:)
         filename  = ", filename: \"#{attachment.filename}\""  if multiple
-        as        = ", as: image"                             if attachment.image?
+        as        = ', as: image'                             if attachment.image?
         "{{ cms:page_file_link #{fragment_id}#{filename}#{as} }}"
       end
 
       # @param [Occams::Cms::File] file
       # @return [String] {{ cms:file_link #{file.id}, ... }}
       def cms_file_link_tag(file)
-        as = ", as: image" if file.attachment.image?
+        as = ', as: image' if file.attachment.image?
         "{{ cms:file_link #{file.id}#{as} }}"
       end
     end

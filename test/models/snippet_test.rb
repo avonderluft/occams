@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../test_helper"
+require_relative '../test_helper'
 
 class CmsSnippetTest < ActiveSupport::TestCase
   setup do
@@ -22,22 +22,22 @@ class CmsSnippetTest < ActiveSupport::TestCase
 
   def test_label_assignment
     snippet = @site.snippets.new(
-      identifier: "test"
+      identifier: 'test'
     )
     assert snippet.valid?
-    assert_equal "Test", snippet.label
+    assert_equal 'Test', snippet.label
   end
 
   def test_create
-    assert_difference "Occams::Cms::Snippet.count" do
+    assert_difference 'Occams::Cms::Snippet.count' do
       snippet = @site.snippets.create(
-        label: "Test Snippet",
-        identifier: "test",
-        content: "Test Content"
+        label: 'Test Snippet',
+        identifier: 'test',
+        content: 'Test Content'
       )
-      assert_equal "Test Snippet", snippet.label
-      assert_equal "test", snippet.identifier
-      assert_equal "Test Content", snippet.content
+      assert_equal 'Test Snippet', snippet.label
+      assert_equal 'test', snippet.identifier
+      assert_equal 'Test Content', snippet.content
       assert_equal 1, snippet.position
     end
   end
@@ -45,12 +45,12 @@ class CmsSnippetTest < ActiveSupport::TestCase
   def test_update_forces_page_content_reload
     snippet = occams_cms_snippets(:default)
     page    = occams_cms_pages(:default)
-    occams_cms_fragments(:default).update_column(:content, "{{cms:snippet default}}")
+    occams_cms_fragments(:default).update_column(:content, '{{cms:snippet default}}')
     page.clear_content_cache!
 
-    assert_equal "snippet content", page.content_cache
-    snippet.update(content: "new snippet content")
+    assert_equal 'snippet content', page.content_cache
+    snippet.update(content: 'new snippet content')
     page.reload
-    assert_equal "new snippet content", page.content_cache
+    assert_equal 'new snippet content', page.content_cache
   end
 end

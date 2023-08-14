@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../test_helper"
+require_relative '../test_helper'
 
 class RoutingIntergrationTest < ActionDispatch::IntegrationTest
   def teardown
@@ -11,9 +11,9 @@ class RoutingIntergrationTest < ActionDispatch::IntegrationTest
     assert_nil Occams.config.public_cms_path
 
     Rails.application.routes.draw do
-      occams_route :cms, path: "/custom"
+      occams_route :cms, path: '/custom'
     end
 
-    assert_equal "/custom", Occams.config.public_cms_path
+    assert_equal '/custom', Occams.config.public_cms_path
   end
 end

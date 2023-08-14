@@ -9,7 +9,7 @@ module Occams::Content::Tag::Mixins
     # @param [String] label alt text for `as: "image"`, link text for `as: "link"`
     # @return [String]
     def content(file: self.file, as: self.as, variant_attrs: self.variant_attrs, label: self.label)
-      return "" unless file
+      return '' unless file
 
       url_helpers = Rails.application.routes.url_helpers
 
@@ -22,9 +22,9 @@ module Occams::Content::Tag::Mixins
         end
 
       case as
-      when "link"
+      when 'link'
         "<a href='#{attachment_url}'#{html_class_attribute} target='_blank'>#{label}</a>"
-      when "image"
+      when 'image'
         "<img src='#{attachment_url}'#{html_class_attribute} alt='#{label}'/>"
       else
         attachment_url

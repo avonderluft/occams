@@ -42,8 +42,8 @@ protected
 
   # it's possible to control mimetype of a page by creating a `mime_type` field
   def mime_type
-    mime_block = @cms_page.fragments.detect { |f| f.identifier == "mime_type" }
-    mime_block&.content&.strip || "text/html"
+    mime_block = @cms_page.fragments.detect { |f| f.identifier == 'mime_type' }
+    mime_block&.content&.strip || 'text/html'
   end
 
   def app_layout
@@ -61,20 +61,24 @@ protected
   # Attempting to populate @cms_page and @cms_layout instance variables so they
   # can be used in view helpers/partials
   def load_cms_page
-    unless find_cms_page_by_full_path("/#{params[:cms_path]}")
-      if find_cms_page_by_full_path("/404")
-        render_page(:not_found)
-      else
-        message = "Page Not Found at: \"#{params[:cms_path]}\""
-        raise ActionController::RoutingError, message
-      end
+    return if find_cms_page_by_full_path("/#{params[:cms_path]}")
+
+    if find_cms_page_by_full_path('/404')
+      render_page(:not_found)
+    else
+      message = "Page Not Found at: \"#{params[:cms_path]}\""
+      raise ActionController::RoutingError, message
     end
   end
 
   # Getting page and setting content_cache and fragments data if we need to
   # serve translation data
   def find_cms_page_by_full_path(full_path)
-    @cms_page = @cms_site.pages.published.find_by!(full_path: full_path)
+    if Rails.env == 'production'
+      @cms_page = @cms_site.pages.published.find_by!(full_path: full_path)
+    else
+      @cms_page = @cms_site.pages.find_by!(full_path: full_path)
+    end
 
     @cms_page.translate!
     @cms_layout = @cms_page.layout

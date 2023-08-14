@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "./mixins/file_content"
+require_relative 'mixins/file_content'
 
 # This tag allows you to link page-level files from within the page content.
 #
@@ -43,14 +43,14 @@ class Occams::Content::Tag::PageFileLink < Occams::Content::Tag
 
     options = params.extract_options!
     @identifier     = params[0]
-    @as             = options["as"] || "url"
-    @class          = options["class"]
-    @variant_attrs  = options.slice("resize", "gravity", "crop")
-    @filename       = options["filename"]
+    @as             = options['as'] || 'url'
+    @class          = options['class']
+    @variant_attrs  = options.slice('resize', 'gravity', 'crop')
+    @filename       = options['filename']
 
-    unless @identifier.present?
-      raise Error, "Missing identifier for page file link tag"
-    end
+    return if @identifier.present?
+
+    raise Error, 'Missing identifier for page file link tag'
   end
 
   # @return [Occams::Cms::Fragment]

@@ -16,9 +16,9 @@ class Occams::Content::Tag::Helper < Occams::Content::Tag
     super
     @method_name = params.shift
 
-    unless @method_name.present?
-      raise Error, "Missing method name for helper tag"
-    end
+    return if @method_name.present?
+
+    raise Error, 'Missing method name for helper tag'
   end
 
   # we output erb into rest of the content
@@ -30,11 +30,11 @@ class Occams::Content::Tag::Helper < Occams::Content::Tag
     helper_params = params.map do |p|
       case p
       when Hash
-        format("%<arg>s", arg: p)
+        format('%<arg>s', arg: p)
       else
-        format("%<arg>p", arg: p)
+        format('%<arg>p', arg: p)
       end
-    end.join(",")
+    end.join(',')
     "<%= #{method_name}(#{helper_params}) %>"
   end
 

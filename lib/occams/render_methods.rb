@@ -5,7 +5,7 @@ module Occams::RenderMethods
     # If application controller doesn't have template associated with it
     # CMS will attempt to find one. This is so you don't have to explicitly
     # call render cms_page: '/something'
-    base.rescue_from "ActionView::MissingTemplate" do |e|
+    base.rescue_from 'ActionView::MissingTemplate' do |e|
       render cms_page: request.path
     rescue Occams::MissingPage, Occams::MissingSite
       raise e
@@ -56,7 +56,7 @@ module Occams::RenderMethods
   end
 
   def render_cms_page(path, options = {}, locals = {}, &block)
-    path.gsub!(%r{^/#{@cms_site.path}}, "") if @cms_site.path.present?
+    path.gsub!(%r{^/#{@cms_site.path}}, '') if @cms_site.path.present?
 
     unless (@cms_page = @cms_site.pages.find_by_full_path(path))
       raise Occams::MissingPage, path

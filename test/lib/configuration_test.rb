@@ -1,23 +1,23 @@
 # frozen_string_literal: true
 
-require_relative "../test_helper"
+require_relative '../test_helper'
 
 class ConfigurationTest < ActiveSupport::TestCase
   def test_configuration_presence
     assert config = Occams.configuration
-    assert_equal "Occams CMS Engine", config.cms_title
-    assert_equal "ApplicationController", config.admin_base_controller
-    assert_equal "ApplicationController", config.public_base_controller
-    assert_equal "Occams::AccessControl::AdminAuthentication",  config.admin_auth
-    assert_equal "Occams::AccessControl::AdminAuthorization",   config.admin_authorization
-    assert_equal "Occams::AccessControl::PublicAuthentication", config.public_auth
-    assert_equal "", config.admin_route_redirect
+    assert_equal 'Occams CMS Engine', config.cms_title
+    assert_equal 'ApplicationController', config.admin_base_controller
+    assert_equal 'ApplicationController', config.public_base_controller
+    assert_equal 'Occams::AccessControl::AdminAuthentication',  config.admin_auth
+    assert_equal 'Occams::AccessControl::AdminAuthorization',   config.admin_authorization
+    assert_equal 'Occams::AccessControl::PublicAuthentication', config.public_auth
+    assert_equal '', config.admin_route_redirect
     assert_equal false, config.enable_seeds
-    assert_equal File.expand_path("db/cms_seeds", Rails.root), config.seeds_path
+    assert_equal File.expand_path('db/cms_seeds', Rails.root), config.seeds_path
     assert_equal 25, config.revisions_limit
     assert_equal ({
-      "en" => "English",
-      "es" => "Español"
+      'en' => 'English',
+      'es' => 'Español'
     }), config.locales
     assert_nil config.admin_locale
     assert_nil config.admin_cache_sweeper
@@ -30,8 +30,8 @@ class ConfigurationTest < ActiveSupport::TestCase
   end
 
   def test_initialization_overrides
-    Occams.configuration.cms_title = "New Title"
-    assert_equal "New Title", Occams.configuration.cms_title
+    Occams.configuration.cms_title = 'New Title'
+    assert_equal 'New Title', Occams.configuration.cms_title
   end
 
   def test_version

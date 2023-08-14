@@ -11,11 +11,11 @@ class Occams::Content::Tag::Checkbox < Occams::Content::Tag::Fragment
   def form_field(object_name, view, index)
     name = "#{object_name}[fragments_attributes][#{index}][boolean]"
 
-    input = view.content_tag(:div, class: "form-check mt-2") do
-      view.concat view.hidden_field_tag(name, "0", id: nil)
+    input = view.content_tag(:div, class: 'form-check mt-2') do
+      view.concat view.hidden_field_tag(name, '0', id: nil)
 
-      options = { id: form_field_id, class: "form-check-input position-static" }
-      view.concat view.check_box_tag(name, "1", content.present?, options)
+      options = { id: form_field_id, class: 'form-check-input position-static' }
+      view.concat view.check_box_tag(name, '1', content.present?, options)
     end
 
     yield input

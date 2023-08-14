@@ -15,12 +15,12 @@ class Occams::Content::Tag::Asset < Occams::Content::Tag
 
     options = params.extract_options!
     @identifier = params[0]
-    @type       = options["type"]
-    @as         = options["as"] || "url"
+    @type       = options['type']
+    @as         = options['as'] || 'url'
 
-    unless @identifier.present?
-      raise Error, "Missing layout identifier for asset tag"
-    end
+    return if @identifier.present?
+
+    raise Error, 'Missing layout identifier for asset tag'
   end
 
   def layout
@@ -28,23 +28,23 @@ class Occams::Content::Tag::Asset < Occams::Content::Tag
   end
 
   def content
-    return "" unless layout
+    return '' unless layout
 
-    base = Occams.config.public_cms_path || ""
-    unless base.ends_with?("/")
-      base += "/"
+    base = Occams.config.public_cms_path || ''
+    unless base.ends_with?('/')
+      base += '/'
     end
 
     case @type
-    when "css"
+    when 'css'
       out = "#{base}cms-css/#{context.site.id}/#{@identifier}/#{layout.cache_buster}.css"
-      if @as == "tag"
+      if @as == 'tag'
         out = "<link href='#{out}' media='screen' rel='stylesheet' type='text/css' />"
       end
       out
-    when "js"
+    when 'js'
       out = "#{base}cms-js/#{context.site.id}/#{@identifier}/#{layout.cache_buster}.js"
-      if @as == "tag"
+      if @as == 'tag'
         out = "<script src='#{out}' type='text/javascript'></script>"
       end
       out

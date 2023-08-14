@@ -26,8 +26,8 @@ ocCaM'S, pronounced "AH-kums" is a nod to [Occam's Razor](https://en.wikipedia.o
 
 Referring to the [ComfortableMexicanSofa](https://github.com/comfy/comfortable-mexican-sofa) documentation, substituting 'Occams' for 'ComfortableMexicanSofa' where appropriate.
 
-* Powerful page templating capability using [Content Tags](https://github.com/comfy/comfortable-mexican-sofa/wiki/Docs:-Content-Tags)
-* [Multiple Sites](https://github.com/ocms/comfortable-mexican-sofa/wiki/Docs:-Sites) from a single installation
+* Powerful page templating capability using [Content Tags](https://github.com/avonderluft/occams/wiki/Content-Tags)
+* [Multiple Sites](https://github.com/avonderluft/occams/wiki/Sites) from a single installation
 * Multi-Language Support (i18n) (ca, cs, da, de, en, es, fi, fr, gr, hr, it, ja, nb, nl, pl, pt-BR, ru, sv, tr, uk, zh-CN, zh-TW) and page localization.
 * [CMS Seeds](https://github.com/comfy/comfortable-mexican-sofa/wiki/Docs:-CMS-Seeds) for initial content population
 * [Revision History](https://github.com/comfy/comfortable-mexican-sofa/wiki/Docs:-Revisions) to revert changes
@@ -36,13 +36,13 @@ Referring to the [ComfortableMexicanSofa](https://github.com/comfy/comfortable-m
 ## Dependencies
 
 * File attachments are handled by [ActiveStorage](https://github.com/rails/rails/tree/master/activestorage). Make sure that you can run appropriate migrations by running: `rails active_storage:install` and then `rake db:migrate`
-* Image resizing is done with with [ImageMagick](http://www.imagemagick.org/script/download.php), so make sure it's installed.
+* Image resizing is done on Rails 7 or greater, with[ImageMagick](http://www.imagemagick.org/script/download.php), so make sure it's installed
 * Pagination is handled by [kaminari](https://github.com/amatsuda/kaminari) or [will_paginate](https://github.com/mislav/will_paginate). Please add one of those to your Gemfile.
 
 ## Compatibility
 
-- Install and basic functionality validated on Ruby 3.2.2. with Rails 6.1.7.4 and 7.0.6
-- >= Rails 7 is recommended, since performance is noticably better
+- Install and basic functionality validated on Ruby 3.2.2. with Rails 6.1.7.4 and 7.0.6 and 7.0.6
+- Rails 7 is recommended, since performance is noticably better
 
 ## Installation
 
@@ -89,26 +89,23 @@ After creating a Site, you need to make a Layout. Layout is the template of your
 
 Once you have a layout, you may start creating pages and populating content. It's that easy.
 
-## ToDos
-
-- Linting via current version of rubocop
-- get the original [ComfortableMexicanSofa](https://github.com/comfy/comfortable-mexican-sofa) tests working
-- add documentation to Occams to replace ComfortableMexicanSofa 
-
 ## Documentation
 
-Refer to the [ComfortableMexicanSofa](https://github.com/comfy/comfortable-mexican-sofa) documentation, substituting 'Occams' for 'Comfy' where appropriate.
+[Occams](https://github.com/avonderluft/occams)
 
-For more information on how to use this CMS please refer to the [Wiki](https://github.com/comfy/comfortable-mexican-sofa/wiki). Section that might be of interest is the entry
-on [Content Tags](https://github.com/comfy/comfortable-mexican-sofa/wiki/Docs:-Content-Tags).
-
-[Ocms Demo App](https://github.com/comfy/comfy-demo) also can be used as an
-example of a default Rails app with CMS installed.
+For more information on how to use this CMS please refer to the [Wiki](https://github.com/avonderluft/occams/wiki). Section that might be of interest is the entry
+on [Content Tags](https://github.com/comfy/avonderluft/occams/Content-Tags).
 
 #### Contributing
 
 The Occams repository can run like any Rails application in development. It's as easy to work on as any other Rails app.
 For more detail see [CONTRIBUTING](CONTRIBUTING.md)
+
+#### Testing
+
+- `bin/rails db:migrate`
+- `rake db:test:prepare`
+- `rake test`
 
 #### Acknowledgements
 
@@ -117,4 +114,4 @@ For more detail see [CONTRIBUTING](CONTRIBUTING.md)
 
 ---
 - [ComfortableMexicanSofa](https://github.com/comfy/comfortable-mexican-sofa) Copyright 2010-2019 Oleg Khabarov. Released under the [MIT license](LICENSE)
-- [Occams](https://github.com/avonderluft/occams) follows suit, being also released under the [MIT license](LICENSE)
+- [Occams] Copyright 2023 Andrew vonderLuft (https://github.com/avonderluft/occams) follows suit, being also released under the [MIT license](LICENSE)

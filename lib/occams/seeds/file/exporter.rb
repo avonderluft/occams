@@ -4,7 +4,7 @@ module Occams::Seeds::File
   class Exporter < Occams::Seeds::Exporter
     def initialize(from, to = from)
       super
-      self.path = ::File.join(Occams.config.seeds_path, to, "files/")
+      self.path = ::File.join(Occams.config.seeds_path, to, 'files/')
     end
 
     def export!
@@ -14,19 +14,15 @@ module Occams::Seeds::File
         file_path = File.join(path, file.attachment.filename.to_s)
 
         # writing attributes
-        ::File.open(::File.join(path, "_#{file.attachment.filename}.yml"), "w") do |f|
-          f.write({
-            "label" => file.label,
-            "description" => file.description,
-            "categories" => file.categories.map(&:label)
-          }.to_yaml)
-        end
+        ::File.write(::File.join(path, "_#{file.attachment.filename}.yml"), {
+          'label' => file.label,
+          'description' => file.description,
+          'categories' => file.categories.map(&:label)
+        }.to_yaml)
 
         # writing content
         begin
-          ::File.open(::File.join(path, ::File.basename(file_path)), "wb") do |f|
-            f.write(file.attachment.download)
-          end
+          ::File.binwrite(::File.join(path, ::File.basename(file_path)), file.attachment.download)
         rescue Errno::ENOENT, OpenURI::HTTPError
           message = "[CMS SEEDS] No physical File \t #{file.attachment.filename}"
           Occams.logger.warn(message)

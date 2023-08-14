@@ -8,23 +8,23 @@ module Occams::Seeds::Page
 
     def initialize(from, to = from)
       super
-      self.path = ::File.join(Occams.config.seeds_path, from, "pages/")
+      self.path = ::File.join(Occams.config.seeds_path, from, 'pages/')
     end
 
     def import!
-      import_page(File.join(path, "index/"), nil)
+      import_page(File.join(path, 'index/'), nil)
 
       link_target_pages
 
       # Remove pages not found in seeds
-      site.pages.where("id NOT IN (?)", seed_ids).destroy_all
+      site.pages.where('id NOT IN (?)', seed_ids).destroy_all
     end
 
   private
 
     # Recursive function that will be called for each child page (subfolder)
     def import_page(path, parent)
-      slug = path.split("/").last
+      slug = path.split('/').last
 
       # setting page record
       page =
@@ -36,7 +36,7 @@ module Occams::Seeds::Page
           site.pages.root || site.pages.new(slug: slug)
         end
 
-      content_path = File.join(path, "content.html")
+      content_path = File.join(path, 'content.html')
 
       # If file is newer than page record we'll process it
       if fresh_seed?(page, content_path)
@@ -45,13 +45,13 @@ module Occams::Seeds::Page
         fragments_hash  = parse_file_content(content_path)
 
         # parsing attributes section
-        attributes_yaml = fragments_hash.delete("attributes")
+        attributes_yaml = fragments_hash.delete('attributes')
         attrs           = YAML.safe_load(attributes_yaml)
 
         # applying attributes
-        layout = site.layouts.find_by(identifier: attrs.delete("layout")) || parent.try(:layout)
-        category_ids    = category_names_to_ids(page, attrs.delete("categories"))
-        target_page     = attrs.delete("target_page")
+        layout = site.layouts.find_by(identifier: attrs.delete('layout')) || parent.try(:layout)
+        category_ids    = category_names_to_ids(page, attrs.delete('categories'))
+        target_page     = attrs.delete('target_page')
 
         page.attributes = attrs.merge(
           layout: layout,
@@ -113,11 +113,11 @@ module Occams::Seeds::Page
         fragments_hash  = parse_file_content(file_path)
 
         # parsing attributes section
-        attributes_yaml = fragments_hash.delete("attributes")
+        attributes_yaml = fragments_hash.delete('attributes')
         attrs           = YAML.safe_load(attributes_yaml)
 
         # applying attributes
-        layout = site.layouts.find_by(identifier: attrs.delete("layout")) || page.try(:layout)
+        layout = site.layouts.find_by(identifier: attrs.delete('layout')) || page.try(:layout)
         translation.attributes = attrs.merge(
           layout: layout
         )
@@ -164,11 +164,11 @@ module Occams::Seeds::Page
 
         # based on tag we need to cram content in proper place and proper format
         case tag
-        when "date", "datetime"
+        when 'date', 'datetime'
           frag_hash[:datetime] = frag_content
-        when "checkbox"
+        when 'checkbox'
           frag_hash[:boolean] = frag_content
-        when "file", "files"
+        when 'file', 'files'
           files, file_ids_destroy = files_content(record, identifier, path, frag_content)
           frag_hash[:files]            = files
           frag_hash[:file_ids_destroy] = file_ids_destroy

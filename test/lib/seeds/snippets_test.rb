@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../../test_helper"
+require_relative '../../test_helper'
 
 class SeedsSnippetsTest < ActiveSupport::TestCase
   setup do
@@ -12,13 +12,13 @@ class SeedsSnippetsTest < ActiveSupport::TestCase
     Occams::Cms::Snippet.delete_all
 
     assert_difference -> { Occams::Cms::Snippet.count } do
-      Occams::Seeds::Snippet::Importer.new("sample-site", "default-site").import!
+      Occams::Seeds::Snippet::Importer.new('sample-site', 'default-site').import!
     end
 
     snippet = Occams::Cms::Snippet.last
 
-    assert_equal "default", snippet.identifier
-    assert_equal "Default Seed Snippet", snippet.label
+    assert_equal 'default', snippet.identifier
+    assert_equal 'Default Seed Snippet', snippet.label
     assert_equal "Default Seed Snippet Content\n", snippet.content
 
     assert_equal %w[category_a category_b], snippet.categories.map(&:label)
@@ -26,47 +26,47 @@ class SeedsSnippetsTest < ActiveSupport::TestCase
 
   def test_update
     @snippet.update_column(:updated_at, 10.years.ago)
-    assert_equal "default", @snippet.identifier
-    assert_equal "Default Snippet", @snippet.label
-    assert_equal "snippet content", @snippet.content
+    assert_equal 'default', @snippet.identifier
+    assert_equal 'Default Snippet', @snippet.label
+    assert_equal 'snippet content', @snippet.content
 
     assert_no_difference -> { Occams::Cms::Snippet.count } do
-      Occams::Seeds::Snippet::Importer.new("sample-site", "default-site").import!
+      Occams::Seeds::Snippet::Importer.new('sample-site', 'default-site').import!
     end
 
     @snippet.reload
-    assert_equal "default", @snippet.identifier
-    assert_equal "Default Seed Snippet", @snippet.label
+    assert_equal 'default', @snippet.identifier
+    assert_equal 'Default Seed Snippet', @snippet.label
     assert_equal "Default Seed Snippet Content\n", @snippet.content
   end
 
   def test_delete
     old_snippet = @snippet
-    old_snippet.update_column(:identifier, "old")
+    old_snippet.update_column(:identifier, 'old')
 
     assert_no_difference -> { Occams::Cms::Snippet.count } do
-      Occams::Seeds::Snippet::Importer.new("sample-site", "default-site").import!
+      Occams::Seeds::Snippet::Importer.new('sample-site', 'default-site').import!
     end
 
     assert snippet = Occams::Cms::Snippet.last
-    assert_equal "default", snippet.identifier
-    assert_equal "Default Seed Snippet", snippet.label
+    assert_equal 'default', snippet.identifier
+    assert_equal 'Default Seed Snippet', snippet.label
     assert_equal "Default Seed Snippet Content\n", snippet.content
 
     assert_nil Occams::Cms::Snippet.where(id: old_snippet.id).first
   end
 
   def test_update_ignoring
-    snippet_path = File.join(Occams.config.seeds_path, "sample-site", "snippets")
-    content_path = File.join(snippet_path, "default.html")
+    snippet_path = File.join(Occams.config.seeds_path, 'sample-site', 'snippets')
+    content_path = File.join(snippet_path, 'default.html')
 
     assert @snippet.updated_at >= File.mtime(content_path)
 
-    Occams::Seeds::Snippet::Importer.new("sample-site", "default-site").import!
+    Occams::Seeds::Snippet::Importer.new('sample-site', 'default-site').import!
     @snippet.reload
-    assert_equal "default", @snippet.identifier
-    assert_equal "Default Snippet", @snippet.label
-    assert_equal "snippet content", @snippet.content
+    assert_equal 'default', @snippet.identifier
+    assert_equal 'Default Snippet', @snippet.label
+    assert_equal 'snippet content', @snippet.content
   end
 
   def test_export
@@ -74,10 +74,10 @@ class SeedsSnippetsTest < ActiveSupport::TestCase
       categorized: @snippet
     )
 
-    host_path     = File.join(Occams.config.seeds_path, "test-site")
-    content_path  = File.join(host_path, "snippets/default.html")
+    host_path     = File.join(Occams.config.seeds_path, 'test-site')
+    content_path  = File.join(host_path, 'snippets/default.html')
 
-    Occams::Seeds::Snippet::Exporter.new("default-site", "test-site").export!
+    Occams::Seeds::Snippet::Exporter.new('default-site', 'test-site').export!
 
     assert File.exist?(content_path)
     out = <<~TEXT.chomp
@@ -90,7 +90,7 @@ class SeedsSnippetsTest < ActiveSupport::TestCase
       [content]
       snippet content
     TEXT
-    assert_equal out, IO.read(content_path)
+    assert_equal out, File.read(content_path)
   ensure
     FileUtils.rm_rf(host_path)
   end

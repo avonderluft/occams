@@ -14,9 +14,9 @@ class Occams::Content::Tag::Partial < Occams::Content::Tag
     @locals = params.extract_options!
     @path   = params[0]
 
-    unless @path.present?
-      raise Error, "Missing path for partial tag"
-    end
+    return if @path.present?
+
+    raise Error, 'Missing path for partial tag'
   end
 
   # we output erb into rest of the content
@@ -26,7 +26,7 @@ class Occams::Content::Tag::Partial < Occams::Content::Tag
 
   def content
     format(
-      "<%%= render partial: %<path>p, locals: %<locals>s %%>",
+      '<%%= render partial: %<path>p, locals: %<locals>s %%>',
       path: @path,
       locals: @locals
     )
@@ -35,7 +35,7 @@ class Occams::Content::Tag::Partial < Occams::Content::Tag
   def render
     whitelist = Occams.config.allowed_partials
     if whitelist.is_a?(Array)
-      whitelist.member?(@path) ? content : ""
+      whitelist.member?(@path) ? content : ''
     else
       content
     end

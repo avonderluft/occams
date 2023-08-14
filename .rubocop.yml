@@ -1,5 +1,6 @@
 AllCops:
   TargetRubyVersion: 2.7
+  NewCops: enable
   Exclude:
     - bin/*
     - db/schema.rb
@@ -11,77 +12,59 @@ AllCops:
 Layout/FirstArrayElementIndentation:
   EnforcedStyle: consistent
 
-Layout/MultilineHashBraceLayout:
-  Enabled: false
+Layout/LineLength:
+  Max: 148
 
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
-
-Layout/MultilineOperationIndentation:
-  Enabled: false
-
-Layout/ParameterAlignment:
-  Enabled: false
 
 Layout/AccessModifierIndentation:
   EnforcedStyle: outdent
 
 # -- Metrics -------------------------------------------------------------------
-Metrics/PerceivedComplexity:
+Metrics/AbcSize:
   Enabled: false
 
-Metrics/MethodLength:
-  Enabled: false
-
-Metrics/MethodLength:
-  Enabled: false
-
-Metrics/ParameterLists:
-  Enabled: false
-
-Metrics/LineLength:
-  Max: 120
-
-Metrics/CyclomaticComplexity:
-  Enabled: false
+Metrics/BlockLength:
+  Max: 45
 
 Metrics/ClassLength:
   Enabled: false
 
-Metrics/BlockLength:
+Metrics/CyclomaticComplexity:
+  Max: 12
+
+Metrics/MethodLength:
   Enabled: false
 
-Metrics/AbcSize:
-  Enabled: false
+Metrics/PerceivedComplexity:
+  Max: 12
 
 # -- Naming --------------------------------------------------------------------
 Naming/MethodParameterName:
   Enabled: false
 
 # -- Style ---------------------------------------------------------------------
-Style/StringLiterals:
-  EnforcedStyle: double_quotes
-
-Style/RegexpLiteral:
-  EnforcedStyle: percent_r
-
-Style/Lambda:
-  EnforcedStyle: literal
-
-Style/IfUnlessModifier:
-  Enabled: false
-
-Style/GuardClause:
+Style/ClassAndModuleChildren:
   Enabled: false
 
 Style/Documentation:
   Enabled: false
 
-Style/DateTime:
+Style/DocumentDynamicEvalDefinition:
   Enabled: false
 
-Style/ClassAndModuleChildren:
+Style/IfUnlessModifier:
   Enabled: false
 
-Style/AsciiComments:
+Style/Lambda:
+  EnforcedStyle: literal
+
+Style/OptionalBooleanParameter:
   Enabled: false
+
+Style/SafeNavigation:
+  Enabled: false
+
+Style/RegexpLiteral:
+  EnforcedStyle: percent_r

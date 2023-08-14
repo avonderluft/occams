@@ -14,7 +14,7 @@ module Occams::HasRevisions
       has_many :revisions,
                as: :record,
                dependent: :destroy,
-               class_name: "Occams::Cms::Revision"
+               class_name: 'Occams::Cms::Revision'
 
       before_save :prepare_revision
       after_save  :create_revision
@@ -31,7 +31,7 @@ module Occams::HasRevisions
       return if new_record?
 
       if (respond_to?(:fragments_attributes_changed) && fragments_attributes_changed) ||
-        !(changed & revision_fields).empty?
+         !(changed & revision_fields).empty?
         self.revision_data = revision_fields.each_with_object({}) do |field, c|
           c[field] = send("#{field}_was")
         end
@@ -51,7 +51,7 @@ module Occams::HasRevisions
 
       # blowing away old revisions
       ids = [0] + revisions.order(created_at: :desc).limit(limit).pluck(:id)
-      revisions.where("id NOT IN (?)", ids).destroy_all
+      revisions.where('id NOT IN (?)', ids).destroy_all
     end
 
     # Assigning whatever is found in revision data and attempting to save the object

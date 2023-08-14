@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
-require_relative "../test_helper"
+require_relative '../test_helper'
 
 class AdminCmsHelpersTest < ActionView::TestCase
   include Occams::Admin::CmsHelper
-  include OccamsBootstrapForm::ViewHelper
+  include ComfyBootstrapForm::ViewHelper
 
   setup do
     @file = occams_cms_files(:default)
   end
 
   def test_occams_form_with
-    actual = occams_form_with(url: "/test") do |form|
+    actual = occams_form_with(url: '/test') do |form|
       form.text_field :foo
     end
-    expected = <<-HTML.gsub(%r{^\s+|\n}, "")
+    expected = <<-HTML.gsub(%r{^\s+|\n}, '')
       <form action="/test" accept-charset="UTF-8" method="post">
         <input name="utf8" type="hidden" value="&#x2713;" />
         <div class="form-group row">
@@ -29,37 +29,37 @@ class AdminCmsHelpersTest < ActionView::TestCase
   end
 
   def test_occams_admin_partial
-    actual = occams_admin_partial("path/to/partial", foo: "bar")
+    actual = occams_admin_partial('path/to/partial', foo: 'bar')
     assert_nil actual
 
     Occams.config.reveal_cms_partials = true
-    actual = occams_admin_partial("path/to/partial", foo: "bar")
+    actual = occams_admin_partial('path/to/partial', foo: 'bar')
     expected = '<div class="occams-admin-partial">path/to/partial</div>'
     assert_equal expected, actual
   end
 
   def test_cms_page_file_link_tag
     actual = cms_page_file_link_tag(
-      fragment_id: "test",
+      fragment_id: 'test',
       attachment: @file.attachment,
       multiple: false
     )
-    assert_equal "{{ cms:page_file_link test, as: image }}", actual
+    assert_equal '{{ cms:page_file_link test, as: image }}', actual
   end
 
   def test_cms_page_file_link_tag_non_image
-    @file.attachment.blob.update_column(:content_type, "application/pdf")
+    @file.attachment.blob.update_column(:content_type, 'application/pdf')
     actual = cms_page_file_link_tag(
-      fragment_id: "test",
+      fragment_id: 'test',
       attachment: @file.attachment,
       multiple: false
     )
-    assert_equal "{{ cms:page_file_link test }}", actual
+    assert_equal '{{ cms:page_file_link test }}', actual
   end
 
   def test_cms_page_file_link_multiple
     actual = cms_page_file_link_tag(
-      fragment_id: "test",
+      fragment_id: 'test',
       attachment: @file.attachment,
       multiple: true
     )
@@ -68,12 +68,12 @@ class AdminCmsHelpersTest < ActionView::TestCase
 
   def test_cms_file_link_tag
     actual = cms_file_link_tag(@file)
-    assert_equal "{{ cms:file_link 593363170, as: image }}", actual
+    assert_equal '{{ cms:file_link 593363170, as: image }}', actual
   end
 
   def test_cms_file_link_tag_non_image
-    @file.attachment.blob.update_column(:content_type, "application/pdf")
+    @file.attachment.blob.update_column(:content_type, 'application/pdf')
     actual = cms_file_link_tag(@file)
-    assert_equal "{{ cms:file_link 593363170 }}", actual
+    assert_equal '{{ cms:file_link 593363170 }}', actual
   end
 end

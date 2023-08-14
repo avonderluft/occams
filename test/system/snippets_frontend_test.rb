@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../test_helper"
+require_relative '../test_helper'
 
 class SnippetsFrontendTest < ApplicationSystemTestCase
   setup do
@@ -9,7 +9,7 @@ class SnippetsFrontendTest < ApplicationSystemTestCase
 
   def test_new_identifier
     visit_p new_occams_admin_cms_site_snippet_path(@site)
-    fill_in "Label", with: "Test Snippet"
-    assert_equal "test-snippet", find_field("Identifier").value
+    fill_in 'Label', with: 'Test Snippet'
+    assert_equal 'test-snippet', find_field('Identifier').value
   end
 end

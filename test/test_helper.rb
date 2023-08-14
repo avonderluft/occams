@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-ENV["RAILS_ENV"] = "test"
+ENV['RAILS_ENV'] = 'test'
 
 # In CI envoronment I don't want to send coverage report for system tests that
 # obviously don't cover everything 100%
-unless ENV["SKIP_COV"]
-  require "simplecov"
-  require "coveralls"
+unless ENV['SKIP_COV']
+  require 'simplecov'
+  require 'coveralls'
   SimpleCov.formatter = Coveralls::SimpleCov::Formatter
   SimpleCov.start do
-    add_filter "lib/tasks"
-    add_filter "lib/generators"
-    add_filter "lib/occams/engine.rb "
+    add_filter 'lib/tasks'
+    add_filter 'lib/generators'
+    add_filter 'lib/occams/engine.rb '
   end
 end
 
-require_relative "../config/environment"
+require_relative '../config/environment'
 
-require "rails/test_help"
-require "rails/generators"
-require "mocha/setup"
+require 'rails/test_help'
+require 'rails/generators'
+require 'minitest/unit'
+require 'mocha/minitest'
 
 Rails.backtrace_cleaner.remove_silencers!
 
@@ -34,18 +35,18 @@ class ActiveSupport::TestCase
   # resetting default configuration
   def reset_config
     Occams.configure do |config|
-      config.cms_title            = "Occams CMS Engine"
-      config.admin_auth           = "Occams::AccessControl::AdminAuthentication"
-      config.admin_authorization  = "Occams::AccessControl::AdminAuthorization"
-      config.public_auth          = "Occams::AccessControl::PublicAuthentication"
-      config.public_authorization = "Occams::AccessControl::PublicAuthorization"
-      config.admin_route_redirect = ""
+      config.cms_title            = 'Occams CMS Engine'
+      config.admin_auth           = 'Occams::AccessControl::AdminAuthentication'
+      config.admin_authorization  = 'Occams::AccessControl::AdminAuthorization'
+      config.public_auth          = 'Occams::AccessControl::PublicAuthentication'
+      config.public_authorization = 'Occams::AccessControl::PublicAuthorization'
+      config.admin_route_redirect = ''
       config.enable_seeds         = false
-      config.seeds_path           = File.expand_path("db/cms_seeds", Rails.root)
+      config.seeds_path           = File.expand_path('db/cms_seeds', Rails.root)
       config.revisions_limit      = 25
       config.locales              = {
-        "en" => "English",
-        "es" => "Español"
+        'en' => 'English',
+        'es' => 'Español'
       }
       config.admin_locale         = nil
       config.admin_cache_sweeper  = nil
@@ -58,8 +59,8 @@ class ActiveSupport::TestCase
       config.public_cms_path      = nil
       config.page_to_json_options = { methods: [:content], except: [:content_cache] }
     end
-    Occams::AccessControl::AdminAuthentication.username = "username"
-    Occams::AccessControl::AdminAuthentication.password = "password"
+    Occams::AccessControl::AdminAuthentication.username = 'username'
+    Occams::AccessControl::AdminAuthentication.password = 'password'
   end
 
   def reset_locale
@@ -94,7 +95,7 @@ class ActiveSupport::TestCase
       end
       assert_equal error_message, exception_raised.to_s if error_message
     else
-      flunk "Exception was not raised"
+      flunk 'Exception was not raised'
     end
   end
 
@@ -118,7 +119,7 @@ class ActionDispatch::IntegrationTest
   #   r :get, '/cms-admin/pages'
   def r(method, path, options = {})
     headers = options[:headers] || {}
-    headers["HTTP_AUTHORIZATION"] = ActionController::HttpAuthentication::Basic.encode_credentials(
+    headers['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(
       Occams::AccessControl::AdminAuthentication.username,
       Occams::AccessControl::AdminAuthentication.password
     )
@@ -140,8 +141,8 @@ class ActionView::TestCase
     attr_accessor :host_with_port, :fullpath
 
     def initialize
-      @host_with_port = "www.example.com"
-      @fullpath       = "/"
+      @host_with_port = 'www.example.com'
+      @fullpath       = '/'
     end
   end
 
@@ -190,34 +191,30 @@ class Rails::Generators::TestCase
   setup :prepare_destination,
         :prepare_files
 
-  destination File.expand_path("../tmp", File.dirname(__FILE__))
+  destination File.expand_path('../tmp', File.dirname(__FILE__))
 
   def prepare_files
-    config_path = File.join(destination_root, "config")
-    routes_path = File.join(config_path, "routes.rb")
-    app_path    = File.join(config_path, "application.rb")
+    config_path = File.join(destination_root, 'config')
+    routes_path = File.join(config_path, 'routes.rb')
+    app_path    = File.join(config_path, 'application.rb')
     FileUtils.mkdir_p(config_path)
     FileUtils.touch(routes_path)
-    File.open(routes_path, "w") do |f|
-      f.write <<~RUBY
-        Test::Application.routes.draw do
+    File.write(routes_path, <<~RUBY)
+      Test::Application.routes.draw do
+      end
+    RUBY
+    File.write(app_path, <<~RUBY)
+      module TestApp
+        class Application < Rails::Application
         end
-      RUBY
-    end
-    File.open(app_path, "w") do |f|
-      f.write <<~RUBY
-        module TestApp
-          class Application < Rails::Application
-          end
-        end
-      RUBY
-    end
+      end
+    RUBY
   end
 
   def read_file(filename)
     File.read(
       File.join(
-        File.expand_path("fixtures/generators", File.dirname(__FILE__)),
+        File.expand_path('fixtures/generators', File.dirname(__FILE__)),
         filename
       )
     )
@@ -242,6 +239,6 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
 
   def assert_no_javascript_errors
     assert_empty page.driver.browser.manage.logs.get(:browser)
-      .select { |e| e.level == "SEVERE" && e.message.present? }.map(&:message).to_a
+      .select { |e| e.level == 'SEVERE' && e.message.present? }.map(&:message).to_a
   end
 end

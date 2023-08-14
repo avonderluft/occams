@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Occams::Cms::Layout < ActiveRecord::Base
-  self.table_name = "occams_cms_layouts"
+  self.table_name = 'occams_cms_layouts'
 
   cms_acts_as_tree
   cms_has_revisions_for :content, :css, :js
@@ -52,8 +52,8 @@ class Occams::Cms::Layout < ActiveRecord::Base
   def self.app_layouts_for_select(view_paths)
     view_paths.map(&:to_s).select { |path| path.start_with?(Rails.root.to_s) }.flat_map do |full_path|
       Dir.glob("#{full_path}/layouts/**/*.html.*").collect do |filename|
-        filename.gsub!("#{full_path}/layouts/", "")
-        filename.split("/").last[0...1] == "_" ? nil : filename.split(".").first
+        filename.gsub!("#{full_path}/layouts/", '')
+        filename.split('/').last[0...1] == '_' ? nil : filename.split('.').first
       end.compact.sort
     end.compact.uniq.sort
   end
@@ -74,8 +74,8 @@ class Occams::Cms::Layout < ActiveRecord::Base
       parent_tokens = parent.content_tokens
       replacement_position = parent_tokens.index do |n|
         n.is_a?(Hash) &&
-        fragment_tags.member?(n[:tag_class]) &&
-        n[:tag_params].split(%r{\s}).first == "content"
+          fragment_tags.member?(n[:tag_class]) &&
+          n[:tag_params].split(%r{\s}).first == 'content'
       end
 
       if replacement_position

@@ -11,9 +11,9 @@ class Occams::Content::Tag::Snippet < Occams::Content::Tag
     super
     @identifier = params[0]
 
-    unless @identifier.present?
-      raise Error, "Missing identifier for snippet tag"
-    end
+    return if @identifier.present?
+
+    raise Error, 'Missing identifier for snippet tag'
   end
 
   def content

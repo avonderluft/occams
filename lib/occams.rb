@@ -2,33 +2,33 @@
 
 # Loading engine only if this is not a standalone installation
 unless defined? Occams::Application
-  require_relative "occams/engine"
+  require_relative 'occams/engine'
 end
 
-require_relative "occams/version"
-require_relative "occams/error"
-require_relative "occams/configuration"
-require_relative "occams/routing"
-require_relative "occams/access_control/admin_authentication"
-require_relative "occams/access_control/admin_authorization"
-require_relative "occams/access_control/public_authentication"
-require_relative "occams/access_control/public_authorization"
-require_relative "occams/render_methods"
-require_relative "occams/view_hooks"
-require_relative "occams/form_builder"
-require_relative "occams/seeds"
-require_relative "occams/seeds/layout/importer"
-require_relative "occams/seeds/layout/exporter"
-require_relative "occams/seeds/page/importer"
-require_relative "occams/seeds/page/exporter"
-require_relative "occams/seeds/snippet/importer"
-require_relative "occams/seeds/snippet/exporter"
-require_relative "occams/seeds/file/importer"
-require_relative "occams/seeds/file/exporter"
-require_relative "occams/extensions/acts_as_tree"
-require_relative "occams/extensions/has_revisions"
+require_relative 'occams/version'
+require_relative 'occams/error'
+require_relative 'occams/configuration'
+require_relative 'occams/routing'
+require_relative 'occams/access_control/admin_authentication'
+require_relative 'occams/access_control/admin_authorization'
+require_relative 'occams/access_control/public_authentication'
+require_relative 'occams/access_control/public_authorization'
+require_relative 'occams/render_methods'
+require_relative 'occams/view_hooks'
+require_relative 'occams/form_builder'
+require_relative 'occams/seeds'
+require_relative 'occams/seeds/layout/importer'
+require_relative 'occams/seeds/layout/exporter'
+require_relative 'occams/seeds/page/importer'
+require_relative 'occams/seeds/page/exporter'
+require_relative 'occams/seeds/snippet/importer'
+require_relative 'occams/seeds/snippet/exporter'
+require_relative 'occams/seeds/file/importer'
+require_relative 'occams/seeds/file/exporter'
+require_relative 'occams/extensions/acts_as_tree'
+require_relative 'occams/extensions/has_revisions'
 
-require_relative "occams/content"
+require_relative 'occams/content'
 
 module Occams
   class << self

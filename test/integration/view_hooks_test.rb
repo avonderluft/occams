@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../test_helper"
+require_relative '../test_helper'
 
 class ViewHooksIntegrationTest < ActionDispatch::IntegrationTest
   def teardown
@@ -8,8 +8,8 @@ class ViewHooksIntegrationTest < ActionDispatch::IntegrationTest
   end
 
   def test_hooks_rendering
-    Occams::Admin::Cms::SitesController.append_view_path(File.expand_path("../fixtures/views", File.dirname(__FILE__)))
-    Occams::ViewHooks.add(:navigation, "/nav_hook")
+    Occams::Admin::Cms::SitesController.append_view_path(File.expand_path('../fixtures/views', File.dirname(__FILE__)))
+    Occams::ViewHooks.add(:navigation, '/nav_hook')
 
     r :get, occams_admin_cms_sites_path
     assert_response :success
@@ -17,9 +17,9 @@ class ViewHooksIntegrationTest < ActionDispatch::IntegrationTest
   end
 
   def test_hooks_rendering_with_multiples
-    Occams::Admin::Cms::SitesController.append_view_path(File.expand_path("../fixtures/views", File.dirname(__FILE__)))
-    Occams::ViewHooks.add(:navigation, "/nav_hook")
-    Occams::ViewHooks.add(:navigation, "/nav_hook_2")
+    Occams::Admin::Cms::SitesController.append_view_path(File.expand_path('../fixtures/views', File.dirname(__FILE__)))
+    Occams::ViewHooks.add(:navigation, '/nav_hook')
+    Occams::ViewHooks.add(:navigation, '/nav_hook_2')
 
     r :get, occams_admin_cms_sites_path
     assert_response :success
@@ -28,9 +28,9 @@ class ViewHooksIntegrationTest < ActionDispatch::IntegrationTest
   end
 
   def test_hooks_rendering_with_proper_order
-    Occams::Admin::Cms::SitesController.append_view_path(File.expand_path("../fixtures/views", File.dirname(__FILE__)))
-    Occams::ViewHooks.add(:navigation, "/nav_hook_2", 0)
-    Occams::ViewHooks.add(:navigation, "/nav_hook", 1)
+    Occams::Admin::Cms::SitesController.append_view_path(File.expand_path('../fixtures/views', File.dirname(__FILE__)))
+    Occams::ViewHooks.add(:navigation, '/nav_hook_2', 0)
+    Occams::ViewHooks.add(:navigation, '/nav_hook', 1)
 
     r :get, occams_admin_cms_sites_path
     assert_response :success

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Occams::Cms::Snippet < ActiveRecord::Base
-  self.table_name = "occams_cms_snippets"
+  self.table_name = 'occams_cms_snippets'
 
   include Occams::Cms::WithCategories
 

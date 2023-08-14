@@ -19,25 +19,25 @@ class Occams::Admin::Cms::TranslationsController < Occams::Admin::Cms::BaseContr
 
   def create
     @translation.save!
-    flash[:success] = I18n.t("occams.admin.cms.translations.created")
+    flash[:success] = I18n.t('occams.admin.cms.translations.created')
     redirect_to action: :edit, id: @translation
   rescue ActiveRecord::RecordInvalid
-    flash.now[:danger] = I18n.t("occams.admin.cms.translations.creation_failure")
+    flash.now[:danger] = I18n.t('occams.admin.cms.translations.creation_failure')
     render action: :new
   end
 
   def update
     @translation.update!(translation_params)
-    flash[:success] = I18n.t("occams.admin.cms.translations.updated")
+    flash[:success] = I18n.t('occams.admin.cms.translations.updated')
     redirect_to action: :edit, id: @translation
   rescue ActiveRecord::RecordInvalid
-    flash.now[:danger] = I18n.t("occams.admin.cms.translations.update_failure")
+    flash.now[:danger] = I18n.t('occams.admin.cms.translations.update_failure')
     render action: :edit
   end
 
   def destroy
     @translation.destroy
-    flash[:success] = I18n.t("occams.admin.cms.translations.deleted")
+    flash[:success] = I18n.t('occams.admin.cms.translations.deleted')
     redirect_to edit_occams_admin_cms_site_page_path(@site, @page)
   end
 
@@ -46,7 +46,7 @@ class Occams::Admin::Cms::TranslationsController < Occams::Admin::Cms::BaseContr
     @translation.layout = @site.layouts.find_by(id: params[:layout_id])
 
     render(
-      partial: "occams/admin/cms/fragments/form_fragments",
+      partial: 'occams/admin/cms/fragments/form_fragments',
       locals: { record: @translation, scope: :translation },
       layout: false
     )
@@ -63,7 +63,7 @@ private
   def load_page
     @page = @site.pages.find(params[:page_id])
   rescue ActiveRecord::RecordNotFound
-    flash[:danger] = I18n.t("occams.admin.cms.pages.not_found")
+    flash[:danger] = I18n.t('occams.admin.cms.pages.not_found')
     redirect_to occams_admin_cms_site_pages_path(@site)
   end
 
@@ -76,7 +76,7 @@ private
     @translation = @page.translations.find(params[:id])
     @translation.attributes = translation_params
   rescue ActiveRecord::RecordNotFound
-    flash[:danger] = I18n.t("occams.admin.cms.translations.not_found")
+    flash[:danger] = I18n.t('occams.admin.cms.translations.not_found')
     redirect_to edit_occams_admin_cms_site_page_path(@site, @page)
   end
 
@@ -85,21 +85,21 @@ private
   end
 
   def preview_translation
-    if params[:preview]
-      layout = @translation.layout.app_layout.blank? ? false : @translation.layout.app_layout
-      @cms_site   = @page.site
-      @cms_layout = @translation.layout
-      @cms_page   = @page
+    return unless params[:preview]
 
-      # Make sure to use the site locale to render the preview becaue it might
-      # be different from the admin locale.
-      I18n.locale = @translation.locale
+    layout = @translation.layout.app_layout.blank? ? false : @translation.layout.app_layout
+    @cms_site   = @page.site
+    @cms_layout = @translation.layout
+    @cms_page   = @page
 
-      # Chrome chokes on content with iframes. Issue #434
-      response.headers["X-XSS-Protection"] = "0"
+    # Make sure to use the site locale to render the preview becaue it might
+    # be different from the admin locale.
+    I18n.locale = @translation.locale
 
-      # raise
-      render inline: @translation.render, layout: layout, content_type: "text/html"
-    end
+    # Chrome chokes on content with iframes. Issue #434
+    response.headers['X-XSS-Protection'] = '0'
+
+    # raise
+    render inline: @translation.render, layout: layout, content_type: 'text/html'
   end
 end

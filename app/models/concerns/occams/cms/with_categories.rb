@@ -6,11 +6,11 @@ module Occams::Cms::WithCategories
   included do
     has_many :categorizations,
              as: :categorized,
-             class_name: "Occams::Cms::Categorization",
+             class_name: 'Occams::Cms::Categorization',
              dependent: :destroy
     has_many :categories,
              through: :categorizations,
-             class_name: "Occams::Cms::Category"
+             class_name: 'Occams::Cms::Category'
 
     attr_writer :category_ids
 
@@ -20,7 +20,7 @@ module Occams::Cms::WithCategories
       if (categories = [categories].flatten.compact).present?
         distinct
           .joins(categorizations: :category)
-          .where("occams_cms_categories.label" => categories)
+          .where('occams_cms_categories.label' => categories)
       end
     }
   end

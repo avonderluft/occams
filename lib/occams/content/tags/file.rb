@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "./mixins/file_content"
+require_relative 'mixins/file_content'
 
 # File tag allows attaching of file to the page. This controls how files are
 # uploaded and then displayed on the page. Example tag:
@@ -25,20 +25,20 @@ class Occams::Content::Tag::File < Occams::Content::Tag::Fragment
   # @param (see Occams::Content::Tag#initialize)
   def initialize(context:, params: [], source: nil)
     super
-    @as             = options["as"] || "url"
-    @label          = options["label"]
-    @class          = options["class"]
-    @variant_attrs  = options.slice("resize", "gravity", "crop")
+    @as             = options['as'] || 'url'
+    @label          = options['label']
+    @class          = options['class']
+    @variant_attrs  = options.slice('resize', 'gravity', 'crop')
   end
 
   def form_field(object_name, view, index)
     name    = "#{object_name}[fragments_attributes][#{index}][files]"
-    input   = view.send(:file_field_tag, name, id: form_field_id, class: "form-control")
+    input   = view.send(:file_field_tag, name, id: form_field_id, class: 'form-control')
 
     attachments_partial =
       if fragment.attachments
         view.render(
-          partial: "occams/admin/cms/fragments/form_fragment_attachments",
+          partial: 'occams/admin/cms/fragments/form_fragment_attachments',
           locals: {
             object_name: object_name,
             index: index,
@@ -49,7 +49,7 @@ class Occams::Content::Tag::File < Occams::Content::Tag::Fragment
         )
       end
 
-    yield view.safe_join([input, attachments_partial], "")
+    yield view.safe_join([input, attachments_partial], '')
   end
 
 protected
