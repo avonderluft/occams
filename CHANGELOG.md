@@ -3,8 +3,10 @@
 ## v1.0.2 - 
 
 - Fixed image rendering which rubocop broke in v1.0.1
+- Show unpublished pages in Rails development mode
+- Show Rails ENV at foot of Admin menu, along with versions of Occams, Rails and Ruby
 - Updated documentation at [Occams Wiki](https://github.com/avonderluft/occams/wiki) 
-- More rubocop linting
+- Comprehensive rubocop linting
 
 ## v1.0.1 - 8/7/2023
 
