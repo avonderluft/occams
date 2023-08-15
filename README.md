@@ -41,7 +41,7 @@ Referring to the [ComfortableMexicanSofa](https://github.com/comfy/comfortable-m
 
 ## Compatibility
 
-- Install and basic functionality validated on Ruby 3.2.2. with Rails 6.1.7.4 and 7.0.6 and 7.0.6
+- Install and basic functionality validated on Ruby 3.2.2. with Rails 6.1.7.4 and 7.0.6+
 - Rails 7 is recommended, since performance is noticably better
 
 ## Installation
@@ -114,4 +114,4 @@ For more detail see [CONTRIBUTING](CONTRIBUTING.md)
 
 ---
 - [ComfortableMexicanSofa](https://github.com/comfy/comfortable-mexican-sofa) Copyright 2010-2019 Oleg Khabarov. Released under the [MIT license](LICENSE)
-- [Occams] Copyright 2023 Andrew vonderLuft (https://github.com/avonderluft/occams) follows suit, being also released under the [MIT license](LICENSE)
+- [Occams](https://github.com/avonderluft/occams) Copyright 2023 Andrew vonderLuft, following suit, also released under the [MIT license](LICENSE)

@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'kramdown',             '~> 2.4', '>= 2.4.0'
   s.add_runtime_dependency 'mimemagic',            '~> 0.4', '>= 0.4.3'
   s.add_runtime_dependency 'mini_magick',          '~> 4.12', '>= 4.12.0'
-  s.add_dependency 'rails',                        '>= 6.1.7.4'
+  s.add_dependency 'rails',                        '>= 6.1.0'
   s.add_runtime_dependency 'rails-i18n',           '>= 6.0.0'
   s.add_runtime_dependency 'sassc-rails',          '~> 2.1', '>= 2.1.2'
 end
