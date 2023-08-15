@@ -24,6 +24,7 @@ require_relative 'content/tags/files'
 
 require_relative 'content/tags/snippet'
 require_relative 'content/tags/asset'
+require_relative 'content/tags/audio'
 require_relative 'content/tags/file_link'
 require_relative 'content/tags/page_file_link'
 require_relative 'content/tags/helper'

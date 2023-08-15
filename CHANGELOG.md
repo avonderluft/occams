@@ -1,6 +1,11 @@
 # Changelog
 
-## v1.0.2 - 
+## v1.0.3 - 8/15/2023
+
+- Added a [cms:audio tag](https://github.com/avonderluft/occams/wiki/Content-Tags#audio) for an embedded audio player
+- Some formatting of admin menu footer
+
+## v1.0.2 - 8/14/2023
 
 - Fixed image rendering which rubocop broke in v1.0.1
 - Show unpublished pages in Rails development mode

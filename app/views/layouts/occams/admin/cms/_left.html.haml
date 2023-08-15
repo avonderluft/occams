@@ -41,4 +41,6 @@
   %span.version= Rails::version
   = link_to 'Ruby', 'https://www.ruby-lang.org', target: '_blank'
   %span.version= RUBY_VERSION
-  = Rails.env
+  %br
+  = Rails.env.upcase
+  

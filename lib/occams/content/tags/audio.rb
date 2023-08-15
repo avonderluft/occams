@@ -1,0 +1,41 @@
+# frozen_string_literal: true
+
+# Tag for injecting HTML5 audio player. Example tag:
+#   {{ cms:audio "path/to/audio", style: "height: 22px; width: 80%" }}
+# This expands into:
+#   <audio controls src="path/to/audio"></audio>
+# To customize your player style, add a 'audioplayer' class to your CSS, e.g
+# .audioplayer
+#   border-radius: 6px
+#   height: 22px
+#   width: 60%
+#   margin: 2px 0 2px 8px
+#   padding: 0
+# and/or pass in style overrides with the 'style' parameter
+
+class Occams::Content::Tag::Audio < Occams::Content::Tag
+  attr_reader :path, :locals
+
+  def initialize(context:, params: [], source: nil)
+    super
+    options = params.extract_options!
+    @path   = params[0]
+    @style  = options['style']
+
+    return if @path.present?
+
+    raise Error, 'Missing path for audio tag'
+  end
+
+  def content
+    format(
+      '<style>.audioplayer {%<style>s}</style><audio controls class="audioplayer" src=%<path>p></audio>',
+      path: @path,
+      style: @style
+    )
+  end
+end
+
+Occams::Content::Renderer.register_tag(
+  :audio, Occams::Content::Tag::Audio
+)
