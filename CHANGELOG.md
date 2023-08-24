@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.0.4 - 8/x/2023
+
+
 ## v1.0.3 - 8/15/2023
 
 - Added a [cms:audio tag](https://github.com/avonderluft/occams/wiki/Content-Tags#audio) for an embedded audio player

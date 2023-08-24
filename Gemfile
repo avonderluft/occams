@@ -26,5 +26,6 @@ group :test do
   gem 'diffy',                    '~> 3.4.2'
   gem 'equivalent-xml',           '~> 0.6.0'
   gem 'mocha',                    '~> 2.1.0', require: false
+  gem 'pry'
   gem 'rails-controller-testing', '~> 1.0.5'
 end
