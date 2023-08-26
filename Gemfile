@@ -18,7 +18,7 @@ end
 
 group :development do
   gem 'listen',       '~> 3.8.0'
-  gem 'web-console',  '~> 3.5.1'
+  gem 'web-console',  '~> 4.2'
 end
 
 group :test do
@@ -26,6 +26,5 @@ group :test do
   gem 'diffy',                    '~> 3.4.2'
   gem 'equivalent-xml',           '~> 0.6.0'
   gem 'mocha',                    '~> 2.1.0', require: false
-  gem 'pry'
   gem 'rails-controller-testing', '~> 1.0.5'
 end

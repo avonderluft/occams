@@ -5,13 +5,14 @@
 # This expands into:
 #   <audio controls src="path/to/audio"></audio>
 # To customize your player style, add a 'audioplayer' class to your CSS, e.g
-# .audioplayer
-#   border-radius: 6px
-#   height: 22px
-#   width: 60%
-#   margin: 2px 0 2px 8px
-#   padding: 0
-# and/or pass in style overrides with the 'style' parameter
+# .audioplayer {
+#   border-radius: 6px;
+#   height: 22px;
+#   width: 60%;
+#   margin: 2px 0 2px 8px;
+#   padding: 0;
+# }
+# and/or pass in style overrides with the 'style' parameter, as above
 
 class Occams::Content::Tag::Audio < Occams::Content::Tag
   attr_reader :path, :locals
@@ -20,7 +21,9 @@ class Occams::Content::Tag::Audio < Occams::Content::Tag
     super
     options = params.extract_options!
     @path   = params[0]
-    @style  = options['style']
+    @style = ''
+    @style = "<style>.audioplayer {#{options['style']}}</style>" if options['style']
+    @style = options['style']
 
     return if @path.present?
 
@@ -28,11 +31,7 @@ class Occams::Content::Tag::Audio < Occams::Content::Tag
   end
 
   def content
-    format(
-      '<style>.audioplayer {%<style>s}</style><audio controls class="audioplayer" src=%<path>p></audio>',
-      path: @path,
-      style: @style
-    )
+    format("#{@style}<audio controls class=\"audioplayer\" src=#{@path}></audio>")
   end
 end
 

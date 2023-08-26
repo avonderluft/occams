@@ -38,7 +38,7 @@ Metrics/MethodLength:
   Enabled: false
 
 Metrics/PerceivedComplexity:
-  Max: 12
+  Max: 15
 
 # -- Naming --------------------------------------------------------------------
 Naming/MethodParameterName:
