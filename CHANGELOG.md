@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.4 - 8/26/2023
+
+- Added [cms:breadcrumbs Nav tag](https://github.com/avonderluft/occams/wiki/Content-Tags#breadcrumbs)
+- Added [cms:siblings Nav tag](https://github.com/avonderluft/occams/wiki/Content-Tags#siblings)
+- Updated [wiki documentation](https://github.com/avonderluft/occams/wiki)
+
 ## v1.0.3 - 8/15/2023
 
 - Added a [cms:audio tag](https://github.com/avonderluft/occams/wiki/Content-Tags#audio) for an embedded audio player

@@ -29,9 +29,9 @@ Referring to the [ComfortableMexicanSofa](https://github.com/comfy/comfortable-m
 * Powerful page templating capability using [Content Tags](https://github.com/avonderluft/occams/wiki/Content-Tags)
 * [Multiple Sites](https://github.com/avonderluft/occams/wiki/Sites) from a single installation
 * Multi-Language Support (i18n) (ca, cs, da, de, en, es, fi, fr, gr, hr, it, ja, nb, nl, pl, pt-BR, ru, sv, tr, uk, zh-CN, zh-TW) and page localization.
-* [CMS Seeds](https://github.com/comfy/comfortable-mexican-sofa/wiki/Docs:-CMS-Seeds) for initial content population
-* [Revision History](https://github.com/comfy/comfortable-mexican-sofa/wiki/Docs:-Revisions) to revert changes
-* [Extendable Admin Area](https://github.com/comfy/comfortable-mexican-sofa/wiki/HowTo:-Reusing-Admin-Area) built with [Bootstrap 4](http://getbootstrap.com) (responsive design). Using [CodeMirror](http://codemirror.net) for HTML and Markdown highlighing and [Redactor](http://imperavi.com/redactor) as the WYSIWYG editor.
+* [CMS Seeds](https://github.com/avonderluft/occams/wiki/CMS-Seeds) for initial content population
+* [Revision History](https://github.com/avonderluft/occams/wiki/Revisions) to revert changes
+* [Extendable Admin Area](https://github.com/avonderluft/occams/wiki/HowTo:-Reusing-Admin-Area) built with [Bootstrap 4](http://getbootstrap.com) (responsive design). Using [CodeMirror](http://codemirror.net) for HTML and Markdown highlighing and [Redactor](http://imperavi.com/redactor) as the WYSIWYG editor.
 
 ## Dependencies
 

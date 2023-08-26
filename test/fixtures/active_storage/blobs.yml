@@ -2,6 +2,7 @@ default:
   key: 123abc
   filename: default.jpg
   content_type: image/jpg
+  service_name: local
   byte_size: 12345
   checksum: 123abc
 
@@ -9,5 +10,6 @@ fragment:
   key: 456def
   filename: fragment.jpg
   content_type: image/jpg
+  service_name: local
   byte_size: 12345
   checksum: 456def
