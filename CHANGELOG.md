@@ -4,6 +4,7 @@
 
 - Added [cms:breadcrumbs Nav tag](https://github.com/avonderluft/occams/wiki/Content-Tags#breadcrumbs)
 - Added [cms:siblings Nav tag](https://github.com/avonderluft/occams/wiki/Content-Tags#siblings)
+- Updated [wiki documentation](https://github.com/avonderluft/occams/wiki)
 
 ## v1.0.3 - 8/15/2023
 
