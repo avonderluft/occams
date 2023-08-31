@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.5 - 8/31/2023
+
+- All tests now green on Rails 6.1 and 7.0, each tested with rubies 2.7.8, 3.1.4 and 3.2.2.
+- Tests added for new tags
+- TODO: set up CI pipeline
+
 ## v1.0.4 - 8/26/2023
 
 - Added [cms:breadcrumbs Nav tag](https://github.com/avonderluft/occams/wiki/Content-Tags#breadcrumbs)
