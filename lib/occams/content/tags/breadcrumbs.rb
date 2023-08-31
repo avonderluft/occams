@@ -16,13 +16,13 @@
 # and/or pass in style overrides with the 'style' parameter, as above
 
 class Occams::Content::Tag::Breadcrumbs < Occams::Content::Tag
-  attr_reader :path, :locals
+  attr_reader :links, :style, :locals
 
   def initialize(context:, params: [], source: nil)
     super
-    options = params.extract_options!
+    @locals = params.extract_options!
     @style = ''
-    @style = "<style>#breadcrumbs {#{options['style']}}</style>" if options['style']
+    @style = "<style>#breadcrumbs {#{@locals['style']}}</style>" if @locals['style']
 
     @links = '<div id="breadcrumbs">'
     context.ancestors.reverse.each do |a|

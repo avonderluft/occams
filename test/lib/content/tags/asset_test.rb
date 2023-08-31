@@ -29,7 +29,7 @@ class ContentTagsAssetTest < ActiveSupport::TestCase
 
   def test_init_without_identifier
     message = 'Missing layout identifier for asset tag'
-    assert_exception_raised Occams::Content::Tag::Error, message do
+    assert_raises Occams::Content::Tag::Error, message do
       Occams::Content::Tag::Asset.new(context: @page)
     end
   end

@@ -13,7 +13,7 @@ class ContentTagsTemplateTest < ActiveSupport::TestCase
 
   def test_init_without_path
     message = 'Missing template path for template tag'
-    assert_exception_raised Occams::Content::Tag::Error, message do
+    assert_raises Occams::Content::Tag::Error, message do
       Occams::Content::Tag::Template.new(context: @page)
     end
   end

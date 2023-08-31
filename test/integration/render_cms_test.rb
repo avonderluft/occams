@@ -108,7 +108,7 @@ class RenderCmsIntergrationTest < ActionDispatch::IntegrationTest
 
   def test_implicit_cms_page_failure
     Occams::Cms::Site.destroy_all
-    assert_exception_raised ActionView::MissingTemplate do
+    assert_raises ActionView::MissingTemplate do
       get '/render-basic'
     end
   end
@@ -161,7 +161,7 @@ class RenderCmsIntergrationTest < ActionDispatch::IntegrationTest
   def test_explicit_cms_page_failure
     page = occams_cms_pages(:child)
     page.update(slug: 'invalid')
-    assert_exception_raised Occams::MissingPage do
+    assert_raises Occams::MissingPage do
       get '/render-page?type=page_explicit'
     end
   end
@@ -176,7 +176,7 @@ class RenderCmsIntergrationTest < ActionDispatch::IntegrationTest
   end
 
   def test_explicit_with_site_failure
-    assert_exception_raised Occams::MissingSite do
+    assert_raises Occams::MissingSite do
       get '/render-page?type=page_explicit_with_site'
     end
   end
@@ -245,7 +245,7 @@ class RenderCmsIntergrationTest < ActionDispatch::IntegrationTest
   end
 
   def test_cms_layout_failure
-    assert_exception_raised Occams::MissingLayout do
+    assert_raises Occams::MissingLayout do
       get '/render-layout?type=layout_invalid'
     end
   end
@@ -260,7 +260,7 @@ class RenderCmsIntergrationTest < ActionDispatch::IntegrationTest
   end
 
   def test_cms_layout_defaults_with_site_failure
-    assert_exception_raised Occams::MissingSite do
+    assert_raises Occams::MissingSite do
       get '/render-layout?type=layout_defaults_with_site'
     end
   end
