@@ -105,7 +105,7 @@ class SeedsLayoutsTest < ActiveSupport::TestCase
       [attributes]
       ---
       label: Default Layout
-      app_layout:\s
+      app_layout:
       position: 0
       [content]
       {{cms:textarea content}}
@@ -121,7 +121,7 @@ class SeedsLayoutsTest < ActiveSupport::TestCase
       [attributes]
       ---
       label: Nested Layout
-      app_layout:\s
+      app_layout:
       position: 0
       [content]
       {{cms:text header}}
@@ -137,7 +137,7 @@ class SeedsLayoutsTest < ActiveSupport::TestCase
       [attributes]
       ---
       label: Child Layout
-      app_layout:\s
+      app_layout:
       position: 0
       [content]
       {{cms:textarea left_column}}

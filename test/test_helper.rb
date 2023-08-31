@@ -59,8 +59,8 @@ class ActiveSupport::TestCase
       config.public_cms_path      = nil
       config.page_to_json_options = { methods: [:content], except: [:content_cache] }
     end
-    Occams::AccessControl::AdminAuthentication.username = 'username'
-    Occams::AccessControl::AdminAuthentication.password = 'password'
+    Occams::AccessControl::AdminAuthentication.username = 'user'
+    Occams::AccessControl::AdminAuthentication.password = 'pass'
   end
 
   def reset_locale
@@ -71,9 +71,9 @@ class ActiveSupport::TestCase
   # Example usage:
   #   assert_has_errors_on @record, :field_1, :field_2
   def assert_has_errors_on(record, *fields)
-    unmatched = record.errors.keys - fields.flatten
+    unmatched = record.errors.attribute_names - fields.flatten
     assert unmatched.blank?, "#{record.class} has errors on '#{unmatched.join(', ')}'"
-    unmatched = fields.flatten - record.errors.keys
+    unmatched = fields.flatten - record.errors.attribute_names
     assert unmatched.blank?, "#{record.class} doesn't have errors on '#{unmatched.join(', ')}'"
   end
 
@@ -124,7 +124,8 @@ class ActionDispatch::IntegrationTest
       Occams::AccessControl::AdminAuthentication.password
     )
     options[:headers] = headers
-    send(method, path, options)
+    # send(:get, path, options)
+    send(method, path, **options)
   end
 
   def with_routing
@@ -232,8 +233,8 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   # Visiting path and passing in BasicAuth credentials at the same time
   # I have no idea how to set headers here.
   def visit_p(path)
-    username = Occams::AccessControl::AdminAuthentication.username
-    password = Occams::AccessControl::AdminAuthentication.password
+    username = Occams::AccessControl::AdminAuthentication.user
+    password = Occams::AccessControl::AdminAuthentication.pass
     visit("http://#{username}:#{password}@#{Capybara.server_host}:#{Capybara.server_port}#{path}")
   end
 

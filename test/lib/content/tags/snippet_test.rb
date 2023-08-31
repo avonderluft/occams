@@ -15,7 +15,7 @@ class ContentTagsSnippetTest < ActiveSupport::TestCase
 
   def test_init_without_identifier
     message = 'Missing identifier for snippet tag'
-    assert_exception_raised Occams::Content::Tag::Error, message do
+    assert_raises Occams::Content::Tag::Error, message do
       Occams::Content::Tag::Snippet.new(context: @page)
     end
   end

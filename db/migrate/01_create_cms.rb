@@ -1,4 +1,4 @@
-class CreateCms < ActiveRecord::Migration[5.2]
+class CreateCms < ActiveRecord::Migration[6.0]
 
   LIMIT = 16777215
 

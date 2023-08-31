@@ -41,7 +41,7 @@ class ContentTagsPageFileLinkTest < ActiveSupport::TestCase
 
   def test_init_without_identifier
     message = 'Missing identifier for page file link tag'
-    assert_exception_raised Occams::Content::Tag::Error, message do
+    assert_raises Occams::Content::Tag::Error, message do
       Occams::Content::Tag::PageFileLink.new(context: @page)
     end
   end

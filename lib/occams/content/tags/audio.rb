@@ -15,15 +15,14 @@
 # and/or pass in style overrides with the 'style' parameter, as above
 
 class Occams::Content::Tag::Audio < Occams::Content::Tag
-  attr_reader :path, :locals
+  attr_reader :path, :style, :locals
 
   def initialize(context:, params: [], source: nil)
     super
-    options = params.extract_options!
+    @locals = params.extract_options!
     @path   = params[0]
     @style = ''
-    @style = "<style>.audioplayer {#{options['style']}}</style>" if options['style']
-    @style = options['style']
+    @style = "<style>.audioplayer {#{@locals['style']}}</style>" if @locals['style']
 
     return if @path.present?
 

@@ -20,7 +20,7 @@ class SeedsTest < ActiveSupport::TestCase
   def test_import_all_with_no_site
     occams_cms_sites(:default).destroy
 
-    assert_exception_raised ActiveRecord::RecordNotFound do
+    assert_raises ActiveRecord::RecordNotFound do
       Occams::Seeds::Importer.new('sample-site', 'default-site').import!
     end
   end
@@ -54,7 +54,7 @@ class SeedsTest < ActiveSupport::TestCase
   end
 
   def test_import_all_with_no_folder
-    assert_exception_raised Occams::Seeds::Error do
+    assert_raises Occams::Seeds::Error do
       Occams::Seeds::Importer.new('invalid', 'default-site').import!
     end
   end
@@ -73,7 +73,7 @@ class SeedsTest < ActiveSupport::TestCase
   def test_export_all_with_no_site
     occams_cms_sites(:default).destroy
 
-    assert_exception_raised ActiveRecord::RecordNotFound do
+    assert_raises ActiveRecord::RecordNotFound do
       Occams::Seeds::Exporter.new('sample-site', 'default-site').export!
     end
   end

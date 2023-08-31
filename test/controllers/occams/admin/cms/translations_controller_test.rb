@@ -146,7 +146,7 @@ class Occams::Admin::Cms::TranslationsControllerTest < ActionDispatch::Integrati
       }
       assert_response :success
       assert_match %r{preview content}, response.body
-      assert_equal 'text/html', response.content_type
+      assert_equal 'text/html; charset=utf-8', response.content_type
 
       assert_equal @site, assigns(:cms_site)
       assert_equal @layout, assigns(:cms_layout)

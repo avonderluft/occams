@@ -20,7 +20,7 @@ class ContentTagsHelperTest < ActiveSupport::TestCase
 
   def test_init_without_method_name
     message = 'Missing method name for helper tag'
-    assert_exception_raised Occams::Content::Tag::Error, message do
+    assert_raises Occams::Content::Tag::Error, message do
       Occams::Content::Tag::Helper.new(context: @page)
     end
   end

@@ -41,7 +41,7 @@ class Occams::Cms::AssetsControllerTest < ActionDispatch::IntegrationTest
   def test_render_js_without_cache_buster
     get occams_cms_render_js_path(site_id: @site, identifier: @layout.identifier)
     assert_response :success
-    assert_equal 'application/javascript', response.content_type
+    assert_equal 'application/javascript; charset=utf-8', response.content_type
     assert_equal 'max-age=0, private, must-revalidate', response.headers['Cache-Control']
     assert_equal @layout.js, response.body
   end
@@ -49,7 +49,7 @@ class Occams::Cms::AssetsControllerTest < ActionDispatch::IntegrationTest
   def test_render_js_with_cache_buster
     get occams_cms_render_js_path(site_id: @site, identifier: @layout.identifier, cache_buster: @layout.cache_buster)
     assert_response :success
-    assert_equal 'application/javascript', response.content_type
+    assert_equal 'application/javascript; charset=utf-8', response.content_type
     assert_equal 'max-age=31556952, public', response.headers['Cache-Control']
     assert_equal @layout.js, response.body
   end

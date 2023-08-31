@@ -21,7 +21,7 @@ ocCaM'S, pronounced "AH-kums" is a nod to [Occam's Razor](https://en.wikipedia.o
 
 ## Features
 
-* Simple drop-in integration with Rails 6.0+ apps with minimal configuration
+* Simple drop-in integration with Rails 6.1+ apps with minimal configuration
 * CMS stays away from the rest of your application
 
 Referring to the [ComfortableMexicanSofa](https://github.com/comfy/comfortable-mexican-sofa) documentation, substituting 'Occams' for 'ComfortableMexicanSofa' where appropriate.
@@ -41,8 +41,8 @@ Referring to the [ComfortableMexicanSofa](https://github.com/comfy/comfortable-m
 
 ## Compatibility
 
-- Install and basic functionality validated on Ruby 3.2.2. with Rails 6.1.7.4 and 7.0.6+
-- Rails 7 is recommended, since performance is noticably better
+- Test suite passing on Ruby 2.7.8, 3.1.4 and 3.2.2 with Rails 6.1 and 7.0+
+- Rails 7+ is recommended, since performance is noticably better than 6
 
 ## Installation
 
@@ -103,13 +103,13 @@ For more detail see [CONTRIBUTING](CONTRIBUTING.md)
 
 #### Testing
 
-- `bin/rails db:migrate`
+- `bin/rails db:migrate RAILS_ENV=test`
 - `rake db:test:prepare`
 - `rake test`
 
 #### Acknowledgements
 
-- Obviously to Oleg Khabarov, the creator of [ComfortableMexicanSofa](https://github.com/comfy/comfortable-mexican-sofa). This is his work, with just a few updates and additions.
+- Obviously to [Oleg Khabarov](https://github.com/GBH), the creator of [ComfortableMexicanSofa](https://github.com/comfy/comfortable-mexican-sofa). This is his work, with a few updates and additions.
 - Thanks to [Roman Almeida](https://github.com/nasmorn) for contributing OEM License for [Redactor Text Editor](http://imperavi.com/redactor)
 
 ---

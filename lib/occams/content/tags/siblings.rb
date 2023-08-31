@@ -20,15 +20,15 @@
 # style and exclude parameters are optional
 
 class Occams::Content::Tag::Siblings < Occams::Content::Tag
-  attr_reader :path, :locals
+  attr_reader :locals, :style, :links
 
   def initialize(context:, params: [], source: nil)
     super
-    options = params.extract_options!
+    @locals = params.extract_options!
     @style = ''
-    @style = "<style>#siblings {#{options['style']}}</style>" if options['style']
+    @style = "<style>#siblings {#{@locals['style']}}</style>" if @locals['style']
     @exclude = []
-    @exclude = options['exclude'].split(',') if options['exclude']
+    @exclude = @locals['exclude'].split(',') if @locals['exclude']
     @links = '<div id="siblings">'
 
     prevp = false
