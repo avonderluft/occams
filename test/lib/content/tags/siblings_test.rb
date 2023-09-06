@@ -11,6 +11,7 @@ class ContentTagsSiblingsTest < ActiveSupport::TestCase
     @second = @site.pages.create!(layout: @layout, parent: @page, label: 'Second', slug: 'second')
     @third = @site.pages.create!(layout: @layout, parent: @page, label: 'Third', slug: 'third')
     @fourth = @site.pages.create!(layout: @layout, parent: @page, label: 'Fourth', slug: 'fourth')
+    @fifth = @site.pages.create!(layout: @layout, parent: @page, label: 'Fifth', slug: 'fifth')
   end
 
   def test_init
@@ -37,6 +38,16 @@ class ContentTagsSiblingsTest < ActiveSupport::TestCase
     html = "<style>#siblings {font-weight: bold}</style><div id=\"siblings\">\
 <a href=/second>Second</a> &laquo;&nbsp;<em>Previous</em> \
 &bull; <em>Next</em>&nbsp;&raquo; <a href=/fourth>Fourth</a></div>"
+    assert_equal html, tag.render
+  end
+
+  def test_render_with_exclusions
+    tag = Occams::Content::Tag::Siblings.new(
+      context: @third,
+      params: [{ 'exclude' => 'second,fourth' }]
+    )
+    html = "<div id=\"siblings\"><a href=/first>First</a> &laquo;&nbsp;<em>Previous</em> \
+&bull; <em>Next</em>&nbsp;&raquo; <a href=/fifth>Fifth</a></div>"
     assert_equal html, tag.render
   end
 end

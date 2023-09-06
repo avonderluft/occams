@@ -6,10 +6,8 @@
 # To customize your siblings style, add a 'siblings' id to your CSS, e.g
 # #siblings {
 #   color: #006633;
-#   font-family: Verdana, Arial, Helvetica, sans-serif;
 #   font-size: 95%;
 #   margin-top: 12px;
-#   margin-bottom: 4px;
 #   font-style: italic;
 # }
 # and/or pass in style overrides with the 'style' parameter (see above)
@@ -33,11 +31,11 @@ class Occams::Content::Tag::Siblings < Occams::Content::Tag
 
     prevp = false
     sibs = context.self_and_siblings.sort_by(&:position)
+    sibs.delete_if { |sib| @exclude.include? sib.slug }
     page_idx = sibs.index(context)
     sibs.each do |sib|
       sib_idx = sibs.index(sib)
       next if sibs.index(sib) == page_idx
-      next if @exclude.include? sib.slug
       next if Rails.env == 'production' && !sib.is_published
 
       if sib_idx == page_idx - 1
