@@ -3,9 +3,11 @@
 [![Gem Version](https://img.shields.io/gem/v/occams.svg?style=flat)](http://rubygems.org/gems/occams)
 [![Gem Downloads](https://img.shields.io/gem/dt/occams.svg?style=flat)](http://rubygems.org/gems/occams)
 
-<a href='https://en.wikipedia.org/wiki/William_of_Ockham' target=_blank><img src='https://upload.wikimedia.org/wikipedia/commons/7/70/William_of_Ockham.png' alt='William of Ockham' title='William of Ockham' style='float: left; padding: 6px 18px 0 0; height: 160px'></a>
-
 ***Prefer Simplicity.***
+
+<a href="https://en.wikipedia.org/wiki/William_of_Ockham" target="_blank">
+  <img align="left" height="150" src="https://upload.wikimedia.org/wikipedia/commons/7/70/William_of_Ockham.png" alt="William of Ockham" title="William of Ockham">
+</a>
 
 ```
              ____      __  __ _ ____
@@ -14,13 +16,11 @@
 | (_) | (__| |__| (_| | |  | |  ___) |
  \___/ \___|\____\__,_|_|  |_| |____/
 
-``` 
-<div style='clear: both'></div>
+```
 
 ## Raison d'etre
 
 ocCaM'S is a revival of [ComfortableMexicanSofa](https://github.com/comfy/comfortable-mexican-sofa), with all due thanks and acknowledgements to [Oleg Khabarov](https://github.com/GBH), et al. 'Comfy' was the simplest and cleanest Rails-based CMS that I had used. Its last commit was in 2020, and I simply did not want to see it die on the vine as [RadiantCMS](https://github.com/radiant/radiant) did some years ago.
-
 
 ## The name
 
