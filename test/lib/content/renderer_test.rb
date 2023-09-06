@@ -39,6 +39,7 @@ class ContentRendererTest < ActiveSupport::TestCase
     'template' => Occams::Content::Tag::Template,
     'audio' => Occams::Content::Tag::Audio,
     'breadcrumbs' => Occams::Content::Tag::Breadcrumbs,
+    'children' => Occams::Content::Tag::Children,
     'siblings' => Occams::Content::Tag::Siblings
   }.freeze
 

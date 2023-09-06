@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.0.6 - 9/5/2023
+
+- Fixed [cms:siblings Nav tag](https://github.com/avonderluft/occams/wiki/Content-Tags#siblings) to handle edge case when page(s) are excluded by the `exclude` parameter
+- Added [cms:children Nav tag](https://github.com/avonderluft/occams/wiki/Content-Tags#children) to render unordered list of links for children of current page
+
 ## v1.0.5 - 8/31/2023
 
 - All tests now green on Rails 6.1 and 7.0, each tested with rubies 2.7.8, 3.1.4 and 3.2.2.

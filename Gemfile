@@ -10,7 +10,6 @@ group :development, :test do
   gem 'capybara',           '~> 3.39.0'
   gem 'image_processing',   '>= 1.2'
   gem 'kaminari',           '~> 1.2', '>= 1.2.2'
-  gem 'puma',               '~> 3.12.2'
   gem 'rubocop',            '~> 0.55.0', require: false
   gem 'selenium-webdriver', '~> 4.9.0'
   gem 'sqlite3',            '~> 1.4.2'
