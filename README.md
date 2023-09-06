@@ -3,6 +3,8 @@
 [![Gem Version](https://img.shields.io/gem/v/occams.svg?style=flat)](http://rubygems.org/gems/occams)
 [![Gem Downloads](https://img.shields.io/gem/dt/occams.svg?style=flat)](http://rubygems.org/gems/occams)
 
+<a href='https://en.wikipedia.org/wiki/William_of_Ockham' target=_blank><img src='https://upload.wikimedia.org/wikipedia/commons/7/70/William_of_Ockham.png' alt='William of Ockham' title='William of Ockham' style='float: left; padding: 6px 18px 0 0; height: 160px'></a>
+
 ***Prefer Simplicity.***
 
 ```
@@ -13,8 +15,7 @@
  \___/ \___|\____\__,_|_|  |_| |____/
 
 ``` 
-
-<a href='https://en.wikipedia.org/wiki/William_of_Ockham' target=_blank><img src='https://upload.wikimedia.org/wikipedia/commons/7/70/William_of_Ockham.png' alt='William of Ockham' title='William of Ockham' style='float: left; padding: 8px 18px 0 0; height: 160px'></a>
+<div style='clear: both'></div>
 
 ## Raison d'etre
 
@@ -25,7 +26,7 @@ ocCaM'S is a revival of [ComfortableMexicanSofa](https://github.com/comfy/comfor
 
 ocCaM'S, pronounced "AH-kums" is a nod to [Occam's Razor](https://en.wikipedia.org/wiki/Occam%27s_razor) - for this Rails-based Content Management System endeavors to follow the principle that unnecessarily complex models should not be preferred to simpler ones.
 
-<div style='clear: both'></div>
+
 
 ## Features
 
