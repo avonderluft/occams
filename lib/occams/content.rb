@@ -32,4 +32,5 @@ require_relative 'content/tags/template'
 
 require_relative 'content/tags/audio'
 require_relative 'content/tags/breadcrumbs'
+require_relative 'content/tags/children'
 require_relative 'content/tags/siblings'
