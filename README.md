@@ -1,10 +1,7 @@
 # ocCaM'S
 
-Prefer Simplicity
-
-## Raison d'etre
-
-ocCaM'S is a revival of [ComfortableMexicanSofa](https://github.com/comfy/comfortable-mexican-sofa), with all due thanks and acknowledgements to [Oleg Khabarov](https://github.com/GBH), et al. 'Comfy' was the simplest and cleanest Rails-based CMS that I had used. Its last commit was in 2020, and I simply did not want to see it die on the vine as [RadiantCMS](https://github.com/radiant/radiant) did some years ago.
+[![Gem Version](https://img.shields.io/gem/v/occams.svg?style=flat)](http://rubygems.org/gems/occams)
+[![Gem Downloads](https://img.shields.io/gem/dt/occams.svg?style=flat)](http://rubygems.org/gems/occams)
 
 ```
              ____      __  __ _ ____
@@ -14,6 +11,13 @@ ocCaM'S is a revival of [ComfortableMexicanSofa](https://github.com/comfy/comfor
  \___/ \___|\____\__,_|_|  |_| |____/
 
 ``` 
+
+Prefer Simplicity.
+
+## Raison d'etre
+
+ocCaM'S is a revival of [ComfortableMexicanSofa](https://github.com/comfy/comfortable-mexican-sofa), with all due thanks and acknowledgements to [Oleg Khabarov](https://github.com/GBH), et al. 'Comfy' was the simplest and cleanest Rails-based CMS that I had used. Its last commit was in 2020, and I simply did not want to see it die on the vine as [RadiantCMS](https://github.com/radiant/radiant) did some years ago.
+
 
 ## The name
 
@@ -36,7 +40,7 @@ Referring to the [ComfortableMexicanSofa](https://github.com/comfy/comfortable-m
 ## Dependencies
 
 * File attachments are handled by [ActiveStorage](https://github.com/rails/rails/tree/master/activestorage). Make sure that you can run appropriate migrations by running: `rails active_storage:install` and then `rake db:migrate`
-* Image resizing is done on Rails 7 or greater, with[ImageMagick](http://www.imagemagick.org/script/download.php), so make sure it's installed
+* Image resizing is done with[ImageMagick](http://www.imagemagick.org/script/download.php), so make sure it's installed
 * Pagination is handled by [kaminari](https://github.com/amatsuda/kaminari) or [will_paginate](https://github.com/mislav/will_paginate). Please add one of those to your Gemfile.
 
 ## Compatibility
