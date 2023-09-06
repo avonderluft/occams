@@ -3,6 +3,8 @@
 [![Gem Version](https://img.shields.io/gem/v/occams.svg?style=flat)](http://rubygems.org/gems/occams)
 [![Gem Downloads](https://img.shields.io/gem/dt/occams.svg?style=flat)](http://rubygems.org/gems/occams)
 
+***Prefer Simplicity.***
+
 ```
              ____      __  __ _ ____
   ___   ___ / ___|__ _|  \/  ( ) ___|
@@ -12,7 +14,7 @@
 
 ``` 
 
-Prefer Simplicity.
+<a href='https://en.wikipedia.org/wiki/William_of_Ockham' target=_blank><img src='https://upload.wikimedia.org/wikipedia/commons/7/70/William_of_Ockham.png' alt='William of Ockham' title='William of Ockham' style='float: left; padding: 8px 18px 0 0; height: 160px'></a>
 
 ## Raison d'etre
 
@@ -21,15 +23,14 @@ ocCaM'S is a revival of [ComfortableMexicanSofa](https://github.com/comfy/comfor
 
 ## The name
 
-ocCaM'S, pronounced "AH-kums" is a nod to [Occam's Razor](https://en.wikipedia.org/wiki/Occam%27s_razor) - for this Rails-based Content Management System endeavors to follow the principle that the preferred solution is that which is simplest and built with the smallest possible set of components.
+ocCaM'S, pronounced "AH-kums" is a nod to [Occam's Razor](https://en.wikipedia.org/wiki/Occam%27s_razor) - for this Rails-based Content Management System endeavors to follow the principle that unnecessarily complex models should not be preferred to simpler ones.
+
+<div style='clear: both'></div>
 
 ## Features
 
 * Simple drop-in integration with Rails 6.1+ apps with minimal configuration
-* CMS stays away from the rest of your application
-
-Referring to the [ComfortableMexicanSofa](https://github.com/comfy/comfortable-mexican-sofa) documentation, substituting 'Occams' for 'ComfortableMexicanSofa' where appropriate.
-
+* The CMS keeps clear from the rest of your application
 * Powerful page templating capability using [Content Tags](https://github.com/avonderluft/occams/wiki/Content-Tags)
 * [Multiple Sites](https://github.com/avonderluft/occams/wiki/Sites) from a single installation
 * Multi-Language Support (i18n) (ca, cs, da, de, en, es, fi, fr, gr, hr, it, ja, nb, nl, pl, pt-BR, ru, sv, tr, uk, zh-CN, zh-TW) and page localization.
