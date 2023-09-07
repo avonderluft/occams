@@ -16,7 +16,8 @@
 # as comma-delimited string, e.g. as above - exclude: "404-page, search-page"
 
 class Occams::Content::Tag::Children < Occams::Content::Tag
-  attr_reader :list, :style, :locals
+  attr_reader :style, :page_children, :locals
+  attr_accessor :list
 
   def initialize(context:, params: [], source: nil)
     super
@@ -27,20 +28,20 @@ class Occams::Content::Tag::Children < Occams::Content::Tag
     @exclude = @locals['exclude'].split(',') if @locals['exclude']
     @list = ''
     # ActiveRecord_Associations_CollectionProxy
-    page_children = context.children.order(:position).to_ary
-    page_children.delete_if { |child| @exclude.include? child.slug }
-    return unless page_children.any?
-
-    @list = '<ul id="children">'
-    page_children.each do |c|
-      next if Rails.env == 'production' && !c.is_published
-
-      @list += "<li><a href=#{c.url(relative: true)}>#{c.label}</a></li>"
-    end
-    @list += '</ul>'
+    @page_children = context.children.order(:position).to_ary
+    @page_children.delete_if { |child| @exclude.include? child.slug }
   end
 
   def content
+    if @page_children.any?
+      @list = '<ul id="children">'
+      @page_children.each do |c|
+        next if Rails.env == 'production' && !c.is_published
+
+        @list += "<li><a href=#{c.url(relative: true)}>#{c.label}</a></li>"
+      end
+      @list += '</ul>'
+    end
     format("#{@style}#{@list}")
   end
 end
