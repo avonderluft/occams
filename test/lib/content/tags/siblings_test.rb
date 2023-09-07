@@ -41,6 +41,14 @@ class ContentTagsSiblingsTest < ActiveSupport::TestCase
     assert_equal html, tag.render
   end
 
+  def test_render_with_no_siblings
+    tag = Occams::Content::Tag::Siblings.new(
+      context: @page,
+      params: []
+    )
+    assert_equal '', tag.render
+  end
+
   def test_render_with_exclusions
     tag = Occams::Content::Tag::Siblings.new(
       context: @third,

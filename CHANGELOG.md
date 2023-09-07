@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.6.1 - 9/5/2023
+
+- Fixed siblings and children nav tags which as written had problems creating child pages in the admin panel
+
 ## v1.0.6 - 9/5/2023
 
 - Fixed [cms:siblings Nav tag](https://github.com/avonderluft/occams/wiki/Content-Tags#siblings) to handle edge case when page(s) are excluded by the `exclude` parameter

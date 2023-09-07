@@ -18,7 +18,8 @@
 # style and exclude parameters are optional
 
 class Occams::Content::Tag::Siblings < Occams::Content::Tag
-  attr_reader :locals, :style, :links
+  attr_reader :locals, :style, :sibs
+  attr_accessor :links
 
   def initialize(context:, params: [], source: nil)
     super
@@ -27,29 +28,31 @@ class Occams::Content::Tag::Siblings < Occams::Content::Tag
     @style = "<style>#siblings {#{@locals['style']}}</style>" if @locals['style']
     @exclude = []
     @exclude = @locals['exclude'].split(',') if @locals['exclude']
-    @links = '<div id="siblings">'
-
-    prevp = false
-    sibs = context.self_and_siblings.sort_by(&:position)
-    sibs.delete_if { |sib| @exclude.include? sib.slug }
-    page_idx = sibs.index(context)
-    sibs.each do |sib|
-      sib_idx = sibs.index(sib)
-      next if sibs.index(sib) == page_idx
-      next if Rails.env == 'production' && !sib.is_published
-
-      if sib_idx == page_idx - 1
-        @links += "<a href=#{sib.url(relative: true)}>#{sib.label}</a> &laquo;&nbsp;<em>Previous</em> &bull; "
-        prevp = true
-      elsif sib_idx == page_idx + 1
-        @links += '&bull;' unless prevp
-        @links += "<em>Next</em>&nbsp;&raquo; <a href=#{sib.url(relative: true)}>#{sib.label}</a>"
-      end
-    end
-    @links += '</div>'
+    @links = ''
+    # ActiveRecord_Associations_CollectionProxy
+    @sibs = context.self_and_siblings.order(:position).to_ary
+    @sibs.delete_if { |sib| @exclude.include? sib.slug }
   end
 
   def content
+    if @sibs.count > 1
+      @links = '<div id="siblings">'
+      prevp = false
+      @sibs.each do |sib|
+        sib_idx = @sibs.index(sib)
+        next if sib.slug == context.slug
+        next if Rails.env == 'production' && !sib.is_published
+
+        if sib_idx == @sibs.index(context) - 1
+          @links += "<a href=#{sib.url(relative: true)}>#{sib.label}</a> &laquo;&nbsp;<em>Previous</em> &bull; "
+          prevp = true
+        elsif sib_idx == @sibs.index(context) + 1
+          @links += '&bull;' unless prevp
+          @links += "<em>Next</em>&nbsp;&raquo; <a href=#{sib.url(relative: true)}>#{sib.label}</a>"
+        end
+      end
+      @links += '</div>'
+    end
     format("#{@style}#{@links}")
   end
 end
