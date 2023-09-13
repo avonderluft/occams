@@ -23,22 +23,23 @@ class Occams::Content::Tag::Children < Occams::Content::Tag
     super
     @locals = params.extract_options!
     @style  = ''
-    @style  = "<style>#children {#{@locals['style']}}</style>" if @locals['style']
+    @style  = "<style>#children {#{@locals['style']}}</style>\n" if @locals['style']
     @exclude = []
     @exclude = @locals['exclude'].split(',') if @locals['exclude']
     @list = ''
     # ActiveRecord_Associations_CollectionProxy
     @page_children = context.children.order(:position).to_ary
+    if Rails.env == 'production'
+      @page_children.delete_if { |child| !child.is_published }
+    end
     @page_children.delete_if { |child| @exclude.include? child.slug }
   end
 
   def content
     if @page_children.any?
-      @list = '<ul id="children">'
+      @list = "<ul id=\"children\">\n"
       @page_children.each do |c|
-        next if Rails.env == 'production' && !c.is_published
-
-        @list += "<li><a href=#{c.url(relative: true)}>#{c.label}</a></li>"
+        @list += "  <li><a href=#{c.url(relative: true)}>#{c.label}</a></li>\n"
       end
       @list += '</ul>'
     end
