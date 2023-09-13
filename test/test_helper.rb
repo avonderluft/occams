@@ -7,6 +7,7 @@ ENV['RAILS_ENV'] = 'test'
 unless ENV['SKIP_COV']
   require 'simplecov'
   require 'coveralls'
+  Coveralls.wear!('rails')
   SimpleCov.formatter = Coveralls::SimpleCov::Formatter
   SimpleCov.start do
     add_filter 'lib/tasks'
@@ -16,11 +17,14 @@ unless ENV['SKIP_COV']
 end
 
 require_relative '../config/environment'
-
 require 'rails/test_help'
 require 'rails/generators'
 require 'minitest/unit'
 require 'mocha/minitest'
+require 'minitest/reporters'
+
+reporter_options = { color: true }
+Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(reporter_options)]
 
 Rails.backtrace_cleaner.remove_silencers!
 

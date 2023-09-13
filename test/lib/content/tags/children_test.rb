@@ -27,7 +27,7 @@ class ContentTagsChildrenTest < ActiveSupport::TestCase
       context: @parent,
       params: [{ 'style' => 'font-weight: bold' }]
     )
-    assert_equal '<style>#children {font-weight: bold}</style>', tag.style
+    assert_equal "<style>#children {font-weight: bold}</style>\n", tag.style
   end
 
   def test_render
@@ -35,9 +35,14 @@ class ContentTagsChildrenTest < ActiveSupport::TestCase
       context: @parent,
       params: [{ 'style' => 'font-weight: bold' }]
     )
-    html = "<style>#children {font-weight: bold}</style><ul id=\"children\">\
-<li><a href=/parent/child1>Child1</a></li><li><a href=/parent/child2>Child2</a></li>\
-<li><a href=/parent/child3>Child3</a></li><li><a href=/parent/child4>Child4</a></li></ul>"
+    html = "<style>#children {font-weight: bold}</style>\n\
+<ul id=\"children\">\n\
+  <li><a href=/parent/child1>Child1</a></li>\n\
+  <li><a href=/parent/child2>Child2</a></li>\n\
+  <li><a href=/parent/child3>Child3</a></li>\n\
+  <li><a href=/parent/child4>Child4</a></li>\n\
+</ul>"
+
     assert_equal html, tag.render
   end
 
@@ -46,8 +51,8 @@ class ContentTagsChildrenTest < ActiveSupport::TestCase
       context: @parent,
       params: [{ 'exclude' => 'child2,child3' }]
     )
-    html = "<ul id=\"children\"><li><a href=/parent/child1>Child1</a></li>\
-<li><a href=/parent/child4>Child4</a></li></ul>"
+    html = "<ul id=\"children\">\n  <li><a href=/parent/child1>Child1</a></li>\n\
+  <li><a href=/parent/child4>Child4</a></li>\n</ul>"
     assert_equal html, tag.render
   end
 

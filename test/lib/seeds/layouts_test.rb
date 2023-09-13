@@ -3,6 +3,8 @@
 require_relative '../../test_helper'
 
 class SeedsLayoutsTest < ActiveSupport::TestCase
+  make_my_diffs_pretty!
+
   DEFAULT_HTML = <<~HTML
     <html>
       <body>
@@ -115,7 +117,9 @@ class SeedsLayoutsTest < ActiveSupport::TestCase
       default_css
     TEXT
 
-    assert_equal out, File.read(layout_1_content_path)
+    # macos gives '' (null) for app_layout: but linux ' ' (space) !
+    file_read = File.read(layout_1_content_path).gsub('app_layout: ', 'app_layout:')
+    assert_equal out, file_read
 
     out = <<~TEXT.chomp
       [attributes]
@@ -131,7 +135,10 @@ class SeedsLayoutsTest < ActiveSupport::TestCase
       [css]
       nested_css
     TEXT
-    assert_equal out, File.read(layout_2_content_path)
+
+    # macos gives '' (null) for app_layout: but linux ' ' (space) !
+    file_read = File.read(layout_2_content_path).gsub('app_layout: ', 'app_layout:')
+    assert_equal out, file_read
 
     out = <<~TEXT.chomp
       [attributes]
@@ -147,7 +154,9 @@ class SeedsLayoutsTest < ActiveSupport::TestCase
       [css]
       child_css
     TEXT
-    assert_equal out, File.read(layout_3_content_path)
+    # macos gives '' (null) for app_layout: but linux ' ' (space) !
+    file_read = File.read(layout_3_content_path).gsub('app_layout: ', 'app_layout:')
+    assert_equal out, file_read
   ensure
     FileUtils.rm_rf(host_path)
   end

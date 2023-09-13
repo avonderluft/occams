@@ -1,5 +1,7 @@
 # ocCaM'S
 
+[![Build status](https://badge.buildkite.com/6b70f3f81c5922bd134b33d3ba1412c68f53a9f67e0a907ade.svg?branch=main)](https://buildkite.com/gknt/occams)
+[![Coverage Status](https://coveralls.io/repos/github/avonderluft/occams/badge.svg?branch=main)](https://coveralls.io/github/avonderluft/occams?branch=main)
 [![Gem Version](https://img.shields.io/gem/v/occams.svg?style=flat)](http://rubygems.org/gems/occams)
 [![Gem Downloads](https://img.shields.io/gem/dt/occams.svg?style=flat)](http://rubygems.org/gems/occams)
 

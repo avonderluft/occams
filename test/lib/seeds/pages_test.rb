@@ -3,6 +3,7 @@
 require_relative '../../test_helper'
 
 class SeedsPagesTest < ActiveSupport::TestCase
+  make_my_diffs_pretty!
   setup do
     @site   = occams_cms_sites(:default)
     @layout = occams_cms_layouts(:default)
@@ -209,7 +210,9 @@ class SeedsPagesTest < ActiveSupport::TestCase
       position: 0
 
     TEXT
-    assert_equal out, File.read(page_2_content_path)
+    # macos gives '' (null) for target_page: but linux ' ' (space) !
+    file_read = File.read(page_2_content_path).gsub('target_page: ', 'target_page:')
+    assert_equal out, file_read
 
     out = <<~TEXT.chomp
       [attributes]
