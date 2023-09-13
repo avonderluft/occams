@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.0.7 - 9/12/2023
+
+- update coveralls Coverage reporting
+- add minitest-reporters for test output
+- adjust tests to accomodate varying macos and linux outputs
+- refine test for 'children' tag
+- linting and 1 typo
+- add Build Status and Coveralls Coverage Status to README
+
 ## v1.0.6.1 - 9/5/2023
 
 - Fixed siblings and children nav tags which as written had problems creating child pages in the admin panel
