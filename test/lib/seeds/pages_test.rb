@@ -170,7 +170,7 @@ class SeedsPagesTest < ActiveSupport::TestCase
 
     host_path = File.join(Occams.config.seeds_path, 'test-site')
     page_1_content_path     = File.join(host_path, 'pages/index/content.html')
-    page_1_attachment_path  = File.join(host_path, 'pages/index/fragment.jpg')
+    page_1_attachment_path  = File.join(host_path, 'pages/index/fragment.jpeg')
     page_2_content_path     = File.join(host_path, 'pages/index/child-page/content.html')
     translation_path        = File.join(host_path, 'pages/index/content.fr.html')
 
@@ -189,7 +189,7 @@ class SeedsPagesTest < ActiveSupport::TestCase
       [checkbox boolean]
       true
       [file file]
-      fragment.jpg
+      fragment.jpeg
       [datetime datetime]
       1981-10-04 12:34:56 UTC
       [text content]

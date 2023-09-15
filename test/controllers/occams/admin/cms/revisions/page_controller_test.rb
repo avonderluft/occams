@@ -83,5 +83,9 @@ class Occams::Admin::Cms::Revisions::PageControllerTest < ActionDispatch::Integr
           boolean: false }
       ], @page.fragments_attributes
     end
+
+    def test_load_record
+      Occams::Cms::Revision.load_record
+    end
   end
 end

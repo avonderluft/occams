@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.7.1 - 9/d/2023
+
+- address deprecations for file type 'image/jpg'
+
 ## v1.0.7 - 9/12/2023
 
 - update coveralls Coverage reporting

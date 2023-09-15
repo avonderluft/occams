@@ -35,6 +35,6 @@ class ConfigurationTest < ActiveSupport::TestCase
   end
 
   def test_version
-    assert Occams::VERSION
+    refute_nil Occams::VERSION
   end
 end

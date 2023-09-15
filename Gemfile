@@ -27,4 +27,5 @@ group :test do
   gem 'minitest-reporters'
   gem 'mocha',                    '~> 2.1.0', require: false
   gem 'rails-controller-testing', '~> 1.0.5'
+  gem 'simplecov', require: false
 end
