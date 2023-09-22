@@ -7,6 +7,7 @@ AllCops:
     - db/migrate/**/*
     - test/fixtures/**/*
     - tmp/**/*
+    - vendor/bundle/**/*
 
 # -- Layout --------------------------------------------------------------------
 Layout/FirstArrayElementIndentation:

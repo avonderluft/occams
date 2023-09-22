@@ -28,7 +28,7 @@ class FilesFrontendTest < ApplicationSystemTestCase
       fragments_attributes: [{
         identifier: 'attachments',
         tag: 'files',
-        files: fixture_file_upload('image.jpg', 'image/jpg')
+        files: fixture_file_upload('image.jpeg', 'image/jpeg')
       }]
     )
 

@@ -2,19 +2,21 @@
 
 ENV['RAILS_ENV'] = 'test'
 
-# In CI envoronment I don't want to send coverage report for system tests that
-# obviously don't cover everything 100%
+require 'simplecov'
+
 unless ENV['SKIP_COV']
-  require 'simplecov'
   require 'coveralls'
   Coveralls.wear!('rails')
   SimpleCov.formatter = Coveralls::SimpleCov::Formatter
+  SimpleCov.command_name 'Unit Tests'
   SimpleCov.start do
     add_filter 'lib/tasks'
     add_filter 'lib/generators'
     add_filter 'lib/occams/engine.rb '
   end
 end
+
+SimpleCov.start 'rails'
 
 require_relative '../config/environment'
 require 'rails/test_help'
