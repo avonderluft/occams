@@ -1,6 +1,7 @@
 # ocCaM'S
 
 [![Build status](https://badge.buildkite.com/6b70f3f81c5922bd134b33d3ba1412c68f53a9f67e0a907ade.svg?branch=main)](https://buildkite.com/gknt/occams)
+[![Test,Lint,Audit](https://github.com/avonderluft/occams/actions/workflows/rubyonrails.yml/badge.svg)](https://github.com/avonderluft/occams/actions/workflows/rubyonrails.yml)
 [![Coverage Status](https://coveralls.io/repos/github/avonderluft/occams/badge.svg?branch=main)](https://coveralls.io/github/avonderluft/occams?branch=main)
 [![Gem Version](https://img.shields.io/gem/v/occams.svg?style=flat)](http://rubygems.org/gems/occams)
 [![Gem Downloads](https://img.shields.io/gem/dt/occams.svg?style=flat)](http://rubygems.org/gems/occams)
@@ -22,11 +23,11 @@
 
 ## Raison d'etre
 
-ocCaM'S is a revival of [ComfortableMexicanSofa](https://github.com/comfy/comfortable-mexican-sofa), with all due thanks and acknowledgements to [Oleg Khabarov](https://github.com/GBH), et al. 'Comfy' was the simplest and cleanest Rails-based CMS that I had used. Its last commit was in 2020, and I simply did not want to see it die on the vine as [RadiantCMS](https://github.com/radiant/radiant) did some years ago.
+ocCaM'S is a revival of [ComfortableMexicanSofa](https://github.com/comfy/comfortable-mexican-sofa), with all due thanks and acknowledgements to [Oleg Khabarov](https://github.com/GBH), and others. 'Comfy' is in my experience the simplest and cleanest of all Rails-based CMSes. Seeing that its last commit was in 2020, I was determined that it should not die on the vine as [RadiantCMS](https://github.com/radiant/radiant) did some years ago.
 
 ## The name
 
-ocCaM'S, pronounced "AH-kums" is a nod to [Occam's Razor](https://en.wikipedia.org/wiki/Occam%27s_razor) - for this Rails-based Content Management System endeavors to follow the principle that unnecessarily complex models should not be preferred to simpler ones.
+ocCaM'S, pronounced "AH-kums" is a nod to [Occam's Razor](https://en.wikipedia.org/wiki/Occam%27s_razor) - for this Rails-based Content Management System endeavors to follow the principle that unnecessarily complex models should not be preferred over simpler ones.
 
 
 
@@ -44,7 +45,7 @@ ocCaM'S, pronounced "AH-kums" is a nod to [Occam's Razor](https://en.wikipedia.o
 ## Dependencies
 
 * File attachments are handled by [ActiveStorage](https://github.com/rails/rails/tree/master/activestorage). Make sure that you can run appropriate migrations by running: `rails active_storage:install` and then `rake db:migrate`
-* Image resizing is done with[ImageMagick](http://www.imagemagick.org/script/download.php), so make sure it's installed
+* Image resizing is done with [ImageMagick](http://www.imagemagick.org/script/download.php), so make sure it's installed
 * Pagination is handled by [kaminari](https://github.com/amatsuda/kaminari) or [will_paginate](https://github.com/mislav/will_paginate). Please add one of those to your Gemfile.
 
 ## Compatibility
@@ -60,15 +61,15 @@ Add gem definition to your Gemfile:
 gem "occams"
 ```
 
-* From the Rails project's root run:  
+* From the Rails project's root run:
   `bundle install`
-* Then add the CMS:  
+* Then add the CMS:
   `rails generate occams:cms`
-* If you want to store files in your CMS with Active Storage:  
+* If you want to store files in your CMS with Active Storage:
   `rails active_storage:install`
-* Set up the database:  
+* Set up the database:
   `rails db:migrate`
-    
+
 Now take a look inside your `config/routes.rb` file. You'll see where routes attach for the admin area and content serving. Make sure that content serving route appears as a very last item or it will make all other routes to be inaccessible.
 
 ```ruby
@@ -121,5 +122,5 @@ For more detail see [CONTRIBUTING](CONTRIBUTING.md)
 - Thanks to [Roman Almeida](https://github.com/nasmorn) for contributing OEM License for [Redactor Text Editor](http://imperavi.com/redactor)
 
 ---
+- [Occams](https://github.com/avonderluft/occams) Copyright 2023 Andrew vonderLuft, following Comfy,  released under the [MIT license](LICENSE)
 - [ComfortableMexicanSofa](https://github.com/comfy/comfortable-mexican-sofa) Copyright 2010-2019 Oleg Khabarov. Released under the [MIT license](LICENSE)
-- [Occams](https://github.com/avonderluft/occams) Copyright 2023 Andrew vonderLuft, following suit, also released under the [MIT license](LICENSE)

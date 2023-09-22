@@ -1,13 +1,21 @@
 # Changelog
 
+## v1.0.7.1 - 9/22/2023
+
+- Addressed deprecations for file type 'image/jpg'
+- Added github workflow for tests, lints and audits
+- Fixed some flagged security warnings
+- Bumped rubocop version to latest
+- Updated some testing parameters
+
 ## v1.0.7 - 9/12/2023
 
-- update coveralls Coverage reporting
-- add minitest-reporters for test output
-- adjust tests to accomodate varying macos and linux outputs
-- refine test for 'children' tag
-- linting and 1 typo
-- add Build Status and Coveralls Coverage Status to README
+- Updated coveralls Coverage reporting
+- Added minitest-reporters for test output
+- Adjusted tests to accomodate varying macos and linux outputs
+- Refined test for 'children' tag
+- Lints and 1 typo
+- Added Build Status and Coveralls Coverage Status to README
 
 ## v1.0.6.1 - 9/5/2023
 

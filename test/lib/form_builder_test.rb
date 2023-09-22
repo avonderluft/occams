@@ -3,6 +3,7 @@
 require_relative '../test_helper'
 
 class FormBuilderTest < ActionView::TestCase
+  make_my_diffs_pretty!
   setup do
     @page = occams_cms_pages(:default)
     @builder = Occams::FormBuilder.new(:page, @page, self, bootstrap: { layout: 'horizontal' })
@@ -160,7 +161,7 @@ class FormBuilderTest < ActionView::TestCase
           <input class="form-control" id="fragment-file" name="page[fragments_attributes][123][files]" type="file"/>
           <div class="fragment-attachments">
             <div class="fragment-attachment btn-group btn-group-sm mb-1">
-              <a class="btn btn-light text-truncate" data-cms-file-link-tag="{{ cms:page_file_link file, as: image }}" data-cms-file-thumb-url="#{thumb_url}" href="#{attachment_url}" target="_blank">fragment.jpg</a>
+              <a class="btn btn-light text-truncate" data-cms-file-link-tag="{{ cms:page_file_link file, as: image }}" data-cms-file-thumb-url="#{thumb_url}" href="#{attachment_url}" target="_blank">fragment.jpeg</a>
               <input id="attachment_211760658" name="page[fragments_attributes][123][file_ids_destroy][]" type="checkbox" value="211760658"/>
               <label class="btn btn-light" for="attachment_211760658">
                 <i class="fas fa-fw fa-times"/>
@@ -207,7 +208,7 @@ class FormBuilderTest < ActionView::TestCase
           <input class="form-control" id="fragment-file" multiple="multiple" name="page[fragments_attributes][123][files][]" type="file"/>
           <div class="fragment-attachments">
             <div class="fragment-attachment btn-group btn-group-sm mb-1">
-              <a class="btn btn-light text-truncate" data-cms-file-link-tag="{{ cms:page_file_link file, filename: &quot;fragment.jpg&quot;, as: image }}" data-cms-file-thumb-url="#{thumb_url}" href="#{attachment_url}" target="_blank">fragment.jpg</a>
+              <a class="btn btn-light text-truncate" data-cms-file-link-tag="{{ cms:page_file_link file, filename: &quot;fragment.jpeg&quot;, as: image }}" data-cms-file-thumb-url="#{thumb_url}" href="#{attachment_url}" target="_blank">fragment.jpeg</a>
               <input id="attachment_211760658" name="page[fragments_attributes][123][file_ids_destroy][]" type="checkbox" value="211760658"/>
               <label class="btn btn-light" for="attachment_211760658">
                 <i class="fas fa-fw fa-times"/>
