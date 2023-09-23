@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.8 - TBD
+
+- Switched CI from Buildkite to Github actions
+
 ## v1.0.7.1 - 9/22/2023
 
 - Addressed deprecations for file type 'image/jpg'

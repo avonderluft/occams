@@ -1,4 +1,4 @@
-name: "Test,Lint,Audit"
+name: "Rails CI"
 on:
   push:
     branches:
@@ -17,12 +17,13 @@ jobs:
           - "6.1"
           - "7.0"
         continue-on-error: [false]
-    name: ${{ format('Test,Lint,Audit (Ruby {0}, Rails {1})', matrix.ruby-version, matrix.rails-version) }}
+    name: ${{ format('Tests (Ruby {0}, Rails {1})', matrix.ruby-version, matrix.rails-version) }}
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.continue-on-error }}
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.rails-version }}.gemfile
       RAILS_ENV: test
+      COVERALLS_REPO_TOKEN: dYKwmmNBzkQR6veagOrHJLet5gsK1E486
 
     steps:
       - uses: actions/checkout@v2
@@ -33,7 +34,7 @@ jobs:
           ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true
 
-      - name: Set up DB
+      - name: Set up Test DB
         run: bin/rails db:migrate RAILS_ENV=test
       - name: Run tests
         run: bin/rake test
@@ -43,5 +44,6 @@ jobs:
 
       - name: Security audit application code
         run: bin/bundle exec brakeman -q -w3
+
       - name: Security audit dependencies
         run: bin/bundle exec bundler-audit --update --gemfile-lock gemfiles/${{ matrix.rails-version }}.gemfile.lock
