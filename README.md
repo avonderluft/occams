@@ -2,6 +2,7 @@
 
 [![Rails CI](https://github.com/avonderluft/occams/actions/workflows/rubyonrails.yml/badge.svg?branch=main)](https://github.com/avonderluft/occams/actions/workflows/rubyonrails.yml)
 [![Coverage Status](https://coveralls.io/repos/github/avonderluft/occams/badge.svg?branch=main)](https://coveralls.io/github/avonderluft/occams?branch=main)
+![GitHub Release Date - Published_At](https://img.shields.io/github/release-date/avonderluft/occams)
 [![Gem Version](https://img.shields.io/gem/v/occams.svg?style=flat)](http://rubygems.org/gems/occams)
 [![Gem Downloads](https://img.shields.io/gem/dt/occams.svg?style=flat)](http://rubygems.org/gems/occams)
 
