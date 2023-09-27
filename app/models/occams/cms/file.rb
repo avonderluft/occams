@@ -22,13 +22,8 @@ class Occams::Cms::File < ActiveRecord::Base
   # -- Callbacks ---------------------------------------------------------------
   before_validation :assign_label, on: :create
   before_create :assign_position
-  # active_storage attachment behavior changed in rails 6 - see PR#892 for details
-  if Rails::VERSION::MAJOR >= 6
-    before_save :process_attachment
-  else
-    after_save :process_attachment
-  end
-
+  # active_storage attachment behavior changed in rails 6
+  before_save :process_attachment
   after_save :clear_page_content_cache
 
   # -- Validations -------------------------------------------------------------

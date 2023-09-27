@@ -10,12 +10,8 @@ class Occams::Cms::Fragment < ActiveRecord::Base
   attr_reader :files
 
   # -- Callbacks ---------------------------------------------------------------
-  # active_storage attachment behavior changed in rails 6 - see PR#892 for details
-  if Rails::VERSION::MAJOR >= 6
-    before_save :remove_attachments, :add_attachments
-  else
-    after_save :remove_attachments, :add_attachments
-  end
+  # active_storage attachment behavior changed in rails 6
+  before_save :remove_attachments, :add_attachments
 
   # -- Relationships -----------------------------------------------------------
   belongs_to :record, polymorphic: true, touch: true

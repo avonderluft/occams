@@ -41,11 +41,9 @@ module Occams::Seeds::Layout
         )
 
         if layout.save
-          message = "[CMS SEEDS] Imported Layout \t #{layout.identifier}"
-          Occams.logger.info(message)
+          Occams.logger.info("[CMS SEEDS] Imported Layout \t #{layout.identifier}")
         else
-          message = "[CMS SEEDS] Failed to import Layout \n#{layout.errors.inspect}"
-          Occams.logger.warn(message)
+          Occams.logger.warn("[CMS SEEDS] Failed to import Layout \n#{layout.errors.inspect}")
         end
       end
 

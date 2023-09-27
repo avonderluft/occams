@@ -83,18 +83,18 @@ class CmsHelperTest < ActionView::TestCase
   end
 
   def test_cms_snippet_content
-    assert_equal 'snippet content', cms_snippet_content(:default)
-    assert_equal 'snippet content', cms_snippet_content(:default, @cms_site)
+    assert_equal '## snippet content', cms_snippet_content(:default)
+    assert_equal '## snippet content', cms_snippet_content(:default, @cms_site)
     assert_equal '', cms_snippet_content(:invalid)
   end
 
   def test_cms_snippet_content_with_site_detection
     @cms_site = nil
-    assert_equal 'snippet content', cms_snippet_content(:default)
+    assert_equal '## snippet content', cms_snippet_content(:default)
   end
 
   def test_cms_snippet_render
-    assert_equal 'snippet content', cms_snippet_render(:default)
+    assert_equal '## snippet content', cms_snippet_render(:default)
   end
 
   def test_cms_snippet_render_with_tags_and_context

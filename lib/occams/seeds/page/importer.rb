@@ -79,8 +79,7 @@ module Occams::Seeds::Page
           page.fragments.where(identifier: old_frag_identifiers - new_frag_identifiers).destroy_all
 
         else
-          message = "[CMS SEEDS] Failed to import Page \n#{page.errors.inspect}"
-          Occams.logger.warn(message)
+          Occams.logger.warn("[CMS SEEDS] Failed to import Page \n#{page.errors.inspect}")
         end
       end
 

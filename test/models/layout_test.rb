@@ -62,7 +62,7 @@ class CmsLayoutTest < ActiveSupport::TestCase
   end
 
   def test_content_tokens_nested_with_non_fragment_subclass_tag
-    layout_a = Occams::Cms::Layout.new(content: 'a {{cms:snippet content}} b')
+    layout_a = Occams::Cms::Layout.new(content: 'a {{cms:## snippet content}} b')
     layout_b = Occams::Cms::Layout.new(content: 'c {{cms:text content}} d')
     layout_b.parent = layout_a
     expected = [

@@ -141,7 +141,7 @@ class Occams::Admin::Cms::SnippetsControllerTest < ActionDispatch::IntegrationTe
       identifier: 'test'
     )
     assert_equal 0, snippet_one.position
-    assert_equal 1, snippet_two.position
+    assert_equal 2, snippet_two.position
 
     r :put, reorder_occams_admin_cms_site_snippets_path(site_id: @site), params: {
       order: [snippet_two.id, snippet_one.id]

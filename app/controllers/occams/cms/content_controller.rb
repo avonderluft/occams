@@ -74,10 +74,10 @@ protected
   # Getting page and setting content_cache and fragments data if we need to
   # serve translation data
   def find_cms_page_by_full_path(full_path)
-    @cms_page = if Rails.env == 'production'
-                  @cms_site.pages.published.find_by!(full_path: full_path)
-                else
+    @cms_page = if Rails.env == 'development'
                   @cms_site.pages.find_by!(full_path: full_path)
+                else
+                  @cms_site.pages.published.find_by!(full_path: full_path)
                 end
 
     @cms_page.translate!

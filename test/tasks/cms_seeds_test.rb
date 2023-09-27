@@ -17,7 +17,7 @@ class CmsSeedsTaskTest < ActiveSupport::TestCase
     Occams::Seeds::Importer.expects(:new).with('from_folder', 'to_site').returns(importer)
     importer.expects(:import!)
 
-    with_captured_stout do
+    with_captured_stdout do
       @rake['occams:cms_seeds:import'].invoke('from_folder', 'to_site')
     end
   end
@@ -27,7 +27,7 @@ class CmsSeedsTaskTest < ActiveSupport::TestCase
     Occams::Seeds::Importer.expects(:new).with('from_folder', 'to_site').returns(importer)
     importer.expects(:import!).with(['Page'])
 
-    with_captured_stout do
+    with_captured_stdout do
       @rake['occams:cms_seeds:import'].invoke('from_folder', 'to_site', 'Page')
     end
   end
@@ -37,7 +37,7 @@ class CmsSeedsTaskTest < ActiveSupport::TestCase
     Occams::Seeds::Exporter.expects(:new).with('from_site', 'to_folder').returns(exporter)
     exporter.expects(:export!)
 
-    with_captured_stout do
+    with_captured_stdout do
       @rake['occams:cms_seeds:export'].invoke('from_site', 'to_folder')
     end
   end
@@ -47,7 +47,7 @@ class CmsSeedsTaskTest < ActiveSupport::TestCase
     Occams::Seeds::Exporter.expects(:new).with('from_site', 'to_folder').returns(exporter)
     exporter.expects(:export!).with(['Page'])
 
-    with_captured_stout do
+    with_captured_stdout do
       @rake['occams:cms_seeds:export'].invoke('from_site', 'to_folder', 'Page')
     end
   end

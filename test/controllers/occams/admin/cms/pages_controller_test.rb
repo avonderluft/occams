@@ -464,6 +464,12 @@ class Occams::Admin::Cms::PagesControllerTest < ActionDispatch::IntegrationTest
     assert_equal [], session[:cms_page_tree]
   end
 
+  def test_get_toggle_branch_no_record
+    r :get, toggle_branch_occams_admin_cms_site_page_path(site_id: @site, id: @page), xhr: true, params: { format: :js }
+    assert_response :success
+    assert_equal [@page.id.to_s], session[:cms_page_tree]
+  end
+
   def test_reorder
     page_one = occams_cms_pages(:child)
     page_two = @site.pages.create!(
