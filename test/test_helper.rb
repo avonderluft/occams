@@ -8,24 +8,23 @@ unless ENV['SKIP_COV']
   require 'coveralls'
   Coveralls.wear!('rails')
   SimpleCov.formatter = Coveralls::SimpleCov::Formatter
-  SimpleCov.command_name 'Unit Tests'
-  SimpleCov.start do
-    add_filter 'lib/tasks'
-    add_filter 'lib/generators'
-    add_filter 'lib/occams/engine.rb '
-  end
 end
 
-SimpleCov.start 'rails'
+SimpleCov.command_name 'Unit Tests'
+SimpleCov.start 'rails' do
+  add_filter 'lib/tasks'
+  add_filter 'lib/occams/engine'
+  add_filter 'lib/occams/version'
+end
 
 require_relative '../config/environment'
 require 'rails/test_help'
 require 'rails/generators'
+require 'minitest/reporters'
 require 'minitest/unit'
 require 'mocha/minitest'
-require 'minitest/reporters'
 
-reporter_options = { color: true }
+reporter_options = { color: true, slow_count: 3 }
 Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(reporter_options)]
 
 Rails.backtrace_cleaner.remove_silencers!
@@ -110,7 +109,7 @@ class ActiveSupport::TestCase
   end
 
   # Capturing $stdout into a string
-  def with_captured_stout
+  def with_captured_stdout
     old = $stdout
     $stdout = StringIO.new
     yield

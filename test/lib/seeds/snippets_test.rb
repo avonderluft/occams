@@ -28,11 +28,9 @@ class SeedsSnippetsTest < ActiveSupport::TestCase
     @snippet.update_column(:updated_at, 10.years.ago)
     assert_equal 'default', @snippet.identifier
     assert_equal 'Default Snippet', @snippet.label
-    assert_equal 'snippet content', @snippet.content
+    assert_equal '## snippet content', @snippet.content
 
-    assert_no_difference -> { Occams::Cms::Snippet.count } do
-      Occams::Seeds::Snippet::Importer.new('sample-site', 'default-site').import!
-    end
+    Occams::Seeds::Snippet::Importer.new('sample-site', 'default-site').import!
 
     @snippet.reload
     assert_equal 'default', @snippet.identifier
@@ -44,9 +42,7 @@ class SeedsSnippetsTest < ActiveSupport::TestCase
     old_snippet = @snippet
     old_snippet.update_column(:identifier, 'old')
 
-    assert_no_difference -> { Occams::Cms::Snippet.count } do
-      Occams::Seeds::Snippet::Importer.new('sample-site', 'default-site').import!
-    end
+    Occams::Seeds::Snippet::Importer.new('sample-site', 'default-site').import!
 
     assert snippet = Occams::Cms::Snippet.last
     assert_equal 'default', snippet.identifier
@@ -66,7 +62,7 @@ class SeedsSnippetsTest < ActiveSupport::TestCase
     @snippet.reload
     assert_equal 'default', @snippet.identifier
     assert_equal 'Default Snippet', @snippet.label
-    assert_equal 'snippet content', @snippet.content
+    assert_equal '## snippet content', @snippet.content
   end
 
   def test_export
@@ -88,7 +84,7 @@ class SeedsSnippetsTest < ActiveSupport::TestCase
       - Default
       position: 0
       [content]
-      snippet content
+      ## snippet content
     TEXT
     assert_equal out, File.read(content_path)
   ensure

@@ -99,7 +99,7 @@ class CmsSiteTest < ActiveSupport::TestCase
     assert_difference 'Occams::Cms::Site.count', -1 do
       assert_difference 'Occams::Cms::Layout.count', -3 do
         assert_difference 'Occams::Cms::Page.count', -2 do
-          assert_difference 'Occams::Cms::Snippet.count', -1 do
+          assert_difference 'Occams::Cms::Snippet.count', -2 do
             assert_difference 'Occams::Cms::Category.count', -1 do
               @site.destroy
             end

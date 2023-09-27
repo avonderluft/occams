@@ -44,7 +44,6 @@ ocCaM'S, pronounced "AH-kums" is a nod to [Occam's Razor](https://en.wikipedia.o
 
 * File attachments are handled by [ActiveStorage](https://github.com/rails/rails/tree/master/activestorage). Make sure that you can run appropriate migrations by running: `rails active_storage:install` and then `rake db:migrate`
 * Image resizing is done with [ImageMagick](http://www.imagemagick.org/script/download.php), so make sure it's installed
-* Pagination is handled by [kaminari](https://github.com/amatsuda/kaminari) or [will_paginate](https://github.com/mislav/will_paginate). Please add one of those to your Gemfile.
 
 ## Compatibility
 

@@ -29,11 +29,9 @@ module Occams::Seeds::Snippet
           )
 
           if snippet.save
-            message = "[CMS SEEDS] Imported Snippet \t #{snippet.identifier}"
-            Occams.logger.info(message)
+            Occams.logger.info("[CMS SEEDS] Imported Snippet \t #{snippet.identifier}")
           else
-            message = "[CMS SEEDS] Failed to import Snippet \n#{snippet.errors.inspect}"
-            Occams.logger.warn(message)
+            Occams.logger.warn("[CMS SEEDS] Failed to import Snippet \n#{snippet.errors.inspect}")
           end
         end
 

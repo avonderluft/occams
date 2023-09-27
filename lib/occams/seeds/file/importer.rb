@@ -41,11 +41,9 @@ module Occams::Seeds::File
 
         if fresh_file
           if file.save
-            message = "[CMS SEEDS] Imported File \t #{file_path}"
-            Occams.logger.info(message)
+            Occams.logger.info("[CMS SEEDS] Imported File \t #{file_path}")
           else
-            message = "[CMS SEEDS] Failed to import File \n#{file.errors.inspect}"
-            Occams.logger.warn(message)
+            Occams.logger.warn("[CMS SEEDS] Failed to import File \n#{file.errors.inspect}")
           end
         end
 

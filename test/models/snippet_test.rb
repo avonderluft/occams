@@ -38,7 +38,7 @@ class CmsSnippetTest < ActiveSupport::TestCase
       assert_equal 'Test Snippet', snippet.label
       assert_equal 'test', snippet.identifier
       assert_equal 'Test Content', snippet.content
-      assert_equal 1, snippet.position
+      assert_equal 2, snippet.position
     end
   end
 
@@ -48,9 +48,9 @@ class CmsSnippetTest < ActiveSupport::TestCase
     occams_cms_fragments(:default).update_column(:content, '{{cms:snippet default}}')
     page.clear_content_cache!
 
-    assert_equal 'snippet content', page.content_cache
-    snippet.update(content: 'new snippet content')
+    assert_equal '## snippet content', page.content_cache
+    snippet.update(content: 'new ## snippet content')
     page.reload
-    assert_equal 'new snippet content', page.content_cache
+    assert_equal 'new ## snippet content', page.content_cache
   end
 end

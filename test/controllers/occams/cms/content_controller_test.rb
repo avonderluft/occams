@@ -281,6 +281,6 @@ class Occams::Cms::ContentControllerTest < ActionDispatch::IntegrationTest
     I18n.locale = translation.locale
 
     get occams_cms_render_page_path(cms_path: '')
-    assert_equal 'test snippet content test', response.body
+    assert_equal 'test ## snippet content test', response.body
   end
 end

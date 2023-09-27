@@ -46,6 +46,9 @@ class ContentTagsFragmentTest < ActiveSupport::TestCase
   def test_content
     tag = Occams::Content::Tag::Fragment.new(context: @page, params: ['content'])
     assert_equal 'content', tag.content
+    assert_raises RuntimeError, 'Form field rendering not implemented for this Tag' do
+      tag.form_field
+    end
   end
 
   def test_content_new_record

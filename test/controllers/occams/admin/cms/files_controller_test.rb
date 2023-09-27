@@ -227,6 +227,16 @@ class Occams::Admin::Cms::FilesControllerTest < ActionDispatch::IntegrationTest
     assert_equal 'image.jpg', @file.attachment.filename.to_s
   end
 
+  def test_update_failure
+    r :put, occams_admin_cms_site_file_path(site_id: @site, id: @file), params: { file: {
+      label: ''
+    } }
+    assert_response :success
+    assert_template :edit
+    assert assigns(:file)
+    assert_equal 'Failed to update file', flash[:danger]
+  end
+
   def test_destroy
     file_count        = -> { Occams::Cms::File.count }
     attachment_count  = -> { ActiveStorage::Attachment.count }

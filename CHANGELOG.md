@@ -1,8 +1,11 @@
 # Changelog
 
-## v1.0.8 - TBD
+## v1.0.7.2 - 9/27/2023
 
-- Switched CI from Buildkite to Github actions
+- Pulled will_paginate option out in favor of Kaminari
+- Switched CI from Buildkite to [Github actions](https://github.com/avonderluft/occams/actions/workflows/rubyonrails.yml)
+- Improved test coverage to 99+
+- Removed backward compatibility to Rails prior to 6.x
 
 ## v1.0.7.1 - 9/22/2023
 

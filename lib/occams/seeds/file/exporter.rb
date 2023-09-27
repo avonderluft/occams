@@ -23,14 +23,10 @@ module Occams::Seeds::File
         # writing content
         begin
           ::File.binwrite(::File.join(path, ::File.basename(file_path)), file.attachment.download)
+          Occams.logger.info("[CMS SEEDS] Exported File \t #{file.attachment.filename}")
         rescue Errno::ENOENT, OpenURI::HTTPError
-          message = "[CMS SEEDS] No physical File \t #{file.attachment.filename}"
-          Occams.logger.warn(message)
-          next
+          Occams.logger.warn("[CMS SEEDS] No physical File \t #{file.attachment.filename}")
         end
-
-        message = "[CMS SEEDS] Exported File \t #{file.attachment.filename}"
-        Occams.logger.info(message)
       end
     end
   end

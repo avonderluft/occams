@@ -27,7 +27,12 @@ class ContentTagsSnippetTest < ActiveSupport::TestCase
 
   def test_content
     tag = Occams::Content::Tag::Snippet.new(context: @page, params: ['default'])
-    assert_equal 'snippet content', tag.content
+    assert_equal '## snippet content', tag.content
+  end
+
+  def test_markdown_content
+    tag = Occams::Content::Tag::Snippet.new(context: @page, params: ['markdown'])
+    assert_equal "<h2 id=\"snippet-content\">snippet content</h2>\n", tag.content
   end
 
   def test_content_new_record

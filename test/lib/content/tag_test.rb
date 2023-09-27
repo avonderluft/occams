@@ -51,4 +51,11 @@ class ContentTagTest < ActiveSupport::TestCase
     assert nodes[1].is_a?(ContentTagTest::TestTag)
     assert_equal ' content', nodes[2]
   end
+
+  def test_content_on_base_class
+    tag = Occams::Content::Tag.new(context: nil)
+    assert_raise Occams::Content::Tag::Error do
+      tag.content
+    end
+  end
 end

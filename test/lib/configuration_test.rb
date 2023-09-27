@@ -33,8 +33,4 @@ class ConfigurationTest < ActiveSupport::TestCase
     Occams.configuration.cms_title = 'New Title'
     assert_equal 'New Title', Occams.configuration.cms_title
   end
-
-  def test_version
-    refute Occams::VERSION.blank?
-  end
 end

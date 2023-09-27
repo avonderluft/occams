@@ -24,6 +24,7 @@ class ContentTagsTemplateTest < ActiveSupport::TestCase
       params: ['path/to/template']
     )
     assert_equal '<%= render template: "path/to/template" %>', tag.content
+    assert_equal true, tag.allow_erb?
   end
 
   def test_render

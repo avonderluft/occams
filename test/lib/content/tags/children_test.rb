@@ -12,6 +12,7 @@ class ContentTagsChildrenTest < ActiveSupport::TestCase
     @child2 = @site.pages.create!(layout: @layout, parent: @parent, label: 'Child2', slug: 'child2')
     @child3 = @site.pages.create!(layout: @layout, parent: @parent, label: 'Child3', slug: 'child3')
     @child4 = @site.pages.create!(layout: @layout, parent: @parent, label: 'Child4', slug: 'child4')
+    @child5 = @site.pages.create!(layout: @layout, parent: @parent, label: 'Child5', slug: 'child5', is_published: false)
   end
 
   def test_init
@@ -51,8 +52,10 @@ class ContentTagsChildrenTest < ActiveSupport::TestCase
       context: @parent,
       params: [{ 'exclude' => 'child2,child3' }]
     )
-    html = "<ul id=\"children\">\n  <li><a href=/parent/child1>Child1</a></li>\n\
-  <li><a href=/parent/child4>Child4</a></li>\n</ul>"
+    html = "<ul id=\"children\">\n\
+  <li><a href=/parent/child1>Child1</a></li>\n\
+  <li><a href=/parent/child4>Child4</a></li>\n\
+</ul>"
     assert_equal html, tag.render
   end
 

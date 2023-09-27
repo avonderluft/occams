@@ -28,6 +28,7 @@ group :test do
   gem 'coveralls_reborn',         '~> 0.28.0', require: false
   gem 'diffy',                    '~> 3.4.2'
   gem 'equivalent-xml',           '~> 0.6.0'
+  gem 'minitest',                 '~> 5.20.0'
   gem 'minitest-reporters',       '~> 1.6.1'
   gem 'mocha',                    '~> 2.1.0', require: false
   gem 'rails-controller-testing', '~> 1.0.5'

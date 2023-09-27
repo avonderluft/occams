@@ -29,7 +29,7 @@ class Occams::Content::Tag::Children < Occams::Content::Tag
     @list = ''
     # ActiveRecord_Associations_CollectionProxy
     @page_children = context.children.order(:position).to_ary
-    if Rails.env == 'production'
+    unless Rails.env == 'development'
       @page_children.delete_if { |child| !child.is_published }
     end
     @page_children.delete_if { |child| @exclude.include? child.slug }
