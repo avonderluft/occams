@@ -30,6 +30,13 @@ module Occams
 
     config.i18n.enforce_available_locales = true
 
-    config.active_record.yaml_column_permitted_classes = [Symbol, Date, Time, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone]
+    config.active_record.yaml_column_permitted_classes = [
+      Symbol,
+      Date,
+      Time,
+      ActiveSupport::TimeWithZone,
+      ActiveSupport::TimeZone,
+      ActiveSupport::SafeBuffer
+    ]
   end
 end
