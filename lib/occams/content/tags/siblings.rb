@@ -42,6 +42,7 @@ class Occams::Content::Tag::Siblings < Occams::Content::Tag
         sib_idx = @sibs.index(sib)
         next if sib.slug == context.slug
         next if Rails.env == 'production' && !sib.is_published
+        next unless @sibs.index(context) # current page is excluded
 
         if sib_idx == @sibs.index(context) - 1
           @links += "<a href=#{sib.url(relative: true)}>#{sib.label}</a> &laquo;&nbsp;<em>Previous</em> &bull; "

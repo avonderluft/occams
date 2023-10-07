@@ -4,7 +4,7 @@ require_relative '../test_helper'
 
 class ConfigurationTest < ActiveSupport::TestCase
   def test_configuration_presence
-    assert config = Occams.configuration
+    config = Occams::Configuration.new
     assert_equal 'Occams CMS Engine', config.cms_title
     assert_equal 'ApplicationController', config.admin_base_controller
     assert_equal 'ApplicationController', config.public_base_controller
@@ -15,10 +15,7 @@ class ConfigurationTest < ActiveSupport::TestCase
     assert_equal false, config.enable_seeds
     assert_equal File.expand_path('db/cms_seeds', Rails.root), config.seeds_path
     assert_equal 25, config.revisions_limit
-    assert_equal ({
-      'en' => 'English',
-      'es' => 'Español'
-    }), config.locales
+    %w[en es fr].each { |k| assert_includes config.locales.keys, k }
     assert_nil config.admin_locale
     assert_nil config.admin_cache_sweeper
     assert_equal false, config.allow_erb

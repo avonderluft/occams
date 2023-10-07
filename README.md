@@ -4,7 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/avonderluft/occams/badge.svg?branch=main)](https://coveralls.io/github/avonderluft/occams?branch=main)
 [![Gem Version](https://img.shields.io/gem/v/occams.svg?style=flat)](http://rubygems.org/gems/occams)
 [![Gem Downloads](https://img.shields.io/gem/dt/occams.svg?style=flat)](http://rubygems.org/gems/occams)
-[![GitHub Release Date - Published_At](https://img.shields.io/github/release-date/avonderluft/occams)](https://github.com/avonderluft/occams/releases)
+[![GitHub Release Date - Published_At](https://img.shields.io/github/release-date/avonderluft/occams?label=last%20release&color=seagreen)](https://github.com/avonderluft/occams/releases)
 
 ***Prefer Simplicity.***
 

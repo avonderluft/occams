@@ -58,4 +58,13 @@ class ContentTagsSiblingsTest < ActiveSupport::TestCase
 &bull; <em>Next</em>&nbsp;&raquo; <a href=/fifth>Fifth</a></div>"
     assert_equal html, tag.render
   end
+
+  def test_render_with_current_page_excluded
+    tag = Occams::Content::Tag::Siblings.new(
+      context: @second,
+      params: [{ 'exclude' => 'second,fourth' }]
+    )
+    html = '<div id="siblings"></div>'
+    assert_equal html, tag.render
+  end
 end

@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.0.7.3 - 10/7/2023
+
+- Fixed edge case with siblings tag when current page is excluded
+- Git ignore all sqlite* files for testing
+- Small testing refinements
+- Prep for Rails 7.1 compatibility
+
 ## v1.0.7.2 - 9/27/2023
 
 - Pulled will_paginate option out in favor of Kaminari
