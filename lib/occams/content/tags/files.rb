@@ -5,7 +5,7 @@
 # Example tag:
 #   {{ cms:files identifier }}
 #
-class Occams::Content::Tag::Files < Occams::Content::Tag::File
+class Occams::Content::Tags::Files < Occams::Content::Tags::File
   def content
     return '' if fragment.attachments.blank?
 
@@ -37,5 +37,5 @@ class Occams::Content::Tag::Files < Occams::Content::Tag::File
 end
 
 Occams::Content::Renderer.register_tag(
-  :files, Occams::Content::Tag::Files
+  :files, Occams::Content::Tags::Files
 )

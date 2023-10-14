@@ -14,6 +14,7 @@ SimpleCov.command_name 'Unit Tests'
 SimpleCov.start 'rails' do
   add_filter 'lib/tasks'
   add_filter 'lib/occams/engine'
+  add_filter 'lib/occams/generators'
   add_filter 'lib/occams/version'
 end
 
@@ -24,9 +25,16 @@ require 'minitest/reporters'
 require 'minitest/unit'
 require 'mocha/minitest'
 
+# suppress 'already initialized' warnings - this is needed
+# for loading and accurate coverage reporting on Rails 7.1
+# TODO - find less hacky solution for this
+$VERBOSE = nil
+if Gem::Version.new(Rails.version) >= Gem::Version.new('7.1.0')
+  Dir[Rails.root.join('lib/**/*.rb')].each { |f| load f }
+end
+
 reporter_options = { color: true, slow_count: 3 }
 Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(reporter_options)]
-
 Rails.backtrace_cleaner.remove_silencers!
 
 class ActiveSupport::TestCase

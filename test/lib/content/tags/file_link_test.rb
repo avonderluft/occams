@@ -13,13 +13,13 @@ class ContentTagsFileLinkTest < ActiveSupport::TestCase
   # -- Tests -------------------------------------------------------------------
 
   def test_init
-    tag = Occams::Content::Tag::FileLink.new(context: @page, params: ['123'])
+    tag = Occams::Content::Tags::FileLink.new(context: @page, params: ['123'])
     assert_equal '123', tag.identifier
     assert_equal 'url', tag.as
   end
 
   def test_init_with_params
-    tag = Occams::Content::Tag::FileLink.new(
+    tag = Occams::Content::Tags::FileLink.new(
       context: @page,
       params: [
         '123', {
@@ -42,27 +42,27 @@ class ContentTagsFileLinkTest < ActiveSupport::TestCase
   def test_init_without_identifier
     message = 'Missing identifier for file link tag'
     assert_raises Occams::Content::Tag::Error, message do
-      Occams::Content::Tag::FileLink.new(context: @page)
+      Occams::Content::Tags::FileLink.new(context: @page)
     end
   end
 
   def test_file
-    tag = Occams::Content::Tag::FileLink.new(context: @page, params: [@file.id])
+    tag = Occams::Content::Tags::FileLink.new(context: @page, params: [@file.id])
     assert_instance_of Occams::Cms::File, tag.file_record
 
-    tag = Occams::Content::Tag::FileLink.new(context: @page, params: ['invalid'])
+    tag = Occams::Content::Tags::FileLink.new(context: @page, params: ['invalid'])
     assert_nil tag.file_record
   end
 
   def test_content
-    tag = Occams::Content::Tag::FileLink.new(context: @page, params: [@file.id])
+    tag = Occams::Content::Tags::FileLink.new(context: @page, params: [@file.id])
     out = rails_blob_path(tag.file, only_path: true)
     assert_equal out, tag.content
     assert_equal out, tag.render
   end
 
   def test_content_as_link
-    tag = Occams::Content::Tag::FileLink.new(
+    tag = Occams::Content::Tags::FileLink.new(
       context: @page,
       params: [@file.id, { 'as' => 'link', 'class' => 'html-class' }]
     )
@@ -73,7 +73,7 @@ class ContentTagsFileLinkTest < ActiveSupport::TestCase
   end
 
   def test_content_as_image
-    tag = Occams::Content::Tag::FileLink.new(
+    tag = Occams::Content::Tags::FileLink.new(
       context: @page,
       params: [@file.id, { 'as' => 'image', 'class' => 'html-class' }]
     )
@@ -84,7 +84,7 @@ class ContentTagsFileLinkTest < ActiveSupport::TestCase
   end
 
   def test_content_when_not_found
-    tag = Occams::Content::Tag::FileLink.new(context: @page, params: ['invalid'])
+    tag = Occams::Content::Tags::FileLink.new(context: @page, params: ['invalid'])
     assert_equal '', tag.content
     assert_equal '', tag.render
   end

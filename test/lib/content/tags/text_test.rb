@@ -8,7 +8,7 @@ class ContentTagsTextTest < ActiveSupport::TestCase
   end
 
   def test_init
-    tag = Occams::Content::Tag::Text.new(context: @page, params: ['test'])
+    tag = Occams::Content::Tags::Text.new(context: @page, params: ['test'])
     assert_equal 'test', tag.identifier
   end
 end

@@ -3,7 +3,7 @@
 # Tag for text content that is going to be rendered using textarea with markdown
 #   {{ cms:markdown identifier }}
 #
-class Occams::Content::Tag::Markdown < Occams::Content::Tag::Fragment
+class Occams::Content::Tags::Markdown < Occams::Content::Tags::Fragment
   def render
     renderable ? Kramdown::Document.new(content.to_s).to_html : ''
   end
@@ -18,5 +18,5 @@ class Occams::Content::Tag::Markdown < Occams::Content::Tag::Fragment
 end
 
 Occams::Content::Renderer.register_tag(
-  :markdown, Occams::Content::Tag::Markdown
+  :markdown, Occams::Content::Tags::Markdown
 )

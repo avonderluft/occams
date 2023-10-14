@@ -77,7 +77,7 @@ module Occams::Cms::WithFragments
   # duplicate tags on the layout. That's wierd (but still works).
   def fragment_nodes
     nodes
-      .select { |n| n.is_a?(Occams::Content::Tag::Fragment) }
+      .select { |n| n.is_a?(Occams::Content::Tags::Fragment) }
       .uniq(&:identifier)
   end
 

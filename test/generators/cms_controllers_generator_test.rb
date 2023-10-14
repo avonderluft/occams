@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../test_helper'
-require_relative '../../lib/generators/occams/cms/controllers_generator'
+require_relative '../../lib/occams/generators/cms/controllers_generator'
 
 class CmsControllersGeneratorTest < Rails::Generators::TestCase
   tests Occams::Generators::Cms::ControllersGenerator

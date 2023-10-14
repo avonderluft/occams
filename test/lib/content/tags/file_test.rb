@@ -14,13 +14,13 @@ class ContentTagsFileTest < ActiveSupport::TestCase
   # -- Tests -------------------------------------------------------------------
 
   def test_init
-    tag = Occams::Content::Tag::File.new(context: @page, params: ['test'])
+    tag = Occams::Content::Tags::File.new(context: @page, params: ['test'])
     assert_equal 'test',  tag.identifier
     assert_equal 'url',   tag.as
   end
 
   def test_init_with_params
-    tag = Occams::Content::Tag::File.new(
+    tag = Occams::Content::Tags::File.new(
       context: @page,
       params: ['test', {
         'as' => 'image',
@@ -40,13 +40,13 @@ class ContentTagsFileTest < ActiveSupport::TestCase
 
   def test_content
     frag = occams_cms_fragments(:file)
-    tag = Occams::Content::Tag::File.new(context: @page, params: [frag.identifier])
+    tag = Occams::Content::Tags::File.new(context: @page, params: [frag.identifier])
     assert_equal rails_blob_path(frag.attachments.first, only_path: true), tag.content
   end
 
   def test_content_as_link
     frag = occams_cms_fragments(:file)
-    tag = Occams::Content::Tag::File.new(
+    tag = Occams::Content::Tags::File.new(
       context: @page,
       params: [frag.identifier, { 'as' => 'link', 'class' => 'html-class' }]
     )
@@ -58,7 +58,7 @@ class ContentTagsFileTest < ActiveSupport::TestCase
 
   def test_content_as_image
     frag = occams_cms_fragments(:file)
-    tag = Occams::Content::Tag::File.new(
+    tag = Occams::Content::Tags::File.new(
       context: @page,
       params: [frag.identifier, { 'as' => 'image', 'class' => 'html-class' }]
     )
@@ -69,7 +69,7 @@ class ContentTagsFileTest < ActiveSupport::TestCase
 
   def test_content_as_image_with_variant
     frag = occams_cms_fragments(:file)
-    tag = Occams::Content::Tag::File.new(
+    tag = Occams::Content::Tags::File.new(
       context: @page,
       params: [frag.identifier, { 'as' => 'image', 'resize' => '50x50' }]
     )
@@ -80,7 +80,7 @@ class ContentTagsFileTest < ActiveSupport::TestCase
   end
 
   def test_content_with_no_attachment
-    tag = Occams::Content::Tag::File.new(context: @page, params: ['test'])
+    tag = Occams::Content::Tags::File.new(context: @page, params: ['test'])
     assert_equal '', tag.content
   end
 end

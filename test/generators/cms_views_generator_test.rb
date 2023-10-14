@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../test_helper'
-require_relative '../../lib/generators/occams/cms/views_generator'
+require_relative '../../lib/occams/generators/cms/views_generator'
 
 class CmsViewsGeneratorTest < Rails::Generators::TestCase
   tests Occams::Generators::Cms::ViewsGenerator

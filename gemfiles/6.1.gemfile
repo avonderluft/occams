@@ -14,7 +14,7 @@ group :development, :test do
   gem 'image_processing',   '>= 1.2'
   gem 'kaminari',           '~> 1.2', '>= 1.2.2'
   gem 'selenium-webdriver', '~> 4.9.0'
-  gem 'sqlite3',            '~> 1.4.2'
+  gem 'sqlite3',            '~> 1.6.7'
 end
 
 group :development do

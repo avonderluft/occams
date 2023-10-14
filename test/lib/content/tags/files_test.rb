@@ -12,13 +12,13 @@ class ContentTagsFilesTest < ActiveSupport::TestCase
   # -- Tests -------------------------------------------------------------------
 
   def test_init
-    tag = Occams::Content::Tag::Files.new(context: @page, params: ['test'])
+    tag = Occams::Content::Tags::Files.new(context: @page, params: ['test'])
     assert_equal 'test',  tag.identifier
     assert_equal 'url',   tag.as
   end
 
   def test_init_with_params
-    tag = Occams::Content::Tag::Files.new(
+    tag = Occams::Content::Tags::Files.new(
       context: @page,
       params: ['test', {
         'as' => 'image',
@@ -42,13 +42,13 @@ class ContentTagsFilesTest < ActiveSupport::TestCase
     )
     frag.update_attribute(:tag, 'files')
     frag.update_attribute(:files, fixture_file_upload('image.jpg', 'image/jpeg'))
-    tag = Occams::Content::Tag::Files.new(context: @page, params: [frag.identifier])
+    tag = Occams::Content::Tags::Files.new(context: @page, params: [frag.identifier])
     out = frag.attachments.map { |a| rails_blob_path(a, only_path: true) }.join(' ')
     assert_equal out, tag.content
   end
 
   def test_content_no_attachments
-    tag = Occams::Content::Tag::Files.new(context: @page, params: ['test'])
+    tag = Occams::Content::Tags::Files.new(context: @page, params: ['test'])
     assert_equal '', tag.content
   end
 end

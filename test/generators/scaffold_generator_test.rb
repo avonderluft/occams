@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../test_helper'
-require_relative '../../lib/generators/occams/scaffold/scaffold_generator'
+require_relative '../../lib/occams/generators/scaffold_generator'
 
 class ScaffoldGeneratorTest < Rails::Generators::TestCase
   tests Occams::Generators::ScaffoldGenerator

@@ -20,27 +20,27 @@ class ContentRendererTest < ActiveSupport::TestCase
   end
 
   DEFAULT_REGISTERED_TAGS = {
-    'wysiwyg' => Occams::Content::Tag::Wysiwyg,
-    'text' => Occams::Content::Tag::Text,
-    'textarea' => Occams::Content::Tag::TextArea,
-    'markdown' => Occams::Content::Tag::Markdown,
-    'datetime' => Occams::Content::Tag::Datetime,
-    'date' => Occams::Content::Tag::Date,
-    'number' => Occams::Content::Tag::Number,
-    'checkbox' => Occams::Content::Tag::Checkbox,
-    'file' => Occams::Content::Tag::File,
-    'files' => Occams::Content::Tag::Files,
-    'snippet' => Occams::Content::Tag::Snippet,
-    'asset' => Occams::Content::Tag::Asset,
-    'file_link' => Occams::Content::Tag::FileLink,
-    'page_file_link' => Occams::Content::Tag::PageFileLink,
-    'helper' => Occams::Content::Tag::Helper,
-    'partial' => Occams::Content::Tag::Partial,
-    'template' => Occams::Content::Tag::Template,
-    'audio' => Occams::Content::Tag::Audio,
-    'breadcrumbs' => Occams::Content::Tag::Breadcrumbs,
-    'children' => Occams::Content::Tag::Children,
-    'siblings' => Occams::Content::Tag::Siblings
+    'wysiwyg' => Occams::Content::Tags::Wysiwyg,
+    'text' => Occams::Content::Tags::Text,
+    'textarea' => Occams::Content::Tags::Textarea,
+    'markdown' => Occams::Content::Tags::Markdown,
+    'datetime' => Occams::Content::Tags::Datetime,
+    'date' => Occams::Content::Tags::Date,
+    'number' => Occams::Content::Tags::Number,
+    'checkbox' => Occams::Content::Tags::Checkbox,
+    'file' => Occams::Content::Tags::File,
+    'files' => Occams::Content::Tags::Files,
+    'snippet' => Occams::Content::Tags::Snippet,
+    'asset' => Occams::Content::Tags::Asset,
+    'file_link' => Occams::Content::Tags::FileLink,
+    'page_file_link' => Occams::Content::Tags::PageFileLink,
+    'helper' => Occams::Content::Tags::Helper,
+    'partial' => Occams::Content::Tags::Partial,
+    'template' => Occams::Content::Tags::Template,
+    'audio' => Occams::Content::Tags::Audio,
+    'breadcrumbs' => Occams::Content::Tags::Breadcrumbs,
+    'children' => Occams::Content::Tags::Children,
+    'siblings' => Occams::Content::Tags::Siblings
   }.freeze
 
   setup do

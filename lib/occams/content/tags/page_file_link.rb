@@ -22,8 +22,8 @@ require_relative 'mixins/file_content'
 # `crop`    - imagemagick option. For example: "100x50+0+0"
 # `class`   - any html classes that you want on the result link or image tag. For example "class1 class2"
 #
-class Occams::Content::Tag::PageFileLink < Occams::Content::Tag
-  include Occams::Content::Tag::Mixins::FileContent
+class Occams::Content::Tags::PageFileLink < Occams::Content::Tag
+  include Occams::Content::Tags::Mixins::FileContent
 
   # @return [String] A `cms:file(s)` identifier.
   attr_reader :identifier
@@ -79,5 +79,5 @@ class Occams::Content::Tag::PageFileLink < Occams::Content::Tag
 end
 
 Occams::Content::Renderer.register_tag(
-  :page_file_link, Occams::Content::Tag::PageFileLink
+  :page_file_link, Occams::Content::Tags::PageFileLink
 )

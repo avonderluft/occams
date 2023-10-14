@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # A mixin for tags that returns the file as their content.
-module Occams::Content::Tag::Mixins
+module Occams::Content::Tags::Mixins
   module FileContent
     # @param [ActiveStorage::Blob] file
     # @param ["link", "image", "url"] as

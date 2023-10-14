@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 require_relative '../test_helper'
-require_relative '../../lib/generators/occams/cms/cms_generator'
+require_relative '../../lib/occams/generators/cms/cms_generator'
 
 class CmsGeneratorTest < Rails::Generators::TestCase
-  tests Occams::Generators::CmsGenerator
+  tests Occams::Generators::Cms::CmsGenerator
 
   def test_generator
     run_generator
