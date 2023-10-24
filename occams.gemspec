@@ -20,7 +20,6 @@ Gem::Specification.new do |spec|
   spec.metadata['rubygems_mfa_required'] = 'true'
 
   spec.add_dependency 'active_link_to',       '~> 1.0',   '>= 1.0.5'
-  spec.add_dependency 'brick',                '~> 1.0.0', '>= 1.0.181'
   spec.add_dependency 'comfy_bootstrap_form', '~> 4.0',   '>= 4.0.0'
   spec.add_dependency 'haml-rails',           '~> 2.1',   '>= 2.1.0'
   spec.add_dependency 'image_processing',     '~> 1.2',   '>= 1.12.2'
