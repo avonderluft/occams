@@ -12,6 +12,8 @@ group :development, :test do
   gem 'byebug',             '~> 10.0.0', platforms: %i[mri mingw x64_mingw]
   gem 'image_processing',   '>= 1.2'
   gem 'sqlite3',            '~> 1.6.7'
+  # gem 'mysql2',             '~> 0.5'
+  # gem 'pg',                 '~> 1.5.4'
 end
 
 group :development do

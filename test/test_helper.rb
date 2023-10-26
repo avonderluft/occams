@@ -42,6 +42,7 @@ class ActiveSupport::TestCase
   include ActionDispatch::TestProcess
 
   fixtures :all
+  parallelize(workers: 1) # rails 7.1 tests pass in github actions
 
   setup :reset_config,
         :reset_locale
