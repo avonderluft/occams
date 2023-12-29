@@ -8,7 +8,7 @@
 #   `namespace`:
 #     Just a string that allows grouping of form elements in the admin area
 #
-class Occams::Content::Tag::Fragment < Occams::Content::Tag
+class Occams::Content::Tags::Fragment < Occams::Content::Tag
   attr_accessor :renderable
   attr_reader :identifier, :namespace
 
@@ -48,7 +48,7 @@ class Occams::Content::Tag::Fragment < Occams::Content::Tag
 
   # Tag renders its own form inputs via `form_field(template, index)`
   # For example:
-  #   class MyTag < Occams::Content::Tag::Fragment
+  #   class MyTag < Occams::Content::Tags::Fragment
   #     def form_field(view, index, &block)
   #       # omit yield if you don't want default wrapper
   #       yield view.text_area "input_name", "value"

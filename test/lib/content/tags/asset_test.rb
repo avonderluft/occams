@@ -8,7 +8,7 @@ class ContentTagsAssetTest < ActiveSupport::TestCase
   end
 
   def test_init
-    tag = Occams::Content::Tag::Asset.new(
+    tag = Occams::Content::Tags::Asset.new(
       context: @page,
       params: ['default']
     )
@@ -18,7 +18,7 @@ class ContentTagsAssetTest < ActiveSupport::TestCase
   end
 
   def test_init_with_params
-    tag = Occams::Content::Tag::Asset.new(
+    tag = Occams::Content::Tags::Asset.new(
       context: @page,
       params: ['default', { 'type' => 'css', 'as' => 'tag' }]
     )
@@ -30,22 +30,22 @@ class ContentTagsAssetTest < ActiveSupport::TestCase
   def test_init_without_identifier
     message = 'Missing layout identifier for asset tag'
     assert_raises Occams::Content::Tag::Error, message do
-      Occams::Content::Tag::Asset.new(context: @page)
+      Occams::Content::Tags::Asset.new(context: @page)
     end
   end
 
   def test_layout
-    tag = Occams::Content::Tag::Asset.new(context: @page, params: ['default'])
+    tag = Occams::Content::Tags::Asset.new(context: @page, params: ['default'])
     assert tag.layout.is_a?(Occams::Cms::Layout)
   end
 
   def test_content_for_invalid
-    tag = Occams::Content::Tag::Asset.new(context: @page, params: ['default'])
+    tag = Occams::Content::Tags::Asset.new(context: @page, params: ['default'])
     assert_nil tag.content
   end
 
   def test_content_for_css
-    tag = Occams::Content::Tag::Asset.new(
+    tag = Occams::Content::Tags::Asset.new(
       context: @page,
       params: ['default', { 'type' => 'css' }]
     )
@@ -54,7 +54,7 @@ class ContentTagsAssetTest < ActiveSupport::TestCase
   end
 
   def test_content_for_css_as_tag
-    tag = Occams::Content::Tag::Asset.new(
+    tag = Occams::Content::Tags::Asset.new(
       context: @page,
       params: ['default', { 'type' => 'css', 'as' => 'tag' }]
     )
@@ -65,7 +65,7 @@ class ContentTagsAssetTest < ActiveSupport::TestCase
 
   def test_content_for_css_with_public_cms_path
     Occams.config.public_cms_path = '/custom'
-    tag = Occams::Content::Tag::Asset.new(
+    tag = Occams::Content::Tags::Asset.new(
       context: @page,
       params: ['default', { 'type' => 'css' }]
     )
@@ -74,7 +74,7 @@ class ContentTagsAssetTest < ActiveSupport::TestCase
   end
 
   def test_content_for_js
-    tag = Occams::Content::Tag::Asset.new(
+    tag = Occams::Content::Tags::Asset.new(
       context: @page,
       params: ['default', { 'type' => 'js' }]
     )
@@ -83,7 +83,7 @@ class ContentTagsAssetTest < ActiveSupport::TestCase
   end
 
   def test_content_for_js_as_tag
-    tag = Occams::Content::Tag::Asset.new(
+    tag = Occams::Content::Tags::Asset.new(
       context: @page,
       params: ['default', { 'type' => 'js', 'as' => 'tag' }]
     )
@@ -94,7 +94,7 @@ class ContentTagsAssetTest < ActiveSupport::TestCase
 
   def test_content_for_js_with_public_cms_path
     Occams.config.public_cms_path = '/custom'
-    tag = Occams::Content::Tag::Asset.new(
+    tag = Occams::Content::Tags::Asset.new(
       context: @page,
       params: ['default', { 'type' => 'js' }]
     )

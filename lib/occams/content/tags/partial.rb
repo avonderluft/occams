@@ -6,7 +6,7 @@
 #   <%= render partial: "path/to/partial", locals: {foo: bar, zip: zoop} %>
 # Whitelist is can be used to control what partials are renderable.
 #
-class Occams::Content::Tag::Partial < Occams::Content::Tag
+class Occams::Content::Tags::Partial < Occams::Content::Tag
   attr_reader :path, :locals
 
   def initialize(context:, params: [], source: nil)
@@ -43,5 +43,5 @@ class Occams::Content::Tag::Partial < Occams::Content::Tag
 end
 
 Occams::Content::Renderer.register_tag(
-  :partial, Occams::Content::Tag::Partial
+  :partial, Occams::Content::Tags::Partial
 )

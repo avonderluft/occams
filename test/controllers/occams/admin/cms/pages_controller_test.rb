@@ -77,7 +77,7 @@ class Occams::Admin::Cms::PagesControllerTest < ActionDispatch::IntegrationTest
 
     assert_select "textarea[name='page[fragments_attributes][0][content]']"
     assert_select "input[type='hidden'][name='page[fragments_attributes][0][identifier]'][value='content']"
-    assert_select "input[type='hidden'][name='page[fragments_attributes][0][tag]'][value='text_area']"
+    assert_select "input[type='hidden'][name='page[fragments_attributes][0][tag]'][value='textarea']"
   end
 
   def test_get_new_with_several_fields

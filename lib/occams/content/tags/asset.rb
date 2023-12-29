@@ -7,7 +7,7 @@
 # `type` - css | js - what we're outputting here
 # `as`   - url (default) | tag - output url or wrap it in the appropriate tag
 #
-class Occams::Content::Tag::Asset < Occams::Content::Tag
+class Occams::Content::Tags::Asset < Occams::Content::Tag
   attr_reader :identifier, :type, :as
 
   def initialize(context:, params: [], source: nil)
@@ -53,5 +53,5 @@ class Occams::Content::Tag::Asset < Occams::Content::Tag
 end
 
 Occams::Content::Renderer.register_tag(
-  :asset, Occams::Content::Tag::Asset
+  :asset, Occams::Content::Tags::Asset
 )

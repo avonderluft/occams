@@ -3,7 +3,7 @@
 # Tag for boolean content that is going to be rendered using checkbox
 #   {{ cms:checkbox identifier }}
 #
-class Occams::Content::Tag::Checkbox < Occams::Content::Tag::Fragment
+class Occams::Content::Tags::Checkbox < Occams::Content::Tags::Fragment
   def content
     fragment.boolean
   end
@@ -23,5 +23,5 @@ class Occams::Content::Tag::Checkbox < Occams::Content::Tag::Fragment
 end
 
 Occams::Content::Renderer.register_tag(
-  :checkbox, Occams::Content::Tag::Checkbox
+  :checkbox, Occams::Content::Tags::Checkbox
 )

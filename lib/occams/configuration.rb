@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Occams::Configuration
-  # Don't like Occams? Set it to whatever you like. :(
+  # Don't like Occams? Set it to whatever you like.
   attr_accessor :cms_title
 
   # Controller that is inherited from CmsAdmin::BaseController

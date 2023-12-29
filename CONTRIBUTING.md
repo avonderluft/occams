@@ -24,12 +24,11 @@ Fork the project. Optionally, create a branch you want to work on.
 - Tests please, but nothing complicated. UnitTest / Fixtures all the way. Make sure all tests pass.
 - Run `bundle exec rubocop` and fix any issues raised.
 
-### 4. Make a pull request
+### 4. Create a pull request
 
 - If you never done it before read this: https://help.github.com/articles/using-pull-requests
-- When PR is submitted check if TravisCI ran all tests successfully and Rubocop didn't raise any issues
+- When PR is submitted check if [Github Actions](https://github.com/avonderluft/occams/actions) ran all tests successfully and Rubocop didn't raise any issues
 
 ### 5. Done!
 
-If everything is good your changes will be merged into master branch. Eventually
-a new version of gem will be published.
+If everything looks good, we will review your changes to be merged into the main branch, and publish a new version of the gem.

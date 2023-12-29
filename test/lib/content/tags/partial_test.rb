@@ -4,7 +4,7 @@ require_relative '../../../test_helper'
 
 class ContentTagsPartialTest < ActiveSupport::TestCase
   def test_init
-    tag = Occams::Content::Tag::Partial.new(
+    tag = Occams::Content::Tags::Partial.new(
       context: @page,
       params: ['path/to/partial']
     )
@@ -13,7 +13,7 @@ class ContentTagsPartialTest < ActiveSupport::TestCase
   end
 
   def test_init_with_locals
-    tag = Occams::Content::Tag::Partial.new(
+    tag = Occams::Content::Tags::Partial.new(
       context: @page,
       params: ['path/to/partial', { 'key' => 'val' }]
     )
@@ -24,7 +24,7 @@ class ContentTagsPartialTest < ActiveSupport::TestCase
   def test_init_without_path
     message = 'Missing path for partial tag'
     assert_raises Occams::Content::Tag::Error, message do
-      Occams::Content::Tag::Partial.new(
+      Occams::Content::Tags::Partial.new(
         context: @page,
         params: [{ 'key' => 'val' }]
       )
@@ -32,7 +32,7 @@ class ContentTagsPartialTest < ActiveSupport::TestCase
   end
 
   def test_content
-    tag = Occams::Content::Tag::Partial.new(
+    tag = Occams::Content::Tags::Partial.new(
       context: @page,
       params: ['path/to/partial', { 'key' => 'val' }]
     )
@@ -40,7 +40,7 @@ class ContentTagsPartialTest < ActiveSupport::TestCase
   end
 
   def test_render
-    tag = Occams::Content::Tag::Partial.new(
+    tag = Occams::Content::Tags::Partial.new(
       context: @page,
       params: ['path/to/partial', { 'key' => 'val' }]
     )
@@ -50,13 +50,13 @@ class ContentTagsPartialTest < ActiveSupport::TestCase
   def test_render_with_whitelist
     Occams.config.allowed_partials = ['safe/path']
 
-    tag = Occams::Content::Tag::Partial.new(
+    tag = Occams::Content::Tags::Partial.new(
       context: @page,
       params: ['path/to/partial']
     )
     assert_equal '', tag.render
 
-    tag = Occams::Content::Tag::Partial.new(
+    tag = Occams::Content::Tags::Partial.new(
       context: @page,
       params: ['safe/path']
     )
@@ -64,7 +64,7 @@ class ContentTagsPartialTest < ActiveSupport::TestCase
   end
 
   def test_render_with_erb_injection
-    tag = Occams::Content::Tag::Partial.new(
+    tag = Occams::Content::Tags::Partial.new(
       context: @page,
       params: ["foo\#{:bar}", { 'key' => "va\#{:l}ue" }]
     )

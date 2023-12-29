@@ -13,13 +13,13 @@ class ContentTagsPageFileLinkTest < ActiveSupport::TestCase
   # -- Tests -------------------------------------------------------------------
 
   def test_init
-    tag = Occams::Content::Tag::PageFileLink.new(context: @page, params: ['123'])
+    tag = Occams::Content::Tags::PageFileLink.new(context: @page, params: ['123'])
     assert_equal '123', tag.identifier
     assert_equal 'url', tag.as
   end
 
   def test_init_with_params
-    tag = Occams::Content::Tag::PageFileLink.new(
+    tag = Occams::Content::Tags::PageFileLink.new(
       context: @page,
       params: [
         '123', {
@@ -42,20 +42,20 @@ class ContentTagsPageFileLinkTest < ActiveSupport::TestCase
   def test_init_without_identifier
     message = 'Missing identifier for page file link tag'
     assert_raises Occams::Content::Tag::Error, message do
-      Occams::Content::Tag::PageFileLink.new(context: @page)
+      Occams::Content::Tags::PageFileLink.new(context: @page)
     end
   end
 
   def test_content
     fragment = occams_cms_fragments(:file)
-    tag = Occams::Content::Tag::PageFileLink.new(context: @page, params: [fragment.identifier])
+    tag = Occams::Content::Tags::PageFileLink.new(context: @page, params: [fragment.identifier])
     out = rails_blob_path(tag.file, only_path: true)
     assert_equal out, tag.content
     assert_equal out, tag.render
   end
 
   def test_content_when_not_found
-    tag = Occams::Content::Tag::PageFileLink.new(context: @page, params: ['invalid'])
+    tag = Occams::Content::Tags::PageFileLink.new(context: @page, params: ['invalid'])
     assert_equal '', tag.content
     assert_equal '', tag.render
   end

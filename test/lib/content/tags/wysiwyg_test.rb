@@ -8,7 +8,7 @@ class ContentTagsWysiwygTest < ActiveSupport::TestCase
   end
 
   def test_init
-    tag = Occams::Content::Tag::Wysiwyg.new(context: @page, params: ['test'])
+    tag = Occams::Content::Tags::Wysiwyg.new(context: @page, params: ['test'])
     assert_equal 'test', tag.identifier
   end
 end

@@ -42,5 +42,5 @@
   = link_to 'Ruby', 'https://www.ruby-lang.org', target: '_blank'
   %span.version= RUBY_VERSION
   %br
-  = Rails.env.upcase
+  = Rails.env.upcase + ' - ' + ActiveRecord::Base.connection.adapter_name
 

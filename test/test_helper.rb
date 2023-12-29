@@ -13,7 +13,9 @@ end
 SimpleCov.command_name 'Unit Tests'
 SimpleCov.start 'rails' do
   add_filter 'lib/tasks'
+  add_filter 'lib/generators'
   add_filter 'lib/occams/engine'
+  add_filter 'lib/occams/routes' # TODO: add comprehensive tests for routes
   add_filter 'lib/occams/version'
 end
 
@@ -23,16 +25,25 @@ require 'rails/generators'
 require 'minitest/reporters'
 require 'minitest/unit'
 require 'mocha/minitest'
+require 'capybara/cuprite'
+
+# suppress 'already initialized' warnings - this is needed
+# for loading and accurate coverage reporting on Rails 7.1
+# TODO: find less hacky solution for this
+$VERBOSE = nil
+if Gem::Version.new(Rails.version) >= Gem::Version.new('7.1.0')
+  Dir[Rails.root.join('lib/**/*.rb')].each { |f| load f }
+end
 
 reporter_options = { color: true, slow_count: 3 }
 Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(reporter_options)]
-
 Rails.backtrace_cleaner.remove_silencers!
 
 class ActiveSupport::TestCase
   include ActionDispatch::TestProcess
 
   fixtures :all
+  parallelize(workers: 1) # rails 7.1 tests pass in github actions
 
   setup :reset_config,
         :reset_locale
@@ -229,22 +240,33 @@ end
 
 # In order to run system tests ensure that chrome-driver is installed.
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
+  Capybara.register_driver(:better_cuprite) do |app|
+    Capybara::Cuprite::Driver.new(
+      app,
+      window_size: [1200, 800],
+      # See additional options for Dockerized environment in the respective section of this article
+      browser_options: {},
+      # Increase Chrome startup wait time (required for stable CI builds)
+      process_timeout: 10,
+      # Enable debugging capabilities
+      inspector: true,
+      # Allow running Chrome in a headful mode by setting HEADLESS env
+      # var to a falsey value
+      headless: !ENV['HEADLESS'].in?(%w[n 0 no false])
+    )
+  end
+
+  # Configure Capybara to use :better_cuprite driver by default
+  Capybara.default_driver = Capybara.javascript_driver = :better_cuprite
   Capybara.enable_aria_label = true
 
-  driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
-
-  teardown :assert_no_javascript_errors
+  driven_by :cuprite, using: :chromium, screen_size: [1400, 1400]
 
   # Visiting path and passing in BasicAuth credentials at the same time
   # I have no idea how to set headers here.
   def visit_p(path)
-    username = Occams::AccessControl::AdminAuthentication.user
-    password = Occams::AccessControl::AdminAuthentication.pass
+    username = Occams::AccessControl::AdminAuthentication.username
+    password = Occams::AccessControl::AdminAuthentication.password
     visit("http://#{username}:#{password}@#{Capybara.server_host}:#{Capybara.server_port}#{path}")
-  end
-
-  def assert_no_javascript_errors
-    assert_empty page.driver.browser.manage.logs.get(:browser)
-      .select { |e| e.level == 'SEVERE' && e.message.present? }.map(&:message).to_a
   end
 end

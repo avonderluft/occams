@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Occams::ActsAsTree
+module Occams::Extensions::ActsAsTree
   def self.included(base)
     base.extend(ClassMethods)
   end
@@ -30,7 +30,7 @@ module Occams::ActsAsTree
                dependent: configuration[:dependent]
 
       class_eval <<-RUBY, __FILE__, __LINE__ + 1
-        include Occams::ActsAsTree::InstanceMethods
+        include Occams::Extensions::ActsAsTree::InstanceMethods
 
         scope :roots, -> {
           where("#{configuration[:foreign_key]} IS NULL").
@@ -110,5 +110,5 @@ module Occams::ActsAsTree
 end
 
 ActiveSupport.on_load :active_record do
-  include Occams::ActsAsTree
+  include Occams::Extensions::ActsAsTree
 end

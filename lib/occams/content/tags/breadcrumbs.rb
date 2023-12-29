@@ -15,7 +15,7 @@
 # }
 # and/or pass in style overrides with the 'style' parameter, as above
 
-class Occams::Content::Tag::Breadcrumbs < Occams::Content::Tag
+class Occams::Content::Tags::Breadcrumbs < Occams::Content::Tag
   attr_reader :links, :style, :locals
 
   def initialize(context:, params: [], source: nil)
@@ -39,5 +39,5 @@ class Occams::Content::Tag::Breadcrumbs < Occams::Content::Tag
 end
 
 Occams::Content::Renderer.register_tag(
-  :breadcrumbs, Occams::Content::Tag::Breadcrumbs
+  :breadcrumbs, Occams::Content::Tags::Breadcrumbs
 )

@@ -25,12 +25,12 @@ require_relative 'occams/seeds/snippet/importer'
 require_relative 'occams/seeds/snippet/exporter'
 require_relative 'occams/seeds/file/importer'
 require_relative 'occams/seeds/file/exporter'
-require_relative 'occams/extensions/acts_as_tree'
-require_relative 'occams/extensions/has_revisions'
-
 require_relative 'occams/content'
+require_relative 'occams/extensions'
 
 module Occams
+  Version = Occams::VERSION
+
   class << self
     attr_writer :logger
 

@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-module Occams::HasRevisions
+module Occams::Extensions::HasRevisions
   def self.included(base)
     base.send :extend, ClassMethods
   end
 
   module ClassMethods
     def cms_has_revisions_for(*fields)
-      include Occams::HasRevisions::InstanceMethods
+      include Occams::Extensions::HasRevisions::InstanceMethods
 
       attr_accessor :revision_data
 
@@ -64,5 +64,5 @@ module Occams::HasRevisions
 end
 
 ActiveSupport.on_load :active_record do
-  include Occams::HasRevisions
+  include Occams::Extensions::HasRevisions
 end

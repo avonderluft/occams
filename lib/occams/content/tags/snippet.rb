@@ -4,7 +4,7 @@
 #   {{cms:snippet identifier}}
 # Snippets may have more tags in them like fragments, so they may be expanded too.
 #
-class Occams::Content::Tag::Snippet < Occams::Content::Tag
+class Occams::Content::Tags::Snippet < Occams::Content::Tag
   attr_reader :identifier
 
   def initialize(context:, params: [], source: nil)
@@ -32,5 +32,5 @@ class Occams::Content::Tag::Snippet < Occams::Content::Tag
 end
 
 Occams::Content::Renderer.register_tag(
-  :snippet, Occams::Content::Tag::Snippet
+  :snippet, Occams::Content::Tags::Snippet
 )
