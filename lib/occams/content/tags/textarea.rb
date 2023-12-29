@@ -3,7 +3,8 @@
 # Tag for text content that is going to be rendered using textarea
 #   {{ cms:textarea identifier }}
 #
-class Occams::Content::Tag::TextArea < Occams::Content::Tag::Fragment
+
+class Occams::Content::Tags::Textarea < Occams::Content::Tags::Fragment
   def form_field(object_name, view, index)
     name    = "#{object_name}[fragments_attributes][#{index}][content]"
     options = { id: form_field_id, data: { 'cms-cm-mode' => 'text/html' } }
@@ -14,5 +15,5 @@ class Occams::Content::Tag::TextArea < Occams::Content::Tag::Fragment
 end
 
 Occams::Content::Renderer.register_tag(
-  :textarea, Occams::Content::Tag::TextArea
+  :textarea, Occams::Content::Tags::Textarea
 )

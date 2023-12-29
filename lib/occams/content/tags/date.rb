@@ -3,7 +3,7 @@
 # Tag for text content that is going to be rendered using text input with date widget
 #   {{ cms:date identifier }}
 #
-class Occams::Content::Tag::Date < Occams::Content::Tag::Datetime
+class Occams::Content::Tags::Date < Occams::Content::Tags::Datetime
   def form_field(object_name, view, index)
     name    = "#{object_name}[fragments_attributes][#{index}][datetime]"
     options = { id: form_field_id, class: 'form-control', data: { 'cms-date' => true } }
@@ -15,5 +15,5 @@ class Occams::Content::Tag::Date < Occams::Content::Tag::Datetime
 end
 
 Occams::Content::Renderer.register_tag(
-  :date, Occams::Content::Tag::Date
+  :date, Occams::Content::Tags::Date
 )

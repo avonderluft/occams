@@ -4,7 +4,7 @@ require_relative '../../../test_helper'
 
 class ContentTagsTemplateTest < ActiveSupport::TestCase
   def test_init
-    tag = Occams::Content::Tag::Template.new(
+    tag = Occams::Content::Tags::Template.new(
       context: @page,
       params: ['path/to/template']
     )
@@ -14,12 +14,12 @@ class ContentTagsTemplateTest < ActiveSupport::TestCase
   def test_init_without_path
     message = 'Missing template path for template tag'
     assert_raises Occams::Content::Tag::Error, message do
-      Occams::Content::Tag::Template.new(context: @page)
+      Occams::Content::Tags::Template.new(context: @page)
     end
   end
 
   def test_content
-    tag = Occams::Content::Tag::Template.new(
+    tag = Occams::Content::Tags::Template.new(
       context: @page,
       params: ['path/to/template']
     )
@@ -28,7 +28,7 @@ class ContentTagsTemplateTest < ActiveSupport::TestCase
   end
 
   def test_render
-    tag = Occams::Content::Tag::Template.new(
+    tag = Occams::Content::Tags::Template.new(
       context: @page,
       params: ['path/to/template']
     )
@@ -37,13 +37,13 @@ class ContentTagsTemplateTest < ActiveSupport::TestCase
 
   def test_render_with_whitelist
     Occams.config.allowed_templates = ['allowed/path']
-    tag = Occams::Content::Tag::Template.new(
+    tag = Occams::Content::Tags::Template.new(
       context: @page,
       params: ['allowed/path']
     )
     assert_equal '<%= render template: "allowed/path" %>', tag.render
 
-    tag = Occams::Content::Tag::Template.new(
+    tag = Occams::Content::Tags::Template.new(
       context: @page,
       params: ['not_allowed/path']
     )
@@ -51,7 +51,7 @@ class ContentTagsTemplateTest < ActiveSupport::TestCase
   end
 
   def test_render_with_erb_injection
-    tag = Occams::Content::Tag::Template.new(
+    tag = Occams::Content::Tags::Template.new(
       context: @page,
       params: ["va\#{:l}ue"]
     )

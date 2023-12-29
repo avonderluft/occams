@@ -3,6 +3,8 @@
 class Occams::Cms::Layout < ActiveRecord::Base
   self.table_name = 'occams_cms_layouts'
 
+  require_relative '../../../../lib/occams/extensions/acts_as_tree'
+
   cms_acts_as_tree
   cms_has_revisions_for :content, :css, :js
 
@@ -67,7 +69,7 @@ class Occams::Cms::Layout < ActiveRecord::Base
     tokens    = renderer.tokenize(content)
 
     if parent
-      fragment_tags = Occams::Content::Tag::Fragment.subclasses.map do |c|
+      fragment_tags = Occams::Content::Tags::Fragment.subclasses.map do |c|
         Occams::Content::Renderer.tags.key(c)
       end
 

@@ -3,7 +3,7 @@
 # Tag for text content that is going to be rendered using number input
 #   {{ cms:number identifier }}
 #
-class Occams::Content::Tag::Number < Occams::Content::Tag::Fragment
+class Occams::Content::Tags::Number < Occams::Content::Tags::Fragment
   def form_field(object_name, view, index)
     name    = "#{object_name}[fragments_attributes][#{index}][content]"
     options = { id: form_field_id, class: 'form-control' }
@@ -14,5 +14,5 @@ class Occams::Content::Tag::Number < Occams::Content::Tag::Fragment
 end
 
 Occams::Content::Renderer.register_tag(
-  :number, Occams::Content::Tag::Number
+  :number, Occams::Content::Tags::Number
 )

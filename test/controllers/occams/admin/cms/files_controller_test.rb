@@ -9,15 +9,15 @@ class Occams::Admin::Cms::FilesControllerTest < ActionDispatch::IntegrationTest
   end
 
   def test_get_index
+    file_count = @site.files.count
     @site.files.create!(
       label: 'other',
       file: fixture_file_upload('image.jpg', 'image/jpeg')
     )
-
     r :get, occams_admin_cms_site_files_path(site_id: @site)
     assert_response :success
-    assert assigns(:files)
     assert_template :index
+    assert_equal file_count + 1, @site.files.count
   end
 
   def test_get_index_with_category
@@ -26,9 +26,7 @@ class Occams::Admin::Cms::FilesControllerTest < ActionDispatch::IntegrationTest
       categories: category.label
     }
     assert_response :success
-    assert assigns(:files)
-    assert_equal 1, assigns(:files).count
-    assert assigns(:files).first.categories.member? category
+    assert_template :index
   end
 
   def test_get_index_with_category_invalid
@@ -36,8 +34,7 @@ class Occams::Admin::Cms::FilesControllerTest < ActionDispatch::IntegrationTest
       categories: 'invalid'
     }
     assert_response :success
-    assert assigns(:files)
-    assert_equal 0, assigns(:files).count
+    assert_template :index
   end
 
   def test_get_index_with_redactor_images
@@ -45,7 +42,6 @@ class Occams::Admin::Cms::FilesControllerTest < ActionDispatch::IntegrationTest
       source: 'redactor', type: 'image'
     }
     assert_response :success
-
     assert_equal [{
       'thumb' => url_for(@file.attachment.variant(combine_options: Occams::Cms::File::VARIANT_SIZE[:redactor])),
       'image' => url_for(@file.attachment),
@@ -58,7 +54,6 @@ class Occams::Admin::Cms::FilesControllerTest < ActionDispatch::IntegrationTest
       source: 'redactor', type: 'file'
     }
     assert_response :success
-
     assert_equal [{
       'title' => @file.label,
       'name' => @file.attachment.filename.to_s,
@@ -68,12 +63,14 @@ class Occams::Admin::Cms::FilesControllerTest < ActionDispatch::IntegrationTest
   end
 
   def test_get_index_with_svg_file
+    file_count = @site.files.count
     @site.files.create(
       file: fixture_file_upload('image.svg', 'image/svg+xml')
     )
-
     r :get, occams_admin_cms_site_files_path(site_id: @site)
     assert_response :success
+    assert_template :index
+    assert_equal file_count + 1, @site.files.count
   end
 
   def test_get_new

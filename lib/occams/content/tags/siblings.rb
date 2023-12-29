@@ -17,7 +17,7 @@
 #
 # style and exclude parameters are optional
 
-class Occams::Content::Tag::Siblings < Occams::Content::Tag
+class Occams::Content::Tags::Siblings < Occams::Content::Tag
   attr_reader :locals, :style, :sibs
   attr_accessor :links
 
@@ -59,5 +59,5 @@ class Occams::Content::Tag::Siblings < Occams::Content::Tag
 end
 
 Occams::Content::Renderer.register_tag(
-  :siblings, Occams::Content::Tag::Siblings
+  :siblings, Occams::Content::Tags::Siblings
 )

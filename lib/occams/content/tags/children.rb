@@ -15,7 +15,7 @@
 # To exclude children, list their slugs with the 'exclude' parameter
 # as comma-delimited string, e.g. as above - exclude: "404-page, search-page"
 
-class Occams::Content::Tag::Children < Occams::Content::Tag
+class Occams::Content::Tags::Children < Occams::Content::Tag
   attr_reader :style, :page_children, :locals
   attr_accessor :list
 
@@ -48,5 +48,5 @@ class Occams::Content::Tag::Children < Occams::Content::Tag
 end
 
 Occams::Content::Renderer.register_tag(
-  :children, Occams::Content::Tag::Children
+  :children, Occams::Content::Tags::Children
 )

@@ -475,7 +475,7 @@ class CmsPageTest < ActiveSupport::TestCase
     @page.layout.update_column(:content, content)
     nodes = @page.fragment_nodes
     assert_equal 1, nodes.count
-    assert_equal Occams::Content::Tag::Wysiwyg, nodes[0].class
+    assert_equal Occams::Content::Tags::Wysiwyg, nodes[0].class
     assert_equal 'test', nodes[0].identifier
   end
 

@@ -7,7 +7,7 @@
 # Whitelist is can be used to control what helpers are available.
 # By default there's a blacklist of methods that should not be called.
 #
-class Occams::Content::Tag::Helper < Occams::Content::Tag
+class Occams::Content::Tags::Helper < Occams::Content::Tag
   BLACKLIST = %w[eval class_eval instance_eval render].freeze
 
   attr_reader :method_name
@@ -49,5 +49,5 @@ class Occams::Content::Tag::Helper < Occams::Content::Tag
 end
 
 Occams::Content::Renderer.register_tag(
-  :helper, Occams::Content::Tag::Helper
+  :helper, Occams::Content::Tags::Helper
 )

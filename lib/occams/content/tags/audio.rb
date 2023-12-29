@@ -14,7 +14,7 @@
 # }
 # and/or pass in style overrides with the 'style' parameter, as above
 
-class Occams::Content::Tag::Audio < Occams::Content::Tag
+class Occams::Content::Tags::Audio < Occams::Content::Tag
   attr_reader :path, :style, :locals
 
   def initialize(context:, params: [], source: nil)
@@ -35,5 +35,5 @@ class Occams::Content::Tag::Audio < Occams::Content::Tag
 end
 
 Occams::Content::Renderer.register_tag(
-  :audio, Occams::Content::Tag::Audio
+  :audio, Occams::Content::Tags::Audio
 )

@@ -13,7 +13,7 @@ class ContentTagsBreadcrumbsTest < ActiveSupport::TestCase
   end
 
   def test_init
-    tag = Occams::Content::Tag::Breadcrumbs.new(
+    tag = Occams::Content::Tags::Breadcrumbs.new(
       context: @gr_gr_child,
       params: []
     )
@@ -21,7 +21,7 @@ class ContentTagsBreadcrumbsTest < ActiveSupport::TestCase
   end
 
   def test_init_with_style
-    tag = Occams::Content::Tag::Breadcrumbs.new(
+    tag = Occams::Content::Tags::Breadcrumbs.new(
       context: @gr_gr_child,
       params: [{ 'style' => 'font-weight: bold' }]
     )
@@ -29,7 +29,7 @@ class ContentTagsBreadcrumbsTest < ActiveSupport::TestCase
   end
 
   def test_render
-    tag = Occams::Content::Tag::Breadcrumbs.new(
+    tag = Occams::Content::Tags::Breadcrumbs.new(
       context: @gr_gr_child,
       params: [{ 'style' => 'font-weight: bold' }]
     )

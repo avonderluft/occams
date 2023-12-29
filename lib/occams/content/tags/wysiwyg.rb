@@ -5,7 +5,7 @@
 #   {{ cms:wysiwyg identifier }}
 #
 #
-class Occams::Content::Tag::Wysiwyg < Occams::Content::Tag::Fragment
+class Occams::Content::Tags::Wysiwyg < Occams::Content::Tags::Fragment
   def form_field(object_name, view, index)
     name    = "#{object_name}[fragments_attributes][#{index}][content]"
     options = { id: form_field_id, data: { 'cms-rich-text' => true } }
@@ -15,5 +15,5 @@ class Occams::Content::Tag::Wysiwyg < Occams::Content::Tag::Fragment
 end
 
 Occams::Content::Renderer.register_tag(
-  :wysiwyg, Occams::Content::Tag::Wysiwyg
+  :wysiwyg, Occams::Content::Tags::Wysiwyg
 )

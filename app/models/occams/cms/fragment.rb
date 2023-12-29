@@ -5,7 +5,7 @@ class Occams::Cms::Fragment < ActiveRecord::Base
 
   has_many_attached :attachments
 
-  serialize :content
+  serialize :content, coder: Psych
 
   attr_reader :files
 
