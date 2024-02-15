@@ -14,8 +14,6 @@ module Occams
     config.load_defaults Rails.version.scan(%r{^\d+\.\d+}).first.to_f
 
     # Rails 7.1 compatibility - See config/initializers/new_framework_defaults_7_1.rb
-    config.add_autoload_paths_to_load_path = false
-
     if Gem::Version.new(Rails.version) >= Gem::Version.new('7.1.0')
       config.active_record.default_column_serializer = YAML
       config.active_record.before_committed_on_all_records = false
@@ -31,6 +29,8 @@ module Occams
       # not contain `.rb` files, or that should not be reloaded or eager loaded.
       # Common ones are `templates`, `generators`, or `middleware`, for example.
       config.autoload_lib(ignore: %w[generators])
+      config.autoloader = :classic
+      config.add_autoload_paths_to_load_path = false
     end
 
     # Making sure we don't load our dev routes as part of the engine
