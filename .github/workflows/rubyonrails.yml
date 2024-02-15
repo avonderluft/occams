@@ -17,6 +17,7 @@ jobs:
         rails-version:
           - "6.1"
           - "7.0"
+          - "7.1"
         continue-on-error: [true]
     name: ${{ format('Tests (Ruby {0}, Rails {1})', matrix.ruby-version, matrix.rails-version) }}
     runs-on: ubuntu-latest

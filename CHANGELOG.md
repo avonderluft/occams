@@ -1,5 +1,11 @@
 # Changelog
 
+## v.1.1.0 13 January 2024
+
+- Rails 7.1 compatibility, all tests passing
+- corrected bug in siblings tag to not display links to unpublished pages
+- updated README
+
 ## v1.0.8 - 29 December 2023
 
 - Updated configs, et al. in pursuit of Rails 7.1 compatibility

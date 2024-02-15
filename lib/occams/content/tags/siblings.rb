@@ -31,6 +31,9 @@ class Occams::Content::Tags::Siblings < Occams::Content::Tag
     @links = ''
     # ActiveRecord_Associations_CollectionProxy
     @sibs = context.self_and_siblings.order(:position).to_ary
+    unless Rails.env == 'development'
+      @sibs.delete_if { |sib| !sib.is_published }
+    end
     @sibs.delete_if { |sib| @exclude.include? sib.slug }
   end
 

@@ -98,8 +98,6 @@ Once you have a layout, you may start creating pages and populating content. It'
 
 ## Documentation
 
-[Occams](https://github.com/avonderluft/occams)
-
 For more information on how to use this CMS please refer to the [Wiki](https://github.com/avonderluft/occams/wiki). Section that might be of interest is the entry
 on [Content Tags](https://github.com/comfy/avonderluft/occams/Content-Tags).
 
@@ -120,5 +118,5 @@ For more detail see [CONTRIBUTING](CONTRIBUTING.md)
 - Thanks to [Roman Almeida](https://github.com/nasmorn) for contributing OEM License for [Redactor Text Editor](http://imperavi.com/redactor)
 
 ---
-- [Occams](https://github.com/avonderluft/occams) Copyright 2023 Andrew vonderLuft, following Comfy,  released under the [MIT license](LICENSE)
+- [Occams](https://github.com/avonderluft/occams) Copyright 2023-2024 Andrew vonderLuft, following Comfy,  released under the [MIT license](LICENSE)
 - [ComfortableMexicanSofa](https://github.com/comfy/comfortable-mexican-sofa) Copyright 2010-2019 Oleg Khabarov. Released under the [MIT license](LICENSE)
