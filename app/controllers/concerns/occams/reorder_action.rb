@@ -12,6 +12,9 @@ module Occams::ReorderAction
     (params.permit(order: [])[:order] || []).each_with_index do |id, index|
       resource_class.where(id: id).update_all(position: index)
     end
+    if resource_class == ::Occams::Cms::Page
+      Occams::Cms::Page.all.each(&:save!)
+    end
     head :ok
   end
 end
