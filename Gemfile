@@ -5,11 +5,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gemspec
 
-gem 'rails', '~> 7.0.0'
+gem 'rails', '~> 7.1.2'
 
 group :development, :test do
   gem 'autoprefixer-rails', '~> 8.1.0'
-  gem 'byebug',             '~> 10.0.0', platforms: %i[mri mingw x64_mingw]
+  gem 'byebug',             '~> 11.1.0', platforms: %i[mri mingw x64_mingw]
   gem 'image_processing',   '>= 1.2'
   gem 'sqlite3',            '~> 1.6.7'
   # gem 'mysql2',             '~> 0.5'

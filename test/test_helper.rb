@@ -43,7 +43,7 @@ class ActiveSupport::TestCase
   include ActionDispatch::TestProcess
 
   fixtures :all
-  parallelize(workers: 1) # rails 7.1 tests pass in github actions
+  self.use_transactional_tests = false
 
   setup :reset_config,
         :reset_locale

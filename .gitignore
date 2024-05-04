@@ -12,6 +12,7 @@ coverage/
 db/*.sqlite3
 db/cms_fixtures/test-site/
 db/development_structure.sql
+db/development.sqlite3*
 db/schema.rb
 db/test.sqlite3*
 Gemfile.lock

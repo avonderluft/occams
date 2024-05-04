@@ -10,6 +10,8 @@ require 'active_support/core_ext/integer/time'
 defined?(Occams::Application) && Occams::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.active_job.queue_adapter = :test # added for Rails 7.1
+
   # While tests run files are not watched, reloading is not necessary.
   config.enable_reloading = false
 

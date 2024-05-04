@@ -35,8 +35,14 @@ class Occams::Admin::Cms::PagesController < Occams::Admin::Cms::BaseController
     render
   end
 
+  def update_family
+    @page.siblings.each(&:save!) if @page.siblings
+    @page.parent.save! if @page.parent
+  end
+
   def create
     @page.save!
+    update_family
     flash[:success] = I18n.t('occams.admin.cms.pages.created')
     redirect_to action: :edit, id: @page
   rescue ActiveRecord::RecordInvalid
@@ -46,6 +52,7 @@ class Occams::Admin::Cms::PagesController < Occams::Admin::Cms::BaseController
 
   def update
     @page.save!
+    update_family
     flash[:success] = I18n.t('occams.admin.cms.pages.updated')
     redirect_to action: :edit, id: @page
   rescue ActiveRecord::RecordInvalid
@@ -55,6 +62,7 @@ class Occams::Admin::Cms::PagesController < Occams::Admin::Cms::BaseController
 
   def destroy
     @page.destroy
+    update_family
     flash[:success] = I18n.t('occams.admin.cms.pages.deleted')
     redirect_to action: :index
   end

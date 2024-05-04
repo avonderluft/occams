@@ -219,7 +219,7 @@ class Occams::Admin::Cms::PagesControllerTest < ActionDispatch::IntegrationTest
         page = Occams::Cms::Page.last
         assert_equal @site, page.site
         assert_redirected_to action: :edit, id: page
-        assert_equal 'Page created', flash[:success]
+        assert_equal 'Page created, siblings, and parent updated', flash[:success]
       end
     end
   end
@@ -255,7 +255,7 @@ class Occams::Admin::Cms::PagesControllerTest < ActionDispatch::IntegrationTest
           page = Occams::Cms::Page.last
           assert_equal @site, page.site
           assert_redirected_to action: :edit, id: page
-          assert_equal 'Page created', flash[:success]
+          assert_equal 'Page created, siblings, and parent updated', flash[:success]
         end
       end
     end
@@ -290,7 +290,7 @@ class Occams::Admin::Cms::PagesControllerTest < ActionDispatch::IntegrationTest
       @page.reload
       assert_response :redirect
       assert_redirected_to action: :edit, id: @page
-      assert_equal 'Page updated', flash[:success]
+      assert_equal 'Page, siblings, and parent updated', flash[:success]
       assert_equal 'Updated Label', @page.label
     end
   end
@@ -310,7 +310,7 @@ class Occams::Admin::Cms::PagesControllerTest < ActionDispatch::IntegrationTest
       @page.reload
       assert_response :redirect
       assert_redirected_to action: :edit, id: @page
-      assert_equal 'Page updated', flash[:success]
+      assert_equal 'Page, siblings, and parent updated', flash[:success]
       assert_equal 'Updated Label', @page.label
       identifiers = @page.fragments.collect(&:identifier)
       assert_equal %w[boolean content datetime file header], identifiers.sort
@@ -333,7 +333,7 @@ class Occams::Admin::Cms::PagesControllerTest < ActionDispatch::IntegrationTest
         r :delete, occams_admin_cms_site_page_path(site_id: @site, id: @page)
         assert_response :redirect
         assert_redirected_to action: :index
-        assert_equal 'Page deleted', flash[:success]
+        assert_equal 'Page deleted, siblings, and parent updated', flash[:success]
       end
     end
   end
