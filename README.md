@@ -49,7 +49,6 @@ ocCaM'S, pronounced "AH-kums" is a nod to [Occam's Razor](https://en.wikipedia.o
 
 - [Test suite](https://github.com/avonderluft/occams/actions/workflows/rubyonrails.yml) on Ruby >= 2.7 with Rails >= 6.1
 - On Ruby 3.2, Rails 7.x + is recommended, since performance is noticably better than on 6.x
-- Sites do run on Rails 7.1, e.g. [GKNT](https://gknt.org/), but some tests fail in [Github Actions](https://github.com/avonderluft/occams/actions). Your mileage may vary.
 
 ## Installation
 
