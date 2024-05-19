@@ -7,7 +7,7 @@
 - create cms:image tag, simplifying from cms:file_link
 - add 'title' attribute to images
 - update and optimize test suite
-- dropped support for ruby < 3.0 - no longer supported
+- drop support for ruby < 3.0 - no longer supported
 
 ## v.1.1.0 13 May 2024
 
