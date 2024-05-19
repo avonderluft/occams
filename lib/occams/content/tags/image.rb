@@ -2,12 +2,10 @@
 
 require_relative 'mixins/file_content'
 
-# This is how you link previously uploaded file to anywhere. Good example may be
-# a header image you want to use on the layout level.
-#   {{cms:file_link id, as: image}}
+# This is like the the file_link tag, but specifically for images
+# Identify the image by its label {{ cms:image label }}
 #
-# `as`      - url (default) | link | image - how file gets rendered out
-# `class`   - any html classes that you want on the result link or image tag. For example "class1 class2"
+# `class`   - any html classes that you want on the image tag. For example "class1 class2"
 #
 # - variant_attrs are not functional, perhaps due to some change in ImageMagick
 # - Simply use a class in your CSS / SASS to style your image display
@@ -15,8 +13,8 @@ require_relative 'mixins/file_content'
 # `resize`  - imagemagick option. For example: "100x50>"
 # `gravity` - imagemagick option. For example: "center"
 # `crop`    - imagemagick option. For example: "100x50+0+0"
-#
-class Occams::Content::Tags::FileLink < Occams::Content::Tag
+
+class Occams::Content::Tags::Image < Occams::Content::Tag
   include Occams::Content::Tags::Mixins::FileContent
 
   attr_reader :identifier, :as, :variant_attrs
@@ -26,18 +24,18 @@ class Occams::Content::Tags::FileLink < Occams::Content::Tag
 
     options = params.extract_options!
     @identifier     = params[0]
-    @as             = options['as'] || 'url'
+    @as             = 'image'
     @class          = options['class']
     @variant_attrs  = options.slice('resize', 'gravity', 'crop') # broken for ImageMagick
 
     return if @identifier.present?
 
-    raise Error, 'Missing identifier for file link tag'
+    raise Error, 'Missing identifier label for image tag'
   end
 
   # @return [Occams::Cms::File]
   def file_record
-    @file_record ||= context.site.files.detect { |f| f.id == identifier.to_i }
+    @file_record ||= context.site.files.detect { |f| f.label == identifier }
   end
 
   # @return [ActiveStorage::Blob]
@@ -54,5 +52,5 @@ class Occams::Content::Tags::FileLink < Occams::Content::Tag
 end
 
 Occams::Content::Renderer.register_tag(
-  :file_link, Occams::Content::Tags::FileLink
+  :image, Occams::Content::Tags::Image
 )

@@ -127,8 +127,8 @@ protected
 
   def build_page
     @page = @site.pages.new(page_params)
-    @page.parent ||= (@site.pages.find_by_id(params[:parent_id]) || @site.pages.root)
-    @page.layout ||= (@page.parent&.layout || @site.layouts.first)
+    @page.parent ||= @site.pages.find_by_id(params[:parent_id]) || @site.pages.root
+    @page.layout ||= @page.parent&.layout || @site.layouts.first
   end
 
   def load_page

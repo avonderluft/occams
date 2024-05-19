@@ -33,6 +33,7 @@ class ContentRendererTest < ActiveSupport::TestCase
     'snippet' => Occams::Content::Tags::Snippet,
     'asset' => Occams::Content::Tags::Asset,
     'file_link' => Occams::Content::Tags::FileLink,
+    'image' => Occams::Content::Tags::Image,
     'page_file_link' => Occams::Content::Tags::PageFileLink,
     'helper' => Occams::Content::Tags::Helper,
     'partial' => Occams::Content::Tags::Partial,

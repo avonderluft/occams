@@ -1,5 +1,13 @@
 # Changelog
 
+## v.1.1.1 dd mm 2024
+
+- bump to Rails 7.1.3.3
+- bugfix: uploaded files index page was blank
+- create cms:image tag, simplifying from cms:file_link
+- add 'title' attribute to images
+- update and optimize test suite
+
 ## v.1.1.0 13 May 2024
 
 - Rails 7.1 compatibility, all tests passing

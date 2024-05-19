@@ -78,7 +78,7 @@ class ContentTagsFileLinkTest < ActiveSupport::TestCase
       params: [@file.id, { 'as' => 'image', 'class' => 'html-class' }]
     )
     url = rails_blob_path(tag.file, only_path: true)
-    out = "<img src='#{url}' class='html-class' alt='default file'/>"
+    out = "<img src='#{url}' class='html-class' alt='default file' title='default file'/>"
     assert_equal out, tag.content
     assert_equal out, tag.render
   end

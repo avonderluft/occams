@@ -65,9 +65,7 @@ module Occams
     def occams_paginate(collection)
       return unless collection
 
-      return unless defined?(Kaminari)
-
-      paginate collection, theme: 'occams'
+      paginate collection, theme: 'occams' if defined?(Kaminari)
     end
   end
 end

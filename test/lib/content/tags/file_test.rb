@@ -63,7 +63,7 @@ class ContentTagsFileTest < ActiveSupport::TestCase
       params: [frag.identifier, { 'as' => 'image', 'class' => 'html-class' }]
     )
     path  = rails_blob_path(frag.attachments.first, only_path: true)
-    out   = "<img src='#{path}' class='html-class' alt='fragment.jpeg'/>"
+    out   = "<img src='#{path}' class='html-class' alt='fragment.jpeg' title='fragment.jpeg'/>"
     assert_equal out, tag.content
   end
 
@@ -75,7 +75,7 @@ class ContentTagsFileTest < ActiveSupport::TestCase
     )
     variant = frag.attachments.first.variant(combine_options: { 'resize' => '50x50' })
     path    = rails_representation_path(variant, only_path: true)
-    out     = "<img src='#{path}' alt='fragment.jpeg'/>"
+    out     = "<img src='#{path}' alt='fragment.jpeg' title='fragment.jpeg'/>"
     assert_equal out, tag.content
   end
 

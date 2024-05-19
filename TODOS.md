@@ -1,7 +1,6 @@
 # ToDos
 
-- set up Buildkite CI and add build badge to README
 - add duplicate page function in admin UI
 - add admin content search to list layouts, pages and snippets - see https://blog.robertsj.com/search/
-- add application console for testing
-- add feature to resize file_link'd images
+- diagnose and correct failure of ImageMagick params in file_link and image cms tags
+- lint for rubocop-rails and rubocop-minitest
