@@ -47,8 +47,8 @@ ocCaM'S, pronounced "AH-kums" is a nod to [Occam's Razor](https://en.wikipedia.o
 
 ## Compatibility
 
-- [Test suite](https://github.com/avonderluft/occams/actions/workflows/rubyonrails.yml) on Ruby >= 2.7 with Rails >= 6.1
-- On Ruby 3.2, Rails 7.x + is recommended, since performance is noticably better than on 6.x
+- [Test suite](https://github.com/avonderluft/occams/actions/workflows/rubyonrails.yml) on Ruby >= 3.0 with Rails >= 6.1
+- On Ruby 3.x, Rails 7.x + is recommended, since performance is noticably better than on 6.x
 
 ## Installation
 

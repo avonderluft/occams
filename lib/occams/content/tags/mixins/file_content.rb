@@ -25,7 +25,7 @@ module Occams::Content::Tags::Mixins
       when 'link'
         "<a href='#{attachment_url}'#{html_class_attribute} target='_blank'>#{label}</a>"
       when 'image'
-        "<img src='#{attachment_url}'#{html_class_attribute} alt='#{label}'/>"
+        "<img src='#{attachment_url}'#{html_class_attribute} alt='#{label}' title='#{label}'/>"
       else
         attachment_url
       end

@@ -67,7 +67,7 @@ class AdminCmsHelpersTest < ActionView::TestCase
 
   def test_cms_file_link_tag
     actual = cms_file_link_tag(@file)
-    assert_equal '{{ cms:file_link 593363170, as: image }}', actual
+    assert_equal '{{ cms:image default file }}', actual
   end
 
   def test_cms_file_link_tag_non_image

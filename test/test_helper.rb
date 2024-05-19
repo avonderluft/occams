@@ -35,7 +35,7 @@ if Gem::Version.new(Rails.version) >= Gem::Version.new('7.1.0')
   Dir[Rails.root.join('lib/**/*.rb')].each { |f| load f }
 end
 
-reporter_options = { color: true, slow_count: 3 }
+reporter_options = { color: true, slow_count: 4 }
 Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(reporter_options)]
 Rails.backtrace_cleaner.remove_silencers!
 
@@ -43,7 +43,7 @@ class ActiveSupport::TestCase
   include ActionDispatch::TestProcess
 
   fixtures :all
-  self.use_transactional_tests = false
+  self.use_transactional_tests = true
 
   setup :reset_config,
         :reset_locale

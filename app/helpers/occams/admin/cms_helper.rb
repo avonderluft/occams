@@ -39,8 +39,11 @@ module Occams
       # @param [Occams::Cms::File] file
       # @return [String] {{ cms:file_link #{file.id}, ... }}
       def cms_file_link_tag(file)
-        as = ', as: image' if file.attachment.image?
-        "{{ cms:file_link #{file.id}#{as} }}"
+        if file.attachment.image?
+          "{{ cms:image #{file.label} }}"
+        else
+          "{{ cms:file_link #{file.id} }}"
+        end
       end
     end
   end

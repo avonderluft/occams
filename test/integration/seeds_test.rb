@@ -40,7 +40,7 @@ class SeedsIntergrationTest < ActionDispatch::IntegrationTest
           out = <<~HTML
             <html>
               <body>
-                <img src='#{file_path}' alt='header.png'/>
+                <img src='#{file_path}' alt='header.png' title='header.png'/>
                 <p>Home Page Seed Contént
             Default Seed Snippet Content
             </p>

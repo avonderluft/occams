@@ -16,11 +16,14 @@ require_relative 'mixins/file_content'
 #   {{ cms:page_file_link attachments, filename: "cat.jpg" }}
 #
 # `as`      - url (default) | link | image - how file gets rendered out
+# `class`   - any html classes that you want on the result link or image tag. For example "class1 class2"
+#
+# - the following params are deprecated / not functional, perhaps due to some change in ImageMagick
+# - Simply use a class in your CSS / SASS to style your image display
 # `label`   - attach label attribute to link or image tag
 # `resize`  - imagemagick option. For example: "100x50>"
 # `gravity` - imagemagick option. For example: "center"
 # `crop`    - imagemagick option. For example: "100x50+0+0"
-# `class`   - any html classes that you want on the result link or image tag. For example "class1 class2"
 #
 class Occams::Content::Tags::PageFileLink < Occams::Content::Tag
   include Occams::Content::Tags::Mixins::FileContent
