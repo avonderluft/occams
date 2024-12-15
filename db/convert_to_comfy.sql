@@ -1,0 +1,16 @@
+ALTER TABLE occams_cms_categories RENAME TO comfy_cms_categories;
+ALTER TABLE occams_cms_categorizations RENAME TO comfy_cms_categorizations;
+ALTER TABLE occams_cms_files RENAME TO comfy_cms_files;
+ALTER TABLE occams_cms_fragments RENAME TO comfy_cms_fragments;
+ALTER TABLE occams_cms_layouts RENAME TO comfy_cms_layouts;
+ALTER TABLE occams_cms_pages RENAME TO comfy_cms_pages;
+ALTER TABLE occams_cms_revisions RENAME TO comfy_cms_revisions;
+ALTER TABLE occams_cms_sites RENAME TO comfy_cms_sites;
+ALTER TABLE occams_cms_snippets RENAME TO comfy_cms_snippets;
+ALTER TABLE occams_cms_translations RENAME TO comfy_cms_translations;
+UPDATE comfy_cms_fragments SET record_type = 'Comfy::Cms::Page' WHERE record_type = 'Occams::Cms::Page';
+UPDATE comfy_cms_fragments SET record_type = 'Comfy::Cms::Layout' WHERE record_type = 'Occams::Cms::Layout';
+UPDATE comfy_cms_fragments SET record_type = 'Comfy::Cms::Snippet' WHERE record_type = 'Occams::Cms::Snippet';
+UPDATE comfy_cms_revisions SET record_type = 'Comfy::Cms::Page' WHERE record_type = 'Occams::Cms::Page';
+UPDATE comfy_cms_revisions SET record_type = 'Comfy::Cms::Layout' WHERE record_type = 'Occams::Cms::Layout';
+UPDATE comfy_cms_revisions SET record_type = 'Comfy::Cms::Snippet' WHERE record_type = 'Occams::Cms::Snippet';

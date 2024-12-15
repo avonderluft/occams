@@ -6,6 +6,10 @@
 [![Gem Downloads](https://img.shields.io/gem/dt/occams.svg?style=flat)](http://rubygems.org/gems/occams)
 [![GitHub Release Date - Published_At](https://img.shields.io/github/release-date/avonderluft/occams?label=last%20release&color=seagreen)](https://github.com/avonderluft/occams/releases)
 
+## NOTICE
+
+Occams is being retired in favor of [ComfortableMediaSurfer](https://github.com/shakacode/comfortable-media-surfer), which follows in the stream of [ComfortableMexicanSofa](https://github.com/comfy/comfortable-mexican-sofa) with all of its commit history.  To convert your existing Occams project to ComfortableMediaSurfer, run this [SQL](/db/convert_to_comfy.sql)
+
 ***Prefer Simplicity.***
 
 <a href="https://en.wikipedia.org/wiki/William_of_Ockham" target="_blank">
