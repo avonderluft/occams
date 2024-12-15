@@ -6,6 +6,8 @@
 [![Gem Downloads](https://img.shields.io/gem/dt/occams.svg?style=flat)](http://rubygems.org/gems/occams)
 [![GitHub Release Date - Published_At](https://img.shields.io/github/release-date/avonderluft/occams?label=last%20release&color=seagreen)](https://github.com/avonderluft/occams/releases)
 
+**We recommend using [ComfortableMediaSurfer](https://github.com/shakacode/comfortable-media-surfer) instead.**
+
 ***Prefer Simplicity.***
 
 <a href="https://en.wikipedia.org/wiki/William_of_Ockham" target="_blank">
